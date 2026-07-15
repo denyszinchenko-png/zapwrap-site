@@ -12,303 +12,269 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://zapwrapnaples.com/" />
   <link rel="canonical" href="https://zapwrapnaples.com/" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#0a0a0b" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/porsche-911.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
-<body>
+<body id="top">
+
   <!-- NAV -->
   <header class="nav" id="nav">
     <a class="brand" href="#top" aria-label="Zap Wrap Naples - home">
-      <span class="brand__mark">Zap Wrap</span>
-      <span class="brand__loc">Naples, FL</span>
+      <svg class="brand__bolt" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 5 14h5l-1 8 8.5-12h-5z"/></svg>
+      <span class="brand__word">Zap&nbsp;Wrap</span>
+      <span class="brand__loc">Naples&nbsp;FL</span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#work">Work</a>
       <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#work">Work</a>
+      <a href="#finishes">Finishes</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn--primary" href="#book">Book a consult <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+    <a class="btn btn--solid nav__cta" href="#book">Book a consult</a>
   </header>
 
-  <main id="top">
+  <main>
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-h">
-      <div class="hero__stage" aria-hidden="true"></div>
-      <div class="hero__floor" aria-hidden="true"></div>
-      <div class="hero__grain" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <p class="hero__tagline">No shortcuts</p>
-        <h1 id="hero-h" class="reveal">The exotic-wrap studio Naples <em>didn't know it had.</em></h1>
-        <p class="hero__lead reveal">Color change wraps, chrome deletes and custom graphics on the cars that deserve them. Vinyl is all we do, and we do it like the paint underneath is worth protecting. Because it is.</p>
-        <div class="hero__actions reveal">
-          <a class="btn btn--primary" href="#book">Book a consult <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="#work">See the work</a>
-          <span class="hero__note">Serving Naples, Bonita, Marco Island &amp; Fort Myers</span>
+      <div class="hero__stage">
+        <p class="hero__intro">Vinyl wrap studio &middot; Naples, Florida</p>
+        <h1 id="hero-h" class="hero__h">
+          <span class="hero__line">The exotic-</span>
+          <span class="hero__line"><em>wrap</em> studio</span>
+          <span class="hero__line">of Naples</span>
+        </h1>
+        <p class="hero__sub">Full color change, chrome delete, custom graphics. Vinyl is the whole job here, not a line on a menu. No shortcuts.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="#book">Book a consult <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--ghost" href="https://wa.me/13527790041" rel="noopener">WhatsApp the studio</a>
         </div>
       </div>
-      <div class="hero__scroll" aria-hidden="true"><span></span>Scroll</div>
+
+      <figure class="hero__car" aria-label="Porsche 911 wrap preview: switch the film to recolor the car">
+        <div class="car" data-film="shift">
+          <img class="car__img" src="assets/porsche-911.webp" width="1600" height="856" alt="Porsche 911 side profile on the studio wrap template" fetchpriority="high" />
+          <div class="car__film" aria-hidden="true"></div>
+          <div class="car__floor" aria-hidden="true"></div>
+        </div>
+        <figcaption class="hero__filmbar">
+          <span class="filmbar__label">Pick a film</span>
+          <span class="filmbar__chips" role="group" aria-label="Film finishes">
+            <button class="chip chip--shift is-active" type="button" data-set-film="shift">Color-shift</button>
+            <button class="chip chip--satin" type="button" data-set-film="satin">Satin black</button>
+            <button class="chip chip--miami" type="button" data-set-film="miami">Miami blue</button>
+            <button class="chip chip--rosso" type="button" data-set-film="rosso">Gloss rosso</button>
+          </span>
+        </figcaption>
+      </figure>
     </section>
 
-    <!-- TRUST STRIP — the marques that come through the studio -->
-    <section class="marques" aria-label="Marques we wrap">
-      <div class="wrap marques__inner">
-        <p class="marques__label">The cars Naples brings us</p>
-        <ul class="marques__list" role="list">
-          <li>Porsche</li>
-          <li>Lamborghini</li>
-          <li>Ferrari</li>
-          <li>McLaren</li>
-          <li>G-Wagon</li>
-          <li>Aston Martin</li>
-          <li>Corvette</li>
-          <li>Urus</li>
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Full color change</span><i>&#10022;</i><span>Chrome delete</span><i>&#10022;</i><span>Satin</span><i>&#10022;</i><span>Gloss</span><i>&#10022;</i><span>Color-shift</span><i>&#10022;</i><span>Fleet graphics</span><i>&#10022;</i><span class="ticker__hot">No shortcuts.</span><i>&#10022;</i>
+        <span>Full color change</span><i>&#10022;</i><span>Chrome delete</span><i>&#10022;</i><span>Satin</span><i>&#10022;</i><span>Gloss</span><i>&#10022;</i><span>Color-shift</span><i>&#10022;</i><span>Fleet graphics</span><i>&#10022;</i><span class="ticker__hot">No shortcuts.</span><i>&#10022;</i>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="services" aria-labelledby="services-h">
+      <div class="wrap">
+        <h2 id="services-h" class="section__h">What we do<span class="dot">.</span></h2>
+        <p class="section__lead">One specialization, done at exotic level. Ceramic is a seal we lay over a finished wrap, never a service on its own. No PPF, no tint: that is everyone else's business.</p>
+
+        <ul class="svc" role="list">
+          <li class="svc__row reveal">
+            <h3 class="svc__name">Full color change</h3>
+            <p class="svc__desc">Satin, gloss, metallic, color-shift. The factory paint gets sealed underneath and stays untouched. 3 to 5 days in the bay.</p>
+            <p class="svc__price"><small>from</small> $3,000</p>
+          </li>
+          <li class="svc__row reveal">
+            <h3 class="svc__name">Chrome delete</h3>
+            <p class="svc__desc">Trim, badges, mirrors, window surrounds in satin or gloss black. The fastest way to make a car look finished.</p>
+            <p class="svc__price"><small>from</small> $500</p>
+          </li>
+          <li class="svc__row reveal">
+            <h3 class="svc__name">Roof, hood &amp; accents</h3>
+            <p class="svc__desc">Contrast roof, hood, spoiler, mirrors. Small panels, exact edges.</p>
+            <p class="svc__price"><small>from</small> $400</p>
+          </li>
+          <li class="svc__row reveal">
+            <h3 class="svc__name">Custom graphics &amp; lettering</h3>
+            <p class="svc__desc">Stripes, liveries, decals, plotted and layered in-house.</p>
+            <p class="svc__price">custom quote</p>
+          </li>
+          <li class="svc__row reveal">
+            <h3 class="svc__name">Commercial &amp; fleet</h3>
+            <p class="svc__desc">A wrapped van is a billboard your business already owns. Print, plot, install, repeat across the fleet.</p>
+            <p class="svc__price">custom quote</p>
+          </li>
+          <li class="svc__row svc__row--addon reveal">
+            <h3 class="svc__name">Ceramic seal <span class="svc__tag">add-on</span></h3>
+            <p class="svc__desc">A ceramic coat over the fresh film: easier washes, deeper finish. Only ever on top of a wrap.</p>
+            <p class="svc__price"><small>from</small> $600</p>
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="section" id="services" aria-labelledby="svc-h">
+    <!-- WORK -->
+    <section class="work" id="work" aria-labelledby="work-h">
       <div class="wrap">
-        <div class="section__head reveal">
-          <p class="eyebrow">What we do</p>
-          <h2 id="svc-h">One craft, done completely.</h2>
-        </div>
-        <div class="svc reveal--stagger">
-          <div class="svc__row">
-            <span class="svc__name">Full <b>color change</b> wraps</span>
-            <span class="svc__desc">Satin, gloss, metallic, color-shift. A complete transformation that keeps the factory paint sealed and untouched underneath. 3-5 days.</span>
-            <span class="svc__tag">From $3,000</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name"><b>Chrome</b> deletes</span>
-            <span class="svc__desc">Trim, grille, badges, window surrounds and mirror caps taken to gloss or satin black. The single highest-impact detail on a modern exotic.</span>
-            <span class="svc__tag">From $500 · Most requested</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name"><b>Partial</b> wraps, roofs &amp; hoods</span>
-            <span class="svc__desc">Roofs, hoods, mirror caps, racing stripes and one-off accents. Targeted change without committing the whole car.</span>
-            <span class="svc__tag">From $400 · Half-day</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name"><b>Custom</b> graphics &amp; lettering</span>
-            <span class="svc__desc">Liveries, logos and cut work designed and installed in-house. Built around the car, not pulled off a template.</span>
-            <span class="svc__tag">From $150</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name"><b>Commercial</b> &amp; fleet wraps</span>
-            <span class="svc__desc">Consistent, panel-matched branding across a full fleet. The same install standard we hold on a six-figure car. Volume pricing for 3+ identical vehicles.</span>
-            <span class="svc__tag">From $1,800</span>
-          </div>
-        </div>
-        <div class="seal seal--tight reveal">
-          <p><b>Boat wraps are coming.</b> We're building out custom marine vinyl for the Naples boating community - not launched yet, so we won't quote or book it today.</p>
-          <a class="btn btn--ghost" href="#book">Get notified at launch</a>
-        </div>
+        <h2 id="work-h" class="section__h">Recent builds<span class="dot">.</span></h2>
+        <p class="section__lead">Shown the way we actually plan them: on the plot templates every wrap in this studio starts from. Full photo and video files at your consult.</p>
       </div>
-    </section>
 
-    <!-- PRICING -->
-    <section class="section" id="pricing" aria-labelledby="price-h">
-      <div class="wrap">
-        <div class="section__head reveal">
-          <p class="eyebrow">Pricing</p>
-          <h2 id="price-h">Transparent starting prices.</h2>
-          <p class="section__note">Final quote comes after photos or an in-studio look: size, body complexity, film choice and surface condition all move the number. We won't guess at a firm price over the phone, and we don't compete on being the cheapest shop in Naples.</p>
-        </div>
-        <div class="svc reveal--stagger">
-          <div class="svc__row">
-            <span class="svc__name">Full color change wrap</span>
-            <span class="svc__desc">Priced by vehicle size: sedan to full-size SUV, van or exotic.</span>
-            <span class="svc__tag">$3,000-$10,000+</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name">Chrome delete</span>
-            <span class="svc__desc">Partial trim to a full-vehicle package.</span>
-            <span class="svc__tag">$500-$1,500+</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name">Roof or hood wrap</span>
-            <span class="svc__desc">Each priced separately; pairs well together.</span>
-            <span class="svc__tag">From $400</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name">Commercial &amp; fleet wrap</span>
-            <span class="svc__desc">Partial branding up to full cargo van and box truck coverage.</span>
-            <span class="svc__tag">From $1,800</span>
-          </div>
-          <div class="svc__row">
-            <span class="svc__name">Ceramic coating</span>
-            <span class="svc__desc">Finishing add-on after a wrap only - never sold on its own.</span>
-            <span class="svc__tag">From $600</span>
+      <article class="build reveal">
+        <div class="build__visual">
+          <div class="car car--sprinter" data-static-film="psychedelic">
+            <img class="car__img" src="assets/sprinter.webp" width="1600" height="1000" alt="Mercedes Sprinter side profile plotted with a purple-to-teal color-shift film" loading="lazy" />
+            <div class="car__film" aria-hidden="true"></div>
+            <div class="car__floor" aria-hidden="true"></div>
           </div>
         </div>
-      </div>
+        <div class="build__meta">
+          <h3 class="build__name">Psychedelic Sprinter</h3>
+          <p class="build__spec">Mercedes Sprinter &middot; 3M Satin Flip Psychedelic &middot; full fleet color change for PoolLights</p>
+          <p class="build__credit">Installed for Studio Design USA</p>
+        </div>
+      </article>
+
+      <article class="build build--alt reveal">
+        <div class="build__visual">
+          <div class="car car--bus" data-static-film="bus">
+            <img class="car__img" src="assets/school-bus.webp" width="1600" height="900" alt="School bus side profile plotted with a full print wrap" loading="lazy" />
+            <div class="car__film" aria-hidden="true"></div>
+            <div class="car__floor" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="build__meta">
+          <h3 class="build__name">Boys &amp; Girls Club fleet</h3>
+          <p class="build__spec">School buses &middot; full print wraps, edge to edge, across the fleet</p>
+          <p class="build__credit">Installed for Studio Design USA</p>
+        </div>
+      </article>
     </section>
 
     <!-- WHY VINYL -->
-    <section class="section section--deep" id="why" aria-labelledby="why-h">
+    <section class="why" aria-labelledby="why-h">
       <div class="wrap">
-        <div class="section__head reveal">
-          <p class="eyebrow">Why wrap, not paint</p>
-          <h2 id="why-h">The smart money wraps the car.</h2>
-        </div>
-        <div class="claims reveal--stagger">
-          <article class="claim">
-            <h3>It protects the paint you paid for.</h3>
-            <p>Vinyl is a removable shield over your OEM finish. Years of sun, salt air and road grime hit the film, not the factory clear coat. Peel it later and the original paint is exactly as it left the line.</p>
-          </article>
-          <article class="claim">
-            <h3>It's fully reversible.</h3>
-            <p>Lease it, sell it, or change your mind in three years. A proper wrap comes off clean and returns the car to stock. A repaint is forever, and buyers can tell.</p>
-          </article>
-          <article class="claim">
-            <h3>It lasts, and it costs less than paint.</h3>
-            <p>Five to seven years with proper care, for a fraction of what a quality respray on an exotic runs. The look of a custom finish without touching the car's value.</p>
-          </article>
-        </div>
+        <h2 id="why-h" class="section__h">Why film beats a respray<span class="dot">.</span></h2>
+        <dl class="why__list">
+          <div class="why__item reveal">
+            <dt>Your paint stays factory.</dt>
+            <dd>The film seals the OEM coat and peels clean. Fully reversible, resale intact.</dd>
+          </div>
+          <div class="why__item reveal">
+            <dt>5 to 7 years of finish.</dt>
+            <dd>With proper care, a professional wrap holds its color and gloss for years.</dd>
+          </div>
+          <div class="why__item reveal">
+            <dt>Cheaper than a quality respray.</dt>
+            <dd>And unlike paint, you can change your mind in three years.</dd>
+          </div>
+          <div class="why__item reveal">
+            <dt>8 years on the panels.</dt>
+            <dd>Owner-run studio. The person quoting your car is the person wrapping it.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <!-- PROCESS (a real, ordered sequence — numbers carry meaning here) -->
-    <section class="section" id="process" aria-labelledby="proc-h">
+    <!-- FINISHES -->
+    <section class="finishes" id="finishes" aria-labelledby="fin-h">
       <div class="wrap">
-        <div class="section__head reveal">
-          <p class="eyebrow">How a car moves through the studio</p>
-          <h2 id="proc-h">Four steps. No shortcuts in any of them.</h2>
-        </div>
-        <div class="steps reveal--stagger">
-          <div class="step">
-            <span class="step__k">First</span>
-            <h3>Consult</h3>
-            <p>We look at the car, talk finish and budget, and pull real samples against your paint in the light it'll live in.</p>
-          </div>
-          <div class="step">
-            <span class="step__k">Then</span>
-            <h3>Strip &amp; prep</h3>
-            <p>Panels and trim come off. Every surface is decontaminated and cleaned. This is where wraps are won or lost.</p>
-          </div>
-          <div class="step">
-            <span class="step__k">Then</span>
+        <h2 id="fin-h" class="section__h">Finishes<span class="dot">.</span></h2>
+        <p class="section__lead">We plot from the full 3M, Avery Dennison, KPMF, Hexis and Oracal catalogs. If it exists on a roll, we can put it on your car.</p>
+        <ul class="swatches" role="list">
+          <li class="swatch swatch--gloss"><span>Gloss</span></li>
+          <li class="swatch swatch--satin"><span>Satin</span></li>
+          <li class="swatch swatch--matte"><span>Matte</span></li>
+          <li class="swatch swatch--metal"><span>Metallic</span></li>
+          <li class="swatch swatch--shift"><span>Color-shift</span></li>
+          <li class="swatch swatch--carbon"><span>Carbon-look</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" aria-labelledby="proc-h">
+      <div class="wrap">
+        <h2 id="proc-h" class="section__h">How a build runs<span class="dot">.</span></h2>
+        <ol class="steps" role="list">
+          <li class="step reveal">
+            <span class="step__n">1</span>
+            <h3>Consult in studio</h3>
+            <p>Bring the car, or just the paint code. We look at the body, talk finishes, and quote straight.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">2</span>
+            <h3>Film &amp; design</h3>
+            <p>Pick the roll from the catalogs, see the build plotted on your template before anything is cut.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">3</span>
             <h3>Install</h3>
-            <p>Wrapped into the channels, not around them. Seams hidden, edges tucked, no lifting corners six months on.</p>
-          </div>
-          <div class="step">
-            <span class="step__k">Finally</span>
-            <h3>Reveal &amp; seal</h3>
-            <p>Reassembled, inspected panel by panel, and optionally sealed with ceramic so the finish stays sharp and easy to clean.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK — only completed, verifiable projects. No stock/placeholder builds. -->
-    <section class="section section--deep" id="work" aria-labelledby="work-h">
-      <div class="wrap">
-        <div class="section__head reveal">
-          <p class="eyebrow">Selected work</p>
-          <h2 id="work-h">Full-size commercial installs, done right.</h2>
-        </div>
-        <!-- Replace .case__art background with real photography as it's shot; both jobs credit Studio Design USA per the subcontracting agreement. -->
-        <div class="cases reveal--stagger">
-          <article class="case">
-            <div class="case__art case__art--a" aria-hidden="true"></div>
-            <div class="case__body">
-              <p class="case__tag">Commercial fleet · graphics</p>
-              <h3>Boys &amp; Girls Club bus fleet</h3>
-              <p>Precision graphics installs on full-size buses for a Naples youth program: large-panel work at a scale most wrap shops never touch. First bus complete, the next in the bay.</p>
-              <p class="case__credit">Installed for Studio Design USA</p>
-            </div>
-          </article>
-          <article class="case">
-            <div class="case__art case__art--b" aria-hidden="true"></div>
-            <div class="case__body">
-              <p class="case__tag">Full color change · 3M Psychedelic</p>
-              <h3>PoolLights Sprinter</h3>
-              <p>A stock Mercedes Sprinter transformed with 3M's color-shift film, filmed start to finish in the studio.</p>
-              <p class="case__credit">Installed for Studio Design USA</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERAMIC SEAL (add-on, quiet) -->
-    <section class="section" aria-labelledby="seal-h">
-      <div class="wrap">
-        <div class="seal reveal">
-          <p><b id="seal-h">Seal it with ceramic.</b> From $600, applied only after a wrap: deeper gloss, easier washes, and real protection against Florida sun and salt. It's not a substitute for proper care - but it buys the finish real time.</p>
-          <a class="btn btn--ghost" href="#book">Ask about sealing</a>
-        </div>
+            <p>3 to 5 days in the bay. Panels come off where the edge demands it. That is the no-shortcuts part.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">4</span>
+            <h3>Seal &amp; handoff</h3>
+            <p>Optional ceramic coat over the film, care guide in hand, reveal shot in the studio light.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-h">
-      <div class="wrap">
-        <div class="section__head reveal">
-          <p class="eyebrow">Before you book</p>
-          <h2 id="faq-h">Questions owners actually ask.</h2>
-        </div>
-        <div class="faq reveal--stagger">
-          <details class="faq__item">
-            <summary>How much does it cost to wrap a car?</summary>
-            <p>It depends on vehicle size, body complexity, and film. Full color change wraps start at $3,000. Send photos and the exact year/make/model for an accurate quote.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Will a wrap damage my paint?</summary>
-            <p>No. Properly installed and properly removed, vinyl protects your factory paint instead of damaging it - that's the whole premise of wrapping over painting.</p>
-          </details>
-          <details class="faq__item">
-            <summary>How long does a wrap last?</summary>
-            <p>5-7 years with proper care, depending on the film, installation quality, and how the vehicle is maintained.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Wrap or repaint: which is actually better?</summary>
-            <p>For most owners, wrap wins: it costs less than a quality repaint, it's fully reversible, and it protects your factory paint instead of replacing it. Paint makes sense only if you want a permanent change.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Do you offer a warranty?</summary>
-            <p>Yes - installation workmanship is covered. Ask us for the specific terms for your project; coverage depends on proper care and normal use versus damage.</p>
-          </details>
-          <details class="faq__item">
-            <summary>What film brands do you use?</summary>
-            <p>3M, Avery Dennison, and KPMF: professional-grade cast vinyl. We'll recommend the right one for your finish and budget.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Do you do PPF or window tint?</summary>
-            <p>No. Vinyl wrap is our specialty and the only thing we do - that focus is why the install quality holds up.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Do you wrap boats?</summary>
-            <p>Not yet - boat wraps are in development for the Naples marine community. Reach out and we'll notify you at launch.</p>
-          </details>
-        </div>
+    <section class="faq" id="faq" aria-labelledby="faq-h">
+      <div class="wrap wrap--narrow">
+        <h2 id="faq-h" class="section__h">Straight answers<span class="dot">.</span></h2>
+        <details class="qa">
+          <summary>Will a wrap damage my paint?</summary>
+          <p>The opposite. Film shields the factory coat from sun, sand and stone chips, and removal by a professional leaves the paint the way we found it. That is why wrapped cars resell well.</p>
+        </details>
+        <details class="qa">
+          <summary>How long does a wrap last?</summary>
+          <p>5 to 7 years with proper care in Florida sun. Garage it and hand-wash it and you will be at the top of that range.</p>
+        </details>
+        <details class="qa">
+          <summary>Is it really cheaper than repainting?</summary>
+          <p>A quality respray on a premium car costs more than a full wrap, takes longer, and is permanent. Film gives you the color now and the factory paint back whenever you want it.</p>
+        </details>
+        <details class="qa">
+          <summary>Can I wrap a leased car?</summary>
+          <p>Yes. The wrap comes off clean before the car goes back. It is the only color change a lease allows.</p>
+        </details>
+        <details class="qa">
+          <summary>How do I wash a wrapped car?</summary>
+          <p>Hand wash or touchless, no wax over matte or satin, and skip the high-pressure lance at the edges. We hand you the full care guide at pickup.</p>
+        </details>
       </div>
     </section>
 
-    <!-- BOOK / LEAD FORM — the conversion centerpiece -->
+    <!-- BOOK -->
     <section class="book" id="book" aria-labelledby="book-h">
       <div class="wrap book__grid">
-        <div class="book__pitch reveal">
-          <h2 id="book-h">Bring us the car. We'll show you what it could be.</h2>
-          <p>Consults are in-studio and no-pressure. Walk in with a paint code, walk out knowing exactly what your wrap will look like. Send the details below and we'll come back within one business day.</p>
+        <div class="book__pitch">
+          <h2 id="book-h" class="section__h">Bring us the car<span class="dot">.</span></h2>
+          <p class="section__lead">Consults are in-studio and no-pressure. Walk in with a paint code, walk out knowing exactly what your wrap will look like. Send the details and we come back within one business day.</p>
           <ul class="book__contact" role="list">
             <li><span class="book__k">Call</span><a href="tel:+13527790041">(352) 779-0041</a></li>
             <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener">Message the studio</a></li>
-            <li><span class="book__k">Studio</span><span>Naples, FL · by appointment</span></li>
+            <li><span class="book__k">Studio</span><span>Naples, FL &middot; by appointment</span></li>
             <li><span class="book__k">Hours</span><span>Mon-Sat, 9-5</span></li>
+            <li><span class="book__k">Serving</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
           </ul>
         </div>
 
         <!-- Submit is handled in app.js: opens WhatsApp with the filled-in details (no backend needed). -->
-        <form class="form reveal" id="consult-form" action="https://wa.me/13527790041" method="get" aria-labelledby="book-h">
+        <form class="form" id="consult-form" action="https://wa.me/13527790041" method="get" aria-labelledby="book-h">
           <div class="field">
             <label for="f-name">Name</label>
             <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
@@ -344,25 +310,9 @@
             <label for="f-notes">Anything else</label>
             <textarea id="f-notes" name="notes" rows="3" placeholder="Finish ideas, timeline, paint code..."></textarea>
           </div>
-          <button class="btn btn--primary form__submit" type="submit">Request my consult <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+          <button class="btn btn--solid form__submit" type="submit">Request my consult <span aria-hidden="true">&rarr;</span></button>
           <p class="form__fine">No spam. Your details only come to the studio.</p>
         </form>
-      </div>
-    </section>
-
-    <!-- LOCATION / HOURS -->
-    <section class="locale" aria-labelledby="loc-h">
-      <div class="wrap locale__grid reveal">
-        <div>
-          <p class="eyebrow">Where we are</p>
-          <h2 id="loc-h" class="locale__h">One studio. Serving the coast.</h2>
-          <p class="locale__copy">Cars come to us from across Southwest Florida. By appointment only, so every install gets the bay and the time it deserves.</p>
-        </div>
-        <dl class="locale__facts">
-          <div><dt>Service area</dt><dd>Naples · Bonita Springs · Marco Island · Fort Myers · Cape Coral</dd></div>
-          <div><dt>Hours</dt><dd>Monday-Saturday, 9am-5pm · by appointment</dd></div>
-          <div><dt>Studio</dt><dd>Naples, FL · exact address on booking</dd></div>
-        </dl>
       </div>
     </section>
   </main>
@@ -370,16 +320,15 @@
   <footer class="footer">
     <div class="wrap footer__grid">
       <span class="footer__mark">Zap Wrap Naples</span>
-      <small>Naples · Bonita Springs · Marco Island · Fort Myers · Cape Coral</small>
       <small class="footer__social">
-        <a href="https://www.instagram.com/zapwrapnaples" rel="noopener">Instagram</a> ·
-        <a href="https://www.tiktok.com/@zapwrapnaples" rel="noopener">TikTok</a> ·
+        <a href="https://www.instagram.com/zapwrapnaples" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@zapwrapnaples" rel="noopener">TikTok</a>
         <a href="https://www.facebook.com/ZapWrapNaples" rel="noopener">Facebook</a>
       </small>
-      <small>&copy; 2026 Zap Wrap LLC · No shortcuts.</small>
+      <small>&copy; 2026 Zap Wrap LLC &middot; No shortcuts.</small>
     </div>
   </footer>
 
-  <script src="app.js" defer></script>
+  <script src="app.js?v=3" defer></script>
 </body>
 </html>
