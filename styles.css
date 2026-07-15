@@ -396,7 +396,7 @@ p { text-wrap: pretty; }
 .svc { list-style: none; padding: 0; margin: 3rem 0 0; border-top: 1px solid var(--line); }
 .svc__row {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   gap: 1rem 2.5rem;
   align-items: baseline;
   padding: 1.6rem 0.5rem;
@@ -426,26 +426,20 @@ p { text-wrap: pretty; }
   text-transform: uppercase;
 }
 .svc__desc { color: var(--ink-2); max-width: 52ch; }
-.svc__price {
-  justify-self: end;
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem);
-  letter-spacing: 0.02em;
-  color: var(--yellow);
-  white-space: nowrap;
+.svc__quote {
+  margin-top: 1.8rem;
+  font-size: var(--text-lead);
+  color: var(--ink-2);
+  max-width: 58ch;
 }
-.svc__price small {
-  font-family: var(--font-body);
-  font-size: 0.65em;
-  font-weight: 500;
-  color: var(--muted);
-  margin-right: 0.35em;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.svc__quote a {
+  color: var(--yellow);
+  text-decoration-color: var(--yellow);
+  text-underline-offset: 4px;
+  font-weight: 600;
 }
 @media (max-width: 860px) {
-  .svc__row { grid-template-columns: 1fr auto; }
-  .svc__desc { grid-column: 1 / -1; }
+  .svc__row { grid-template-columns: 1fr; }
 }
 
 /* ---------- Work ---------- */
