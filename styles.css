@@ -260,7 +260,7 @@ p { text-wrap: pretty; }
   mask-position: center;
   pointer-events: none;
 }
-.car { --mask: url("assets/porsche-911-mask.webp"); }
+.car { --mask: url("assets/porsche-911-mask.webp?v=2"); }
 
 /* finishes the switcher can lay on the 911 */
 .car[data-film="satin"] .car__film {
