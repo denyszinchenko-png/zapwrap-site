@@ -261,8 +261,6 @@ p { text-wrap: pretty; }
   pointer-events: none;
 }
 .car { --mask: url("assets/porsche-911-mask.webp"); }
-.car--sprinter { --mask: url("assets/sprinter-mask.webp"); }
-.car--bus { --mask: url("assets/school-bus-mask.webp"); }
 
 /* finishes the switcher can lay on the 911 */
 .car[data-film="satin"] .car__film {
@@ -275,10 +273,6 @@ p { text-wrap: pretty; }
   background: linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));
 }
 
-/* project liveries */
-.car[data-static-film="bus"] .car__film {
-  background: linear-gradient(100deg, oklch(0.75 0.16 65) 0%, oklch(0.62 0.2 40) 45%, oklch(0.55 0.18 300) 100%);
-}
 
 /* shine sweep: the reveal beat. Runs once when a film is switched. */
 .car__film::after {
@@ -390,7 +384,7 @@ p { text-wrap: pretty; }
 @keyframes ticker { to { translate: -50% 0; } }
 
 /* ---------- Sections ---------- */
-.services, .work, .why, .finishes, .process, .faq, .book { padding-top: var(--space-section); }
+.services, .why, .finishes, .process, .faq, .book { padding-top: var(--space-section); }
 
 /* ---------- Services: spec-sheet rows ---------- */
 .svc { list-style: none; padding: 0; margin: 3rem 0 0; border-top: 1px solid var(--line); }
@@ -440,39 +434,6 @@ p { text-wrap: pretty; }
 }
 @media (max-width: 860px) {
   .svc__row { grid-template-columns: 1fr; }
-}
-
-/* ---------- Work ---------- */
-.build {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
-  align-items: center;
-  max-width: var(--maxw);
-  margin: clamp(3rem, 2rem + 4vw, 5.5rem) auto 0;
-  padding-inline: var(--gutter);
-}
-.build--alt { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
-.build--alt .build__visual { order: 2; }
-.build__name {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: var(--text-h3);
-  text-transform: uppercase;
-  letter-spacing: 0.015em;
-}
-.build__spec { margin-top: 0.8rem; color: var(--ink-2); }
-.build__credit {
-  margin-top: 1.2rem;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--yellow);
-}
-@media (max-width: 860px) {
-  .build, .build--alt { grid-template-columns: 1fr; }
-  .build--alt .build__visual { order: 0; }
 }
 
 /* ---------- Why ---------- */
