@@ -104,7 +104,6 @@
     "porsche-panamera": { src: "assets/cars/porsche-panamera.webp", mask: "assets/cars/porsche-panamera-mask.webp", w: 1600, h: 800, name: "Porsche Panamera" },
     "porsche-taycan": { src: "assets/cars/porsche-taycan.webp", mask: "assets/cars/porsche-taycan-mask.webp", w: 1600, h: 800, name: "Porsche Taycan" },
     "ram-1500": { src: "assets/cars/ram-1500.webp", mask: "assets/cars/ram-1500-mask.webp", w: 1600, h: 800, name: "Ram 1500" },
-    "school-bus-short-white": { src: "assets/cars/school-bus-short-white.webp", mask: "assets/cars/school-bus-short-white-mask.webp", w: 1600, h: 800, name: "School Bus Short White" },
     "subaru-forester": { src: "assets/cars/subaru-forester.webp", mask: "assets/cars/subaru-forester-mask.webp", w: 1600, h: 800, name: "Subaru Forester" },
     "tesla-cybertruck": { src: "assets/cars/tesla-cybertruck.webp", mask: "assets/cars/tesla-cybertruck-mask.webp", w: 1600, h: 800, name: "Tesla Cybertruck" },
     "tesla-model-3": { src: "assets/cars/tesla-model-3.webp", mask: "assets/cars/tesla-model-3-mask.webp", w: 1600, h: 800, name: "Tesla Model 3" },
