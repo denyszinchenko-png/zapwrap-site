@@ -25,9 +25,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Oswald:wght@500&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/cars/porsche-911.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=19" />
 </head>
 <body id="top">
 
@@ -39,28 +39,29 @@
       <span class="brand__loc">Naples&nbsp;FL</span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#finishes">Finishes</a>
-      <a href="#faq">FAQ</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#finishes" data-i18n="nav.finishes">Finishes</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
     </nav>
-    <a class="btn btn--solid nav__cta" href="#book">Book a consult</a>
+    <select id="lang-select" class="lang-select" aria-label="Language"><option value="en" selected>EN</option><option value="es">ES</option><option value="ru">RU</option><option value="uk">UK</option><option value="he">HE</option></select>
+    <a class="btn btn--solid nav__cta" href="#book" data-i18n="nav.cta">Book a consult</a>
   </header>
 
   <main>
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-h">
       <div class="hero__stage">
-        <p class="hero__intro">Vinyl wrap studio &middot; Naples, Florida</p>
+        <p class="hero__intro" data-i18n="hero.intro">Vinyl wrap studio &middot; Naples, Florida</p>
         <h1 id="hero-h" class="hero__h">
-          <span class="hero__line">The exotic-</span>
-          <span class="hero__line"><em>wrap</em> studio</span>
-          <span class="hero__line">of Naples</span>
+          <span class="hero__line" data-i18n="hero.l1">The exotic-</span>
+          <span class="hero__line" data-i18n="hero.l2"><em>wrap</em> studio</span>
+          <span class="hero__line" data-i18n="hero.l3">of Naples</span>
         </h1>
-        <p class="hero__sub">Full color change, chrome delete, custom graphics. Vinyl is the whole job here, not a line on a menu. No shortcuts.</p>
+        <p class="hero__sub" data-i18n="hero.sub">Full color change, chrome delete, custom graphics. Vinyl is the whole job here, not a line on a menu. No shortcuts.</p>
         <div class="hero__actions">
-          <a class="btn btn--solid" href="#book">Book a consult <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="https://wa.me/13527790041" rel="noopener">WhatsApp the studio</a>
+          <a class="btn btn--solid" href="#book" data-i18n="hero.book">Book a consult <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--ghost" href="https://wa.me/13527790041" rel="noopener" data-i18n="hero.wa">WhatsApp the studio</a>
         </div>
       </div>
 
@@ -73,9 +74,9 @@
           <div class="car__floor" aria-hidden="true"></div>
         </div>
         <figcaption class="hero__filmbar">
-          <p class="filmbar__pitch"><strong>See your car in a new color.</strong> Pick the closest model and flip through the films. At the consult we plot your exact car against the real 3M and Avery catalogs. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">Your model not here? Send it to the studio</a></p>
+          <p class="filmbar__pitch" data-i18n="pitch"><strong>See your car in a new color.</strong> Pick the closest model and flip through the films. At the consult we plot your exact car against the real 3M and Avery catalogs. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">Your model not here? Send it to the studio</a></p>
           <span class="filmbar__row">
-            <label class="filmbar__label" for="car-select">Pick your car</label>
+            <label class="filmbar__label" for="car-select" data-i18n="filmbar.car">Pick your car</label>
             <select id="car-select" class="car-select" aria-label="Choose your vehicle">
             <optgroup label="Audi">
               <option value="audi-q8">Q8</option>
@@ -207,23 +208,23 @@
               <option value="toyota-sienna">Sienna</option>
               <option value="toyota-tacoma">Tacoma</option>
             </optgroup>
-            <optgroup label="Not here?">
-              <option value="__request">My car is not listed - request it</option>
+            <optgroup label="Not here?" data-i18n-label="req.group">
+              <option value="__request" data-i18n="req.opt">My car is not listed - request it</option>
             </optgroup>
             </select>
           </span>
           <span class="filmbar__row">
-            <span class="filmbar__label">Pick a film</span>
+            <span class="filmbar__label" data-i18n="filmbar.film">Pick a film</span>
             <span class="filmbar__chips" role="group" aria-label="Film finishes">
-              <button class="chip chip--shift is-active" type="button" data-set-film="shift">Color-shift</button>
-              <button class="chip chip--satin" type="button" data-set-film="satin">Satin black</button>
-              <button class="chip chip--graphite" type="button" data-set-film="graphite">Matte dark gray</button>
-              <button class="chip chip--nardo" type="button" data-set-film="nardo">Nardo gray</button>
-              <button class="chip chip--miami" type="button" data-set-film="miami">Miami blue</button>
-              <button class="chip chip--rosso" type="button" data-set-film="rosso">Gloss rosso</button>
-              <button class="chip chip--purple" type="button" data-set-film="purple">Deep purple</button>
-              <button class="chip chip--pink" type="button" data-set-film="pink">Gloss pink</button>
-              <button class="chip chip--army" type="button" data-set-film="army">Satin army green</button>
+              <button class="chip chip--shift is-active" type="button" data-set-film="shift" data-i18n="film.shift">Color-shift</button>
+              <button class="chip chip--satin" type="button" data-set-film="satin" data-i18n="film.satin">Satin black</button>
+              <button class="chip chip--graphite" type="button" data-set-film="graphite" data-i18n="film.graphite">Matte dark gray</button>
+              <button class="chip chip--nardo" type="button" data-set-film="nardo" data-i18n="film.nardo">Nardo gray</button>
+              <button class="chip chip--miami" type="button" data-set-film="miami" data-i18n="film.miami">Miami blue</button>
+              <button class="chip chip--rosso" type="button" data-set-film="rosso" data-i18n="film.rosso">Gloss rosso</button>
+              <button class="chip chip--purple" type="button" data-set-film="purple" data-i18n="film.purple">Deep purple</button>
+              <button class="chip chip--pink" type="button" data-set-film="pink" data-i18n="film.pink">Gloss pink</button>
+              <button class="chip chip--army" type="button" data-set-film="army" data-i18n="film.army">Satin army green</button>
             </span>
           </span>
         </figcaption>
@@ -241,8 +242,8 @@
     <!-- LATEST BUILD -->
     <section class="build" id="work" aria-labelledby="build-h">
       <div class="wrap">
-        <h2 id="build-h" class="section__h">Latest build<span class="dot">.</span></h2>
-        <p class="section__lead">2026 BMW X6 M Competition: full color change, factory white to matte dark gray. Every corner, curve and edge wrapped, panels off where the edge demanded it.</p>
+        <h2 id="build-h" class="section__h" data-i18n="build.h">Latest build<span class="dot">.</span></h2>
+        <p class="section__lead" data-i18n="build.lead">2026 BMW X6 M Competition: full color change, factory white to matte dark gray. Every corner, curve and edge wrapped, panels off where the edge demanded it.</p>
         <div class="build__grid">
           <figure class="build__shot build__shot--hero reveal">
             <img src="assets/x6/x6-front.webp" width="1800" height="1350" alt="2026 BMW X6 M Competition in matte dark gray vinyl wrap, front three-quarter view outside the studio" loading="lazy" />
@@ -263,66 +264,66 @@
             <img src="assets/x6/x6-light.webp" width="825" height="1100" alt="Headlight detail: film laid edge to edge around the light" loading="lazy" />
           </figure>
         </div>
-        <p class="build__credit">Installed by Zap Wrap for Studio Design USA &middot; Photos: Angel Enrique Hernandez</p>
+        <p class="build__credit" data-i18n="build.credit">Installed by Zap Wrap for Studio Design USA &middot; Photos: Angel Enrique Hernandez</p>
       </div>
     </section>
 
     <!-- SERVICES -->
     <section class="services" id="services" aria-labelledby="services-h">
       <div class="wrap">
-        <h2 id="services-h" class="section__h">What we do<span class="dot">.</span></h2>
-        <p class="section__lead">One specialization, done at exotic level. Ceramic is a seal we lay over a finished wrap, never a service on its own. If it is not vinyl, it is not on the menu.</p>
+        <h2 id="services-h" class="section__h" data-i18n="svc.h">What we do<span class="dot">.</span></h2>
+        <p class="section__lead" data-i18n="svc.lead">One specialization, done at exotic level. Ceramic is a seal we lay over a finished wrap, never a service on its own. If it is not vinyl, it is not on the menu.</p>
 
         <ul class="svc" role="list">
           <li class="svc__row reveal">
-            <h3 class="svc__name">Full color change</h3>
-            <p class="svc__desc">Satin, gloss, metallic, color-shift. The factory paint gets sealed underneath and stays untouched. 3 to 5 days in the bay.</p>
+            <h3 class="svc__name" data-i18n="svc.full">Full color change</h3>
+            <p class="svc__desc" data-i18n="svc.full.d">Satin, gloss, metallic, color-shift. The factory paint gets sealed underneath and stays untouched. 3 to 5 days in the bay.</p>
           </li>
           <li class="svc__row reveal">
-            <h3 class="svc__name">Chrome delete</h3>
-            <p class="svc__desc">Trim, badges, mirrors, window surrounds in satin or gloss black. The fastest way to make a car look finished.</p>
+            <h3 class="svc__name" data-i18n="svc.chrome">Chrome delete</h3>
+            <p class="svc__desc" data-i18n="svc.chrome.d">Trim, badges, mirrors, window surrounds in satin or gloss black. The fastest way to make a car look finished.</p>
           </li>
           <li class="svc__row reveal">
-            <h3 class="svc__name">Roof, hood &amp; accents</h3>
-            <p class="svc__desc">Contrast roof, hood, spoiler, mirrors. Small panels, exact edges.</p>
+            <h3 class="svc__name" data-i18n="svc.roof">Roof, hood &amp; accents</h3>
+            <p class="svc__desc" data-i18n="svc.roof.d">Contrast roof, hood, spoiler, mirrors. Small panels, exact edges.</p>
           </li>
           <li class="svc__row reveal">
-            <h3 class="svc__name">Custom graphics &amp; lettering</h3>
-            <p class="svc__desc">Stripes, liveries, decals, plotted and layered in-house.</p>
+            <h3 class="svc__name" data-i18n="svc.graphics">Custom graphics &amp; lettering</h3>
+            <p class="svc__desc" data-i18n="svc.graphics.d">Stripes, liveries, decals, plotted and layered in-house.</p>
           </li>
           <li class="svc__row reveal">
-            <h3 class="svc__name">Commercial &amp; fleet</h3>
-            <p class="svc__desc">A wrapped van is a billboard your business already owns. Print, plot, install, repeat across the fleet.</p>
+            <h3 class="svc__name" data-i18n="svc.fleet">Commercial &amp; fleet</h3>
+            <p class="svc__desc" data-i18n="svc.fleet.d">A wrapped van is a billboard your business already owns. Print, plot, install, repeat across the fleet.</p>
           </li>
           <li class="svc__row svc__row--addon reveal">
-            <h3 class="svc__name">Ceramic seal <span class="svc__tag">add-on</span></h3>
-            <p class="svc__desc">A ceramic coat over the fresh film: easier washes, deeper finish. Only ever on top of a wrap.</p>
+            <h3 class="svc__name" data-i18n="svc.ceramic">Ceramic seal <span class="svc__tag">add-on</span></h3>
+            <p class="svc__desc" data-i18n="svc.ceramic.d">A ceramic coat over the fresh film: easier washes, deeper finish. Only ever on top of a wrap.</p>
           </li>
         </ul>
-        <p class="svc__quote">Every build is quoted in person: bring the car or the paint code, leave with an exact number. <a href="#book">Book a consult</a></p>
+        <p class="svc__quote" data-i18n="svc.quote">Every build is quoted in person: bring the car or the paint code, leave with an exact number. <a href="#book">Book a consult</a></p>
       </div>
     </section>
 
     <!-- WHY VINYL -->
     <section class="why" aria-labelledby="why-h">
       <div class="wrap">
-        <h2 id="why-h" class="section__h">Why film beats a respray<span class="dot">.</span></h2>
+        <h2 id="why-h" class="section__h" data-i18n="why.h">Why film beats a respray<span class="dot">.</span></h2>
         <dl class="why__list">
           <div class="why__item reveal">
-            <dt>Your paint stays factory.</dt>
-            <dd>The film seals the OEM coat and peels clean. Fully reversible, resale intact.</dd>
+            <dt data-i18n="why.1.t">Your paint stays factory.</dt>
+            <dd data-i18n="why.1.d">The film seals the OEM coat and peels clean. Fully reversible, resale intact.</dd>
           </div>
           <div class="why__item reveal">
-            <dt>5 to 7 years of finish.</dt>
-            <dd>With proper care, a professional wrap holds its color and gloss for years.</dd>
+            <dt data-i18n="why.2.t">5 to 7 years of finish.</dt>
+            <dd data-i18n="why.2.d">With proper care, a professional wrap holds its color and gloss for years.</dd>
           </div>
           <div class="why__item reveal">
-            <dt>Cheaper than a quality respray.</dt>
-            <dd>And unlike paint, you can change your mind in three years.</dd>
+            <dt data-i18n="why.3.t">Cheaper than a quality respray.</dt>
+            <dd data-i18n="why.3.d">And unlike paint, you can change your mind in three years.</dd>
           </div>
           <div class="why__item reveal">
-            <dt>8 years on the panels.</dt>
-            <dd>Owner-run studio. The person quoting your car is the person wrapping it.</dd>
+            <dt data-i18n="why.4.t">8 years on the panels.</dt>
+            <dd data-i18n="why.4.d">Owner-run studio. The person quoting your car is the person wrapping it.</dd>
           </div>
         </dl>
       </div>
@@ -331,15 +332,15 @@
     <!-- FINISHES -->
     <section class="finishes" id="finishes" aria-labelledby="fin-h">
       <div class="wrap">
-        <h2 id="fin-h" class="section__h">Finishes<span class="dot">.</span></h2>
-        <p class="section__lead">We plot from the full 3M, Avery Dennison, KPMF, Hexis and Oracal catalogs. If it exists on a roll, we can put it on your car.</p>
+        <h2 id="fin-h" class="section__h" data-i18n="fin.h">Finishes<span class="dot">.</span></h2>
+        <p class="section__lead" data-i18n="fin.lead">We plot from the full 3M, Avery Dennison, KPMF, Hexis and Oracal catalogs. If it exists on a roll, we can put it on your car.</p>
         <ul class="swatches" role="list">
-          <li class="swatch swatch--gloss"><span>Gloss</span></li>
-          <li class="swatch swatch--satin"><span>Satin</span></li>
-          <li class="swatch swatch--matte"><span>Matte</span></li>
-          <li class="swatch swatch--metal"><span>Metallic</span></li>
-          <li class="swatch swatch--shift"><span>Color-shift</span></li>
-          <li class="swatch swatch--carbon"><span>Carbon-look</span></li>
+          <li class="swatch swatch--gloss"><span data-i18n="fin.gloss">Gloss</span></li>
+          <li class="swatch swatch--satin"><span data-i18n="fin.satin">Satin</span></li>
+          <li class="swatch swatch--matte"><span data-i18n="fin.matte">Matte</span></li>
+          <li class="swatch swatch--metal"><span data-i18n="fin.metal">Metallic</span></li>
+          <li class="swatch swatch--shift"><span data-i18n="fin.shift">Color-shift</span></li>
+          <li class="swatch swatch--carbon"><span data-i18n="fin.carbon">Carbon-look</span></li>
         </ul>
       </div>
     </section>
@@ -347,27 +348,27 @@
     <!-- PROCESS -->
     <section class="process" aria-labelledby="proc-h">
       <div class="wrap">
-        <h2 id="proc-h" class="section__h">How a build runs<span class="dot">.</span></h2>
+        <h2 id="proc-h" class="section__h" data-i18n="proc.h">How a build runs<span class="dot">.</span></h2>
         <ol class="steps" role="list">
           <li class="step reveal">
             <span class="step__n">1</span>
-            <h3>Consult in studio</h3>
-            <p>Bring the car, or just the paint code. We look at the body, talk finishes, and quote straight.</p>
+            <h3 data-i18n="proc.1.t">Consult in studio</h3>
+            <p data-i18n="proc.1.d">Bring the car, or just the paint code. We look at the body, talk finishes, and quote straight.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">2</span>
-            <h3>Film &amp; design</h3>
-            <p>Pick the roll from the catalogs, see the build plotted on your template before anything is cut.</p>
+            <h3 data-i18n="proc.2.t">Film &amp; design</h3>
+            <p data-i18n="proc.2.d">Pick the roll from the catalogs, see the build plotted on your template before anything is cut.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">3</span>
-            <h3>Install</h3>
-            <p>3 to 5 days in the bay. Panels come off where the edge demands it. That is the no-shortcuts part.</p>
+            <h3 data-i18n="proc.3.t">Install</h3>
+            <p data-i18n="proc.3.d">3 to 5 days in the bay. Panels come off where the edge demands it. That is the no-shortcuts part.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">4</span>
-            <h3>Seal &amp; handoff</h3>
-            <p>Optional ceramic coat over the film, care guide in hand, reveal shot in the studio light.</p>
+            <h3 data-i18n="proc.4.t">Seal &amp; handoff</h3>
+            <p data-i18n="proc.4.d">Optional ceramic coat over the film, care guide in hand, reveal shot in the studio light.</p>
           </li>
         </ol>
       </div>
@@ -376,26 +377,26 @@
     <!-- FAQ -->
     <section class="faq" id="faq" aria-labelledby="faq-h">
       <div class="wrap wrap--narrow">
-        <h2 id="faq-h" class="section__h">Straight answers<span class="dot">.</span></h2>
+        <h2 id="faq-h" class="section__h" data-i18n="faq.h">Straight answers<span class="dot">.</span></h2>
         <details class="qa">
-          <summary>Will a wrap damage my paint?</summary>
-          <p>The opposite. Film shields the factory coat from sun, sand and stone chips, and removal by a professional leaves the paint the way we found it. That is why wrapped cars resell well.</p>
+          <summary data-i18n="faq.1.q">Will a wrap damage my paint?</summary>
+          <p data-i18n="faq.1.a">The opposite. Film shields the factory coat from sun, sand and stone chips, and removal by a professional leaves the paint the way we found it. That is why wrapped cars resell well.</p>
         </details>
         <details class="qa">
-          <summary>How long does a wrap last?</summary>
-          <p>5 to 7 years with proper care in Florida sun. Garage it and hand-wash it and you will be at the top of that range.</p>
+          <summary data-i18n="faq.2.q">How long does a wrap last?</summary>
+          <p data-i18n="faq.2.a">5 to 7 years with proper care in Florida sun. Garage it and hand-wash it and you will be at the top of that range.</p>
         </details>
         <details class="qa">
-          <summary>Is it really cheaper than repainting?</summary>
-          <p>A quality respray on a premium car costs more than a full wrap, takes longer, and is permanent. Film gives you the color now and the factory paint back whenever you want it.</p>
+          <summary data-i18n="faq.3.q">Is it really cheaper than repainting?</summary>
+          <p data-i18n="faq.3.a">A quality respray on a premium car costs more than a full wrap, takes longer, and is permanent. Film gives you the color now and the factory paint back whenever you want it.</p>
         </details>
         <details class="qa">
-          <summary>Can I wrap a leased car?</summary>
-          <p>Yes. The wrap comes off clean before the car goes back. It is the only color change a lease allows.</p>
+          <summary data-i18n="faq.4.q">Can I wrap a leased car?</summary>
+          <p data-i18n="faq.4.a">Yes. The wrap comes off clean before the car goes back. It is the only color change a lease allows.</p>
         </details>
         <details class="qa">
-          <summary>How do I wash a wrapped car?</summary>
-          <p>Hand wash or touchless, no wax over matte or satin, and skip the high-pressure lance at the edges. We hand you the full care guide at pickup.</p>
+          <summary data-i18n="faq.5.q">How do I wash a wrapped car?</summary>
+          <p data-i18n="faq.5.a">Hand wash or touchless, no wax over matte or satin, and skip the high-pressure lance at the edges. We hand you the full care guide at pickup.</p>
         </details>
       </div>
     </section>
@@ -404,27 +405,27 @@
     <section class="book" id="book" aria-labelledby="book-h">
       <div class="wrap book__grid">
         <div class="book__pitch">
-          <h2 id="book-h" class="section__h">Bring us the car<span class="dot">.</span></h2>
-          <p class="section__lead">Consults are in-studio and no-pressure. Walk in with a paint code, walk out knowing exactly what your wrap will look like. Send the details and we come back within one business day.</p>
+          <h2 id="book-h" class="section__h" data-i18n="book.h">Bring us the car<span class="dot">.</span></h2>
+          <p class="section__lead" data-i18n="book.lead">Consults are in-studio and no-pressure. Walk in with a paint code, walk out knowing exactly what your wrap will look like. Send the details and we come back within one business day.</p>
           <ul class="book__contact" role="list">
-            <li><span class="book__k">Call</span><span><a href="tel:+13527790041">(352) 779-0041</a> <span class="book__note">&middot; Naples studio line</span></span></li>
-            <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener">Message the studio</a></li>
-            <li><span class="book__k">Studio</span><span>Naples, FL &middot; by appointment</span></li>
-            <li><span class="book__k">Hours</span><span>Sun-Thu 8am-8pm &middot; Fri 8am-5pm &middot; Sat closed</span></li>
-            <li><span class="book__k">Serving</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
+            <li><span class="book__k" data-i18n="book.call">Call</span><span><a href="tel:+13527790041">(352) 779-0041</a> <span class="book__note">&middot; Naples studio line</span></span></li>
+            <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener" data-i18n="book.msg">Message the studio</a></li>
+            <li><span class="book__k" data-i18n="book.studio">Studio</span><span data-i18n="book.studio.v">Naples, FL &middot; by appointment</span></li>
+            <li><span class="book__k" data-i18n="book.hours">Hours</span><span data-i18n="book.hours.v">Sun-Thu 8am-8pm &middot; Fri 8am-5pm &middot; Sat closed</span></li>
+            <li><span class="book__k" data-i18n="book.serving">Serving</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
           </ul>
         </div>
 
         <!-- Submit is handled in app.js: opens WhatsApp with the filled-in details (no backend needed). -->
         <form class="form" id="consult-form" action="https://wa.me/13527790041" method="get" aria-labelledby="book-h">
           <div class="field">
-            <label for="f-name">Name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+            <label for="f-name" data-i18n="f.name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name" data-i18n-ph="ph.name" />
           </div>
           <div class="field field--split">
             <div>
-              <label for="f-phone">Phone</label>
-              <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="Your number" />
+              <label for="f-phone" data-i18n="f.phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="Your number" data-i18n-ph="ph.phone" />
             </div>
             <div>
               <label for="f-email">Email</label>
@@ -432,28 +433,28 @@
             </div>
           </div>
           <div class="field">
-            <label for="f-car">The car</label>
-            <input id="f-car" name="car" type="text" required placeholder="Year, make &amp; model" />
+            <label for="f-car" data-i18n="f.car">The car</label>
+            <input id="f-car" name="car" type="text" required placeholder="Year, make &amp; model" data-i18n-ph="ph.car" />
           </div>
           <div class="field">
-            <label for="f-service">What you're after</label>
+            <label for="f-service" data-i18n="f.svc">What you're after</label>
             <select id="f-service" name="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option>Full color change wrap</option>
-              <option>Chrome delete</option>
-              <option>Partial wrap / roof / hood</option>
-              <option>Custom graphics / lettering</option>
-              <option>Commercial / fleet wrap</option>
-              <option>Ceramic coating add-on</option>
-              <option>Not sure yet - advise me</option>
+              <option value="" selected disabled data-i18n="f.choose">Choose a service</option>
+              <option data-i18n="f.o1">Full color change wrap</option>
+              <option data-i18n="f.o2">Chrome delete</option>
+              <option data-i18n="f.o3">Partial wrap / roof / hood</option>
+              <option data-i18n="f.o4">Custom graphics / lettering</option>
+              <option data-i18n="f.o5">Commercial / fleet wrap</option>
+              <option data-i18n="f.o6">Ceramic coating add-on</option>
+              <option data-i18n="f.o7">Not sure yet - advise me</option>
             </select>
           </div>
           <div class="field">
-            <label for="f-notes">Anything else</label>
-            <textarea id="f-notes" name="notes" rows="3" placeholder="Finish ideas, timeline, paint code..."></textarea>
+            <label for="f-notes" data-i18n="f.notes">Anything else</label>
+            <textarea id="f-notes" name="notes" rows="3" placeholder="Finish ideas, timeline, paint code..." data-i18n-ph="ph.notes"></textarea>
           </div>
-          <button class="btn btn--solid form__submit" type="submit">Request my consult <span aria-hidden="true">&rarr;</span></button>
-          <p class="form__fine">No spam. Your details only come to the studio.</p>
+          <button class="btn btn--solid form__submit" type="submit" data-i18n="f.submit">Request my consult <span aria-hidden="true">&rarr;</span></button>
+          <p class="form__fine" data-i18n="f.fine">No spam. Your details only come to the studio.</p>
         </form>
       </div>
     </section>
@@ -524,6 +525,7 @@
     ]
   }
   </script>
+  <script src="i18n.js?v=1" defer></script>
   <script src="app.js?v=16" defer></script>
 </body>
 </html>

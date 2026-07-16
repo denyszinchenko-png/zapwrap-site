@@ -25,8 +25,8 @@
   --shift-c: oklch(0.68 0.14 200);
 
   /* ---- Type ---- */
-  --font-display: "Anton", "Arial Narrow", sans-serif;
-  --font-body: "Barlow", system-ui, -apple-system, sans-serif;
+  --font-display: "Anton", "Oswald", "Rubik", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", "Rubik", system-ui, -apple-system, sans-serif;
 
   --text-body: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
   --text-lead: clamp(1.1rem, 1rem + 0.6vw, 1.45rem);
@@ -811,4 +811,43 @@ textarea { resize: vertical; min-height: 5.5em; }
 @media (prefers-reduced-motion: no-preference) {
   .will-reveal { opacity: 0.001; translate: 0 30px; }
   .reveal { transition: opacity var(--dur) var(--ease), translate var(--dur) var(--ease); }
+}
+
+
+/* ===== language switcher + RTL ===== */
+.lang-select {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.5em 0.9em;
+  margin-left: 1.2rem;
+  cursor: pointer;
+  transition: border-color 200ms var(--ease), color 200ms var(--ease);
+}
+.lang-select:hover, .lang-select:focus-visible { border-color: var(--yellow); color: var(--ink); outline: none; }
+.lang-select option { background: #141416; color: var(--ink); }
+@media (max-width: 720px) {
+  .lang-select { margin-left: auto; margin-right: 0.6rem; }
+}
+
+[dir="rtl"] .nav__links { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .lang-select { margin-left: 0; margin-right: 1.2rem; }
+[dir="rtl"] .car-select {
+  background-position: left 1em center;
+  padding: 0.55em 1em 0.55em 2.4em;
+}
+[dir="rtl"] .hero__h, [dir="rtl"] .hero__sub, [dir="rtl"] .hero__intro { text-align: right; }
+[dir="rtl"] .section__h .dot { display: none; }
+.lang-select { width: auto; flex: 0 0 auto; }
+@media (max-width: 480px) {
+  .brand__loc { display: none; }
+  .nav__cta { font-size: 0.85rem; padding: 0.6em 0.9em; }
+  .lang-select { padding: 0.45em 0.7em; font-size: 0.8rem; margin-right: 0.45rem; }
 }
