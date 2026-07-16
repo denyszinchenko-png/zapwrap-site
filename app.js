@@ -50,7 +50,7 @@
 
   /* ---- Car switcher: swap the template + body mask, keep the film ---- */
   var CARS = {
-    "911": { src: "assets/porsche-911.webp", mask: "assets/porsche-911-mask.webp?v=2", w: 1600, h: 856, name: "Porsche 911" },
+    "911": { src: "assets/cars/porsche-911.webp", mask: "assets/cars/porsche-911-mask.webp", w: 1600, h: 800, name: "Porsche 911" },
     "audi-q8": { src: "assets/cars/audi-q8.webp", mask: "assets/cars/audi-q8-mask.webp", w: 1600, h: 800, name: "Audi Q8" },
     "audi-r8": { src: "assets/cars/audi-r8.webp", mask: "assets/cars/audi-r8-mask.webp", w: 1600, h: 800, name: "Audi R8" },
     "bentley-bentayga": { src: "assets/cars/bentley-bentayga.webp", mask: "assets/cars/bentley-bentayga-mask.webp", w: 1600, h: 800, name: "Bentley Bentayga" },
