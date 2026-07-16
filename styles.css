@@ -384,7 +384,39 @@ p { text-wrap: pretty; }
 @keyframes ticker { to { translate: -50% 0; } }
 
 /* ---------- Sections ---------- */
-.services, .why, .finishes, .process, .faq, .book { padding-top: var(--space-section); }
+.services, .why, .finishes, .process, .faq, .book, .build { padding-top: var(--space-section); }
+
+/* latest build gallery */
+.build__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+  margin-top: 2.5rem;
+}
+.build__shot {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  background: var(--bg-deep);
+}
+.build__shot--hero { grid-column: 1 / -1; }
+.build__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.build__shot:not(.build__shot--hero) { aspect-ratio: 3 / 4; }
+.build__credit {
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .build__grid { grid-template-columns: repeat(2, 1fr); }
+  .build__shot:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+}
 
 /* ---------- Services: spec-sheet rows ---------- */
 .svc { list-style: none; padding: 0; margin: 3rem 0 0; border-top: 1px solid var(--line); }
