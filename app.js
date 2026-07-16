@@ -9,28 +9,41 @@
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- Film switcher: recolor the hero car, fire the shine beat ---- */
+  /* ---- Film switcher: squeegee wipe, the new film is laid on across the body ---- */
   var heroCar = document.querySelector(".hero__car .car");
   var chips = document.querySelectorAll("[data-set-film]");
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
       if (!heroCar) return;
       var film = chip.getAttribute("data-set-film");
-      if (heroCar.getAttribute("data-film") === film) return;
+      var pending = heroCar.getAttribute("data-film-next");
+      if ((pending || heroCar.getAttribute("data-film")) === film) return;
 
-      heroCar.setAttribute("data-film", film);
       chips.forEach(function (c) { c.classList.toggle("is-active", c === chip); });
 
-      // reveal beat: restart the shine sweep
-      if (!prefersReduced) {
-        heroCar.classList.remove("is-revealing");
-        void heroCar.offsetWidth; // reflow to restart the animation
-        heroCar.classList.add("is-revealing");
+      if (prefersReduced) {
+        heroCar.setAttribute("data-film", film);
+        return;
       }
+      // a wipe is mid-flight: commit it instantly, then start the new one
+      if (pending) {
+        heroCar.setAttribute("data-film", pending);
+        heroCar.removeAttribute("data-film-next");
+        heroCar.classList.remove("is-wiping");
+        void heroCar.offsetWidth;
+      }
+      heroCar.setAttribute("data-film-next", film);
+      heroCar.classList.add("is-wiping");
     });
   });
   if (heroCar) {
     heroCar.addEventListener("animationend", function (e) {
+      if (e.animationName === "filmwipe") {
+        var next = heroCar.getAttribute("data-film-next");
+        if (next) heroCar.setAttribute("data-film", next);
+        heroCar.removeAttribute("data-film-next");
+        heroCar.classList.remove("is-wiping");
+      }
       if (e.animationName === "shine") heroCar.classList.remove("is-revealing");
     });
   }

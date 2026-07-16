@@ -260,32 +260,113 @@ p { text-wrap: pretty; }
   mask-position: center;
   pointer-events: none;
 }
-.car { --mask: url("assets/porsche-911-mask.webp?v=2"); }
+.car {
+  --mask: url("assets/porsche-911-mask.webp?v=2");
+  --film-shift:    linear-gradient(115deg, var(--shift-a) 8%, var(--shift-b) 42%, var(--shift-c) 80%);
+  --film-satin:    linear-gradient(115deg, oklch(0.30 0 0), oklch(0.16 0 0) 55%, oklch(0.34 0 0));
+  --film-miami:    linear-gradient(115deg, oklch(0.75 0.14 210), oklch(0.62 0.15 220) 60%, oklch(0.8 0.12 205));
+  --film-rosso:    linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));
+  --film-graphite: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
+  --film-nardo:    linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250));
+  --film-purple:   linear-gradient(115deg, oklch(0.36 0.2 300), oklch(0.29 0.2 306) 55%, oklch(0.42 0.21 296));
+  --film-pink:     linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345));
+  --film-army:     linear-gradient(115deg, oklch(0.44 0.06 130), oklch(0.36 0.05 136) 55%, oklch(0.49 0.06 127));
+  --film: var(--film-shift);
+  --film-next: var(--film-shift);
+}
 
-/* finishes the switcher can lay on the 911 */
-.car[data-film="satin"] .car__film {
-  background: linear-gradient(115deg, oklch(0.30 0 0), oklch(0.16 0 0) 55%, oklch(0.34 0 0));
+/* finishes the switcher can lay on any template */
+.car[data-film="satin"]    { --film: var(--film-satin); }
+.car[data-film="miami"]    { --film: var(--film-miami); }
+.car[data-film="rosso"]    { --film: var(--film-rosso); }
+.car[data-film="graphite"] { --film: var(--film-graphite); }
+.car[data-film="nardo"]    { --film: var(--film-nardo); }
+.car[data-film="purple"]   { --film: var(--film-purple); }
+.car[data-film="pink"]     { --film: var(--film-pink); }
+.car[data-film="army"]     { --film: var(--film-army); }
+.car[data-film-next="shift"]    { --film-next: var(--film-shift); }
+.car[data-film-next="satin"]    { --film-next: var(--film-satin); }
+.car[data-film-next="miami"]    { --film-next: var(--film-miami); }
+.car[data-film-next="rosso"]    { --film-next: var(--film-rosso); }
+.car[data-film-next="graphite"] { --film-next: var(--film-graphite); }
+.car[data-film-next="nardo"]    { --film-next: var(--film-nardo); }
+.car[data-film-next="purple"]   { --film-next: var(--film-purple); }
+.car[data-film-next="pink"]     { --film-next: var(--film-pink); }
+.car[data-film-next="army"]     { --film-next: var(--film-army); }
+
+/* squeegee wipe: the incoming film sweeps across the body behind an angled
+   edge, a light band glides with it - vinyl being laid on, not a crossfade */
+.car__film--next {
+  z-index: 3;
+  background: var(--film-next);
+  visibility: hidden;
 }
-.car[data-film="miami"] .car__film {
-  background: linear-gradient(115deg, oklch(0.75 0.14 210), oklch(0.62 0.15 220) 60%, oklch(0.8 0.12 205));
+.car__film--next::after { display: none; }
+.car__squeegee {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+  -webkit-mask-mode: luminance;
+  mask-mode: luminance;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  pointer-events: none;
+  overflow: hidden;
+  visibility: hidden;
 }
-.car[data-film="rosso"] .car__film {
-  background: linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));
+.car__squeegee::before {
+  content: "";
+  position: absolute;
+  inset: -8% -30%;
+  background: linear-gradient(103deg,
+    transparent 42%,
+    oklch(1 0 0 / 0.05) 47%,
+    oklch(1 0 0 / 0.5) 50%,
+    oklch(1 0 0 / 0.08) 53%,
+    transparent 58%);
+  translate: -78% 0;
 }
-.car[data-film="graphite"] .car__film {
-  background: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
+@media (prefers-reduced-motion: no-preference) {
+  .car.is-wiping .car__film--next {
+    visibility: visible;
+    animation: filmwipe 950ms cubic-bezier(0.45, 0, 0.15, 1) both;
+  }
+  /* the outgoing film retreats behind the same edge - the two multiply
+     layers never overlap, so no muddy double-blend mid-transition */
+  .car.is-wiping .car__film:not(.car__film--next) {
+    animation: filmwipeout 950ms cubic-bezier(0.45, 0, 0.15, 1) both;
+  }
+  .car.is-wiping .car__squeegee {
+    visibility: visible;
+    animation: squeegeefade 950ms linear both;
+  }
+  .car.is-wiping .car__squeegee::before {
+    animation: squeegee 950ms cubic-bezier(0.45, 0, 0.15, 1) both;
+  }
 }
-.car[data-film="nardo"] .car__film {
-  background: linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250));
+@keyframes filmwipe {
+  from { clip-path: polygon(-34% 0%, -10% 0%, -26% 100%, -50% 100%); }
+  to   { clip-path: polygon(-34% 0%, 122% 0%, 106% 100%, -50% 100%); }
 }
-.car[data-film="purple"] .car__film {
-  background: linear-gradient(115deg, oklch(0.36 0.2 300), oklch(0.29 0.2 306) 55%, oklch(0.42 0.21 296));
+@keyframes filmwipeout {
+  from { clip-path: polygon(-10% 0%, 140% 0%, 140% 100%, -26% 100%); }
+  to   { clip-path: polygon(122% 0%, 140% 0%, 140% 100%, 106% 100%); }
 }
-.car[data-film="pink"] .car__film {
-  background: linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345));
+@keyframes squeegee {
+  from { translate: -78% 0; }
+  to   { translate: 82% 0; }
 }
-.car[data-film="army"] .car__film {
-  background: linear-gradient(115deg, oklch(0.44 0.06 130), oklch(0.36 0.05 136) 55%, oklch(0.49 0.06 127));
+@keyframes squeegeefade {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 
