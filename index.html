@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/porsche-911.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
 </head>
 <body id="top">
 
@@ -73,17 +73,142 @@
         <figcaption class="hero__filmbar">
           <p class="filmbar__pitch"><strong>See your car in a new color.</strong> Pick the closest model and flip through the films. At the consult we plot your exact car against the real 3M and Avery catalogs. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">Your model not here? Send it to the studio</a></p>
           <span class="filmbar__row">
-            <span class="filmbar__label">Pick your car</span>
-            <span class="filmbar__chips" role="group" aria-label="Vehicles">
-              <button class="chip chip--auto is-active" type="button" data-set-car="911">911</button>
-              <button class="chip chip--auto" type="button" data-set-car="urus">Urus</button>
-              <button class="chip chip--auto" type="button" data-set-car="g63">G63</button>
-              <button class="chip chip--auto" type="button" data-set-car="ferrari-488">488</button>
-              <button class="chip chip--auto" type="button" data-set-car="mclaren-720s">720S</button>
-              <button class="chip chip--auto" type="button" data-set-car="model-s">Model S</button>
-              <button class="chip chip--auto" type="button" data-set-car="cybertruck">Cybertruck</button>
-              <button class="chip chip--auto" type="button" data-set-car="r8">R8</button>
-            </span>
+            <label class="filmbar__label" for="car-select">Pick your car</label>
+            <select id="car-select" class="car-select" aria-label="Choose your vehicle">
+            <optgroup label="Audi">
+              <option value="audi-q8">Q8</option>
+              <option value="audi-r8">R8</option>
+            </optgroup>
+            <optgroup label="BMW">
+              <option value="bmw-430i-gran-coupe">430I Gran Coupe</option>
+              <option value="bmw-840i">840I</option>
+              <option value="bmw-m3-competition">M3 Competition</option>
+              <option value="bmw-m4">M4</option>
+              <option value="bmw-m5-competition">M5 Competition</option>
+              <option value="bmw-m8">M8</option>
+              <option value="bmw-x5">X5</option>
+              <option value="bmw-x6">X6</option>
+            </optgroup>
+            <optgroup label="Bentley">
+              <option value="bentley-bentayga">Bentayga</option>
+              <option value="bentley-continental-gt">Continental GT</option>
+            </optgroup>
+            <optgroup label="Cadillac">
+              <option value="cadillac-ct4-v-blackwing">CT4 V Blackwing</option>
+              <option value="cadillac-ct5-v-blackwing">CT5 V Blackwing</option>
+              <option value="cadillac-escalade">Escalade</option>
+            </optgroup>
+            <optgroup label="Chevrolet">
+              <option value="chevrolet-camaro">Camaro</option>
+              <option value="chevrolet-corvette">Corvette</option>
+              <option value="chevrolet-equinox">Equinox</option>
+              <option value="chevrolet-silverado">Silverado</option>
+              <option value="chevrolet-tahoe">Tahoe</option>
+              <option value="chevrolet-trax">Trax</option>
+            </optgroup>
+            <optgroup label="Dodge">
+              <option value="dodge-charger">Charger</option>
+              <option value="dodge-charger-392">Charger 392</option>
+              <option value="dodge-grand-caravan">Grand Caravan</option>
+              <option value="dodge-viper">Viper</option>
+            </optgroup>
+            <optgroup label="Ferrari">
+              <option value="ferrari-488">488</option>
+            </optgroup>
+            <optgroup label="Ford">
+              <option value="ford-bronco">Bronco</option>
+              <option value="ford-explorer">Explorer</option>
+              <option value="ford-f-150">F 150</option>
+              <option value="ford-mustang">Mustang</option>
+              <option value="ford-transit">Transit</option>
+            </optgroup>
+            <optgroup label="GMC">
+              <option value="gmc-hummer-ev">Hummer EV</option>
+              <option value="gmc-sierra">Sierra</option>
+            </optgroup>
+            <optgroup label="Honda">
+              <option value="honda-cr-v">CR V</option>
+              <option value="honda-civic">Civic</option>
+            </optgroup>
+            <optgroup label="Hyundai">
+              <option value="hyundai-tucson">Tucson</option>
+            </optgroup>
+            <optgroup label="Jeep">
+              <option value="jeep-gladiator">Gladiator</option>
+              <option value="jeep-grand-cherokee">Grand Cherokee</option>
+              <option value="jeep-wrangler">Wrangler</option>
+            </optgroup>
+            <optgroup label="Lamborghini">
+              <option value="lamborghini-huracan">Huracan</option>
+              <option value="lamborghini-urus">Urus</option>
+            </optgroup>
+            <optgroup label="Land Rover">
+              <option value="land-rover-range-rover">Range Rover</option>
+            </optgroup>
+            <optgroup label="Lexus">
+              <option value="lexus-is250">IS250</option>
+              <option value="lexus-is350">IS350</option>
+            </optgroup>
+            <optgroup label="Lincoln">
+              <option value="lincoln-navigator">Navigator</option>
+            </optgroup>
+            <optgroup label="Maserati">
+              <option value="maserati-levante">Levante</option>
+            </optgroup>
+            <optgroup label="Mazda">
+              <option value="mazda-3">3</option>
+            </optgroup>
+            <optgroup label="McLaren">
+              <option value="mclaren-720s">720S</option>
+            </optgroup>
+            <optgroup label="Mercedes">
+              <option value="mercedes-c-class">C Class</option>
+              <option value="mercedes-g63">G63</option>
+              <option value="mercedes-gle">GLE</option>
+              <option value="mercedes-sprinter">Sprinter</option>
+            </optgroup>
+            <optgroup label="Nissan">
+              <option value="nissan-altima">Altima</option>
+              <option value="nissan-rogue">Rogue</option>
+            </optgroup>
+            <optgroup label="Porsche">
+              <option value="911" selected>911</option>
+              <option value="porsche-cayenne">Cayenne</option>
+              <option value="porsche-panamera">Panamera</option>
+              <option value="porsche-taycan">Taycan</option>
+            </optgroup>
+            <optgroup label="Ram">
+              <option value="ram-1500">1500</option>
+            </optgroup>
+            <optgroup label="Rolls-Royce">
+              <option value="rolls-royce-cullinan">Cullinan</option>
+            </optgroup>
+            <optgroup label="School Bus">
+              <option value="school-bus-long-white">Long White</option>
+              <option value="school-bus-short-white">Short White</option>
+            </optgroup>
+            <optgroup label="Subaru">
+              <option value="subaru-forester">Forester</option>
+            </optgroup>
+            <optgroup label="Tesla">
+              <option value="tesla-cybertruck">Cybertruck</option>
+              <option value="tesla-model-3">Model 3</option>
+              <option value="tesla-model-s">Model S</option>
+              <option value="tesla-model-x">Model X</option>
+              <option value="tesla-model-y">Model Y</option>
+            </optgroup>
+            <optgroup label="Toyota">
+              <option value="toyota-4runner">4RUNNER</option>
+              <option value="toyota-camry">Camry</option>
+              <option value="toyota-corolla">Corolla</option>
+              <option value="toyota-rav4">RAV4</option>
+              <option value="toyota-sienna">Sienna</option>
+              <option value="toyota-tacoma">Tacoma</option>
+            </optgroup>
+            <optgroup label="Not here?">
+              <option value="__request">My car is not listed - request it</option>
+            </optgroup>
+            </select>
           </span>
           <span class="filmbar__row">
             <span class="filmbar__label">Pick a film</span>

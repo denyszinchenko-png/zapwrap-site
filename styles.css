@@ -359,6 +359,27 @@ p { text-wrap: pretty; }
 }
 .filmbar__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
+.car-select {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23FFD600' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55em 2.4em 0.55em 1em;
+  min-width: 15rem;
+  cursor: pointer;
+  transition: border-color 200ms var(--ease);
+}
+.car-select:hover, .car-select:focus-visible { border-color: var(--yellow); outline: none; }
+.car-select option, .car-select optgroup { background: #141416; color: var(--ink); }
+
 .chip {
   --chipdot: var(--yellow);
   display: inline-flex;
