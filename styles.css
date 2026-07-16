@@ -272,6 +272,21 @@ p { text-wrap: pretty; }
 .car[data-film="rosso"] .car__film {
   background: linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));
 }
+.car[data-film="graphite"] .car__film {
+  background: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
+}
+.car[data-film="nardo"] .car__film {
+  background: linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250));
+}
+.car[data-film="purple"] .car__film {
+  background: linear-gradient(115deg, oklch(0.36 0.2 300), oklch(0.29 0.2 306) 55%, oklch(0.42 0.21 296));
+}
+.car[data-film="pink"] .car__film {
+  background: linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345));
+}
+.car[data-film="army"] .car__film {
+  background: linear-gradient(115deg, oklch(0.44 0.06 130), oklch(0.36 0.05 136) 55%, oklch(0.49 0.06 127));
+}
 
 
 /* shine sweep: the reveal beat. Runs once when a film is switched. */
@@ -309,14 +324,19 @@ p { text-wrap: pretty; }
 
 /* ---------- Film bar ---------- */
 .hero__filmbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
   gap: 0.9rem;
   padding: 1.1rem 0 0;
   margin-top: 0.5rem;
   border-top: 1px solid var(--line-soft);
 }
+.filmbar__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+.filmbar__row .filmbar__label { flex: 0 0 7.5rem; }
 .filmbar__label {
   font-weight: 600;
   font-size: 0.85rem;
@@ -353,6 +373,13 @@ p { text-wrap: pretty; }
 .chip--satin { --chipdot: oklch(0.25 0 0); }
 .chip--miami { --chipdot: oklch(0.7 0.14 215); }
 .chip--rosso { --chipdot: oklch(0.48 0.2 26); }
+.chip--graphite { --chipdot: oklch(0.38 0.005 260); }
+.chip--nardo { --chipdot: oklch(0.6 0.015 250); }
+.chip--purple { --chipdot: oklch(0.34 0.2 300); }
+.chip--pink { --chipdot: oklch(0.7 0.19 352); }
+.chip--army { --chipdot: oklch(0.42 0.06 130); }
+.chip--auto::before { display: none; }
+.chip--auto { padding: 0.55em 0.9em; }
 .chip:hover { border-color: var(--ink-2); color: var(--ink); transform: translateY(-1px); }
 .chip.is-active { border-color: var(--yellow); color: var(--ink); }
 

@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/porsche-911.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 </head>
 <body id="top">
 
@@ -64,19 +64,39 @@
         </div>
       </div>
 
-      <figure class="hero__car" aria-label="Porsche 911 wrap preview: switch the film to recolor the car">
+      <figure class="hero__car" aria-label="Wrap preview: pick a car and switch the film to recolor it">
         <div class="car" data-film="shift">
           <img class="car__img" src="assets/porsche-911.webp" width="1600" height="856" alt="Porsche 911 side profile on the studio wrap template" fetchpriority="high" />
           <div class="car__film" aria-hidden="true"></div>
           <div class="car__floor" aria-hidden="true"></div>
         </div>
         <figcaption class="hero__filmbar">
-          <span class="filmbar__label">Pick a film</span>
-          <span class="filmbar__chips" role="group" aria-label="Film finishes">
-            <button class="chip chip--shift is-active" type="button" data-set-film="shift">Color-shift</button>
-            <button class="chip chip--satin" type="button" data-set-film="satin">Satin black</button>
-            <button class="chip chip--miami" type="button" data-set-film="miami">Miami blue</button>
-            <button class="chip chip--rosso" type="button" data-set-film="rosso">Gloss rosso</button>
+          <span class="filmbar__row">
+            <span class="filmbar__label">Pick your car</span>
+            <span class="filmbar__chips" role="group" aria-label="Vehicles">
+              <button class="chip chip--auto is-active" type="button" data-set-car="911">911</button>
+              <button class="chip chip--auto" type="button" data-set-car="urus">Urus</button>
+              <button class="chip chip--auto" type="button" data-set-car="g63">G63</button>
+              <button class="chip chip--auto" type="button" data-set-car="ferrari-488">488</button>
+              <button class="chip chip--auto" type="button" data-set-car="mclaren-720s">720S</button>
+              <button class="chip chip--auto" type="button" data-set-car="model-s">Model S</button>
+              <button class="chip chip--auto" type="button" data-set-car="cybertruck">Cybertruck</button>
+              <button class="chip chip--auto" type="button" data-set-car="r8">R8</button>
+            </span>
+          </span>
+          <span class="filmbar__row">
+            <span class="filmbar__label">Pick a film</span>
+            <span class="filmbar__chips" role="group" aria-label="Film finishes">
+              <button class="chip chip--shift is-active" type="button" data-set-film="shift">Color-shift</button>
+              <button class="chip chip--satin" type="button" data-set-film="satin">Satin black</button>
+              <button class="chip chip--graphite" type="button" data-set-film="graphite">Matte dark gray</button>
+              <button class="chip chip--nardo" type="button" data-set-film="nardo">Nardo gray</button>
+              <button class="chip chip--miami" type="button" data-set-film="miami">Miami blue</button>
+              <button class="chip chip--rosso" type="button" data-set-film="rosso">Gloss rosso</button>
+              <button class="chip chip--purple" type="button" data-set-film="purple">Deep purple</button>
+              <button class="chip chip--pink" type="button" data-set-film="pink">Gloss pink</button>
+              <button class="chip chip--army" type="button" data-set-film="army">Satin army green</button>
+            </span>
           </span>
         </figcaption>
       </figure>
@@ -376,6 +396,6 @@
     ]
   }
   </script>
-  <script src="app.js?v=3" defer></script>
+  <script src="app.js?v=4" defer></script>
 </body>
 </html>

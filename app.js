@@ -35,6 +35,44 @@
     });
   }
 
+  /* ---- Car switcher: swap the template + body mask, keep the film ---- */
+  var CARS = {
+    "911":          { src: "assets/porsche-911.webp",        mask: "assets/porsche-911-mask.webp?v=2", w: 1600, h: 856, name: "Porsche 911" },
+    "urus":         { src: "assets/cars/urus.webp",          mask: "assets/cars/urus-mask.webp",          w: 1600, h: 800, name: "Lamborghini Urus" },
+    "g63":          { src: "assets/cars/g63.webp",           mask: "assets/cars/g63-mask.webp",           w: 1600, h: 800, name: "Mercedes-AMG G63" },
+    "ferrari-488":  { src: "assets/cars/ferrari-488.webp",   mask: "assets/cars/ferrari-488-mask.webp",   w: 1600, h: 800, name: "Ferrari 488" },
+    "mclaren-720s": { src: "assets/cars/mclaren-720s.webp",  mask: "assets/cars/mclaren-720s-mask.webp",  w: 1600, h: 800, name: "McLaren 720S" },
+    "model-s":      { src: "assets/cars/model-s.webp",       mask: "assets/cars/model-s-mask.webp",       w: 1600, h: 800, name: "Tesla Model S" },
+    "cybertruck":   { src: "assets/cars/cybertruck.webp",    mask: "assets/cars/cybertruck-mask.webp",    w: 1600, h: 800, name: "Tesla Cybertruck" },
+    "r8":           { src: "assets/cars/r8.webp",            mask: "assets/cars/r8-mask.webp",            w: 1600, h: 800, name: "Audi R8" }
+  };
+  var carImg = document.querySelector(".car__img");
+  var carChips = document.querySelectorAll("[data-set-car]");
+  var currentCar = "911";
+  carChips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var key = chip.getAttribute("data-set-car");
+      var car = CARS[key];
+      if (!heroCar || !carImg || !car || key === currentCar) return;
+      var loader = new Image();
+      loader.onload = function () {
+        currentCar = key;
+        carImg.src = car.src;
+        carImg.width = car.w;
+        carImg.height = car.h;
+        carImg.alt = car.name + " side profile on the studio wrap template";
+        heroCar.style.setProperty("--mask", 'url("' + car.mask + '")');
+        carChips.forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+        if (!prefersReduced) {
+          heroCar.classList.remove("is-revealing");
+          void heroCar.offsetWidth;
+          heroCar.classList.add("is-revealing");
+        }
+      };
+      loader.src = car.src;
+    });
+  });
+
   /* ---- Scroll reveals: hide only below-fold elements, un-hide as they arrive ---- */
   if (!prefersReduced && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(
