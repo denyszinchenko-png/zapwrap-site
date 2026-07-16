@@ -407,6 +407,7 @@ p { text-wrap: pretty; }
   display: block;
 }
 .build__shot:not(.build__shot--hero) { aspect-ratio: 3 / 4; }
+.build__shot.build__shot--wide { grid-column: span 2; aspect-ratio: 3 / 2; }
 .build__credit {
   margin-top: 1.2rem;
   font-size: 0.85rem;
@@ -415,6 +416,7 @@ p { text-wrap: pretty; }
 }
 @media (max-width: 700px) {
   .build__grid { grid-template-columns: repeat(2, 1fr); }
+  .build__shot--wide { grid-column: 1 / -1; }
   .build__shot:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
 }
 
