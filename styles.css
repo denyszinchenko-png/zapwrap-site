@@ -336,6 +336,19 @@ p { text-wrap: pretty; }
   align-items: center;
   gap: 0.9rem;
 }
+.filmbar__pitch {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--ink-2);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+.filmbar__pitch strong { color: var(--ink); }
+.filmbar__pitch a {
+  color: var(--yellow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .filmbar__row .filmbar__label { flex: 0 0 7.5rem; }
 .filmbar__label {
   font-weight: 600;
