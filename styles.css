@@ -575,6 +575,11 @@ p { text-wrap: pretty; }
   color: var(--muted);
   padding-top: 0.2rem;
 }
+.book__note {
+  font-size: 0.85em;
+  color: var(--muted);
+  white-space: nowrap;
+}
 .book__contact a { color: var(--ink); text-decoration-color: var(--yellow); text-underline-offset: 3px; }
 .book__contact a:hover { color: var(--yellow); }
 
