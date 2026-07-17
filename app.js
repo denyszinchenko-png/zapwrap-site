@@ -152,15 +152,31 @@
     });
   }
 
-  /* ---- Discoverability: pulse the picker until touched, demo one film wipe ---- */
+  /* ---- Discoverability choreography (staged like a timeline):
+     0.0s picker enters (translate/scale/opacity, expo-out) -> 0.7s pulse
+     2.2s demo wipe starts -> chips cascade left-to-right under it
+     Labels get a one-shot yellow underline sweep as their control wakes up. ---- */
   var picker = document.getElementById("car-picker");
+  var pickerLabel = document.querySelector(".car__picker-label");
+  var filmLabel = document.querySelector(".filmbar__row .filmbar__label");
   if (picker && carSelect) {
-    picker.classList.add("is-idle");
-    var stopIdle = function () { picker.classList.remove("is-idle"); };
+    picker.classList.add(prefersReduced ? "is-idle" : "is-entering");
+    if (pickerLabel && !prefersReduced) pickerLabel.classList.add("label-sweep");
+    var stopIdle = function () { picker.classList.remove("is-idle", "is-entering"); };
     carSelect.addEventListener("focus", stopIdle);
     carSelect.addEventListener("change", stopIdle);
     picker.addEventListener("pointerdown", stopIdle);
   }
+  var chipWave = function () {
+    if (filmLabel) filmLabel.classList.add("label-sweep");
+    var list = Array.prototype.slice.call(chips);
+    list.forEach(function (chip, i) {
+      setTimeout(function () {
+        chip.classList.add("is-wave");
+        chip.addEventListener("animationend", function () { chip.classList.remove("is-wave"); }, { once: true });
+      }, i * 70);
+    });
+  };
   var demoTouched = false;
   var demoActive = false;
   chips.forEach(function (chip) {
@@ -180,6 +196,7 @@
       if (demoTouched || document.hidden) return;
       if (demoStore) demoStore.setItem("zw-demo", "1");
       clickChip("miami");
+      chipWave();
       setTimeout(function () { if (!demoTouched) clickChip("shift"); }, 3000);
     }, 2200);
   }

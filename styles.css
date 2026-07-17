@@ -491,7 +491,41 @@ p { text-wrap: pretty; }
   50% { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 12px rgba(255, 214, 0, 0); }
 }
 .car__picker.is-idle { animation: pickerpulse 2.4s var(--ease) infinite; }
-@media (prefers-reduced-motion: reduce) { .car__picker.is-idle { animation: none; } }
+/* staged entrance, then the pulse takes over (0.7s in) */
+@keyframes pickerin {
+  from { opacity: 0; transform: translateY(-12px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+.car__picker.is-entering {
+  animation: pickerin 600ms var(--ease) both,
+             pickerpulse 2.4s var(--ease) 700ms infinite;
+}
+/* one-shot cascade over the film chips while the demo wipe plays */
+@keyframes chipwave {
+  0% { transform: none; }
+  35% { transform: translateY(-4px) scale(1.04); border-color: var(--yellow); color: var(--ink); }
+  100% { transform: none; }
+}
+.chip.is-wave { animation: chipwave 520ms var(--ease) both; }
+/* yellow underline sweep under both control labels */
+.car__picker-label, .filmbar__label { position: relative; }
+@keyframes labelsweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.label-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.3em;
+  height: 2px;
+  background: var(--yellow);
+  transform-origin: left center;
+  animation: labelsweep 480ms var(--ease) both;
+}
+[dir="rtl"] .label-sweep::after { transform-origin: right center; }
+@media (prefers-reduced-motion: reduce) {
+  .car__picker.is-idle, .car__picker.is-entering, .chip.is-wave, .label-sweep::after { animation: none; }
+  .car__picker.is-entering { opacity: 1; transform: none; }
+}
 [dir="rtl"] .car__picker { right: auto; left: 2.5%; }
 @media (max-width: 720px) {
   .car__picker {
