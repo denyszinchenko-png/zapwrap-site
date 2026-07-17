@@ -50,72 +50,72 @@
 
   /* ---- Car switcher: swap the template + body mask, keep the film ---- */
   var CARS = {
-    "911": { src: "assets/cars/porsche-911.webp?v=6", mask: "assets/cars/porsche-911-mask2.webp", w: 1600, h: 800, name: "Porsche 911" },
-    "audi-q8": { src: "assets/cars/audi-q8.webp", mask: "assets/cars/audi-q8-mask2.webp", w: 1600, h: 800, name: "Audi Q8" },
-    "audi-r8": { src: "assets/cars/audi-r8.webp", mask: "assets/cars/audi-r8-mask2.webp", w: 1600, h: 800, name: "Audi R8" },
-    "bentley-continental-gt": { src: "assets/cars/bentley-continental-gt.webp", mask: "assets/cars/bentley-continental-gt-mask2.webp", w: 1600, h: 800, name: "Bentley Continental GT" },
-    "bmw-430i-gran-coupe": { src: "assets/cars/bmw-430i-gran-coupe.webp", mask: "assets/cars/bmw-430i-gran-coupe-mask2.webp", w: 1600, h: 800, name: "BMW 430I Gran Coupe" },
-    "bmw-840i": { src: "assets/cars/bmw-840i.webp", mask: "assets/cars/bmw-840i-mask2.webp", w: 1600, h: 800, name: "BMW 840I" },
-    "bmw-m3-competition": { src: "assets/cars/bmw-m3-competition.webp", mask: "assets/cars/bmw-m3-competition-mask2.webp", w: 1600, h: 800, name: "BMW M3 Competition" },
-    "bmw-m4": { src: "assets/cars/bmw-m4.webp", mask: "assets/cars/bmw-m4-mask2.webp", w: 1600, h: 800, name: "BMW M4" },
-    "bmw-m5-competition": { src: "assets/cars/bmw-m5-competition.webp", mask: "assets/cars/bmw-m5-competition-mask2.webp", w: 1600, h: 800, name: "BMW M5 Competition" },
-    "bmw-m8": { src: "assets/cars/bmw-m8.webp", mask: "assets/cars/bmw-m8-mask2.webp", w: 1600, h: 800, name: "BMW M8" },
-    "bmw-x5": { src: "assets/cars/bmw-x5.webp?v=6", mask: "assets/cars/bmw-x5-mask2.webp", w: 1600, h: 800, name: "BMW X5" },
-    "bmw-x6": { src: "assets/cars/bmw-x6.webp", mask: "assets/cars/bmw-x6-mask2.webp", w: 1600, h: 800, name: "BMW X6" },
-    "cadillac-ct5-v-blackwing": { src: "assets/cars/cadillac-ct5-v-blackwing.webp", mask: "assets/cars/cadillac-ct5-v-blackwing-mask2.webp", w: 1600, h: 800, name: "Cadillac CT5 V Blackwing" },
-    "cadillac-escalade": { src: "assets/cars/cadillac-escalade.webp", mask: "assets/cars/cadillac-escalade-mask2.webp", w: 1600, h: 800, name: "Cadillac Escalade" },
-    "chevrolet-camaro": { src: "assets/cars/chevrolet-camaro.webp", mask: "assets/cars/chevrolet-camaro-mask2.webp", w: 1600, h: 800, name: "Chevrolet Camaro" },
-    "chevrolet-equinox": { src: "assets/cars/chevrolet-equinox.webp", mask: "assets/cars/chevrolet-equinox-mask2.webp", w: 1600, h: 800, name: "Chevrolet Equinox" },
-    "chevrolet-silverado": { src: "assets/cars/chevrolet-silverado.webp", mask: "assets/cars/chevrolet-silverado-mask2.webp", w: 1600, h: 800, name: "Chevrolet Silverado" },
-    "chevrolet-tahoe": { src: "assets/cars/chevrolet-tahoe.webp", mask: "assets/cars/chevrolet-tahoe-mask2.webp", w: 1600, h: 800, name: "Chevrolet Tahoe" },
-    "chevrolet-trax": { src: "assets/cars/chevrolet-trax.webp", mask: "assets/cars/chevrolet-trax-mask2.webp", w: 1600, h: 800, name: "Chevrolet Trax" },
-    "dodge-charger": { src: "assets/cars/dodge-charger.webp", mask: "assets/cars/dodge-charger-mask2.webp", w: 1600, h: 800, name: "Dodge Charger" },
-    "dodge-charger-392": { src: "assets/cars/dodge-charger-392.webp", mask: "assets/cars/dodge-charger-392-mask2.webp", w: 1600, h: 800, name: "Dodge Charger 392" },
-    "dodge-grand-caravan": { src: "assets/cars/dodge-grand-caravan.webp", mask: "assets/cars/dodge-grand-caravan-mask2.webp", w: 1600, h: 800, name: "Dodge Grand Caravan" },
-    "dodge-viper": { src: "assets/cars/dodge-viper.webp", mask: "assets/cars/dodge-viper-mask2.webp", w: 1600, h: 800, name: "Dodge Viper" },
-    "ferrari-488": { src: "assets/cars/ferrari-488.webp", mask: "assets/cars/ferrari-488-mask2.webp", w: 1600, h: 800, name: "Ferrari 488" },
-    "ford-bronco": { src: "assets/cars/ford-bronco.webp", mask: "assets/cars/ford-bronco-mask2.webp", w: 1600, h: 800, name: "Ford Bronco" },
-    "ford-explorer": { src: "assets/cars/ford-explorer.webp", mask: "assets/cars/ford-explorer-mask2.webp", w: 1600, h: 800, name: "Ford Explorer" },
-    "ford-f-150": { src: "assets/cars/ford-f-150.webp", mask: "assets/cars/ford-f-150-mask2.webp", w: 1600, h: 800, name: "Ford F 150" },
-    "ford-mustang": { src: "assets/cars/ford-mustang.webp", mask: "assets/cars/ford-mustang-mask2.webp", w: 1600, h: 800, name: "Ford Mustang" },
-    "gmc-hummer-ev": { src: "assets/cars/gmc-hummer-ev.webp", mask: "assets/cars/gmc-hummer-ev-mask2.webp", w: 1600, h: 800, name: "GMC Hummer EV" },
-    "gmc-sierra": { src: "assets/cars/gmc-sierra.webp", mask: "assets/cars/gmc-sierra-mask2.webp", w: 1600, h: 800, name: "GMC Sierra" },
-    "honda-civic": { src: "assets/cars/honda-civic.webp", mask: "assets/cars/honda-civic-mask2.webp", w: 1600, h: 800, name: "Honda Civic" },
-    "honda-cr-v": { src: "assets/cars/honda-cr-v.webp", mask: "assets/cars/honda-cr-v-mask2.webp", w: 1600, h: 800, name: "Honda CR V" },
-    "hyundai-tucson": { src: "assets/cars/hyundai-tucson.webp", mask: "assets/cars/hyundai-tucson-mask2.webp", w: 1600, h: 800, name: "Hyundai Tucson" },
-    "jeep-grand-cherokee": { src: "assets/cars/jeep-grand-cherokee.webp", mask: "assets/cars/jeep-grand-cherokee-mask2.webp", w: 1600, h: 800, name: "Jeep Grand Cherokee" },
-    "kia-sportage": { src: "assets/cars/kia-sportage.webp", mask: "assets/cars/kia-sportage-mask2.webp", w: 1600, h: 800, name: "Kia Sportage" },
-    "lamborghini-huracan": { src: "assets/cars/lamborghini-huracan.webp", mask: "assets/cars/lamborghini-huracan-mask2.webp", w: 1600, h: 800, name: "Lamborghini Huracan" },
-    "lamborghini-urus": { src: "assets/cars/lamborghini-urus.webp", mask: "assets/cars/lamborghini-urus-mask2.webp", w: 1600, h: 800, name: "Lamborghini Urus" },
-    "land-rover-range-rover": { src: "assets/cars/land-rover-range-rover.webp", mask: "assets/cars/land-rover-range-rover-mask2.webp", w: 1600, h: 800, name: "Land Rover Range Rover" },
-    "lexus-is250": { src: "assets/cars/lexus-is250.webp", mask: "assets/cars/lexus-is250-mask2.webp", w: 1600, h: 800, name: "Lexus IS250" },
-    "lexus-is350": { src: "assets/cars/lexus-is350.webp?v=6", mask: "assets/cars/lexus-is350-mask2.webp", w: 1600, h: 800, name: "Lexus IS350" },
-    "lincoln-navigator": { src: "assets/cars/lincoln-navigator.webp", mask: "assets/cars/lincoln-navigator-mask2.webp", w: 1600, h: 800, name: "Lincoln Navigator" },
-    "maserati-levante": { src: "assets/cars/maserati-levante.webp", mask: "assets/cars/maserati-levante-mask2.webp", w: 1600, h: 800, name: "Maserati Levante" },
-    "mazda-3": { src: "assets/cars/mazda-3.webp", mask: "assets/cars/mazda-3-mask2.webp", w: 1600, h: 800, name: "Mazda 3" },
-    "mclaren-720s": { src: "assets/cars/mclaren-720s.webp", mask: "assets/cars/mclaren-720s-mask2.webp", w: 1600, h: 800, name: "McLaren 720S" },
-    "mercedes-c-class": { src: "assets/cars/mercedes-c-class.webp", mask: "assets/cars/mercedes-c-class-mask2.webp", w: 1600, h: 800, name: "Mercedes C Class" },
-    "mercedes-g63": { src: "assets/cars/mercedes-g63.webp", mask: "assets/cars/mercedes-g63-mask2.webp", w: 1600, h: 800, name: "Mercedes G63" },
-    "mercedes-gle": { src: "assets/cars/mercedes-gle.webp", mask: "assets/cars/mercedes-gle-mask2.webp", w: 1600, h: 800, name: "Mercedes GLE" },
-    "mercedes-sprinter": { src: "assets/cars/mercedes-sprinter.webp", mask: "assets/cars/mercedes-sprinter-mask2.webp", w: 1600, h: 800, name: "Mercedes Sprinter" },
-    "nissan-altima": { src: "assets/cars/nissan-altima.webp", mask: "assets/cars/nissan-altima-mask2.webp", w: 1600, h: 800, name: "Nissan Altima" },
-    "nissan-rogue": { src: "assets/cars/nissan-rogue.webp", mask: "assets/cars/nissan-rogue-mask2.webp", w: 1600, h: 800, name: "Nissan Rogue" },
-    "porsche-cayenne": { src: "assets/cars/porsche-cayenne.webp", mask: "assets/cars/porsche-cayenne-mask2.webp", w: 1600, h: 800, name: "Porsche Cayenne" },
-    "porsche-panamera": { src: "assets/cars/porsche-panamera.webp", mask: "assets/cars/porsche-panamera-mask2.webp", w: 1600, h: 800, name: "Porsche Panamera" },
-    "porsche-taycan": { src: "assets/cars/porsche-taycan.webp", mask: "assets/cars/porsche-taycan-mask2.webp", w: 1600, h: 800, name: "Porsche Taycan" },
-    "ram-1500": { src: "assets/cars/ram-1500.webp", mask: "assets/cars/ram-1500-mask2.webp", w: 1600, h: 800, name: "Ram 1500" },
-    "subaru-forester": { src: "assets/cars/subaru-forester.webp", mask: "assets/cars/subaru-forester-mask2.webp", w: 1600, h: 800, name: "Subaru Forester" },
-    "tesla-cybertruck": { src: "assets/cars/tesla-cybertruck.webp", mask: "assets/cars/tesla-cybertruck-mask2.webp", w: 1600, h: 800, name: "Tesla Cybertruck" },
-    "tesla-model-3": { src: "assets/cars/tesla-model-3.webp?v=6", mask: "assets/cars/tesla-model-3-mask2.webp", w: 1600, h: 800, name: "Tesla Model 3" },
-    "tesla-model-s": { src: "assets/cars/tesla-model-s.webp", mask: "assets/cars/tesla-model-s-mask2.webp", w: 1600, h: 800, name: "Tesla Model S" },
-    "tesla-model-x": { src: "assets/cars/tesla-model-x.webp?v=6", mask: "assets/cars/tesla-model-x-mask2.webp", w: 1600, h: 800, name: "Tesla Model X" },
-    "tesla-model-y": { src: "assets/cars/tesla-model-y.webp", mask: "assets/cars/tesla-model-y-mask2.webp", w: 1600, h: 800, name: "Tesla Model Y" },
-    "toyota-4runner": { src: "assets/cars/toyota-4runner.webp", mask: "assets/cars/toyota-4runner-mask2.webp", w: 1600, h: 800, name: "Toyota 4RUNNER" },
-    "toyota-camry": { src: "assets/cars/toyota-camry.webp", mask: "assets/cars/toyota-camry-mask2.webp", w: 1600, h: 800, name: "Toyota Camry" },
-    "toyota-corolla": { src: "assets/cars/toyota-corolla.webp", mask: "assets/cars/toyota-corolla-mask2.webp", w: 1600, h: 800, name: "Toyota Corolla" },
-    "toyota-rav4": { src: "assets/cars/toyota-rav4.webp", mask: "assets/cars/toyota-rav4-mask2.webp", w: 1600, h: 800, name: "Toyota RAV4" },
-    "toyota-sienna": { src: "assets/cars/toyota-sienna.webp", mask: "assets/cars/toyota-sienna-mask2.webp", w: 1600, h: 800, name: "Toyota Sienna" },
-    "toyota-tacoma": { src: "assets/cars/toyota-tacoma.webp?v=6", mask: "assets/cars/toyota-tacoma-mask2.webp", w: 1600, h: 800, name: "Toyota Tacoma" }
+    "911": { src: "assets/cars/porsche-911.webp?v=6", mask: "assets/cars/porsche-911-mask3.webp", w: 1600, h: 800, name: "Porsche 911" },
+    "audi-q8": { src: "assets/cars/audi-q8.webp", mask: "assets/cars/audi-q8-mask3.webp", w: 1600, h: 800, name: "Audi Q8" },
+    "audi-r8": { src: "assets/cars/audi-r8.webp", mask: "assets/cars/audi-r8-mask3.webp", w: 1600, h: 800, name: "Audi R8" },
+    "bentley-continental-gt": { src: "assets/cars/bentley-continental-gt.webp", mask: "assets/cars/bentley-continental-gt-mask3.webp", w: 1600, h: 800, name: "Bentley Continental GT" },
+    "bmw-430i-gran-coupe": { src: "assets/cars/bmw-430i-gran-coupe.webp", mask: "assets/cars/bmw-430i-gran-coupe-mask3.webp", w: 1600, h: 800, name: "BMW 430I Gran Coupe" },
+    "bmw-840i": { src: "assets/cars/bmw-840i.webp", mask: "assets/cars/bmw-840i-mask3.webp", w: 1600, h: 800, name: "BMW 840I" },
+    "bmw-m3-competition": { src: "assets/cars/bmw-m3-competition.webp", mask: "assets/cars/bmw-m3-competition-mask3.webp", w: 1600, h: 800, name: "BMW M3 Competition" },
+    "bmw-m4": { src: "assets/cars/bmw-m4.webp", mask: "assets/cars/bmw-m4-mask3.webp", w: 1600, h: 800, name: "BMW M4" },
+    "bmw-m5-competition": { src: "assets/cars/bmw-m5-competition.webp", mask: "assets/cars/bmw-m5-competition-mask3.webp", w: 1600, h: 800, name: "BMW M5 Competition" },
+    "bmw-m8": { src: "assets/cars/bmw-m8.webp", mask: "assets/cars/bmw-m8-mask3.webp", w: 1600, h: 800, name: "BMW M8" },
+    "bmw-x5": { src: "assets/cars/bmw-x5.webp?v=6", mask: "assets/cars/bmw-x5-mask3.webp", w: 1600, h: 800, name: "BMW X5" },
+    "bmw-x6": { src: "assets/cars/bmw-x6.webp", mask: "assets/cars/bmw-x6-mask3.webp", w: 1600, h: 800, name: "BMW X6" },
+    "cadillac-ct5-v-blackwing": { src: "assets/cars/cadillac-ct5-v-blackwing.webp", mask: "assets/cars/cadillac-ct5-v-blackwing-mask3.webp", w: 1600, h: 800, name: "Cadillac CT5 V Blackwing" },
+    "cadillac-escalade": { src: "assets/cars/cadillac-escalade.webp", mask: "assets/cars/cadillac-escalade-mask3.webp", w: 1600, h: 800, name: "Cadillac Escalade" },
+    "chevrolet-camaro": { src: "assets/cars/chevrolet-camaro.webp", mask: "assets/cars/chevrolet-camaro-mask3.webp", w: 1600, h: 800, name: "Chevrolet Camaro" },
+    "chevrolet-equinox": { src: "assets/cars/chevrolet-equinox.webp", mask: "assets/cars/chevrolet-equinox-mask3.webp", w: 1600, h: 800, name: "Chevrolet Equinox" },
+    "chevrolet-silverado": { src: "assets/cars/chevrolet-silverado.webp", mask: "assets/cars/chevrolet-silverado-mask3.webp", w: 1600, h: 800, name: "Chevrolet Silverado" },
+    "chevrolet-tahoe": { src: "assets/cars/chevrolet-tahoe.webp", mask: "assets/cars/chevrolet-tahoe-mask3.webp", w: 1600, h: 800, name: "Chevrolet Tahoe" },
+    "chevrolet-trax": { src: "assets/cars/chevrolet-trax.webp", mask: "assets/cars/chevrolet-trax-mask3.webp", w: 1600, h: 800, name: "Chevrolet Trax" },
+    "dodge-charger": { src: "assets/cars/dodge-charger.webp", mask: "assets/cars/dodge-charger-mask3.webp", w: 1600, h: 800, name: "Dodge Charger" },
+    "dodge-charger-392": { src: "assets/cars/dodge-charger-392.webp", mask: "assets/cars/dodge-charger-392-mask3.webp", w: 1600, h: 800, name: "Dodge Charger 392" },
+    "dodge-grand-caravan": { src: "assets/cars/dodge-grand-caravan.webp", mask: "assets/cars/dodge-grand-caravan-mask3.webp", w: 1600, h: 800, name: "Dodge Grand Caravan" },
+    "dodge-viper": { src: "assets/cars/dodge-viper.webp", mask: "assets/cars/dodge-viper-mask3.webp", w: 1600, h: 800, name: "Dodge Viper" },
+    "ferrari-488": { src: "assets/cars/ferrari-488.webp", mask: "assets/cars/ferrari-488-mask3.webp", w: 1600, h: 800, name: "Ferrari 488" },
+    "ford-bronco": { src: "assets/cars/ford-bronco.webp", mask: "assets/cars/ford-bronco-mask3.webp", w: 1600, h: 800, name: "Ford Bronco" },
+    "ford-explorer": { src: "assets/cars/ford-explorer.webp", mask: "assets/cars/ford-explorer-mask3.webp", w: 1600, h: 800, name: "Ford Explorer" },
+    "ford-f-150": { src: "assets/cars/ford-f-150.webp", mask: "assets/cars/ford-f-150-mask3.webp", w: 1600, h: 800, name: "Ford F 150" },
+    "ford-mustang": { src: "assets/cars/ford-mustang.webp", mask: "assets/cars/ford-mustang-mask3.webp", w: 1600, h: 800, name: "Ford Mustang" },
+    "gmc-hummer-ev": { src: "assets/cars/gmc-hummer-ev.webp", mask: "assets/cars/gmc-hummer-ev-mask3.webp", w: 1600, h: 800, name: "GMC Hummer EV" },
+    "gmc-sierra": { src: "assets/cars/gmc-sierra.webp", mask: "assets/cars/gmc-sierra-mask3.webp", w: 1600, h: 800, name: "GMC Sierra" },
+    "honda-civic": { src: "assets/cars/honda-civic.webp", mask: "assets/cars/honda-civic-mask3.webp", w: 1600, h: 800, name: "Honda Civic" },
+    "honda-cr-v": { src: "assets/cars/honda-cr-v.webp", mask: "assets/cars/honda-cr-v-mask3.webp", w: 1600, h: 800, name: "Honda CR V" },
+    "hyundai-tucson": { src: "assets/cars/hyundai-tucson.webp", mask: "assets/cars/hyundai-tucson-mask3.webp", w: 1600, h: 800, name: "Hyundai Tucson" },
+    "jeep-grand-cherokee": { src: "assets/cars/jeep-grand-cherokee.webp", mask: "assets/cars/jeep-grand-cherokee-mask3.webp", w: 1600, h: 800, name: "Jeep Grand Cherokee" },
+    "kia-sportage": { src: "assets/cars/kia-sportage.webp", mask: "assets/cars/kia-sportage-mask3.webp", w: 1600, h: 800, name: "Kia Sportage" },
+    "lamborghini-huracan": { src: "assets/cars/lamborghini-huracan.webp", mask: "assets/cars/lamborghini-huracan-mask3.webp", w: 1600, h: 800, name: "Lamborghini Huracan" },
+    "lamborghini-urus": { src: "assets/cars/lamborghini-urus.webp", mask: "assets/cars/lamborghini-urus-mask3.webp", w: 1600, h: 800, name: "Lamborghini Urus" },
+    "land-rover-range-rover": { src: "assets/cars/land-rover-range-rover.webp", mask: "assets/cars/land-rover-range-rover-mask3.webp", w: 1600, h: 800, name: "Land Rover Range Rover" },
+    "lexus-is250": { src: "assets/cars/lexus-is250.webp", mask: "assets/cars/lexus-is250-mask3.webp", w: 1600, h: 800, name: "Lexus IS250" },
+    "lexus-is350": { src: "assets/cars/lexus-is350.webp?v=6", mask: "assets/cars/lexus-is350-mask3.webp", w: 1600, h: 800, name: "Lexus IS350" },
+    "lincoln-navigator": { src: "assets/cars/lincoln-navigator.webp", mask: "assets/cars/lincoln-navigator-mask3.webp", w: 1600, h: 800, name: "Lincoln Navigator" },
+    "maserati-levante": { src: "assets/cars/maserati-levante.webp", mask: "assets/cars/maserati-levante-mask3.webp", w: 1600, h: 800, name: "Maserati Levante" },
+    "mazda-3": { src: "assets/cars/mazda-3.webp", mask: "assets/cars/mazda-3-mask3.webp", w: 1600, h: 800, name: "Mazda 3" },
+    "mclaren-720s": { src: "assets/cars/mclaren-720s.webp", mask: "assets/cars/mclaren-720s-mask3.webp", w: 1600, h: 800, name: "McLaren 720S" },
+    "mercedes-c-class": { src: "assets/cars/mercedes-c-class.webp", mask: "assets/cars/mercedes-c-class-mask3.webp", w: 1600, h: 800, name: "Mercedes C Class" },
+    "mercedes-g63": { src: "assets/cars/mercedes-g63.webp", mask: "assets/cars/mercedes-g63-mask3.webp", w: 1600, h: 800, name: "Mercedes G63" },
+    "mercedes-gle": { src: "assets/cars/mercedes-gle.webp", mask: "assets/cars/mercedes-gle-mask3.webp", w: 1600, h: 800, name: "Mercedes GLE" },
+    "mercedes-sprinter": { src: "assets/cars/mercedes-sprinter.webp", mask: "assets/cars/mercedes-sprinter-mask3.webp", w: 1600, h: 800, name: "Mercedes Sprinter" },
+    "nissan-altima": { src: "assets/cars/nissan-altima.webp", mask: "assets/cars/nissan-altima-mask3.webp", w: 1600, h: 800, name: "Nissan Altima" },
+    "nissan-rogue": { src: "assets/cars/nissan-rogue.webp", mask: "assets/cars/nissan-rogue-mask3.webp", w: 1600, h: 800, name: "Nissan Rogue" },
+    "porsche-cayenne": { src: "assets/cars/porsche-cayenne.webp", mask: "assets/cars/porsche-cayenne-mask3.webp", w: 1600, h: 800, name: "Porsche Cayenne" },
+    "porsche-panamera": { src: "assets/cars/porsche-panamera.webp", mask: "assets/cars/porsche-panamera-mask3.webp", w: 1600, h: 800, name: "Porsche Panamera" },
+    "porsche-taycan": { src: "assets/cars/porsche-taycan.webp", mask: "assets/cars/porsche-taycan-mask3.webp", w: 1600, h: 800, name: "Porsche Taycan" },
+    "ram-1500": { src: "assets/cars/ram-1500.webp", mask: "assets/cars/ram-1500-mask3.webp", w: 1600, h: 800, name: "Ram 1500" },
+    "subaru-forester": { src: "assets/cars/subaru-forester.webp", mask: "assets/cars/subaru-forester-mask3.webp", w: 1600, h: 800, name: "Subaru Forester" },
+    "tesla-cybertruck": { src: "assets/cars/tesla-cybertruck.webp", mask: "assets/cars/tesla-cybertruck-mask3.webp", w: 1600, h: 800, name: "Tesla Cybertruck" },
+    "tesla-model-3": { src: "assets/cars/tesla-model-3.webp?v=6", mask: "assets/cars/tesla-model-3-mask3.webp", w: 1600, h: 800, name: "Tesla Model 3" },
+    "tesla-model-s": { src: "assets/cars/tesla-model-s.webp", mask: "assets/cars/tesla-model-s-mask3.webp", w: 1600, h: 800, name: "Tesla Model S" },
+    "tesla-model-x": { src: "assets/cars/tesla-model-x.webp?v=6", mask: "assets/cars/tesla-model-x-mask3.webp", w: 1600, h: 800, name: "Tesla Model X" },
+    "tesla-model-y": { src: "assets/cars/tesla-model-y.webp", mask: "assets/cars/tesla-model-y-mask3.webp", w: 1600, h: 800, name: "Tesla Model Y" },
+    "toyota-4runner": { src: "assets/cars/toyota-4runner.webp", mask: "assets/cars/toyota-4runner-mask3.webp", w: 1600, h: 800, name: "Toyota 4RUNNER" },
+    "toyota-camry": { src: "assets/cars/toyota-camry.webp", mask: "assets/cars/toyota-camry-mask3.webp", w: 1600, h: 800, name: "Toyota Camry" },
+    "toyota-corolla": { src: "assets/cars/toyota-corolla.webp", mask: "assets/cars/toyota-corolla-mask3.webp", w: 1600, h: 800, name: "Toyota Corolla" },
+    "toyota-rav4": { src: "assets/cars/toyota-rav4.webp", mask: "assets/cars/toyota-rav4-mask3.webp", w: 1600, h: 800, name: "Toyota RAV4" },
+    "toyota-sienna": { src: "assets/cars/toyota-sienna.webp", mask: "assets/cars/toyota-sienna-mask3.webp", w: 1600, h: 800, name: "Toyota Sienna" },
+    "toyota-tacoma": { src: "assets/cars/toyota-tacoma.webp?v=6", mask: "assets/cars/toyota-tacoma-mask3.webp", w: 1600, h: 800, name: "Toyota Tacoma" }
   };
   var carImg = document.querySelector(".car__img");
   var carSelect = document.getElementById("car-select");
@@ -150,6 +150,38 @@
       };
       loader.src = car.src;
     });
+  }
+
+  /* ---- Discoverability: pulse the picker until touched, demo one film wipe ---- */
+  var picker = document.getElementById("car-picker");
+  if (picker && carSelect) {
+    picker.classList.add("is-idle");
+    var stopIdle = function () { picker.classList.remove("is-idle"); };
+    carSelect.addEventListener("focus", stopIdle);
+    carSelect.addEventListener("change", stopIdle);
+    picker.addEventListener("pointerdown", stopIdle);
+  }
+  var demoTouched = false;
+  var demoActive = false;
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () { if (!demoActive) demoTouched = true; }, { capture: true });
+  });
+  var demoStore;
+  try { demoStore = window.sessionStorage; } catch (err) { demoStore = null; }
+  if (heroCar && !prefersReduced && (!demoStore || !demoStore.getItem("zw-demo"))) {
+    var clickChip = function (film) {
+      var chip = document.querySelector('[data-set-film="' + film + '"]');
+      if (!chip) return;
+      demoActive = true;
+      chip.click();
+      demoActive = false;
+    };
+    setTimeout(function () {
+      if (demoTouched || document.hidden) return;
+      if (demoStore) demoStore.setItem("zw-demo", "1");
+      clickChip("miami");
+      setTimeout(function () { if (!demoTouched) clickChip("shift"); }, 3000);
+    }, 2200);
   }
 
   /* ---- Scroll reveals: hide only below-fold elements, un-hide as they arrive ---- */
