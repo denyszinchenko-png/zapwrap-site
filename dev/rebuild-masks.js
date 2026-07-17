@@ -10,7 +10,7 @@
    1) Локальный сервер с POST-сохранением масок + раздачей шаблонов базы:
       scratchpad/mask_server.py из сессии 2026-07-17 (порт 8123): статика
       этого репо, /tpl/* -> /Users/zapwrap/zapwrap-app/assets/car-templates,
-      POST /save?path=assets/cars/<slug>-mask.webp. Аналог легко восстановить:
+      POST /save (маски теперь -mask2.webp; при пересборке менять ИМЯ файла: mask3..., см. финал-2 в wiki). Аналог легко восстановить:
       ~60 строк http.server.
    2) Открыть http://127.0.0.1:8123, вставить этот файл в консоль.
    3) buildAll() перестроит все маски и сохранит их POST'ом;
