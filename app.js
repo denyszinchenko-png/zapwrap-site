@@ -177,11 +177,43 @@
       }, i * 70);
     });
   };
+  /* film-name toast + warm CTA after the 2nd flip the visitor makes */
+  var toast = document.getElementById("car-toast");
+  var toastTimer = null;
+  var showToast = function (name) {
+    if (!toast || !name) return;
+    toast.textContent = name;
+    toast.classList.add("is-show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove("is-show"); }, 1800);
+  };
+  var filmCta = document.getElementById("film-cta");
+  var filmCtaLink = document.getElementById("film-cta-link");
+  var currentFilmName = "";
+  var updateCtaLink = function () {
+    if (!filmCtaLink) return;
+    var car = CARS[currentCar] ? CARS[currentCar].name : "";
+    var msg = "Hi! I want a " + (currentFilmName || "color change") + " wrap on my " + car;
+    filmCtaLink.href = "https://wa.me/13527790041?text=" + encodeURIComponent(msg);
+  };
+  var userFlips = 0;
   var demoTouched = false;
   var demoActive = false;
   chips.forEach(function (chip) {
-    chip.addEventListener("click", function () { if (!demoActive) demoTouched = true; }, { capture: true });
+    chip.addEventListener("click", function () {
+      currentFilmName = chip.textContent.trim();
+      showToast(currentFilmName);
+      updateCtaLink();
+      if (demoActive) return;
+      demoTouched = true;
+      userFlips++;
+      if (userFlips >= 2 && filmCta && filmCta.hidden) {
+        filmCta.hidden = false;
+        requestAnimationFrame(function () { filmCta.classList.add("is-in"); });
+      }
+    }, { capture: true });
   });
+  if (carSelect) carSelect.addEventListener("change", updateCtaLink);
   var demoStore;
   try { demoStore = window.sessionStorage; } catch (err) { demoStore = null; }
   if (heroCar && !prefersReduced && (!demoStore || !demoStore.getItem("zw-demo"))) {
@@ -256,5 +288,50 @@
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  /* ---- Gallery lightbox ---- */
+  var shots = Array.prototype.slice.call(document.querySelectorAll(".build__shot img"));
+  if (shots.length) {
+    var lb = document.createElement("div");
+    lb.className = "lightbox";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-modal", "true");
+    lb.setAttribute("aria-label", "Photo viewer");
+    lb.innerHTML =
+      '<img alt="" decoding="async" />' +
+      '<button class="lightbox__btn lightbox__close" type="button" aria-label="Close">&#10005;</button>' +
+      '<button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo">&#8249;</button>' +
+      '<button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">&#8250;</button>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector("img");
+    var lbIdx = 0;
+    var lbShow = function (i) {
+      lbIdx = (i + shots.length) % shots.length;
+      lbImg.src = shots[lbIdx].currentSrc || shots[lbIdx].src;
+      lbImg.alt = shots[lbIdx].alt || "";
+    };
+    var lbClose = function () {
+      lb.classList.remove("is-open");
+      document.body.style.overflow = "";
+    };
+    shots.forEach(function (img, i) {
+      img.addEventListener("click", function () {
+        lbShow(i);
+        lb.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        lb.querySelector(".lightbox__close").focus();
+      });
+    });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lbClose(); });
+    lb.querySelector(".lightbox__close").addEventListener("click", lbClose);
+    lb.querySelector(".lightbox__prev").addEventListener("click", function () { lbShow(lbIdx - 1); });
+    lb.querySelector(".lightbox__next").addEventListener("click", function () { lbShow(lbIdx + 1); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("is-open")) return;
+      if (e.key === "Escape") lbClose();
+      if (e.key === "ArrowLeft") lbShow(lbIdx - 1);
+      if (e.key === "ArrowRight") lbShow(lbIdx + 1);
+    });
   }
 })();
