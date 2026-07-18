@@ -234,7 +234,14 @@ p { text-wrap: pretty; }
 @keyframes drive-in { to { opacity: 1; translate: 0 0; } }
 @keyframes fade { to { opacity: 1; } }
 
-.hero__car { position: relative; margin-top: clamp(2rem, 1rem + 4vw, 4rem); }
+.hero__car {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(2rem, 1rem + 4vw, 4rem);
+}
+.hero__car .car { order: 2; }
+.hero__car .hero__filmbar { order: 3; }
 
 /* ---------- The car + film system ---------- */
 .car { position: relative; }
@@ -461,12 +468,12 @@ p { text-wrap: pretty; }
 .car-select:hover, .car-select:focus-visible { border-color: var(--yellow); outline: none; }
 .car-select option, .car-select optgroup { background: #141416; color: var(--ink); }
 
-/* "Pick your car" lives ON the car image so nobody can miss it */
+/* "Pick your car" in its own slot above the car: prominent, and it can
+   never collide with a tall body (4Runner/Sprinter roofs reach the top) */
 .car__picker {
-  position: absolute;
-  z-index: 6;
-  top: 3%;
-  right: 2.5%;
+  order: 1;
+  align-self: flex-end;
+  margin: 0 0 0.7rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -526,16 +533,17 @@ p { text-wrap: pretty; }
   .car__picker.is-idle, .car__picker.is-entering, .chip.is-wave, .label-sweep::after { animation: none; }
   .car__picker.is-entering { opacity: 1; transform: none; }
 }
-[dir="rtl"] .car__picker { right: auto; left: 2.5%; }
 @media (max-width: 720px) {
   .car__picker {
-    position: static;
+    order: 2;
+    align-self: stretch;
     margin: 0.55rem 0 0;
     width: 100%;
     flex-direction: row;
     align-items: center;
     gap: 0.6rem;
   }
+  .hero__car .car { order: 1; }
   .car__picker .car-select { flex: 1 1 auto; min-width: 0; }
 }
 
