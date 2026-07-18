@@ -290,6 +290,150 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* ---- v28: shine sweep over the WRAP word, once ---- */
+  var heroEm = document.querySelector(".hero__h em");
+  if (heroEm && !prefersReduced) {
+    setTimeout(function () {
+      heroEm.classList.add("is-shine");
+      heroEm.addEventListener("animationend", function () { heroEm.classList.remove("is-shine"); }, { once: true });
+    }, 1400);
+  }
+
+  /* ---- v28: reviews wake up - score rolls, stars light one by one ---- */
+  var revScore = document.getElementById("rev-score");
+  var revStars = document.getElementById("rev-stars");
+  if (revScore && revStars && "IntersectionObserver" in window) {
+    var revDone = false;
+    var revIO = new IntersectionObserver(function (entries) {
+      if (revDone || !entries[0].isIntersecting) return;
+      revDone = true;
+      revIO.disconnect();
+      var stars = revStars.querySelectorAll("span");
+      if (prefersReduced) {
+        stars.forEach(function (s) { s.classList.add("is-lit"); });
+        return;
+      }
+      var t0 = null;
+      var roll = function (ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 900, 1);
+        revScore.textContent = (5 * (1 - Math.pow(1 - p, 3))).toFixed(1);
+        if (p < 1) requestAnimationFrame(roll);
+      };
+      requestAnimationFrame(roll);
+      stars.forEach(function (s, i) {
+        setTimeout(function () { s.classList.add("is-lit"); }, 300 + i * 120);
+      });
+    }, { threshold: 0.4 });
+    revIO.observe(revStars);
+  }
+
+  /* ---- v28: swatches and the build button jump into the configurator ---- */
+  var applyFilm = function (film) {
+    var target = document.querySelector(".hero__car");
+    if (!target) return;
+    target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "center" });
+    setTimeout(function () {
+      var chip = document.querySelector('[data-set-film="' + film + '"]');
+      if (chip) chip.click();
+    }, prefersReduced ? 100 : 650);
+  };
+  document.querySelectorAll("[data-apply-film]").forEach(function (btn) {
+    btn.addEventListener("click", function () { applyFilm(btn.getAttribute("data-apply-film")); });
+  });
+  var tryBuild = document.getElementById("try-build-film");
+  if (tryBuild) tryBuild.addEventListener("click", function () { applyFilm("graphite"); });
+
+  /* ---- v28: before/after shutter ---- */
+  var baStage = document.getElementById("ba-stage");
+  var baRange = document.getElementById("ba-range");
+  if (baStage && baRange) {
+    baRange.addEventListener("input", function () {
+      baStage.style.setProperty("--cut", baRange.value + "%");
+    });
+  }
+
+  /* ---- v28: the submit button charges as required fields fill ---- */
+  var form = document.getElementById("consult-form");
+  var submitBtn = form && form.querySelector(".form__submit");
+  if (form && submitBtn) {
+    var reqFields = Array.prototype.slice.call(form.querySelectorAll("[required]"));
+    var wasReady = false;
+    var charge = function () {
+      var ok = reqFields.filter(function (f) { return f.value && f.checkValidity(); }).length;
+      var ready = ok === reqFields.length;
+      submitBtn.classList.toggle("is-charging", !ready);
+      submitBtn.style.setProperty("--fill", Math.round((ok / reqFields.length) * 100) + "%");
+      if (ready && !wasReady) {
+        submitBtn.classList.add("is-ready");
+        submitBtn.addEventListener("animationend", function () { submitBtn.classList.remove("is-ready"); }, { once: true });
+      }
+      wasReady = ready;
+    };
+    reqFields.forEach(function (f) {
+      f.addEventListener("input", charge);
+      f.addEventListener("change", charge);
+    });
+    charge();
+  }
+
+  /* ---- v28: headline variants, preview via ?hl=b|c (EN only; A stays default
+     until analytics can judge a real split) ---- */
+  var HEADLINES = {
+    b: ["Stop repainting", "your car. <em>Wrap</em>", "it instead."],
+    c: ["Factory paint.", "<em>New</em> color.", "5 days flat."]
+  };
+  var hlKey = (location.search.match(/[?&]hl=([bc])/) || [])[1];
+  var langNow = null;
+  try { langNow = window.localStorage.getItem("zw-lang"); } catch (err) { langNow = null; }
+  if (hlKey && HEADLINES[hlKey] && (!langNow || langNow === "en")) {
+    document.querySelectorAll(".hero__line").forEach(function (line, i) {
+      if (HEADLINES[hlKey][i]) line.innerHTML = HEADLINES[hlKey][i];
+    });
+  }
+
+  /* ---- v28: stamp the tagline as it passes center ---- */
+  var hotSpans = document.querySelectorAll(".ticker__hot");
+  if (hotSpans.length && !prefersReduced) {
+    var hotState = [];
+    hotSpans.forEach(function () { hotState.push(false); });
+    setInterval(function () {
+      if (document.hidden) return;
+      var mid = window.innerWidth / 2;
+      hotSpans.forEach(function (s, i) {
+        var r = s.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var inZone = Math.abs((r.left + r.right) / 2 - mid) < 90;
+        if (inZone && !hotState[i]) {
+          s.classList.add("is-stamp");
+          s.addEventListener("animationend", function () { s.classList.remove("is-stamp"); }, { once: true });
+        }
+        hotState[i] = inZone;
+      });
+    }, 250);
+  }
+
+  /* ---- v28: exit-intent bar, desktop, once per session ---- */
+  var exitbar = document.getElementById("exitbar");
+  if (exitbar && window.matchMedia("(min-width: 721px) and (pointer: fine)").matches) {
+    var exitStore;
+    try { exitStore = window.sessionStorage; } catch (err) { exitStore = null; }
+    if (!exitStore || !exitStore.getItem("zw-exit")) {
+      var onExit = function (e) {
+        if (e.clientY > 8 || e.relatedTarget) return;
+        document.removeEventListener("mouseout", onExit);
+        if (exitStore) exitStore.setItem("zw-exit", "1");
+        exitbar.hidden = false;
+        requestAnimationFrame(function () { exitbar.classList.add("is-in"); });
+      };
+      document.addEventListener("mouseout", onExit);
+      exitbar.querySelector(".exitbar__close").addEventListener("click", function () {
+        exitbar.classList.remove("is-in");
+        setTimeout(function () { exitbar.hidden = true; }, 500);
+      });
+    }
+  }
+
   /* ---- WhatsApp fab: enters after the hero, nudges rarely ---- */
   var fab = document.querySelector(".wa-fab");
   var heroEl = document.querySelector(".hero");

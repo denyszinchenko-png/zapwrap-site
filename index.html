@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Oswald:wght@500&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=27" />
+  <link rel="stylesheet" href="styles.css?v=28" />
 </head>
 <body id="top">
 
@@ -264,15 +264,27 @@
             <img src="assets/x6/x6-light.webp" width="825" height="1100" alt="Headlight detail: film laid edge to edge around the light" loading="lazy" />
           </figure>
         </div>
+        <div class="ba reveal" id="ba">
+          <p class="ba__caption" data-i18n="ba.cap">Drag the line: factory white to matte dark gray</p>
+          <div class="ba__stage" id="ba-stage" style="--cut: 50%">
+            <img src="assets/cars/bmw-x6.webp" width="1600" height="800" alt="BMW X6 M half factory white, half wrapped in matte dark gray" loading="lazy" decoding="async" />
+            <div class="ba__film" aria-hidden="true"></div>
+            <div class="ba__divider" aria-hidden="true"></div>
+            <span class="ba__tag ba__tag--l" data-i18n="ba.before">Factory</span>
+            <span class="ba__tag ba__tag--r" data-i18n="ba.after">Wrapped</span>
+            <input class="ba__range" id="ba-range" type="range" min="0" max="100" value="50" aria-label="Compare factory paint and the wrap" />
+          </div>
+        </div>
         <p class="build__credit" data-i18n="build.credit">Installed by Zap Wrap for Studio Design USA &middot; Photos: Angel Enrique Hernandez</p>
+        <p class="build__try reveal"><button class="btn btn--ghost" type="button" id="try-build-film" data-i18n="try.build">See this matte dark gray on your car <span aria-hidden="true">&rarr;</span></button></p>
       </div>
     </section>
 
     <!-- REVIEWS -->
     <section class="reviews" aria-labelledby="rev-h">
       <div class="reviews__inner">
-        <p class="reviews__score" aria-hidden="true">5.0</p>
-        <p class="reviews__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="reviews__score" id="rev-score" aria-hidden="true">5.0</p>
+        <p class="reviews__stars" id="rev-stars" aria-hidden="true"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></p>
         <h2 id="rev-h" class="reviews__h" data-i18n="rev.h">Rated 5.0 on Google</h2>
         <p class="reviews__lead" data-i18n="rev.lead">Naples drivers rate the work, not the ads. Every review is public and verified by Google.</p>
         <a class="btn btn--ghost reviews__link" href="https://www.google.com/search?q=Zap+Wrap+Naples+reviews" rel="noopener" target="_blank" data-i18n="rev.link">Read the reviews on Google</a>
@@ -346,12 +358,12 @@
         <h2 id="fin-h" class="section__h" data-i18n="fin.h">Finishes<span class="dot">.</span></h2>
         <p class="section__lead" data-i18n="fin.lead">We plot from the full 3M, Avery Dennison, KPMF, Hexis and Oracal catalogs. If it exists on a roll, we can put it on your car.</p>
         <ul class="swatches" role="list">
-          <li class="swatch swatch--gloss"><span data-i18n="fin.gloss">Gloss</span></li>
-          <li class="swatch swatch--satin"><span data-i18n="fin.satin">Satin</span></li>
-          <li class="swatch swatch--matte"><span data-i18n="fin.matte">Matte</span></li>
-          <li class="swatch swatch--metal"><span data-i18n="fin.metal">Metallic</span></li>
-          <li class="swatch swatch--shift"><span data-i18n="fin.shift">Color-shift</span></li>
-          <li class="swatch swatch--carbon"><span data-i18n="fin.carbon">Carbon-look</span></li>
+          <li class="swatch swatch--gloss"><button type="button" class="swatch__btn" data-apply-film="rosso" aria-label="See this finish on a car"></button><span data-i18n="fin.gloss">Gloss</span></li>
+          <li class="swatch swatch--satin"><button type="button" class="swatch__btn" data-apply-film="satin" aria-label="See this finish on a car"></button><span data-i18n="fin.satin">Satin</span></li>
+          <li class="swatch swatch--matte"><button type="button" class="swatch__btn" data-apply-film="graphite" aria-label="See this finish on a car"></button><span data-i18n="fin.matte">Matte</span></li>
+          <li class="swatch swatch--metal"><button type="button" class="swatch__btn" data-apply-film="miami" aria-label="See this finish on a car"></button><span data-i18n="fin.metal">Metallic</span></li>
+          <li class="swatch swatch--shift"><button type="button" class="swatch__btn" data-apply-film="shift" aria-label="See this finish on a car"></button><span data-i18n="fin.shift">Color-shift</span></li>
+          <li class="swatch swatch--carbon"><button type="button" class="swatch__btn" data-apply-film="satin" aria-label="See this finish on a car"></button><span data-i18n="fin.carbon">Carbon-look</span></li>
         </ul>
       </div>
     </section>
@@ -537,9 +549,14 @@
   }
   </script>
   <script src="i18n.js?v=1" defer></script>
+  <div class="exitbar" id="exitbar" hidden>
+    <p class="exitbar__text"><span data-i18n="exit.msg">Take your color with you: get the exact 3M and Avery codes on WhatsApp</span>
+    <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Message the studio</a></p>
+    <button class="exitbar__close" type="button" aria-label="Close">&#10005;</button>
+  </div>
   <a class="wa-fab" href="https://wa.me/13527790041" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
   </a>
-  <script src="app.js?v=27" defer></script>
+  <script src="app.js?v=28" defer></script>
 </body>
 </html>

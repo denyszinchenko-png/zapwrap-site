@@ -1102,3 +1102,202 @@ textarea { resize: vertical; min-height: 5.5em; }
   .lightbox__prev { left: 0.4rem; }
   .lightbox__next { right: 0.4rem; }
 }
+
+/* ===== v28: ten upgrades - motion by the house doctrine ===== */
+
+/* 1) one shine sweep across the WRAP word, squeegee metaphor */
+@keyframes heroshine { from { background-position: 115% 0; } to { background-position: -15% 0; } }
+.hero__h em.is-shine {
+  background: linear-gradient(110deg, var(--yellow) 42%, #fff 50%, var(--yellow) 58%) 115% 0 / 260% 100% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: heroshine 1100ms var(--ease) both;
+}
+
+/* 2) gallery prints like a contact sheet - 90ms cascade */
+.build__grid .reveal:nth-child(2) { transition-delay: 90ms; }
+.build__grid .reveal:nth-child(3) { transition-delay: 180ms; }
+.build__grid .reveal:nth-child(4) { transition-delay: 270ms; }
+.build__grid .reveal:nth-child(5) { transition-delay: 360ms; }
+.build__grid .reveal:nth-child(6) { transition-delay: 450ms; }
+
+/* 3) reviews wake up at the viewport edge */
+.reviews__stars span { opacity: 0.18; display: inline-block; transition: opacity 300ms var(--ease); }
+@keyframes starpop { 0% { scale: 0.4; } 60% { scale: 1.25; } 100% { scale: 1; } }
+.reviews__stars span.is-lit { opacity: 1; animation: starpop 420ms var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  .reviews__stars span { opacity: 1; transition: none; }
+  .reviews__stars span.is-lit { animation: none; }
+}
+
+/* 4) swatches are doors into the configurator */
+.swatch { position: relative; }
+.swatch__btn {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: none;
+  border: 0;
+  border-radius: inherit;
+  cursor: pointer;
+}
+.swatch__btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.swatch:has(.swatch__btn:hover) { translate: 0 -4px; }
+.swatch { transition: translate 240ms var(--ease); }
+
+/* 5) try-this-color bridge from the build */
+.build__try { margin-top: 1.4rem; }
+
+/* 6) before/after shutter on the real build's color */
+.ba { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.ba__caption {
+  margin: 0 0 0.7rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ba__stage {
+  position: relative;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: oklch(0.17 0 0);
+  overflow: hidden;
+}
+.ba__stage img { width: 100%; }
+.ba__film {
+  position: absolute;
+  inset: 0;
+  /* --film-graphite is scoped to .car, so the gradient is inlined here */
+  background: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
+  mix-blend-mode: multiply;
+  -webkit-mask-image: url("assets/cars/bmw-x6-mask3.webp");
+  mask-image: url("assets/cars/bmw-x6-mask3.webp");
+  -webkit-mask-mode: luminance;
+  mask-mode: luminance;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  clip-path: inset(0 0 0 var(--cut));
+  pointer-events: none;
+}
+.ba__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--cut);
+  width: 2px;
+  translate: -1px 0;
+  background: var(--yellow);
+  box-shadow: 0 0 12px rgba(255, 214, 0, 0.5);
+  pointer-events: none;
+}
+.ba__divider::after {
+  content: "\2194";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--yellow-ink);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.ba__tag {
+  position: absolute;
+  top: 0.7rem;
+  padding: 0.3em 0.7em;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(12, 12, 14, 0.75);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  pointer-events: none;
+}
+.ba__tag--l { left: 0.7rem; }
+.ba__tag--r { right: 0.7rem; }
+.ba__range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+/* 7) the submit button charges as the form fills */
+.form__submit { position: relative; }
+.form__submit.is-charging {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.form__submit.is-charging::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: var(--fill, 0%);
+  background: var(--yellow);
+  transition: width 400ms var(--ease);
+}
+@keyframes chargepop { 0% { scale: 1; } 50% { scale: 1.045; } 100% { scale: 1; } }
+.form__submit.is-ready { animation: chargepop 450ms var(--ease); }
+
+/* 9) the tagline gets stamped as it passes center */
+@keyframes stampflash {
+  0% { background: transparent; color: var(--yellow); }
+  25% { background: var(--yellow); color: var(--yellow-ink); }
+  100% { background: transparent; color: var(--yellow); }
+}
+.ticker__hot.is-stamp { animation: stampflash 800ms var(--ease); border-radius: 4px; }
+
+/* 10) exit-intent bar (desktop, once per session) */
+.exitbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 130;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.8rem var(--gutter);
+  background: var(--yellow);
+  color: var(--yellow-ink);
+  translate: 0 -100%;
+  transition: translate 450ms var(--ease);
+}
+.exitbar.is-in { translate: 0 0; }
+.exitbar__text { margin: 0; font-weight: 600; font-size: 0.98rem; }
+.exitbar__text a { color: inherit; font-weight: 800; text-underline-offset: 3px; margin-inline-start: 0.4em; }
+.exitbar__close {
+  background: none;
+  border: 0;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.3em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__h em.is-shine { animation: none; -webkit-text-fill-color: currentColor; background: none; }
+  .build__grid .reveal { transition-delay: 0ms !important; }
+  .ticker__hot.is-stamp { animation: none; }
+  .exitbar { transition: none; }
+  .form__submit.is-ready { animation: none; }
+}
