@@ -290,6 +290,29 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* ---- WhatsApp fab: enters after the hero, nudges rarely ---- */
+  var fab = document.querySelector(".wa-fab");
+  var heroEl = document.querySelector(".hero");
+  if (fab && heroEl) {
+    var fabShown = false;
+    var fabCheck = function () {
+      var on = window.scrollY > heroEl.offsetHeight * 0.6;
+      if (on !== fabShown) {
+        fabShown = on;
+        fab.classList.toggle("is-on", on);
+      }
+    };
+    fabCheck();
+    window.addEventListener("scroll", fabCheck, { passive: true });
+    if (!prefersReduced) {
+      setInterval(function () {
+        if (!fabShown || document.hidden) return;
+        fab.classList.add("is-nudge");
+      }, 15000);
+      fab.addEventListener("animationend", function () { fab.classList.remove("is-nudge"); });
+    }
+  }
+
   /* ---- Gallery lightbox ---- */
   var shots = Array.prototype.slice.call(document.querySelectorAll(".build__shot img"));
   if (shots.length) {
