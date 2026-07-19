@@ -1,0 +1,124 @@
+/* ============================================================
+   Legal pages (privacy.html, terms.html)
+   Loaded on top of styles.css. Reuses the site tokens (--ink,
+   --yellow, --font-display …) so the pages match the studio look
+   without duplicating the design system.
+   ============================================================ */
+
+.legal {
+  padding: clamp(3rem, 2rem + 5vw, 6rem) 0 clamp(4rem, 3rem + 4vw, 7rem);
+}
+
+.legal__eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  color: var(--yellow);
+  margin-bottom: 0.9rem;
+}
+
+.legal__h {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-h2);
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.legal__updated {
+  margin-top: 0.9rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.legal__lead {
+  max-width: 62ch;
+  margin-top: 1.4rem;
+  font-size: var(--text-lead);
+  color: var(--ink-2);
+}
+
+/* Body copy: comfortable measure, generous rhythm between blocks. */
+.legal__body {
+  max-width: 68ch;
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  font-size: var(--text-body);
+  color: var(--ink-2);
+}
+
+.legal__body h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-h3);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.legal__body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.legal__body h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-top: 1.8rem;
+}
+
+.legal__body p { margin-top: 1rem; line-height: 1.65; }
+.legal__body ul { margin-top: 1rem; padding-left: 1.2rem; }
+.legal__body li { margin-top: 0.6rem; line-height: 1.6; }
+
+.legal__body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--yellow);
+}
+.legal__body a:hover { color: var(--yellow); }
+
+.legal__body strong { color: var(--ink); font-weight: 600; }
+
+/* Pulled-out callout for the points people actually came to read. */
+.legal__note {
+  margin-top: 1.6rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border-left: 3px solid var(--yellow);
+  border-radius: 0 6px 6px 0;
+}
+.legal__note p:first-child { margin-top: 0; }
+
+.legal__contact {
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+/* Back link at the top of the page, above the title. */
+.legal__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  margin-bottom: 2rem;
+  transition: color 200ms var(--ease);
+}
+.legal__back:hover { color: var(--yellow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .legal__back { transition: none; }
+}

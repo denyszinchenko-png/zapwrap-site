@@ -892,6 +892,10 @@ textarea { resize: vertical; min-height: 5.5em; }
 .footer__social { display: flex; gap: 1.4rem; }
 .footer__social a { color: var(--ink-2); text-decoration: none; }
 .footer__social a:hover { color: var(--yellow); }
+/* Юридические ссылки: требование Meta и TikTok - они должны быть видимы. */
+.footer__legal { display: flex; gap: 1.4rem; }
+.footer__legal a { color: var(--ink-2); text-decoration: none; }
+.footer__legal a:hover { color: var(--yellow); }
 
 /* ---------- Scroll reveals ----------
    Content is visible by default. JS adds .will-reveal only to elements below
