@@ -523,7 +523,10 @@
     var lbIdx = 0;
     var lbShow = function (i) {
       lbIdx = (i + shots.length) % shots.length;
-      lbImg.src = shots[lbIdx].currentSrc || shots[lbIdx].src;
+      // data-full, а не currentSrc: с srcset браузер выбирает для сетки
+      // уменьшенный вариант, и лайтбокс открывал бы мелкую картинку.
+      var shot = shots[lbIdx];
+      lbImg.src = shot.getAttribute("data-full") || shot.currentSrc || shot.src;
       lbImg.alt = shots[lbIdx].alt || "";
     };
     var lbClose = function () {
