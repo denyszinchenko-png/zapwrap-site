@@ -153,9 +153,83 @@ p { text-wrap: pretty; }
 .nav__links a:hover { color: var(--yellow); }
 .nav__cta { padding: 0.7em 1.2em; font-size: 0.95rem; }
 
+/* Кнопка звонка и бургер существуют только на узких экранах: на десктопе
+   ссылки и так все на виду. */
+.nav__call { display: none; }
+.nav__burger { display: none; }
+
 @media (max-width: 720px) {
-  .nav__links { display: none; }
+  /* gap: 2rem с десктопа даёт в сумме 435px при экране 393 - бургер уезжал
+     за правый край. На телефоне шапка тесная, разрядка должна быть меньше. */
+  .nav { gap: 0.6rem; }
   .nav__cta { margin-left: auto; }
+
+  .nav__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    /* 44px - минимальная зона касания. flex: 0 0 auto обязателен: шапка это
+       флекс-контейнер, и без него кнопку сжимает вдвое. */
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    margin-inline-start: 0.4rem;
+    background: none;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .nav__burger-bar {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 220ms var(--ease), opacity 160ms var(--ease);
+  }
+  /* Три полоски складываются в крестик, чтобы состояние читалось без текста. */
+  .nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(2) { opacity: 0; }
+  .nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Панель выпадает из-под шапки. display: none в закрытом состоянии - это
+     принципиально: иначе ссылки остаются в порядке табуляции невидимыми,
+     ровно как было до этой правки. */
+  .nav__links {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0.5rem var(--gutter) 1rem;
+    /* Непрозрачный фон, без прозрачности: крупный белый заголовок героя
+       просвечивал даже через 0.97 и читался как дефект вёрстки. */
+    background: #0a0a0b;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__links.is-open { display: flex; }
+  .nav__links a {
+    padding: 0.9rem 0;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__links a:last-child { border-bottom: none; }
+  /* Селектор с родителем обязателен: .nav__links a специфичнее одиночного
+     класса и перекрашивал звонок обратно в серый. */
+  .nav__links .nav__call {
+    display: block;
+    margin-top: 0.4rem;
+    font-weight: 700;
+    color: var(--yellow);
+  }
+}
+
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  .nav__burger-bar { transition: none; }
 }
 
 /* ---------- Hero ---------- */

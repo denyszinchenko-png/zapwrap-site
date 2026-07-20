@@ -14,7 +14,7 @@
     es: {
       "nav.work": "Trabajos", "nav.services": "Servicios", "nav.finishes": "Acabados", "nav.faq": "FAQ",
       "footer.privacy": "Política de Privacidad", "footer.terms": "Términos del Servicio",
-      "nav.cta": "Reservar consulta",
+      "nav.cta": "Reservar consulta", "nav.call": "Llamar al estudio",
       "hero.intro": "Estudio de vinilo &middot; Naples, Florida",
       "hero.l1": "El estudio", "hero.l2": "de <em>wraps</em>", "hero.l3": "de Naples",
       "hero.sub": "Cambio de color completo, chrome delete, gr&aacute;ficos a medida. El vinilo es todo nuestro trabajo, no una l&iacute;nea del men&uacute;. No shortcuts.",
@@ -108,7 +108,7 @@
     ru: {
       "nav.work": "Работы", "nav.services": "Услуги", "nav.finishes": "Финиши", "nav.faq": "Вопросы",
       "footer.privacy": "Политика конфиденциальности", "footer.terms": "Условия использования",
-      "nav.cta": "Записаться",
+      "nav.cta": "Записаться", "nav.call": "Позвонить в студию",
       "hero.intro": "Студия винилового врапа &middot; Нейплс, Флорида",
       "hero.l1": "Экзотик-", "hero.l2": "<em>врап</em> студия", "hero.l3": "Нейплса",
       "hero.sub": "Полная смена цвета, chrome delete, кастомная графика. Винил - вся наша работа, а не строчка в меню. No shortcuts.",
@@ -202,7 +202,7 @@
     uk: {
       "nav.work": "Роботи", "nav.services": "Послуги", "nav.finishes": "Фініші", "nav.faq": "Питання",
       "footer.privacy": "Політика конфіденційності", "footer.terms": "Умови використання",
-      "nav.cta": "Записатися",
+      "nav.cta": "Записатися", "nav.call": "Зателефонувати",
       "hero.intro": "Студія вінілового врапу &middot; Нейплс, Флорида",
       "hero.l1": "Екзотик-", "hero.l2": "<em>врап</em> студія", "hero.l3": "Нейплса",
       "hero.sub": "Повна зміна кольору, chrome delete, кастомна графіка. Вініл - вся наша робота, а не рядок у меню. No shortcuts.",
@@ -296,7 +296,7 @@
     he: {
       "nav.work": "עבודות", "nav.services": "שירותים", "nav.finishes": "גימורים", "nav.faq": "שאלות",
       "footer.privacy": "מדיניות פרטיות", "footer.terms": "תנאי שימוש",
-      "nav.cta": "לקבוע ייעוץ",
+      "nav.cta": "לקבוע ייעוץ", "nav.call": "להתקשר לסטודיו",
       "hero.intro": "סטודיו לציפוי ויניל &middot; נייפלס, פלורידה",
       "hero.l1": "סטודיו", "hero.l2": "ה<em>ראפ</em> האקזוטי", "hero.l3": "של נייפלס",
       "hero.sub": "החלפת צבע מלאה, chrome delete, גרפיקה בהתאמה אישית. ויניל הוא כל העבודה שלנו, לא שורה בתפריט. No shortcuts.",

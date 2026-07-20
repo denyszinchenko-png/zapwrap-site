@@ -290,6 +290,44 @@
     });
   }
 
+  /* ---- Mobile menu. Below 720px the nav links used to be hidden with no way
+     to reach them: no menu at all on a phone, which is most of our traffic.
+     The panel is display:none when closed on purpose, so the links stay out of
+     the tab order instead of being invisible but focusable. ---- */
+  var burger = document.getElementById("nav-burger");
+  var navLinks = document.getElementById("nav-links");
+  if (burger && navLinks) {
+    var setMenu = function (open) {
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      navLinks.classList.toggle("is-open", open);
+    };
+    var closeMenu = function (refocus) {
+      if (burger.getAttribute("aria-expanded") !== "true") return;
+      setMenu(false);
+      if (refocus) burger.focus();
+    };
+
+    burger.addEventListener("click", function () {
+      setMenu(burger.getAttribute("aria-expanded") !== "true");
+    });
+    // Tapping a link navigates to the anchor: leaving the panel open would
+    // cover the section the visitor just asked for.
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.closest("a")) closeMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu(true);
+    });
+    document.addEventListener("click", function (e) {
+      if (!navLinks.contains(e.target) && !burger.contains(e.target)) closeMenu(false);
+    });
+    // Rotating to landscape can cross the breakpoint: the panel would stay
+    // flagged open while the desktop layout shows the links inline.
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 720) closeMenu(false);
+    });
+  }
+
   /* ---- Nav border once the hero is scrolled past a touch ---- */
   var nav = document.getElementById("nav");
   if (nav) {
