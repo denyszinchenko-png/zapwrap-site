@@ -52,7 +52,6 @@
   var CARS = {
     "911": { src: "assets/cars/porsche-911.webp?v=6", mask: "assets/cars/porsche-911-mask3.webp", w: 1600, h: 800, name: "Porsche 911" },
     "audi-q8": { src: "assets/cars/audi-q8.webp", mask: "assets/cars/audi-q8-mask3.webp", w: 1600, h: 800, name: "Audi Q8" },
-    "audi-r8": { src: "assets/cars/audi-r8.webp", mask: "assets/cars/audi-r8-mask3.webp", w: 1600, h: 800, name: "Audi R8" },
     "bentley-continental-gt": { src: "assets/cars/bentley-continental-gt.webp", mask: "assets/cars/bentley-continental-gt-mask3.webp", w: 1600, h: 800, name: "Bentley Continental GT" },
     "bmw-430i-gran-coupe": { src: "assets/cars/bmw-430i-gran-coupe.webp", mask: "assets/cars/bmw-430i-gran-coupe-mask3.webp", w: 1600, h: 800, name: "BMW 430I Gran Coupe" },
     "bmw-840i": { src: "assets/cars/bmw-840i.webp", mask: "assets/cars/bmw-840i-mask3.webp", w: 1600, h: 800, name: "BMW 840I" },
