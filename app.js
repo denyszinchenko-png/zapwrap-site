@@ -501,4 +501,37 @@
       if (e.key === "ArrowRight") lbShow(lbIdx + 1);
     });
   }
+
+  /* ---- Meta Pixel: Lead when the consult form is sent, Contact when a
+     WhatsApp link or the studio number is tapped. Both are delegated on
+     document, so links added later are covered and the same block works on any
+     page that loads this file. Nothing but the event name is sent. Silent when
+     the pixel is missing or blocked. ---- */
+  var pixelSent = {};
+  var pixelTrack = function (event, key) {
+    if (typeof window.fbq !== "function") return;
+    var id = event + "|" + key;
+    var now = Date.now();
+    // One intent per link: a double tap is not two events.
+    if (now - (pixelSent[id] || 0) < 1500) return;
+    pixelSent[id] = now;
+    // fbq puts the request on the wire synchronously, before the link
+    // navigates, so the click stays untouched: no preventDefault, no delay.
+    window.fbq("track", event);
+  };
+
+  document.addEventListener("submit", function (e) {
+    if (!e.target || e.target.id !== "consult-form") return;
+    pixelTrack("Lead", "consult-form");
+  }, true);
+
+  document.addEventListener("click", function (e) {
+    var link = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!link) return;
+    var href = link.getAttribute("href") || "";
+    if (!/^(tel:|https?:\/\/(wa\.me|api\.whatsapp\.com)\/)/i.test(href)) return;
+    // Sending the form already counts as a Lead - never also as a Contact.
+    if (link.closest("#consult-form")) return;
+    pixelTrack("Contact", href);
+  }, true);
 })();
