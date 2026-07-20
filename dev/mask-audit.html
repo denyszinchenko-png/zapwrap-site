@@ -1,0 +1,100 @@
+<!doctype html>
+<!-- Диагностический лист: все машины конфигуратора с плёнкой, как на сайте.
+     Открывать локально (dev-сервер из корня репо): /dev/mask-audit.html
+     Не является частью сайта: не линкуется ниоткуда, в sitemap не входит. -->
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Аудит масок конфигуратора</title>
+<style>
+  :root { --shift-a: oklch(0.55 0.22 300); --shift-b: oklch(0.62 0.19 350); --shift-c: oklch(0.68 0.14 200); }
+  body { margin: 0; padding: 16px; background: #0a0a0a; color: #eee;
+         font: 13px/1.4 ui-sans-serif, system-ui, sans-serif; }
+  h1 { font-size: 15px; margin: 0 0 4px; }
+  .hint { color: #999; margin: 0 0 14px; }
+  .controls { position: sticky; top: 0; background: #0a0a0a; padding: 8px 0 12px; z-index: 9; }
+  button { background: #1c1c1c; color: #eee; border: 1px solid #333; padding: 6px 11px;
+           border-radius: 6px; cursor: pointer; margin-right: 6px; font: inherit; }
+  button.on { background: #ffd600; color: #111; border-color: #ffd600; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .cell { background: #111; border: 1px solid #222; border-radius: 8px; overflow: hidden; }
+  .cell.flat { background: #fff; }
+  .cap { padding: 5px 8px; font-size: 11px; color: #aaa; border-top: 1px solid #222; }
+  .car { position: relative; line-height: 0; }
+  .car img { position: relative; z-index: 1; width: 100%; display: block; }
+  .film { position: absolute; inset: 0; z-index: 2;
+          background: var(--film, linear-gradient(115deg, var(--shift-a) 8%, var(--shift-b) 42%, var(--shift-c) 80%));
+          mix-blend-mode: multiply;
+          -webkit-mask-image: var(--mask); mask-image: var(--mask);
+          -webkit-mask-mode: luminance; mask-mode: luminance;
+          -webkit-mask-size: contain;    mask-size: contain;
+          -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+          -webkit-mask-position: center;  mask-position: center; }
+  /* режим «только маска»: голая маска на красном фоне - видно каждый выброс */
+  body.maskonly .car img { opacity: .15; }
+  body.maskonly .film { mix-blend-mode: normal; background: #ff2d55; }
+</style>
+</head>
+<body>
+<h1>Аудит масок конфигуратора</h1>
+<p class="hint">Плёнка наложена ровно тем же кодом, что на сайте (mask-mode: luminance + mix-blend-mode: multiply).</p>
+<div class="controls">
+  <button id="b-gen" class="on">маски: mask4 (текущие)</button>
+  <button id="b-mode">режим: как на сайте</button>
+  <button id="b-film">плёнка: shift</button>
+</div>
+<div class="grid" id="grid"></div>
+<script>
+const FILMS = {
+  shift: "linear-gradient(115deg, oklch(0.55 0.22 300) 8%, oklch(0.62 0.19 350) 42%, oklch(0.68 0.14 200) 80%)",
+  pink:  "linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345))",
+  nardo: "linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250))",
+};
+let gen = 4, film = "shift", maskonly = false;
+
+async function slugs() {
+  const r = await fetch("/assets/cars/");
+  const html = await r.text();
+  const set = new Set();
+  for (const m of html.matchAll(/href="([^"]+?)-mask4\.webp"/g)) {
+    set.add(decodeURIComponent(m[1]).replace(/^.*\//, ""));
+  }
+  return [...set].sort();
+}
+
+function render(list) {
+  document.getElementById("grid").innerHTML = list.map(s => `
+    <div class="cell">
+      <div class="car" style="--mask:url('/assets/cars/${s}-mask${gen}.webp'); --film:${FILMS[film]}">
+        <img src="/assets/cars/${s}.webp" alt="" loading="eager" />
+        <div class="film"></div>
+      </div>
+      <div class="cap">${s}</div>
+    </div>`).join("");
+}
+
+(async () => {
+  const list = await slugs();
+  document.title = `Аудит масок - ${list.length} машин`;
+  render(list);
+  document.getElementById("b-gen").onclick = e => {
+    gen = gen === 4 ? 3 : 4;
+    e.target.textContent = `маски: mask${gen}` + (gen === 4 ? " (текущие)" : " (прошлое поколение)");
+    render(list);
+  };
+  document.getElementById("b-mode").onclick = e => {
+    maskonly = !maskonly;
+    document.body.classList.toggle("maskonly", maskonly);
+    e.target.textContent = maskonly ? "режим: только маска" : "режим: как на сайте";
+    e.target.classList.toggle("on", maskonly);
+  };
+  document.getElementById("b-film").onclick = e => {
+    const keys = Object.keys(FILMS);
+    film = keys[(keys.indexOf(film) + 1) % keys.length];
+    e.target.textContent = `плёнка: ${film}`;
+    render(list);
+  };
+})();
+</script>
+</body>
+</html>
