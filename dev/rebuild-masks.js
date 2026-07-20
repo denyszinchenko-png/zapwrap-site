@@ -8,18 +8,21 @@
 
    КАК ЗАПУСКАТЬ (без сборщика, весь пиксельный код живёт в браузере):
    1) Локальный сервер с POST-сохранением масок + раздачей шаблонов базы:
-      scratchpad/mask_server.py из сессии 2026-07-17 (порт 8123): статика
-      этого репо, /tpl/* -> /Users/zapwrap/zapwrap-app/assets/car-templates,
-      POST /save (маски теперь -mask2.webp; при пересборке менять ИМЯ файла: mask3..., см. финал-2 в wiki). Аналог легко восстановить:
-      ~60 строк http.server.
+      dev/mask_server.py (порт 8123): статика этого репо,
+      /tpl/* -> шаблоны базы из соседнего zapwrap-app, POST /save.
+      Листинги каталогов обязаны быть включены: из них строится карта машин.
    2) Открыть http://127.0.0.1:8123, вставить этот файл в консоль.
-   3) buildAll() перестроит все маски и сохранит их POST'ом;
-      sheets() соберёт контрольные листы по 6 машин (POST в preview/).
-   4) Просмотреть листы, git diff, поднять ?v=N у масок в app.js, push.
+   3) MaskFix.buildAll({ dryRun: true }) — прогон без записи, показывает
+      долю покраски по каждой машине и ловит сбои экспорта.
+      MaskFix.buildAll() — перестроит все маски и сохранит их POST'ом
+      в СЛЕДУЮЩЕЕ поколение (SRC читаем, OUT пишем, см. константы ниже).
+   4) Посмотреть git status, сверить несколько масок глазами, поднять имя
+      поколения в app.js (реестр CARS) и styles.css (271, 1180-1181), push.
 
-   Карта slug -> шаблон базы строится по именам файлов:
-   assets/cars/<make-model>-mask.webp <-> Год_Марка_Модель_side_profile_
-   wrap_template.png (+ _body_mask.png) в zapwrap-app/assets/car-templates.
+   Карта slug -> шаблон базы строится ПО ИМЕНАМ ФАЙЛОВ, carmap.json не нужен
+   (его в репозитории нет): assets/cars/<make-model><SRC> <-> Год_Марка_Модель_
+   body_mask.png в zapwrap-app/assets/car-templates. Год отбрасывается,
+   регистр вниз, подчёркивания в дефисы. Прогон 2026-07-20: сходятся все 66.
 
    ЛОГИКА buildMask (итог v7, проверено на всех 66):
    - основа: студийная _body_mask.png (белое=кузов), если она валидна
@@ -72,6 +75,12 @@
 /* Ниже — рабочий код v7 как выполнялся в консоли (объект F = MaskFix). */
 window.MaskFix = {
   W: 1600, H: 800,
+  /* ПОКОЛЕНИЕ МАСОК. Читаем текущее, пишем СЛЕДУЮЩЕЕ: встроенные браузеры
+     телефонов игнорируют ?v= и держат старый файл, поэтому имя обязано
+     меняться. После прогона поднять суффикс в app.js (реестр CARS) и в
+     styles.css (строки 271 и 1180-1181), затем сдвинуть SRC/OUT здесь. */
+  SRC: '-mask4.webp',
+  OUT: '-mask5.webp',
   load(src) { return new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }); },
   px(img) { const cv = document.createElement('canvas'); cv.width = this.W; cv.height = this.H; const cx = cv.getContext('2d', { willReadFrequently: true }); cx.drawImage(img, 0, 0, this.W, this.H); return cx.getImageData(0, 0, this.W, this.H); },
   lum(d, i) { return 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]; },
@@ -146,7 +155,7 @@ window.MaskFix = {
     let bodyIn = 0, car = 0;
     if (bodyValidW) for (let p = 0; p < n; p++) if (sil[p]) { car++; bodyIn += bodyValidW[p]; }
     const useBody = bodyValidW && car && bodyIn / car > 0.25 && bodyIn / car < 0.95;
-    const oldB = this.toBin(oldM, (d, i) => this.lum(d, i) > 100);
+    const oldB = this.maskToBin(oldM);
     const src = useBody ? bodyValidW : oldB;
     let core = this.and(this.open(src, useBody ? 2 : 1), sil);
     for (let p = 0; p < n; p++) {
@@ -167,25 +176,91 @@ window.MaskFix = {
     for (let p = 0; p < n; p++) if (sil[p] && !silE[p] && near[p] && !cutAll[p]) fin[p] = 1;
     return { fin, useBody }; },
 
-  async buildAll() { const F = this, W = F.W, H = F.H, n = W * H;
-    const map = await (await fetch('/carmap.json')).json();
+  /* Карта slug -> шаблон базы выводится из ИМЁН ФАЙЛОВ, без carmap.json
+     (его в репозитории нет и не было — прежний buildAll падал на первой же
+     строке). Листинги отдаёт http.server. Правило: у шаблона отбрасывается
+     год, регистр вниз, подчёркивания в дефисы: 2015_Lexus_IS250 -> lexus-is250.
+     Прогон 2026-07-20: так сходятся все 66 слагов из 77 шаблонов. */
+  async carMap() {
+    const names = async (url, re) => {
+      const html = await (await fetch(url)).text();
+      const set = new Set(); let m;
+      const link = /href="([^"?]+)"/gi;
+      while ((m = link.exec(html))) { const f = decodeURIComponent(m[1].split('/').pop()); if (re.test(f)) set.add(f); }
+      return [...set];
+    };
+    const slugs = (await names('/assets/cars/', new RegExp(this.SRC.replace('.', '\\.') + '$')))
+      .map(f => f.slice(0, -this.SRC.length));
+    const tpls = await names('/tpl/', /_body_mask\.png$/);
+    const norm = t => t.replace(/_body_mask\.png$/, '').replace(/^\d{4}_/, '').toLowerCase().replace(/_/g, '-');
+    const bySlug = {}; tpls.forEach(t => { bySlug[norm(t)] = t.replace(/_body_mask\.png$/, ''); });
+    const map = {}; slugs.forEach(s => { map[s] = bySlug[s] || null; });
+    return map;
+  },
+
+  /* Старая маска читается по АЛЬФЕ, если файл альфа-прозрачный (формат v9),
+     и по яркости, если это ещё непрозрачная ч/б маска (v7/v8). Без этой
+     развилки полупрозрачная кайма AA читалась бы как rgb=255 -> lum=255,
+     и маска раздувалась бы на пиксель за каждое поколение. */
+  maskToBin(imgData) {
+    const { data } = imgData, n = this.W * this.H;
+    let translucent = false;
+    for (let p = 0; p < n; p++) if (data[p * 4 + 3] < 250) { translucent = true; break; }
+    return translucent
+      ? this.toBin(imgData, (d, i) => d[i + 3] > 100)
+      : this.toBin(imgData, (d, i) => this.lum(d, i) > 100);
+  },
+
+  /* only: перестроить лишь часть машин. Нужно и для повторов после сбоя, и
+     потому что полный прогон 66 штук в неактивной вкладке душится браузером:
+     гонять партиями по 8-10 надёжнее, чем одним куском. */
+  async buildAll({ dryRun = false, only = null } = {}) { const F = this, W = F.W, H = F.H, n = W * H;
+    const map = await F.carMap();
+    let keys = Object.keys(map);
+    if (only && only.length) keys = keys.filter(k => only.indexOf(k) >= 0);
+    if (!keys.length) throw new Error('carMap пуста: сервер не отдаёт листинги /assets/cars/ и /tpl/');
     const bust = Date.now(); const out = [];
-    for (const k of Object.keys(map)) {
+    for (const k of keys) {
       const [photo, body, mask] = await Promise.all([
         F.load('/assets/cars/' + k + '.webp?b=' + bust),
-        F.load('/tpl/' + map[k] + '_body_mask.png'),
-        F.load('/assets/cars/' + k + '-mask.webp?b=' + bust)]);
+        map[k] ? F.load('/tpl/' + map[k] + '_body_mask.png') : Promise.resolve(null),
+        F.load('/assets/cars/' + k + F.SRC + '?b=' + bust)]);
       if (!photo || !mask) { out.push({ k, err: 'load' }); continue; }
       const { fin, useBody } = F.buildMask7(F.px(photo), body ? F.px(body) : null, F.px(mask));
+
+      /* ЭКСПОРТ — АЛЬФА-ПРОЗРАЧНЫЙ (формат v9, см. шапку файла).
+         Белое на ПРОЗРАЧНОМ: alpha = сила покраски, rgb всегда 255.
+         Непрозрачную ч/б маску Safari красит целиком, вместе с фоном. */
       const a = document.createElement('canvas'); a.width = W; a.height = H;
       const acx = a.getContext('2d'); const id = acx.createImageData(W, H); const d = id.data;
-      for (let p = 0; p < n; p++) { const i = p * 4; const v = fin[p] ? 255 : 0; d[i] = v; d[i + 1] = v; d[i + 2] = v; d[i + 3] = 255; }
+      for (let p = 0; p < n; p++) { const i = p * 4; d[i] = 255; d[i + 1] = 255; d[i + 2] = 255; d[i + 3] = fin[p] ? 255 : 0; }
       acx.putImageData(id, 0, 0);
+
+      /* blur 1px даёт сглаженный край в АЛЬФЕ. Канвас размывает и цвет,
+         поэтому rgb принудительно возвращается в 255, иначе кромка уедет
+         в серый и плёнка на краю панели ляжет грязной. */
       const b2 = document.createElement('canvas'); b2.width = W; b2.height = H;
-      const bx = b2.getContext('2d'); bx.fillStyle = '#000'; bx.fillRect(0, 0, W, H);
-      bx.filter = 'blur(1px)'; bx.drawImage(a, 0, 0);
-      const blob = await new Promise(r => b2.toBlob(r, 'image/webp', 0.9));
-      const res = await fetch('/save?path=' + encodeURIComponent('assets/cars/' + k + '-mask.webp'), { method: 'POST', body: blob });
-      out.push({ k, useBody, saved: res.ok }); }
+      const bx = b2.getContext('2d', { willReadFrequently: true });
+      bx.filter = 'blur(1px)'; bx.drawImage(a, 0, 0); bx.filter = 'none';
+      const soft = bx.getImageData(0, 0, W, H); const sd = soft.data;
+      let opaque = 0, painted = 0;
+      for (let p = 0; p < n; p++) { const i = p * 4;
+        sd[i] = 255; sd[i + 1] = 255; sd[i + 2] = 255;
+        if (sd[i + 3] < 6) sd[i + 3] = 0;
+        if (sd[i + 3] === 255) opaque++;
+        if (sd[i + 3] > 0) painted++; }
+      bx.putImageData(soft, 0, 0);
+
+      /* Предохранитель: если фон вышел непрозрачным, это ровно тот баг v8,
+         из-за которого Safari красил всю машину и прямоугольник фона.
+         Такое не сохраняем, а падаем с ошибкой. */
+      if (opaque >= n * 0.98) { out.push({ k, err: 'маска непрозрачная — экспорт сломан, сохранение отменено' }); continue; }
+      if (!painted) { out.push({ k, err: 'пустая маска' }); continue; }
+
+      const blob = await new Promise(r => b2.toBlob(r, 'image/webp', 0.95));
+      const share = +(painted / n * 100).toFixed(1);
+      if (dryRun) { out.push({ k, useBody, painted: share, saved: false, dryRun: true }); continue; }
+      const res = await fetch('/save?path=' + encodeURIComponent('assets/cars/' + k + F.OUT), { method: 'POST', body: blob });
+      out.push({ k, useBody, painted: share, saved: res.ok }); }
     return out; },
 };
