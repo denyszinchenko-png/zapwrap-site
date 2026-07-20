@@ -342,7 +342,7 @@ p { text-wrap: pretty; }
   pointer-events: none;
 }
 .car {
-  --mask: url("assets/cars/lamborghini-huracan-mask4.webp");
+  --mask: url("assets/cars/lamborghini-huracan-mask3.webp");
   --film-shift:    linear-gradient(115deg, var(--shift-a) 8%, var(--shift-b) 42%, var(--shift-c) 80%);
   --film-satin:    linear-gradient(115deg, oklch(0.30 0 0), oklch(0.16 0 0) 55%, oklch(0.34 0 0));
   --film-miami:    linear-gradient(115deg, oklch(0.75 0.14 210), oklch(0.62 0.15 220) 60%, oklch(0.8 0.12 205));
@@ -1251,8 +1251,8 @@ textarea { resize: vertical; min-height: 5.5em; }
   /* --film-graphite is scoped to .car, so the gradient is inlined here */
   background: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
   mix-blend-mode: multiply;
-  -webkit-mask-image: url("assets/cars/bmw-x6-mask4.webp");
-  mask-image: url("assets/cars/bmw-x6-mask4.webp");
+  -webkit-mask-image: url("assets/cars/bmw-x6-mask3.webp");
+  mask-image: url("assets/cars/bmw-x6-mask3.webp");
   -webkit-mask-mode: luminance;
   mask-mode: luminance;
   -webkit-mask-size: contain;
