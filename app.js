@@ -263,20 +263,30 @@
         var el = document.getElementById(id);
         return el && el.value ? el.value.trim() : "";
       };
+      // Service goes out as "visible label (stable-key)": the label reads in
+      // whatever language the visitor used, the key stays the same across all
+      // five, so requests can still be counted and sorted by service.
+      var service = function () {
+        var el = document.getElementById("f-service");
+        var opt = el && el.selectedOptions ? el.selectedOptions[0] : null;
+        if (!opt) return v("f-service");
+        var text = opt.textContent.trim();
+        return opt.value ? text + " (" + opt.value + ")" : text;
+      };
       var lines = [
         "Consult request from zapwrapnaples site",
         "Name: " + v("f-name"),
         "Phone: " + v("f-phone"),
         v("f-email") ? "Email: " + v("f-email") : "",
         "Car: " + v("f-car"),
-        "Service: " + v("f-service"),
+        "Service: " + service(),
         v("f-notes") ? "Notes: " + v("f-notes") : ""
       ].filter(Boolean);
-      window.open(
-        "https://wa.me/13527790041?text=" + encodeURIComponent(lines.join("\n")),
-        "_blank",
-        "noopener"
-      );
+      // Same tab, not window.open: the in-app browsers of Instagram and TikTok
+      // block popups, and a blocked popup drops the lead with nothing shown to
+      // the visitor, who walks away sure the request was sent.
+      window.location.href =
+        "https://wa.me/13527790041?text=" + encodeURIComponent(lines.join("\n"));
     });
   }
 
