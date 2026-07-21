@@ -42,10 +42,28 @@
   --gutter: clamp(1.25rem, 0.8rem + 3vw, 3rem);
   --maxw: 1240px;
 
-  /* ---- Motion: video-grade timing. One master curve (expo-out), beats at 90ms. ---- */
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* ---- Motion tokens: strong custom curves + a duration scale ----
+     Emil/Apple doctrine baked in: built-in ease/ease-in are too weak, so the
+     house runs on one strong expo-out; on-screen movement gets a real
+     ease-in-out; the hero car gets a sampled spring. Motion is compositor-only
+     (transform/opacity), and every effect has a reduced-motion fallback below. */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);    /* strong expo-out: entrances, exits, hover settles */
+  --ease-in-out: var(--ease-in-out);   /* strong ease-in-out: on-screen movement (squeegee wipe) */
+  /* damped spring (zeta 0.70, ~4.6% overshoot): the car arrives and settles on its suspension */
+  --ease-spring: linear(0, 0.0166, 0.0604, 0.1238, 0.2002, 0.284, 0.3709, 0.4575, 0.541, 0.6195, 0.6917, 0.7568, 0.8144, 0.8644, 0.907, 0.9426, 0.9717, 0.9948, 1.0128, 1.0261, 1.0355, 1.0415, 1.0449, 1.046, 1.0454, 1.0435, 1.0407, 1.0372, 1.0334, 1.0294, 1);
+  --ease: var(--ease-out);                          /* back-compat alias: every existing var(--ease) keeps its look */
+
   --beat: 90ms;
-  --dur: 700ms;
+
+  /* interaction duration scale (mirrors the values already tuned in this file, so
+     tokenizing changes nothing visually; signature effects keep bespoke literals) */
+  --dur-1: 200ms;    /* hover, colour, border, small state */
+  --dur-2: 240ms;    /* buttons, chips, icon buttons */
+  --dur-3: 300ms;    /* nav border, caret rotate, swatch lift, service-row wash */
+  --dur-4: 320ms;    /* on-car film-name toast */
+  --dur-5: 500ms;    /* mobile channel stack */
+  --dur-modal: 420ms;/* lightbox / drawer materialize */
+  --dur: 700ms;      /* signature: scroll reveals + hero rise (unchanged) */
 
   /* ---- z-index scale ---- */
   --z-nav: 100;
@@ -115,8 +133,8 @@ p { text-wrap: pretty; }
   padding: 0.95em 1.5em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 240ms var(--ease), background-color 240ms var(--ease),
-              color 240ms var(--ease), border-color 240ms var(--ease);
+  transition: transform var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease),
+              color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
 }
 .btn--solid { background: var(--yellow); color: var(--yellow-ink); }
 .btn--solid:hover { transform: translateY(-2px); background: oklch(0.905 0.16 101); }
@@ -140,7 +158,7 @@ p { text-wrap: pretty; }
   background: oklch(0.105 0 0 / 0.82);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
-  transition: border-color 300ms var(--ease);
+  transition: border-color var(--dur-3) var(--ease);
 }
 .nav[data-scrolled="true"] { border-color: var(--line-soft); }
 
@@ -160,7 +178,7 @@ p { text-wrap: pretty; }
   font-size: 0.95rem;
   text-decoration: none;
   color: var(--ink-2);
-  transition: color 200ms var(--ease);
+  transition: color var(--dur-1) var(--ease);
 }
 .nav__links a:hover { color: var(--yellow); }
 .nav__cta { padding: 0.7em 1.2em; font-size: 0.95rem; }
@@ -292,7 +310,10 @@ p { text-wrap: pretty; }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
 
-/* --- hero entrance: a composed timeline, one beat apart, expo-out --- */
+/* --- hero entrance: a composed timeline, one beat apart. Text rises on the
+   expo-out; the car settles on a spring (below). Fully interruptible and
+   non-blocking - keyframes never touch pointer-events, so scroll, the car
+   picker and the film switcher stay live the whole way through. --- */
 @media (prefers-reduced-motion: no-preference) {
   .js .hero__intro, .js .hero__line, .js .hero__sub, .js .hero__actions {
     opacity: 0.001;
@@ -309,7 +330,11 @@ p { text-wrap: pretty; }
   .js .hero__car .car {
     opacity: 0.001;
     translate: 60px 0;
-    animation: drive-in 900ms var(--ease) calc(var(--beat) * 7) forwards;
+    /* spring, not a linear glide: the car drives in and rocks to rest on its
+       suspension. will-change is cleared on animationend in app.js so the hint
+       does not outlive the one-shot entrance. */
+    will-change: transform, opacity;
+    animation: drive-in 900ms var(--ease-spring) calc(var(--beat) * 7) forwards;
   }
   .js .hero__filmbar {
     opacity: 0.001;
@@ -428,19 +453,19 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: no-preference) {
   .car.is-wiping .car__film--next {
     visibility: visible;
-    animation: filmwipe 950ms cubic-bezier(0.45, 0, 0.15, 1) both;
+    animation: filmwipe 950ms var(--ease-in-out) both;
   }
   /* the outgoing film retreats behind the same edge - the two multiply
      layers never overlap, so no muddy double-blend mid-transition */
   .car.is-wiping .car__film:not(.car__film--next) {
-    animation: filmwipeout 950ms cubic-bezier(0.45, 0, 0.15, 1) both;
+    animation: filmwipeout 950ms var(--ease-in-out) both;
   }
   .car.is-wiping .car__squeegee {
     visibility: visible;
     animation: squeegeefade 950ms linear both;
   }
   .car.is-wiping .car__squeegee::before {
-    animation: squeegee 950ms cubic-bezier(0.45, 0, 0.15, 1) both;
+    animation: squeegee 950ms var(--ease-in-out) both;
   }
 }
 @keyframes filmwipe {
@@ -549,7 +574,7 @@ p { text-wrap: pretty; }
   padding: 0.55em 2.4em 0.55em 1em;
   min-width: 15rem;
   cursor: pointer;
-  transition: border-color 200ms var(--ease);
+  transition: border-color var(--dur-1) var(--ease);
 }
 .car-select:hover, .car-select:focus-visible { border-color: var(--yellow); outline: none; }
 .car-select option, .car-select optgroup { background: #141416; color: var(--ink); }
@@ -647,7 +672,7 @@ p { text-wrap: pretty; }
   padding: 0.55em 1em;
   border-radius: 999px;
   cursor: pointer;
-  transition: border-color 200ms var(--ease), color 200ms var(--ease), transform 200ms var(--ease);
+  transition: border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
 .chip::before {
   content: "";
@@ -743,9 +768,15 @@ p { text-wrap: pretty; }
   align-items: baseline;
   padding: 1.6rem 0.5rem;
   border-bottom: 1px solid var(--line);
-  transition: background-color 300ms var(--ease), padding-left 300ms var(--ease);
+  /* wash only on the row; the content nudge below is a compositor transform,
+     not an animated padding (which would relayout the row on every hover) */
+  transition: background-color var(--dur-3) var(--ease);
 }
-.svc__row:hover { background: oklch(1 0 0 / 0.03); padding-left: 1.1rem; }
+.svc__row:hover { background: oklch(1 0 0 / 0.03); }
+/* nudge the text, not the box: the row edge and bottom border stay put while
+   the content slides right - same look as the old padding animation, on the GPU */
+.svc__name, .svc__desc { transition: transform var(--dur-3) var(--ease); }
+.svc__row:hover .svc__name, .svc__row:hover .svc__desc { transform: translateX(0.6rem); }
 .svc__name {
   font-family: var(--font-display);
   font-weight: 800;
@@ -820,7 +851,7 @@ p { text-wrap: pretty; }
   padding: 0.9rem 1rem;
   border: 1px solid var(--line-soft);
   overflow: hidden;
-  transition: transform 300ms var(--ease);
+  transition: transform var(--dur-3) var(--ease);
 }
 .swatch:hover { transform: translateY(-4px); }
 .swatch span {
@@ -885,7 +916,7 @@ p { text-wrap: pretty; }
   font-size: 1.1rem;
   cursor: pointer;
   list-style: none;
-  transition: color 200ms var(--ease);
+  transition: color var(--dur-1) var(--ease);
 }
 .qa summary::-webkit-details-marker { display: none; }
 .qa summary::after {
@@ -893,7 +924,7 @@ p { text-wrap: pretty; }
   font-family: var(--font-display);
   font-size: 1.4rem;
   color: var(--yellow);
-  transition: rotate 300ms var(--ease);
+  transition: rotate var(--dur-3) var(--ease);
 }
 .qa[open] summary::after { rotate: 45deg; }
 .qa summary:hover { color: var(--yellow); }
@@ -954,7 +985,7 @@ input, select, textarea {
   background: var(--surface);
   border: 1px solid var(--line);
   padding: 0.8em 1em;
-  transition: border-color 200ms var(--ease);
+  transition: border-color var(--dur-1) var(--ease);
 }
 input::placeholder, textarea::placeholder { color: var(--muted); }
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--yellow); }
@@ -1007,7 +1038,7 @@ textarea { resize: vertical; min-height: 5.5em; }
   padding: 0.5em 0.9em;
   margin-left: 1.2rem;
   cursor: pointer;
-  transition: border-color 200ms var(--ease), color 200ms var(--ease);
+  transition: border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
 }
 .lang-select:hover, .lang-select:focus-visible { border-color: var(--yellow); color: var(--ink); outline: none; }
 .lang-select option { background: #141416; color: var(--ink); }
@@ -1050,7 +1081,7 @@ textarea { resize: vertical; min-height: 5.5em; }
   opacity: 0;
   translate: 0 8px;
   pointer-events: none;
-  transition: opacity 320ms var(--ease), translate 320ms var(--ease);
+  transition: opacity var(--dur-4) var(--ease), translate var(--dur-4) var(--ease);
 }
 .car__toast.is-show { opacity: 1; translate: 0 0; }
 [dir="rtl"] .car__toast { left: auto; right: 3%; border-left: 1px solid var(--line); border-right: 3px solid var(--yellow); }
@@ -1134,8 +1165,8 @@ textarea { resize: vertical; min-height: 5.5em; }
     translate: 0 16px;
     scale: 0.6;
     pointer-events: none;
-    transition: opacity 500ms var(--ease), translate 500ms var(--ease),
-                scale 500ms var(--ease), transform 200ms var(--ease);
+    transition: opacity var(--dur-5) var(--ease), translate var(--dur-5) var(--ease),
+                scale var(--dur-5) var(--ease), transform var(--dur-1) var(--ease);
   }
   .fab svg { width: 1.7rem; height: 1.7rem; fill: currentColor; }
   .fab--sms  { background: var(--yellow); color: var(--yellow-ink); }
@@ -1197,7 +1228,7 @@ textarea { resize: vertical; min-height: 5.5em; }
   font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
-  transition: border-color 200ms var(--ease);
+  transition: border-color var(--dur-1) var(--ease);
 }
 .lightbox__btn:hover, .lightbox__btn:focus-visible { border-color: var(--yellow); outline: none; }
 .lightbox__close { top: 1rem; right: 1rem; }
@@ -1206,6 +1237,43 @@ textarea { resize: vertical; min-height: 5.5em; }
 @media (max-width: 720px) {
   .lightbox__prev { left: 0.4rem; }
   .lightbox__next { right: 0.4rem; }
+}
+
+/* Soft open: the scrim (and its backdrop blur) fades in and the photo scales up
+   from the grid, materializing rather than snapping on. Pure CSS via
+   @starting-style + allow-discrete, so app.js keeps sole ownership of open/close,
+   data-full, Esc/arrow paging and the Tab focus-trap - this only paints over it.
+   @supports-gated: browsers without it keep today's instant show (no regression). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (transition-behavior: allow-discrete) {
+    .lightbox {
+      opacity: 0;
+      transition: opacity var(--dur-modal) var(--ease-out),
+                  display var(--dur-modal) allow-discrete;
+    }
+    .lightbox.is-open { opacity: 1; }
+    @starting-style { .lightbox.is-open { opacity: 0; } }
+
+    .lightbox img {
+      transform: scale(0.94);
+      opacity: 0;
+      transition: transform var(--dur-modal) var(--ease-out),
+                  opacity var(--dur-modal) var(--ease-out);
+    }
+    .lightbox.is-open img { transform: scale(1); opacity: 1; }
+    @starting-style { .lightbox.is-open img { transform: scale(0.94); opacity: 0; } }
+  }
+}
+/* Reduced motion: keep the cross-fade (aids comprehension), drop the scale. */
+@media (prefers-reduced-motion: reduce) {
+  @supports (transition-behavior: allow-discrete) {
+    .lightbox {
+      opacity: 0;
+      transition: opacity 180ms var(--ease-out), display 180ms allow-discrete;
+    }
+    .lightbox.is-open { opacity: 1; }
+    @starting-style { .lightbox.is-open { opacity: 0; } }
+  }
 }
 
 /* ===== v28: ten upgrades - motion by the house doctrine ===== */
@@ -1228,7 +1296,7 @@ textarea { resize: vertical; min-height: 5.5em; }
 .build__grid .reveal:nth-child(6) { transition-delay: 450ms; }
 
 /* 3) reviews wake up at the viewport edge */
-.reviews__stars span { opacity: 0.18; display: inline-block; transition: opacity 300ms var(--ease); }
+.reviews__stars span { opacity: 0.18; display: inline-block; transition: opacity var(--dur-3) var(--ease); }
 @keyframes starpop { 0% { scale: 0.4; } 60% { scale: 1.25; } 100% { scale: 1; } }
 .reviews__stars span.is-lit { opacity: 1; animation: starpop 420ms var(--ease); }
 @media (prefers-reduced-motion: reduce) {
@@ -1249,7 +1317,7 @@ textarea { resize: vertical; min-height: 5.5em; }
 }
 .swatch__btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
 .swatch:has(.swatch__btn:hover) { translate: 0 -4px; }
-.swatch { transition: translate 240ms var(--ease); }
+.swatch { transition: translate var(--dur-2) var(--ease); }
 
 /* 5) try-this-color bridge from the build */
 .build__try { margin-top: 1.4rem; }
@@ -1356,9 +1424,13 @@ textarea { resize: vertical; min-height: 5.5em; }
   left: 0;
   bottom: 0;
   height: 3px;
-  width: var(--fill, 0%);
+  /* full-width bar scaled from the left edge: a compositor transform instead of
+     an animated width (--fill is now a 0-1 scale, set by app.js) */
+  width: 100%;
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left center;
   background: var(--yellow);
-  transition: width 400ms var(--ease);
+  transition: transform 400ms var(--ease);
 }
 @keyframes chargepop { 0% { scale: 1; } 50% { scale: 1.045; } 100% { scale: 1; } }
 .form__submit.is-ready { animation: chargepop 450ms var(--ease); }
@@ -1436,8 +1508,8 @@ textarea { resize: vertical; min-height: 5.5em; }
   border-radius: 50%;
   color: var(--ink);
   background: oklch(0.17 0.005 260 / 0.6);
-  transition: transform 240ms var(--ease), color 240ms var(--ease),
-              border-color 240ms var(--ease), background-color 240ms var(--ease);
+  transition: transform var(--dur-2) var(--ease), color var(--dur-2) var(--ease),
+              border-color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
 }
 .icon-btn svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
 .icon-btn:hover { transform: translateY(-2px); }
@@ -1494,4 +1566,31 @@ textarea { resize: vertical; min-height: 5.5em; }
   font-family: var(--font-display);
   font-size: 0.8rem;
   color: var(--yellow);
+}
+
+/* ===== Reduced motion: interaction layer =====
+   The signature entrances (hero, film wipe, reveals, ticker, stars, exit bar)
+   are already gated by (prefers-reduced-motion: no-preference) or their own
+   reduce blocks. This closes the remaining gap - the hover/press lifts and the
+   toast/CTA travel - the Emil/Apple way: keep colour and opacity feedback, drop
+   every positional move. Not zero motion, just no vestibular motion. */
+@media (prefers-reduced-motion: reduce) {
+  .btn--solid:hover, .btn--film:hover,
+  .icon-btn:hover, .icon-btn:active,
+  .chip:hover, .btn:active, .fab:active,
+  .swatch:hover,
+  .swatch:has(.swatch__btn:hover) { transform: none; translate: 0 0; }
+
+  .svc__name, .svc__desc { transition: none; }
+  .svc__row:hover .svc__name,
+  .svc__row:hover .svc__desc { transform: none; }
+
+  /* film-name toast + configurator CTA: cross-fade in place, no rise */
+  .car__toast { transition: opacity var(--dur-4) var(--ease); translate: 0 0; }
+  .car__toast.is-show { translate: 0 0; }
+  .filmbar__cta { transition: opacity 420ms var(--ease); translate: 0 0; }
+  .filmbar__cta.is-in { translate: 0 0; }
+
+  /* form charge bar: show the fill state without the animated sweep */
+  .form__submit.is-charging::after { transition: none; }
 }

@@ -38,6 +38,8 @@
   });
   if (heroCar) {
     heroCar.addEventListener("animationend", function (e) {
+      // Drop the will-change hint once the one-shot spring entrance has landed.
+      if (e.animationName === "drive-in") heroCar.style.willChange = "auto";
       if (e.animationName === "filmwipe") {
         var next = heroCar.getAttribute("data-film-next");
         if (next) heroCar.setAttribute("data-film", next);
@@ -410,7 +412,8 @@
       var ok = reqFields.filter(function (f) { return f.value && f.checkValidity(); }).length;
       var ready = ok === reqFields.length;
       submitBtn.classList.toggle("is-charging", !ready);
-      submitBtn.style.setProperty("--fill", Math.round((ok / reqFields.length) * 100) + "%");
+      // 0-1 scale for the bar's scaleX transform (CSS animates transform, not width)
+      submitBtn.style.setProperty("--fill", (ok / reqFields.length).toFixed(3));
       if (ready && !wasReady) {
         submitBtn.classList.add("is-ready");
         submitBtn.addEventListener("animationend", function () { submitBtn.classList.remove("is-ready"); }, { once: true });
