@@ -579,7 +579,7 @@
     var link = e.target && e.target.closest ? e.target.closest("a[href]") : null;
     if (!link) return;
     var href = link.getAttribute("href") || "";
-    if (!/^(tel:|https?:\/\/(wa\.me|api\.whatsapp\.com)\/)/i.test(href)) return;
+    if (!/^(tel:|sms:|https?:\/\/(wa\.me|api\.whatsapp\.com|m\.me)\/)/i.test(href)) return;
     // Sending the form already counts as a Lead - never also as a Contact.
     if (link.closest("#consult-form")) return;
     pixelTrack("Contact", href);

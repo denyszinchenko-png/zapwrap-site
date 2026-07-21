@@ -1379,3 +1379,72 @@ textarea { resize: vertical; min-height: 5.5em; }
   .exitbar { transition: none; }
   .form__submit.is-ready { animation: none; }
 }
+
+/* ---------- v33: split hero on wide screens - the car earns the first
+   viewport instead of an empty right half. Pure layout, DOM untouched. ---------- */
+@media (min-width: 1200px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(30rem, 0.9fr) minmax(0, 1.1fr);
+    column-gap: clamp(2rem, 3.5vw, 4rem);
+    align-items: center;
+    padding-bottom: clamp(1.5rem, 2vw, 3rem);
+  }
+  .hero__car { margin-top: 0; min-width: 0; }
+  /* primary CTA takes its own row; the contact trio reads as one row below it */
+  .hero__actions { max-width: 34rem; }
+  .hero__actions .btn--solid { flex-basis: 100%; justify-content: center; }
+}
+
+/* v33: contact trio - the ghost buttons read as one compact row */
+.hero__actions .btn--ghost { padding: 0.95em 1.1em; }
+
+/* v33: film-try button - swatch dot + label, replaces the bare ghost look */
+.btn--film {
+  border-color: var(--line);
+  color: var(--ink);
+  background: oklch(0.17 0.005 260 / 0.85);
+}
+.btn--film:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+.btn__swatch {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  border: 1px solid oklch(1 0 0 / 0.28);
+  box-shadow: inset 0 1px 2px oklch(1 0 0 / 0.15);
+}
+.btn__swatch--graphite { background: linear-gradient(135deg, #43464c, #17181b 72%); }
+
+/* v33: what-happens-next steps under the consult form */
+.book__next {
+  list-style: none;
+  counter-reset: step;
+  margin: 1.3rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.book__next li {
+  counter-increment: step;
+  position: relative;
+  padding-inline-start: 2.15rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.book__next li::before {
+  content: counter(step);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.05rem;
+  width: 1.45rem;
+  height: 1.45rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--yellow);
+}
