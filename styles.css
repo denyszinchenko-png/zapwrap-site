@@ -1396,8 +1396,28 @@ textarea { resize: vertical; min-height: 5.5em; }
   .hero__actions .btn--solid { flex-basis: 100%; justify-content: center; }
 }
 
-/* v33: contact trio - the ghost buttons read as one compact row */
-.hero__actions .btn--ghost { padding: 0.95em 1.1em; }
+/* v34: contact trio as round icon buttons - SMS, Messenger, WhatsApp,
+   each under its own logo; hover lights the brand color */
+.hero__channels { display: inline-flex; align-items: center; gap: 0.85rem; }
+.icon-btn {
+  width: 3.3rem;
+  height: 3.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: oklch(0.17 0.005 260 / 0.6);
+  transition: transform 240ms var(--ease), color 240ms var(--ease),
+              border-color 240ms var(--ease), background-color 240ms var(--ease);
+}
+.icon-btn svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
+.icon-btn:hover { transform: translateY(-2px); }
+.icon-btn--sms:hover  { color: #34c759; border-color: #34c759; }
+.icon-btn--msgr:hover { color: #0084ff; border-color: #0084ff; }
+.icon-btn--wa:hover   { color: #25d366; border-color: #25d366; }
+.icon-btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
 
 /* v33: film-try button - swatch dot + label, replaces the bare ghost look */
 .btn--film {
