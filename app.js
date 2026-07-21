@@ -50,6 +50,47 @@
     });
   }
 
+  /* ---- Finish-class tabs ----
+     The wall is filed by finish class (gloss / satin / matte / metallic /
+     color shift / iridescent / super chrome / pearl / carbon / neon) and only
+     one class is on screen at a time. Enhancement only: the markup ships with
+     every panel visible under its own heading, and this is what folds them. ---- */
+  var filmsWrap = document.getElementById("films");
+  var filmTabs = filmsWrap ? Array.prototype.slice.call(filmsWrap.querySelectorAll("[data-film-tab]")) : [];
+  var filmPanels = filmsWrap ? Array.prototype.slice.call(filmsWrap.querySelectorAll(".films__panel")) : [];
+  var showFilmClass = function (id, moveFocus) {
+    filmTabs.forEach(function (t) {
+      var on = t.getAttribute("data-film-tab") === id;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      if (on && moveFocus) t.focus();
+    });
+    filmPanels.forEach(function (p) { p.classList.toggle("is-on", p.id === "fp-" + id); });
+  };
+  if (filmsWrap && filmTabs.length) {
+    filmsWrap.classList.add("is-tabbed");
+    filmTabs.forEach(function (tab, i) {
+      tab.tabIndex = tab.getAttribute("aria-selected") === "true" ? 0 : -1;
+      tab.addEventListener("click", function () { showFilmClass(tab.getAttribute("data-film-tab")); });
+      tab.addEventListener("keydown", function (e) {
+        var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!step) return;
+        if (document.documentElement.getAttribute("dir") === "rtl") step = -step;
+        e.preventDefault();
+        var next = filmTabs[(i + step + filmTabs.length) % filmTabs.length];
+        showFilmClass(next.getAttribute("data-film-tab"), true);
+        next.scrollIntoView({ block: "nearest", inline: "nearest" });
+      });
+    });
+  }
+  /* A film picked from anywhere else - the finishes swatches, the build CTA, the
+     opening demo - has to bring its class forward, or the pick lands off-screen. */
+  var revealFilmChip = function (chip) {
+    if (!filmsWrap || !filmsWrap.classList.contains("is-tabbed")) return;
+    var panel = chip.closest && chip.closest(".films__panel");
+    if (panel && panel.id.indexOf("fp-") === 0) showFilmClass(panel.id.slice(3));
+  };
+
   /* ---- Car switcher: swap the template + body mask, keep the film ---- */
   var CARS = {
     "911": { src: "assets/cars/porsche-911.webp?v=6", mask: "assets/cars/porsche-911-mask3.webp", w: 1600, h: 800, name: "Porsche 911" },
@@ -170,7 +211,9 @@
   }
   var chipWave = function () {
     if (filmLabel) filmLabel.classList.add("label-sweep");
-    var list = Array.prototype.slice.call(chips);
+    // only the class panel that is actually on screen: a tile in a folded panel
+    // never runs its animation, so animationend would never clear the class
+    var list = Array.prototype.slice.call(chips).filter(function (c) { return c.offsetParent !== null; });
     list.forEach(function (chip, i) {
       setTimeout(function () {
         chip.classList.add("is-wave");
@@ -191,10 +234,13 @@
   var filmCta = document.getElementById("film-cta");
   var filmCtaLink = document.getElementById("film-cta-link");
   var currentFilmName = "";
+  var currentFilmCode = "";
   var updateCtaLink = function () {
     if (!filmCtaLink) return;
     var car = CARS[currentCar] ? CARS[currentCar].name : "";
-    var msg = "Hi! I want a " + (currentFilmName || "color change") + " wrap on my " + car;
+    // the supplier code rides along: the studio gets a quotable lead, not "the purple one"
+    var film = (currentFilmName || "color change") + (currentFilmCode ? " (" + currentFilmCode + ")" : "");
+    var msg = "Hi! I want a " + film + " wrap on my " + car;
     filmCtaLink.href = "https://wa.me/13527790041?text=" + encodeURIComponent(msg);
   };
   var userFlips = 0;
@@ -202,7 +248,12 @@
   var demoActive = false;
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
-      currentFilmName = chip.textContent.trim();
+      // read the name node, not the whole button: the tile also carries the
+      // supplier code, and only the name is translated by i18n
+      var nameEl = chip.querySelector(".fsw__name");
+      currentFilmName = (nameEl ? nameEl.textContent : chip.textContent).trim();
+      currentFilmCode = chip.getAttribute("data-film-code") || "";
+      revealFilmChip(chip);
       showToast(currentFilmName);
       updateCtaLink();
       if (demoActive) return;
@@ -228,7 +279,10 @@
     setTimeout(function () {
       if (demoTouched || document.hidden) return;
       if (demoStore) demoStore.setItem("zw-demo", "1");
-      clickChip("miami");
+      // Electric Coral, not the old light blue: the biggest before/after delta
+      // off the iridescent default, and it sits in the class tab that is already
+      // open - the demo shows the car changing, not the tab strip jumping.
+      clickChip("coral");
       chipWave();
       setTimeout(function () { if (!demoTouched) clickChip("shift"); }, 3000);
     }, 2200);

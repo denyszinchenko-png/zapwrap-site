@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=39" />
+  <link rel="stylesheet" href="styles.css?v=40" />
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -261,20 +261,109 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           </div>
         <figcaption class="hero__filmbar">
           <p class="filmbar__pitch" data-i18n="pitch"><strong>See your car in a new color.</strong> Pick the closest model and flip through the films. At the consult we plot your exact car against the real 3M and Avery catalogs. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">Your model not here? Send it to the studio</a></p>
-          <span class="filmbar__row">
+          <span class="filmbar__row filmbar__row--head">
             <span class="filmbar__label" data-i18n="filmbar.film">Pick a film</span>
-            <span class="filmbar__chips" role="group" aria-label="Film finishes">
-              <button class="chip chip--shift is-active" type="button" data-set-film="shift" data-i18n="film.shift">Color-shift</button>
-              <button class="chip chip--satin" type="button" data-set-film="satin" data-i18n="film.satin">Satin black</button>
-              <button class="chip chip--graphite" type="button" data-set-film="graphite" data-i18n="film.graphite">Matte dark gray</button>
-              <button class="chip chip--nardo" type="button" data-set-film="nardo" data-i18n="film.nardo">Nardo gray</button>
-              <button class="chip chip--miami" type="button" data-set-film="miami" data-i18n="film.miami">Miami blue</button>
-              <button class="chip chip--rosso" type="button" data-set-film="rosso" data-i18n="film.rosso">Gloss rosso</button>
-              <button class="chip chip--purple" type="button" data-set-film="purple" data-i18n="film.purple">Deep purple</button>
-              <button class="chip chip--pink" type="button" data-set-film="pink" data-i18n="film.pink">Gloss pink</button>
-              <button class="chip chip--army" type="button" data-set-film="army" data-i18n="film.army">Satin army green</button>
-            </span>
+            <span class="filmbar__hint" data-i18n="filmbar.hint">Real 3M, Avery, Oracal, Hexis and KPMF codes</span>
           </span>
+          <div class="films" id="films">
+            <div class="films__tabs" role="tablist" aria-label="Finish class">
+            <button class="films__tab films__tab--shift" type="button" role="tab" id="ft-shift" aria-controls="fp-shift" aria-selected="true" data-film-tab="shift"><span data-i18n="fc.shift">Color shift</span></button>
+            <button class="films__tab films__tab--irid" type="button" role="tab" id="ft-irid" aria-controls="fp-irid" aria-selected="false" data-film-tab="irid"><span data-i18n="fc.irid">Iridescent</span></button>
+            <button class="films__tab films__tab--chrome" type="button" role="tab" id="ft-chrome" aria-controls="fp-chrome" aria-selected="false" data-film-tab="chrome"><span data-i18n="fc.chrome">Super chrome</span></button>
+            <button class="films__tab films__tab--metal" type="button" role="tab" id="ft-metal" aria-controls="fp-metal" aria-selected="false" data-film-tab="metal"><span data-i18n="fc.metal">Metallic</span></button>
+            <button class="films__tab films__tab--gloss" type="button" role="tab" id="ft-gloss" aria-controls="fp-gloss" aria-selected="false" data-film-tab="gloss"><span data-i18n="fc.gloss">Gloss</span></button>
+            <button class="films__tab films__tab--satin" type="button" role="tab" id="ft-satin" aria-controls="fp-satin" aria-selected="false" data-film-tab="satin"><span data-i18n="fc.satin">Satin</span></button>
+            <button class="films__tab films__tab--matte" type="button" role="tab" id="ft-matte" aria-controls="fp-matte" aria-selected="false" data-film-tab="matte"><span data-i18n="fc.matte">Matte</span></button>
+            <button class="films__tab films__tab--hgloss" type="button" role="tab" id="ft-hgloss" aria-controls="fp-hgloss" aria-selected="false" data-film-tab="hgloss"><span data-i18n="fc.hgloss">High gloss</span></button>
+            <button class="films__tab films__tab--pearl" type="button" role="tab" id="ft-pearl" aria-controls="fp-pearl" aria-selected="false" data-film-tab="pearl"><span data-i18n="fc.pearl">Pearl</span></button>
+            <button class="films__tab films__tab--carbon" type="button" role="tab" id="ft-carbon" aria-controls="fp-carbon" aria-selected="false" data-film-tab="carbon"><span data-i18n="fc.carbon">Carbon</span></button>
+            <button class="films__tab films__tab--neon" type="button" role="tab" id="ft-neon" aria-controls="fp-neon" aria-selected="false" data-film-tab="neon"><span data-i18n="fc.neon">Neon</span></button>
+            </div>
+            <div class="films__panel is-on" role="tabpanel" id="fp-shift" aria-labelledby="ft-shift">
+              <span class="films__ph" data-i18n="fc.shift">Color shift</span>
+              <div class="films__rail">
+                <button class="fsw fsw--shift is-active" type="button" data-set-film="shift" data-film-code="3M GP281" title="3M 2080 GP281 Flip Psychedelic"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.shift">Flip Psychedelic</span><span class="fsw__code">3M GP281</span></button>
+                <button class="fsw fsw--coral" type="button" data-set-film="coral" data-film-code="3M SP213" title="3M 2080 SP213 Satin Flip Electric Coral"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.coral">Satin Flip Electric Coral</span><span class="fsw__code">3M SP213</span></button>
+                <button class="fsw fsw--deepspace" type="button" data-set-film="deepspace" data-film-code="3M GP278" title="3M 2080 GP278 Flip Deep Space"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.deepspace">Flip Deep Space</span><span class="fsw__code">3M GP278</span></button>
+                <button class="fsw fsw--aura" type="button" data-set-film="aura" data-film-code="3M SP264" title="3M 2080 SP264 Satin Flip Golden Aura"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.aura">Satin Flip Golden Aura</span><span class="fsw__code">3M SP264</span></button>
+                <button class="fsw fsw--sunset" type="button" data-set-film="sunset" data-film-code="Oracal 970RA-100" title="Oracal 970RA-100 Gloss Sunset Shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.sunset">Gloss Sunset Shift</span><span class="fsw__code">Oracal 970RA-100</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-irid" aria-labelledby="ft-irid">
+              <span class="films__ph" data-i18n="fc.irid">Iridescent</span>
+              <div class="films__rail">
+                <button class="fsw fsw--austral" type="button" data-set-film="austral" data-film-code="Hexis HX30IMAB" title="Hexis HX30IMAB Gloss Austral Sea Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.austral">Gloss Austral Sea</span><span class="fsw__code">Hexis HX30IMAB</span></button>
+                <button class="fsw fsw--purpleblue" type="button" data-set-film="purpleblue" data-film-code="KPMF K75466" title="KPMF K75466 Gloss Purple Blue Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.purpleblue">Gloss Purple Blue</span><span class="fsw__code">KPMF K75466</span></button>
+                <button class="fsw fsw--morpheus" type="button" data-set-film="morpheus" data-film-code="KPMF K75470" title="KPMF K75470 Gloss Morpheus Black Starlight Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.morpheus">Morpheus Black Starlight</span><span class="fsw__code">KPMF K75470</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-chrome" aria-labelledby="ft-chrome">
+              <span class="films__ph" data-i18n="fc.chrome">Super chrome</span>
+              <div class="films__rail">
+                <button class="fsw fsw--chrpurple" type="button" data-set-film="chrpurple" data-film-code="Hexis HX30SCH06B" title="Hexis HX30SCH06B Gloss Purple Super Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.chrpurple">Gloss Purple Super Chrome</span><span class="fsw__code">Hexis HX30SCH06B</span></button>
+                <button class="fsw fsw--chrpink" type="button" data-set-film="chrpink" data-film-code="Hexis HX30SCH10B" title="Hexis HX30SCH10B Gloss Pink Super Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.chrpink">Gloss Pink Super Chrome</span><span class="fsw__code">Hexis HX30SCH10B</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-metal" aria-labelledby="ft-metal">
+              <span class="films__ph" data-i18n="fc.metal">Metallic</span>
+              <div class="films__rail">
+                <button class="fsw fsw--purple" type="button" data-set-film="purple" data-film-code="Avery SW900-566-M" title="Avery Dennison SW900-566-M Satin Purple Metallic"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.purple">Satin Purple Metallic</span><span class="fsw__code">Avery SW900-566-M</span></button>
+                <button class="fsw fsw--bluemet" type="button" data-set-film="bluemet" data-film-code="3M G227" title="3M 2080 G227 Gloss Blue Metallic"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.bluemet">Gloss Blue Metallic</span><span class="fsw__code">3M G227</span></button>
+                <button class="fsw fsw--charcoal" type="button" data-set-film="charcoal" data-film-code="3M M211" title="3M 2080 M211 Matte Charcoal Metallic"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.charcoal">Matte Charcoal Metallic</span><span class="fsw__code">3M M211</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-gloss" aria-labelledby="ft-gloss">
+              <span class="films__ph" data-i18n="fc.gloss">Gloss</span>
+              <div class="films__rail">
+                <button class="fsw fsw--pink" type="button" data-set-film="pink" data-film-code="3M G103" title="3M 2080 G103 Gloss Hot Pink"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.pink">Gloss Hot Pink</span><span class="fsw__code">3M G103</span></button>
+                <button class="fsw fsw--rosso" type="button" data-set-film="rosso" data-film-code="3M G13" title="3M 2080 G13 Gloss Hot Rod Red"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.rosso">Gloss Hot Rod Red</span><span class="fsw__code">3M G13</span></button>
+                <button class="fsw fsw--envy" type="button" data-set-film="envy" data-film-code="3M G336" title="3M 2080 G336 Gloss Green Envy"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.envy">Gloss Green Envy</span><span class="fsw__code">3M G336</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-satin" aria-labelledby="ft-satin">
+              <span class="films__ph" data-i18n="fc.satin">Satin</span>
+              <div class="films__rail">
+                <button class="fsw fsw--satin" type="button" data-set-film="satin" data-film-code="3M S12" title="3M 2080 S12 Satin Black"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.satin">Satin Black</span><span class="fsw__code">3M S12</span></button>
+                <button class="fsw fsw--vampire" type="button" data-set-film="vampire" data-film-code="3M SP273" title="3M 2080 SP273 Satin Vampire Red"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.vampire">Satin Vampire Red</span><span class="fsw__code">3M SP273</span></button>
+                <button class="fsw fsw--velvetrose" type="button" data-set-film="velvetrose" data-film-code="3M S23" title="3M 2080 S23 Satin Velvet Rose"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.velvetrose">Satin Velvet Rose</span><span class="fsw__code">3M S23</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-matte" aria-labelledby="ft-matte">
+              <span class="films__ph" data-i18n="fc.matte">Matte</span>
+              <div class="films__rail">
+                <button class="fsw fsw--graphite" type="button" data-set-film="graphite" data-film-code="3M M261" title="3M 2080 M261 Matte Dark Gray"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.graphite">Matte Dark Gray</span><span class="fsw__code">3M M261</span></button>
+                <button class="fsw fsw--matteblack" type="button" data-set-film="matteblack" data-film-code="3M M12" title="3M 2080 M12 Matte Black"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.matteblack">Matte Black</span><span class="fsw__code">3M M12</span></button>
+                <button class="fsw fsw--matred" type="button" data-set-film="matred" data-film-code="3M M13" title="3M 2080 M13 Matte Red"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.matred">Matte Red</span><span class="fsw__code">3M M13</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-hgloss" aria-labelledby="ft-hgloss">
+              <span class="films__ph" data-i18n="fc.hgloss">High gloss</span>
+              <div class="films__rail">
+                <button class="fsw fsw--nardo" type="button" data-set-film="nardo" data-film-code="3M HG61" title="3M 2080 HG61 High Gloss Nardo Gray"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.nardo">High Gloss Nardo Gray</span><span class="fsw__code">3M HG61</span></button>
+                <button class="fsw fsw--mantis" type="button" data-set-film="mantis" data-film-code="3M HG36" title="3M 2080 HG36 High Gloss Mantis Green"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.mantis">High Gloss Mantis Green</span><span class="fsw__code">3M HG36</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-pearl" aria-labelledby="ft-pearl">
+              <span class="films__ph" data-i18n="fc.pearl">Pearl</span>
+              <div class="films__rail">
+                <button class="fsw fsw--pearl" type="button" data-set-film="pearl" data-film-code="Avery SW900-109-S" title="Avery Dennison SW900-109-S Gloss White Pearl"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.pearl">Gloss White Pearl</span><span class="fsw__code">Avery SW900-109-S</span></button>
+                <button class="fsw fsw--pearlsatin" type="button" data-set-film="pearlsatin" data-film-code="3M SP10" title="3M 2080 SP10 Satin Pearl White"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.pearlsatin">Satin Pearl White</span><span class="fsw__code">3M SP10</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-carbon" aria-labelledby="ft-carbon">
+              <span class="films__ph" data-i18n="fc.carbon">Carbon</span>
+              <div class="films__rail">
+                <button class="fsw fsw--carbon" type="button" data-set-film="carbon" data-film-code="3M CFS12" title="3M 2080 CFS12 Black Carbon Fiber"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.carbon">Black Carbon Fiber</span><span class="fsw__code">3M CFS12</span></button>
+              </div>
+            </div>
+            <div class="films__panel" role="tabpanel" id="fp-neon" aria-labelledby="ft-neon">
+              <span class="films__ph" data-i18n="fc.neon">Neon</span>
+              <span class="films__note" data-i18n="films.neonnote">Neon runs about 6 months outdoors: we say it before you book, never after.</span>
+              <div class="films__rail">
+                <button class="fsw fsw--neongreen" type="button" data-set-film="neongreen" data-film-code="3M VCW17120" title="3M VCW17120 Satin Neon Green - approx. 6 month outdoor life"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.neongreen">Satin Neon Green</span><span class="fsw__code">3M VCW17120</span></button>
+                <button class="fsw fsw--neonyellow" type="button" data-set-film="neonyellow" data-film-code="3M VCW17076" title="3M VCW17076 Satin Neon Yellow - approx. 6 month outdoor life"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.neonyellow">Satin Neon Yellow</span><span class="fsw__code">3M VCW17076</span></button>
+              </div>
+            </div></div>
           <p class="filmbar__cta" id="film-cta" hidden>
             <span data-i18n="cta.like">Like this color? See it on your car:</span>
             <a id="film-cta-link" href="https://wa.me/13527790041" rel="noopener" data-i18n="cta.link">WhatsApp the studio</a>
@@ -413,9 +502,9 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <li class="swatch swatch--gloss"><button type="button" class="swatch__btn" data-apply-film="rosso" aria-label="See this finish on a car"></button><span data-i18n="fin.gloss">Gloss</span></li>
           <li class="swatch swatch--satin"><button type="button" class="swatch__btn" data-apply-film="satin" aria-label="See this finish on a car"></button><span data-i18n="fin.satin">Satin</span></li>
           <li class="swatch swatch--matte"><button type="button" class="swatch__btn" data-apply-film="graphite" aria-label="See this finish on a car"></button><span data-i18n="fin.matte">Matte</span></li>
-          <li class="swatch swatch--metal"><button type="button" class="swatch__btn" data-apply-film="miami" aria-label="See this finish on a car"></button><span data-i18n="fin.metal">Metallic</span></li>
+          <li class="swatch swatch--metal"><button type="button" class="swatch__btn" data-apply-film="bluemet" aria-label="See this finish on a car"></button><span data-i18n="fin.metal">Metallic</span></li>
           <li class="swatch swatch--shift"><button type="button" class="swatch__btn" data-apply-film="shift" aria-label="See this finish on a car"></button><span data-i18n="fin.shift">Color-shift</span></li>
-          <li class="swatch swatch--carbon"><button type="button" class="swatch__btn" data-apply-film="satin" aria-label="See this finish on a car"></button><span data-i18n="fin.carbon">Carbon-look</span></li>
+          <li class="swatch swatch--carbon"><button type="button" class="swatch__btn" data-apply-film="carbon" aria-label="See this finish on a car"></button><span data-i18n="fin.carbon">Carbon-look</span></li>
         </ul>
       </div>
     </section>
@@ -641,7 +730,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     ]
   }
   </script>
-  <script src="i18n.js?v=3" defer></script>
+  <script src="i18n.js?v=4" defer></script>
   <div class="exitbar" id="exitbar" hidden>
     <p class="exitbar__text"><span data-i18n="exit.msg">Take your color with you: get the exact 3M and Avery codes on WhatsApp</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Message the studio</a></p>
@@ -660,6 +749,6 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
     </a>
   </div>
-  <script src="app.js?v=39" defer></script>
+  <script src="app.js?v=40" defer></script>
 </body>
 </html>

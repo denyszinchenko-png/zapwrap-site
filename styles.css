@@ -166,7 +166,7 @@ p { text-wrap: pretty; }
 .btn--solid:hover { transform: translateY(-2px); background: oklch(0.905 0.16 101); }
 .btn--ghost { border-color: var(--line); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--yellow); color: var(--yellow); }
-.btn:focus-visible, a:focus-visible, .chip:focus-visible, summary:focus-visible {
+.btn:focus-visible, a:focus-visible, .chip:focus-visible, .fsw:focus-visible, summary:focus-visible {
   outline: 2px solid var(--yellow);
   outline-offset: 3px;
 }
@@ -406,39 +406,127 @@ p { text-wrap: pretty; }
   mask-position: center;
   pointer-events: none;
 }
+/* ---------- The film catalog (v40) ----------
+   One global token per film, named --f-<key>. These are the ONLY place a film
+   gradient is written: the car layer, the swatch tiles and the before/after
+   slider all read the same token, so a swatch can never drift from the paint.
+   Every colour is a screen approximation of a real, orderable SKU - the hexes
+   come from wiki/concepts/material-color-samples.md, which is reconciled against
+   the live Metro Restyling catalogs. Do not invent films here: if it has no
+   supplier code, it does not belong on the wall.
+   Naming note: the tokens are --f-*, never --film-*, precisely so the .car
+   mapping below can never become self-referential. A custom property that
+   references itself is an invalid cycle, and the cycle kills the WHOLE
+   declaration it appears in - including the film wipe's animation shorthand,
+   silently, with a clean console. That regression already happened once. */
+:root {
+  /* --- Color shift / flip --- */
+  --f-shift:      linear-gradient(115deg, var(--shift-a) 8%, var(--shift-b) 42%, var(--shift-c) 80%);   /* 3M GP281 Flip Psychedelic */
+  --f-coral:      linear-gradient(115deg, #d95f6e 8%, #f08a5a 55%, #c74b8a);                            /* 3M SP213 Satin Flip Electric Coral */
+  --f-deepspace:  linear-gradient(115deg, #131c3a 8%, #3a2a6e 55%, #14343f);                            /* 3M GP278 Flip Deep Space */
+  --f-aura:       linear-gradient(115deg, #b8925a 8%, #e8c878 55%, #2a2320);                            /* 3M SP264 Satin Flip Golden Aura */
+  --f-sunset:     linear-gradient(115deg, #d95a2b 8%, #b83a6e 55%, #3a2a6e);                            /* Oracal 970RA-100 Gloss Sunset Shift */
+  /* --- Iridescent --- */
+  --f-austral:    linear-gradient(115deg, #1f6e7a 8%, #4a4fa8 55%, #6e3f8a);                            /* Hexis HX30IMAB Gloss Austral Sea Iridescent */
+  --f-morpheus:   linear-gradient(115deg, #141018 8%, #3a2a4f 55%, #1a2a3a);                            /* KPMF K75470 Gloss Morpheus Black Starlight */
+  --f-purpleblue: linear-gradient(115deg, #3a1f6e 8%, #2a4fa8 55%, #4a2a8a);                            /* KPMF K75466 Gloss Purple Blue Iridescent */
+  /* --- Super chrome --- */
+  --f-chrpurple:  linear-gradient(115deg, #6e3fa0 8%, #b08ae0 50%, #5a2f8a);                            /* Hexis HX30SCH06B Gloss Purple Super Chrome */
+  --f-chrpink:    linear-gradient(115deg, #d46a9e 8%, #f7b8d4 50%, #c2528a);                            /* Hexis HX30SCH10B Gloss Pink Super Chrome */
+  /* --- Metallic --- */
+  --f-bluemet:    linear-gradient(115deg, #173a7a 8%, #2f5fb8 60%, #173a7a);                            /* 3M G227 Gloss Blue Metallic */
+  --f-purple:     linear-gradient(115deg, #4a2472 8%, #6b3fa0 60%, #4a2472);                            /* Avery SW900-566-M Satin Purple Metallic */
+  --f-charcoal:   linear-gradient(115deg, #3a3d42 8%, #5a5e66 60%, #3a3d42);                            /* 3M M211 Matte Charcoal Metallic */
+  /* --- Gloss --- */
+  --f-rosso:      linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));      /* 3M G13 Gloss Hot Rod Red */
+  --f-pink:       linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345)); /* 3M G103 Gloss Hot Pink */
+  --f-envy:       linear-gradient(115deg, #3a8548 8%, #2e6e3a 55%, #245a2e);                            /* 3M G336 Gloss Green Envy */
+  /* --- Satin --- */
+  --f-satin:      linear-gradient(115deg, oklch(0.30 0 0), oklch(0.16 0 0) 55%, oklch(0.34 0 0));       /* 3M S12 Satin Black */
+  --f-vampire:    linear-gradient(115deg, #97202e 8%, #7a1420 55%, #5c0d17);                            /* 3M SP273 Satin Vampire Red */
+  --f-velvetrose: linear-gradient(115deg, #dda3ad 8%, #c98a96 55%, #ac6f7c);                            /* 3M S23 Satin Velvet Rose */
+  /* --- Matte --- */
+  --f-matteblack: linear-gradient(115deg, #2b2b2e 8%, #1a1a1c 55%, #121214);                            /* 3M M12 Matte Black */
+  --f-graphite:   linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260)); /* 3M M261 Matte Dark Gray */
+  --f-matred:     linear-gradient(115deg, #ac2a30 8%, #8f1f24 55%, #71171b);                            /* 3M M13 Matte Red */
+  /* --- High gloss --- */
+  --f-nardo:      linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250)); /* 3M HG61 High Gloss Nardo Gray */
+  --f-mantis:     linear-gradient(115deg, #a3e04f 8%, #8fd435 55%, #77b526);                            /* 3M HG36 High Gloss Mantis Green */
+  /* --- Pearl --- */
+  --f-pearl:      linear-gradient(115deg, #ece9e2 8%, #faf8f2 60%, #e8ecea);                            /* Avery SW900-109-S Gloss White Pearl */
+  --f-pearlsatin: linear-gradient(115deg, #e9e4da 8%, #f8f5ee 60%, #e9e4da);                            /* 3M SP10 Satin Pearl White */
+  /* --- Carbon --- */
+  --f-carbon:     repeating-linear-gradient(45deg, #1a1a1c 0 4px, #2a2a2e 4px 8px);                     /* 3M CFS12 Black Carbon Fiber */
+  /* --- Neon (level 4, ~6 month life - flagged in the UI, never sold silently) --- */
+  --f-neongreen:  linear-gradient(115deg, #7cff62 8%, #5aff3a 55%, #3fe01f);                            /* 3M VCW17120 Satin Neon Green */
+  --f-neonyellow: linear-gradient(115deg, #f0ff5c 8%, #e8ff2a 55%, #cbe012);                            /* 3M VCW17076 Satin Neon Yellow */
+}
+
 .car {
   --mask: url("assets/cars/lamborghini-huracan-mask3.webp");
-  --film-shift:    linear-gradient(115deg, var(--shift-a) 8%, var(--shift-b) 42%, var(--shift-c) 80%);
-  --film-satin:    linear-gradient(115deg, oklch(0.30 0 0), oklch(0.16 0 0) 55%, oklch(0.34 0 0));
-  --film-miami:    linear-gradient(115deg, oklch(0.75 0.14 210), oklch(0.62 0.15 220) 60%, oklch(0.8 0.12 205));
-  --film-rosso:    linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));
-  --film-graphite: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
-  --film-nardo:    linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250));
-  --film-purple:   linear-gradient(115deg, oklch(0.36 0.2 300), oklch(0.29 0.2 306) 55%, oklch(0.42 0.21 296));
-  --film-pink:     linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345));
-  --film-army:     linear-gradient(115deg, oklch(0.44 0.06 130), oklch(0.36 0.05 136) 55%, oklch(0.49 0.06 127));
-  --film: var(--film-shift);
-  --film-next: var(--film-shift);
+  --film: var(--f-shift);
+  --film-next: var(--f-shift);
 }
 
 /* finishes the switcher can lay on any template */
-.car[data-film="satin"]    { --film: var(--film-satin); }
-.car[data-film="miami"]    { --film: var(--film-miami); }
-.car[data-film="rosso"]    { --film: var(--film-rosso); }
-.car[data-film="graphite"] { --film: var(--film-graphite); }
-.car[data-film="nardo"]    { --film: var(--film-nardo); }
-.car[data-film="purple"]   { --film: var(--film-purple); }
-.car[data-film="pink"]     { --film: var(--film-pink); }
-.car[data-film="army"]     { --film: var(--film-army); }
-.car[data-film-next="shift"]    { --film-next: var(--film-shift); }
-.car[data-film-next="satin"]    { --film-next: var(--film-satin); }
-.car[data-film-next="miami"]    { --film-next: var(--film-miami); }
-.car[data-film-next="rosso"]    { --film-next: var(--film-rosso); }
-.car[data-film-next="graphite"] { --film-next: var(--film-graphite); }
-.car[data-film-next="nardo"]    { --film-next: var(--film-nardo); }
-.car[data-film-next="purple"]   { --film-next: var(--film-purple); }
-.car[data-film-next="pink"]     { --film-next: var(--film-pink); }
-.car[data-film-next="army"]     { --film-next: var(--film-army); }
+.car[data-film="shift"]      { --film: var(--f-shift); }
+.car[data-film="coral"]      { --film: var(--f-coral); }
+.car[data-film="deepspace"]  { --film: var(--f-deepspace); }
+.car[data-film="aura"]       { --film: var(--f-aura); }
+.car[data-film="sunset"]     { --film: var(--f-sunset); }
+.car[data-film="austral"]    { --film: var(--f-austral); }
+.car[data-film="morpheus"]   { --film: var(--f-morpheus); }
+.car[data-film="purpleblue"] { --film: var(--f-purpleblue); }
+.car[data-film="chrpurple"]  { --film: var(--f-chrpurple); }
+.car[data-film="chrpink"]    { --film: var(--f-chrpink); }
+.car[data-film="bluemet"]    { --film: var(--f-bluemet); }
+.car[data-film="purple"]     { --film: var(--f-purple); }
+.car[data-film="charcoal"]   { --film: var(--f-charcoal); }
+.car[data-film="rosso"]      { --film: var(--f-rosso); }
+.car[data-film="pink"]       { --film: var(--f-pink); }
+.car[data-film="envy"]       { --film: var(--f-envy); }
+.car[data-film="satin"]      { --film: var(--f-satin); }
+.car[data-film="vampire"]    { --film: var(--f-vampire); }
+.car[data-film="velvetrose"] { --film: var(--f-velvetrose); }
+.car[data-film="matteblack"] { --film: var(--f-matteblack); }
+.car[data-film="graphite"]   { --film: var(--f-graphite); }
+.car[data-film="matred"]     { --film: var(--f-matred); }
+.car[data-film="nardo"]      { --film: var(--f-nardo); }
+.car[data-film="mantis"]     { --film: var(--f-mantis); }
+.car[data-film="pearl"]      { --film: var(--f-pearl); }
+.car[data-film="pearlsatin"] { --film: var(--f-pearlsatin); }
+.car[data-film="carbon"]     { --film: var(--f-carbon); }
+.car[data-film="neongreen"]  { --film: var(--f-neongreen); }
+.car[data-film="neonyellow"] { --film: var(--f-neonyellow); }
+.car[data-film-next="shift"]      { --film-next: var(--f-shift); }
+.car[data-film-next="coral"]      { --film-next: var(--f-coral); }
+.car[data-film-next="deepspace"]  { --film-next: var(--f-deepspace); }
+.car[data-film-next="aura"]       { --film-next: var(--f-aura); }
+.car[data-film-next="sunset"]     { --film-next: var(--f-sunset); }
+.car[data-film-next="austral"]    { --film-next: var(--f-austral); }
+.car[data-film-next="morpheus"]   { --film-next: var(--f-morpheus); }
+.car[data-film-next="purpleblue"] { --film-next: var(--f-purpleblue); }
+.car[data-film-next="chrpurple"]  { --film-next: var(--f-chrpurple); }
+.car[data-film-next="chrpink"]    { --film-next: var(--f-chrpink); }
+.car[data-film-next="bluemet"]    { --film-next: var(--f-bluemet); }
+.car[data-film-next="purple"]     { --film-next: var(--f-purple); }
+.car[data-film-next="charcoal"]   { --film-next: var(--f-charcoal); }
+.car[data-film-next="rosso"]      { --film-next: var(--f-rosso); }
+.car[data-film-next="pink"]       { --film-next: var(--f-pink); }
+.car[data-film-next="envy"]       { --film-next: var(--f-envy); }
+.car[data-film-next="satin"]      { --film-next: var(--f-satin); }
+.car[data-film-next="vampire"]    { --film-next: var(--f-vampire); }
+.car[data-film-next="velvetrose"] { --film-next: var(--f-velvetrose); }
+.car[data-film-next="matteblack"] { --film-next: var(--f-matteblack); }
+.car[data-film-next="graphite"]   { --film-next: var(--f-graphite); }
+.car[data-film-next="matred"]     { --film-next: var(--f-matred); }
+.car[data-film-next="nardo"]      { --film-next: var(--f-nardo); }
+.car[data-film-next="mantis"]     { --film-next: var(--f-mantis); }
+.car[data-film-next="pearl"]      { --film-next: var(--f-pearl); }
+.car[data-film-next="pearlsatin"] { --film-next: var(--f-pearlsatin); }
+.car[data-film-next="carbon"]     { --film-next: var(--f-carbon); }
+.car[data-film-next="neongreen"]  { --film-next: var(--f-neongreen); }
+.car[data-film-next="neonyellow"] { --film-next: var(--f-neonyellow); }
 
 /* squeegee wipe: the incoming film sweeps across the body behind an angled
    edge, a light band glides with it - vinyl being laid on, not a crossfade */
@@ -576,7 +664,7 @@ p { text-wrap: pretty; }
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.filmbar__row .filmbar__label { flex: 0 0 7.5rem; }
+.filmbar__row--head { gap: 0.55rem 0.9rem; align-items: baseline; }
 .filmbar__label {
   font-weight: 600;
   font-size: 0.85rem;
@@ -584,7 +672,13 @@ p { text-wrap: pretty; }
   text-transform: uppercase;
   color: var(--muted);
 }
-.filmbar__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+/* the credibility line next to "pick a film": these are orderable SKUs, not
+   decorative screen colours - it is the whole reason the codes are on the tiles */
+.filmbar__hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
 
 .car-select {
   -webkit-appearance: none;
@@ -709,20 +803,283 @@ p { text-wrap: pretty; }
   border-radius: 50%;
   background: var(--chipdot);
 }
-.chip--shift { --chipdot: linear-gradient(120deg, var(--shift-a), var(--shift-b), var(--shift-c)); }
-.chip--satin { --chipdot: oklch(0.25 0 0); }
-.chip--miami { --chipdot: oklch(0.7 0.14 215); }
-.chip--rosso { --chipdot: oklch(0.48 0.2 26); }
-.chip--graphite { --chipdot: oklch(0.38 0.005 260); }
-.chip--nardo { --chipdot: oklch(0.6 0.015 250); }
-.chip--purple { --chipdot: oklch(0.34 0.2 300); }
-.chip--pink { --chipdot: oklch(0.7 0.19 352); }
-.chip--army { --chipdot: oklch(0.42 0.06 130); }
 .chip--auto::before { display: none; }
 .chip--auto { padding: 0.55em 0.9em; }
 .chip:hover { border-color: var(--ink-2); color: var(--ink); transform: translateY(-1px); }
 .chip:active { transform: scale(0.96); }
 .chip.is-active { border-color: var(--yellow); color: var(--ink); }
+
+/* ---------- Film wall (v40) ----------
+   Replaces the flat pill chips. 29 films across 11 finish CLASSES is a catalog,
+   not a chip row, so the wall is filed the way an installer files stock - by
+   class (gloss / satin / matte / high gloss / metallic / color shift /
+   iridescent / super chrome / pearl / carbon / neon) - and only one class is on
+   screen at a time behind a tab strip. Inside a class every film is a real
+   sample card: the actual film gradient on top, the name under it, the supplier
+   code as the second-level detail. Color shift leads because that family
+   over-indexes hardest (viral-content-playbook) and is the only one carrying
+   keep verdicts in post-performance-ledger.
+   Progressive enhancement: with no JS there is no .is-tabbed, so every panel
+   renders stacked under its own heading - the whole catalog stays readable. */
+.films { display: grid; gap: 0.75rem; }
+
+/* desktop: every class is visible at once, wrapping to a second row - a clipped
+   tab strip reads as broken, and the point of the strip is showing the range */
+.films__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.films__tab {
+  --tf: var(--f-shift);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4em 0.85em;
+  cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease),
+              background-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease-out);
+}
+/* a pip of the class's own signature film, so the strip is scannable by colour */
+.films__tab::before {
+  content: "";
+  width: 0.72em;
+  height: 0.72em;
+  border-radius: 50%;
+  background: var(--tf);
+  box-shadow: inset 0 1px 1px oklch(1 0 0 / 0.32);
+}
+.films__tab--shift  { --tf: var(--f-shift); }
+.films__tab--irid   { --tf: var(--f-austral); }
+.films__tab--chrome { --tf: var(--f-chrpurple); }
+.films__tab--metal  { --tf: var(--f-bluemet); }
+.films__tab--gloss  { --tf: var(--f-rosso); }
+.films__tab--satin  { --tf: var(--f-satin); }
+.films__tab--matte  { --tf: var(--f-graphite); }
+.films__tab--hgloss { --tf: var(--f-nardo); }
+.films__tab--pearl  { --tf: var(--f-pearl); }
+.films__tab--carbon { --tf: var(--f-carbon); }
+.films__tab--neon   { --tf: var(--f-neongreen); }
+.films__tab:hover { color: var(--ink); border-color: oklch(1 0 0 / 0.32); transform: translateY(-1px); }
+.films__tab:active { transform: scale(0.96); }
+.films__tab[aria-selected="true"] {
+  color: var(--yellow-ink);
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.films__panel { display: grid; gap: 0.45rem; }
+.films.is-tabbed .films__panel { display: none; }
+.films.is-tabbed .films__panel.is-on { display: grid; }
+@media (prefers-reduced-motion: no-preference) {
+  .films.is-tabbed .films__panel.is-on { animation: panelin 320ms var(--ease-out) both; }
+}
+@keyframes panelin {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: none; }
+}
+/* panel heading: the no-JS label for each class, redundant once tabs exist */
+.films__ph {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.films__ph::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line-soft);
+}
+.films.is-tabbed .films__ph { display: none; }
+/* the honest small print - currently the 6-month life on neon */
+.films__note {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--yellow);
+  letter-spacing: 0.01em;
+}
+.films__rail { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* one sample card */
+.fsw {
+  --f: var(--f-shift);
+  position: relative;
+  display: grid;
+  align-content: start;
+  flex: 0 1 9rem;
+  padding: 0;
+  text-align: start;
+  font-family: var(--font-body);
+  color: var(--ink-2);
+  background: oklch(0.19 0 0 / 0.5);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease-out);
+}
+/* the paint: the exact same token the car wears, so a tile can never lie */
+.fsw__paint {
+  position: relative;
+  display: block;
+  height: 2.5rem;
+  background: var(--f);
+  overflow: hidden;
+}
+/* static vinyl body-roll shading, so a flat colour still reads as film */
+.fsw__paint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.17), transparent 44%, oklch(0 0 0 / 0.24));
+}
+/* the squeegee highlight: parked off-canvas, sweeps across on hover/focus -
+   the same gesture the car gets on a wipe, scaled down to a sample card */
+.fsw__paint::after {
+  content: "";
+  position: absolute;
+  inset: -25% -45%;
+  background: linear-gradient(103deg,
+    transparent 42%,
+    oklch(1 0 0 / 0.06) 47%,
+    oklch(1 0 0 / 0.42) 50%,
+    oklch(1 0 0 / 0.08) 53%,
+    transparent 58%);
+  translate: -85% 0;
+  transition: translate 640ms var(--ease-out);
+}
+.fsw:hover .fsw__paint::after,
+.fsw:focus-visible .fsw__paint::after { translate: 85% 0; }
+
+.fsw__name {
+  padding: 0.42rem 0.55rem 0;
+  min-height: 2.55em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+  transition: color var(--dur-2) var(--ease);
+}
+.fsw__code {
+  padding: 0.1rem 0.55rem 0.45rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+/* selection tick: springs in on commit - the satisfying half of the choice */
+.fsw::after {
+  content: "\2713";
+  position: absolute;
+  top: 0.4rem;
+  inset-inline-end: 0.4rem;
+  display: grid;
+  place-items: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--yellow-ink);
+  font-size: 0.56rem;
+  font-weight: 800;
+  line-height: 1;
+  transform: scale(0);
+  transition: transform var(--dur-3) var(--ease-spring);
+}
+.fsw:hover { border-color: oklch(1 0 0 / 0.32); color: var(--ink); transform: translateY(-3px); }
+.fsw:active { transform: scale(0.975); }
+.fsw.is-active { border-color: var(--yellow); background: oklch(0.22 0 0 / 0.7); }
+.fsw.is-active .fsw__name { color: var(--ink); }
+.fsw.is-active::after { transform: scale(1); }
+
+/* each tile points at one catalog token - no colour is written twice */
+.fsw--shift      { --f: var(--f-shift); }
+.fsw--coral      { --f: var(--f-coral); }
+.fsw--deepspace  { --f: var(--f-deepspace); }
+.fsw--aura       { --f: var(--f-aura); }
+.fsw--sunset     { --f: var(--f-sunset); }
+.fsw--austral    { --f: var(--f-austral); }
+.fsw--morpheus   { --f: var(--f-morpheus); }
+.fsw--purpleblue { --f: var(--f-purpleblue); }
+.fsw--chrpurple  { --f: var(--f-chrpurple); }
+.fsw--chrpink    { --f: var(--f-chrpink); }
+.fsw--bluemet    { --f: var(--f-bluemet); }
+.fsw--purple     { --f: var(--f-purple); }
+.fsw--charcoal   { --f: var(--f-charcoal); }
+.fsw--rosso      { --f: var(--f-rosso); }
+.fsw--pink       { --f: var(--f-pink); }
+.fsw--envy       { --f: var(--f-envy); }
+.fsw--satin      { --f: var(--f-satin); }
+.fsw--vampire    { --f: var(--f-vampire); }
+.fsw--velvetrose { --f: var(--f-velvetrose); }
+.fsw--matteblack { --f: var(--f-matteblack); }
+.fsw--graphite   { --f: var(--f-graphite); }
+.fsw--matred     { --f: var(--f-matred); }
+.fsw--nardo      { --f: var(--f-nardo); }
+.fsw--mantis     { --f: var(--f-mantis); }
+.fsw--pearl      { --f: var(--f-pearl); }
+.fsw--pearlsatin { --f: var(--f-pearlsatin); }
+.fsw--carbon     { --f: var(--f-carbon); }
+.fsw--neongreen  { --f: var(--f-neongreen); }
+.fsw--neonyellow { --f: var(--f-neonyellow); }
+
+/* one-shot cascade while the demo wipe plays (transform only - the border/colour
+   flash the old chipwave did was a non-compositor property) */
+@keyframes fswwave {
+  0%   { transform: none; }
+  35%  { transform: translateY(-5px) scale(1.03); }
+  100% { transform: none; }
+}
+.fsw.is-wave { animation: fswwave 520ms var(--ease) both; }
+
+/* mobile: the class rail stops wrapping and becomes a snap rail. A tile is
+   deliberately narrower than a quarter of the viewport so the next one always
+   peeks in - that peek is the only scroll affordance needed, no arrows, no
+   fade masks. Same for the tab strip above it. */
+@media (max-width: 720px) {
+  .films__rail,
+  .films__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 0.3rem;
+    scrollbar-width: none;
+  }
+  .films__rail { scroll-snap-type: x proximity; }
+  .films__rail::-webkit-scrollbar,
+  .films__tabs::-webkit-scrollbar { display: none; }
+  .fsw { flex: 0 0 7.3rem; scroll-snap-align: start; }
+  .fsw__paint { height: 2.2rem; }
+  .films__tab { font-size: 0.74rem; }
+}
+
+/* full reduced-motion fallback: the tick still marks the selection, it just
+   appears instead of springing; nothing translates, nothing sweeps */
+@media (prefers-reduced-motion: reduce) {
+  .fsw,
+  .fsw__name,
+  .fsw::after,
+  .fsw__paint::after,
+  .films__tab { transition: none; }
+  .fsw:hover, .fsw:active,
+  .films__tab:hover, .films__tab:active { transform: none; }
+  .fsw.is-wave { animation: none; }
+  .fsw__paint::after { display: none; }
+  .films.is-tabbed .films__panel.is-on { animation: none; }
+}
 
 /* ---------- Ticker ---------- */
 .ticker {
@@ -1372,8 +1729,8 @@ textarea { resize: vertical; min-height: 5.5em; }
 .ba__film {
   position: absolute;
   inset: 0;
-  /* --film-graphite is scoped to .car, so the gradient is inlined here */
-  background: linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260));
+  /* same catalog token the hero car and the graphite tile use (3M M261) */
+  background: var(--f-graphite);
   mix-blend-mode: multiply;
   -webkit-mask-image: url("assets/cars/bmw-x6-mask3.webp");
   mask-image: url("assets/cars/bmw-x6-mask3.webp");
