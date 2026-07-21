@@ -1,6 +1,7 @@
 /* Zap Wrap Naples — the exotic-wrap studio of Naples.
    Lane: motorsport livery sheet in a dark studio. Reference: dark configurator
-   stage + plot-template graphics. Anton (display, the house type) + Barlow (body).
+   stage + plot-template graphics. Montserrat is the single house type:
+   heavy weights (700-900) carry display, regular/medium (400-600) carry body.
    Committed palette: near-black studio, electric yellow #FFD600 carries the voice,
    iridescent color-shift gradients are reserved for the film itself. */
 
@@ -25,8 +26,10 @@
   --shift-c: oklch(0.68 0.14 200);
 
   /* ---- Type ---- */
-  --font-display: "Anton", "Oswald", "Rubik", "Arial Narrow", sans-serif;
-  --font-body: "Barlow", "Rubik", system-ui, -apple-system, sans-serif;
+  /* One family, Montserrat, for both display and body (owner decision 2026-07-20).
+     Weight, not family, separates the two roles - see the display type system below. */
+  --font-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 
   --text-body: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
   --text-lead: clamp(1.1rem, 1rem + 0.6vw, 1.45rem);
@@ -76,7 +79,7 @@ p { text-wrap: pretty; }
 /* ---------- Display type system ---------- */
 .section__h {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: var(--text-h2);
   line-height: 1.02;
   text-transform: uppercase;
@@ -89,6 +92,15 @@ p { text-wrap: pretty; }
   font-size: var(--text-lead);
   color: var(--ink-2);
 }
+
+/* Montserrat carries the weight Anton used to imply: display elements that do
+   not set their own font-weight get the heavy house weight here, so nothing
+   renders as thin Montserrat Regular where the black display face used to be. */
+.brand__word,
+.ticker__track,
+.step__n,
+.footer__mark,
+.reviews__score { font-weight: 800; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -262,7 +274,7 @@ p { text-wrap: pretty; }
 .hero__h {
   margin-top: 1rem;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: var(--text-display);
   line-height: 0.96;
   text-transform: uppercase;
@@ -736,7 +748,7 @@ p { text-wrap: pretty; }
 .svc__row:hover { background: oklch(1 0 0 / 0.03); padding-left: 1.1rem; }
 .svc__name {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: var(--text-h3);
   line-height: 1.05;
   text-transform: uppercase;
@@ -781,7 +793,7 @@ p { text-wrap: pretty; }
 }
 .why__item dt {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: clamp(1.3rem, 1.1rem + 1vw, 1.8rem);
   line-height: 1.1;
   text-transform: uppercase;
@@ -853,7 +865,7 @@ p { text-wrap: pretty; }
 .step h3 {
   margin-top: 0.7rem;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -1087,7 +1099,7 @@ textarea { resize: vertical; min-height: 5.5em; }
 .reviews__h {
   margin: 0.9rem 0 0;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
   font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem);
   letter-spacing: 0.02em;
@@ -1150,6 +1162,9 @@ textarea { resize: vertical; min-height: 5.5em; }
 
 /* ---------- Gallery lightbox ---------- */
 .build__shot img { cursor: zoom-in; }
+/* The photos become buttons via JS (progressive enhancement) - give the keyboard
+   focus ring. Negative offset keeps it inside the figure's overflow:hidden edge. */
+.build__shot img:focus-visible { outline: 2px solid var(--yellow); outline-offset: -3px; }
 .lightbox {
   position: fixed;
   inset: 0;

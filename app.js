@@ -506,22 +506,29 @@
     }
   }
 
-  /* ---- Gallery lightbox ---- */
+  /* ---- Gallery lightbox: an accessible modal dialog ----
+     Keyboard: Enter/Space opens a photo, Esc closes, arrows page through, Tab is
+     trapped inside the dialog. The rest of the page is made inert while it is up,
+     and focus returns to the photo that opened it. Progressive enhancement: with
+     no JS the photos stay plain images, so the buttons never exist without a
+     working handler behind them. */
   var shots = Array.prototype.slice.call(document.querySelectorAll(".build__shot img"));
   if (shots.length) {
     var lb = document.createElement("div");
     lb.className = "lightbox";
     lb.setAttribute("role", "dialog");
     lb.setAttribute("aria-modal", "true");
-    lb.setAttribute("aria-label", "Photo viewer");
+    lb.setAttribute("aria-label", "Latest build photo viewer");
     lb.innerHTML =
       '<img alt="" decoding="async" />' +
-      '<button class="lightbox__btn lightbox__close" type="button" aria-label="Close">&#10005;</button>' +
+      '<button class="lightbox__btn lightbox__close" type="button" aria-label="Close photo viewer">&#10005;</button>' +
       '<button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo">&#8249;</button>' +
       '<button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">&#8250;</button>';
     document.body.appendChild(lb);
     var lbImg = lb.querySelector("img");
     var lbIdx = 0;
+    var lbOpener = null;   // the photo to hand focus back to on close
+    var lbInerted = [];    // background elements we froze while the dialog is open
     var lbShow = function (i) {
       lbIdx = (i + shots.length) % shots.length;
       // data-full, а не currentSrc: с srcset браузер выбирает для сетки
@@ -530,16 +537,50 @@
       lbImg.src = shot.getAttribute("data-full") || shot.currentSrc || shot.src;
       lbImg.alt = shots[lbIdx].alt || "";
     };
+    // Hide the rest of the page from the tab order and screen readers while the
+    // dialog is up. inert also implies aria-hidden; the Tab trap below is the
+    // fallback for browsers where inert is not yet supported.
+    var setBackgroundInert = function (on) {
+      if (on) {
+        lbInerted = [];
+        Array.prototype.forEach.call(document.body.children, function (el) {
+          if (el === lb || el.hasAttribute("inert")) return;
+          el.setAttribute("inert", "");
+          lbInerted.push(el);
+        });
+      } else {
+        lbInerted.forEach(function (el) { el.removeAttribute("inert"); });
+        lbInerted = [];
+      }
+    };
+    var lbOpen = function (i, opener) {
+      lbOpener = opener || null;
+      lbShow(i);
+      lb.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      setBackgroundInert(true);
+      lb.querySelector(".lightbox__close").focus();
+    };
     var lbClose = function () {
+      if (!lb.classList.contains("is-open")) return;
       lb.classList.remove("is-open");
       document.body.style.overflow = "";
+      setBackgroundInert(false);
+      if (lbOpener && typeof lbOpener.focus === "function") lbOpener.focus();
+      lbOpener = null;
     };
     shots.forEach(function (img, i) {
-      img.addEventListener("click", function () {
-        lbShow(i);
-        lb.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-        lb.querySelector(".lightbox__close").focus();
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      if (!img.getAttribute("aria-label")) {
+        img.setAttribute("aria-label", "Open photo" + (img.alt ? ": " + img.alt : ""));
+      }
+      img.addEventListener("click", function () { lbOpen(i, img); });
+      img.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          lbOpen(i, img);
+        }
       });
     });
     lb.addEventListener("click", function (e) { if (e.target === lb) lbClose(); });
@@ -548,9 +589,17 @@
     lb.querySelector(".lightbox__next").addEventListener("click", function () { lbShow(lbIdx + 1); });
     document.addEventListener("keydown", function (e) {
       if (!lb.classList.contains("is-open")) return;
-      if (e.key === "Escape") lbClose();
-      if (e.key === "ArrowLeft") lbShow(lbIdx - 1);
-      if (e.key === "ArrowRight") lbShow(lbIdx + 1);
+      if (e.key === "Escape") { lbClose(); return; }
+      if (e.key === "ArrowLeft") { lbShow(lbIdx - 1); return; }
+      if (e.key === "ArrowRight") { lbShow(lbIdx + 1); return; }
+      if (e.key === "Tab") {
+        var f = lb.querySelectorAll("button");
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        else if (!lb.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+      }
     });
   }
 
