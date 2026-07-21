@@ -481,8 +481,9 @@
     }
   }
 
-  /* ---- WhatsApp fab: enters after the hero, nudges rarely ---- */
-  var fab = document.querySelector(".wa-fab");
+  /* ---- Floating channel stack (SMS / Messenger / WhatsApp):
+     enters after the hero, WhatsApp nudges rarely ---- */
+  var fab = document.getElementById("fab-stack");
   var heroEl = document.querySelector(".hero");
   if (fab && heroEl) {
     var fabShown = false;
@@ -495,12 +496,13 @@
     };
     fabCheck();
     window.addEventListener("scroll", fabCheck, { passive: true });
-    if (!prefersReduced) {
+    var fabNudge = fab.querySelector(".fab--wa");
+    if (!prefersReduced && fabNudge) {
       setInterval(function () {
         if (!fabShown || document.hidden) return;
-        fab.classList.add("is-nudge");
+        fabNudge.classList.add("is-nudge");
       }, 15000);
-      fab.addEventListener("animationend", function () { fab.classList.remove("is-nudge"); });
+      fabNudge.addEventListener("animationend", function () { fabNudge.classList.remove("is-nudge"); });
     }
   }
 
