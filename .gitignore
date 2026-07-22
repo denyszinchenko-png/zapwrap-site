@@ -2,3 +2,7 @@
 .impeccable/
 *.code-workspace
 .claude/
+
+# Internal brand/positioning spec - the site does not need it and this
+# repository is public. Archived at ~/files/zapwrap-PRODUCT.md
+PRODUCT.md
