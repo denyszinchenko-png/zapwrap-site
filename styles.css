@@ -166,7 +166,7 @@ p { text-wrap: pretty; }
 .btn--solid:hover { transform: translateY(-2px); background: oklch(0.905 0.16 101); }
 .btn--ghost { border-color: var(--line); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--yellow); color: var(--yellow); }
-.btn:focus-visible, a:focus-visible, .chip:focus-visible, .fsw:focus-visible, summary:focus-visible {
+.btn:focus-visible, a:focus-visible, .fsw:focus-visible, summary:focus-visible {
   outline: 2px solid var(--yellow);
   outline-offset: 3px;
 }
@@ -740,13 +740,6 @@ p { text-wrap: pretty; }
   animation: pickerin 600ms var(--ease) both,
              pickerpulse 2.4s var(--ease) 700ms infinite;
 }
-/* one-shot cascade over the film chips while the demo wipe plays */
-@keyframes chipwave {
-  0% { transform: none; }
-  35% { transform: translateY(-4px) scale(1.04); border-color: var(--yellow); color: var(--ink); }
-  100% { transform: none; }
-}
-.chip.is-wave { animation: chipwave 520ms var(--ease) both; }
 /* yellow underline sweep under both control labels */
 .car__picker-label, .filmbar__label { position: relative; }
 @keyframes labelsweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -763,7 +756,7 @@ p { text-wrap: pretty; }
 }
 [dir="rtl"] .label-sweep::after { transform-origin: right center; }
 @media (prefers-reduced-motion: reduce) {
-  .car__picker.is-idle, .car__picker.is-entering, .chip.is-wave, .label-sweep::after { animation: none; }
+  .car__picker.is-idle, .car__picker.is-entering, .label-sweep::after { animation: none; }
   .car__picker.is-entering { opacity: 1; transform: none; }
 }
 @media (max-width: 720px) {
@@ -779,35 +772,6 @@ p { text-wrap: pretty; }
   .hero__car .car { order: 1; }
   .car__picker .car-select { flex: 1 1 auto; min-width: 0; }
 }
-
-.chip {
-  --chipdot: var(--yellow);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--ink-2);
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 0.55em 1em;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
-}
-.chip::before {
-  content: "";
-  width: 0.8em;
-  height: 0.8em;
-  border-radius: 50%;
-  background: var(--chipdot);
-}
-.chip--auto::before { display: none; }
-.chip--auto { padding: 0.55em 0.9em; }
-.chip:hover { border-color: var(--ink-2); color: var(--ink); transform: translateY(-1px); }
-.chip:active { transform: scale(0.96); }
-.chip.is-active { border-color: var(--yellow); color: var(--ink); }
 
 /* ---------- Film wall (v40) ----------
    Replaces the flat pill chips. 29 films across 11 finish CLASSES is a catalog,
@@ -1965,7 +1929,7 @@ textarea { resize: vertical; min-height: 5.5em; }
 @media (prefers-reduced-motion: reduce) {
   .btn--solid:hover, .btn--film:hover, .btn--film:active,
   .icon-btn:hover, .icon-btn:active,
-  .chip:hover, .chip:active, .btn:active, .fab:active,
+  .btn:active, .fab:active,
   .swatch:hover,
   .swatch:has(.swatch__btn:hover) { transform: none; translate: 0 0; }
 
