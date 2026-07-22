@@ -530,11 +530,24 @@
     document.documentElement.setAttribute("lang", lang);
     document.documentElement.setAttribute("dir", RTL[lang] ? "rtl" : "ltr");
     try { localStorage.setItem(STORE, lang); } catch (e) { /* private mode */ }
+    /* keep the canonical on the URL that serves THIS language, or the hreflang
+       set collapses onto one page and the alternates stop counting */
+    var can = document.querySelector('link[rel="canonical"]');
+    if (can) can.setAttribute("href", "https://zapwrapnaples.com/" + (lang === "en" ? "" : "?lang=" + lang));
     var sel = document.getElementById("lang-select");
     if (sel && sel.value !== lang) sel.value = lang;
   }
 
   function initial() {
+    /* ?lang=xx wins over everything: those are the URLs the hreflang tags in
+       the head point at, so a crawler (or a shared link) must land on that
+       language regardless of what this browser picked last time. */
+    var q = null;
+    try { q = new URLSearchParams(location.search).get("lang"); } catch (e) { /* no URLSearchParams */ }
+    if (q) {
+      q = q.slice(0, 2).toLowerCase();
+      if (q === "en" || DICT[q]) return q;
+    }
     var saved = null;
     try { saved = localStorage.getItem(STORE); } catch (e) { /* private mode */ }
     if (saved && (saved === "en" || DICT[saved])) return saved;
