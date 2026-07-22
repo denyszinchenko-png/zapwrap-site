@@ -534,6 +534,20 @@
        set collapses onto one page and the alternates stop counting */
     var can = document.querySelector('link[rel="canonical"]');
     if (can) can.setAttribute("href", "https://zapwrapnaples.com/" + (lang === "en" ? "" : "?lang=" + lang));
+    /* the address bar must agree with that canonical: when the language came
+       from localStorage or navigator (no ?lang in the URL), sync the URL too,
+       keeping any other params (utm) intact */
+    try {
+      if (history.replaceState && typeof URLSearchParams !== "undefined") {
+        var sp = new URLSearchParams(location.search);
+        if (lang === "en") sp.delete("lang"); else sp.set("lang", lang);
+        var qs = sp.toString();
+        var next = location.pathname + (qs ? "?" + qs : "") + location.hash;
+        if (next !== location.pathname + location.search + location.hash) {
+          history.replaceState(null, "", next);
+        }
+      }
+    } catch (e) { /* sandboxed context */ }
     var sel = document.getElementById("lang-select");
     if (sel && sel.value !== lang) sel.value = lang;
   }
