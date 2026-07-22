@@ -184,6 +184,9 @@
         carImg.height = car.h;
         carImg.alt = car.name + " side profile on the studio wrap template";
         heroCar.style.setProperty("--mask", 'url("' + car.mask + '")');
+        /* the sculpt pass re-multiplies the template onto itself so light
+           films read on a white body - it has to follow the template swap */
+        heroCar.style.setProperty("--shade", 'url("' + car.src + '")');
         if (!prefersReduced) {
           heroCar.classList.remove("is-revealing");
           void heroCar.offsetWidth;

@@ -406,6 +406,29 @@ p { text-wrap: pretty; }
   mask-position: center;
   pointer-events: none;
 }
+/* light-film sculpt pass: multiply cannot darken a white body, so a near-white
+   film over the white template renders as an unwrapped car - the pearls were
+   invisible and indistinguishable from each other. This layer multiplies the
+   template back onto itself inside the mask, doubling the factory shading so
+   the creases, shoulder line and rocker shade read again. The source is the
+   car photo itself (--shade, swapped with --mask in app.js), so it follows the
+   real geometry of every template with no extra art. Off (opacity 0) for every
+   film dark or saturated enough to read on its own: only the light finishes
+   opt in via --shade-amt, and the amount doubles as the finish cue - a gloss
+   pearl carries more contrast than a satin one. */
+.car__film::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--shade);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  mix-blend-mode: multiply;
+  opacity: var(--shade-amt, 0);
+  pointer-events: none;
+}
+.car__film--next::before { opacity: var(--shade-amt-next, 0); }
 /* ---------- The film catalog (v40) ----------
    One global token per film, named --f-<key>. These are the ONLY place a film
    gradient is written: the car layer, the swatch tiles and the before/after
@@ -452,9 +475,10 @@ p { text-wrap: pretty; }
   /* --- High gloss --- */
   --f-nardo:      linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250)); /* 3M HG61 High Gloss Nardo Gray */
   --f-mantis:     linear-gradient(115deg, #a3e04f 8%, #8fd435 55%, #77b526);                            /* 3M HG36 High Gloss Mantis Green */
-  /* --- Pearl --- */
-  --f-pearl:      linear-gradient(115deg, #ece9e2 8%, #faf8f2 60%, #e8ecea);                            /* Avery SW900-109-S Gloss White Pearl */
-  --f-pearlsatin: linear-gradient(115deg, #e9e4da 8%, #f8f5ee 60%, #e9e4da);                            /* 3M SP10 Satin Pearl White */
+  /* --- Pearl (rendered with the sculpt pass above: these read as flat white
+         without it, which is why the two used to look identical) --- */
+  --f-pearl:      linear-gradient(115deg, #e6e3dc 8%, #fbfaf6 46%, #dfe4e6 82%);                        /* Avery SW900-109-S Gloss White Pearl */
+  --f-pearlsatin: linear-gradient(115deg, #e4ddd0 8%, #f2ece0 55%, #ded7c9 92%);                        /* 3M SP10 Satin Pearl White */
   /* --- Carbon --- */
   --f-carbon:     repeating-linear-gradient(45deg, #1a1a1c 0 4px, #2a2a2e 4px 8px);                     /* 3M CFS12 Black Carbon Fiber */
   /* --- Neon (level 4, ~6 month life - flagged in the UI, never sold silently) --- */
@@ -464,6 +488,7 @@ p { text-wrap: pretty; }
 
 .car {
   --mask: url("assets/cars/lamborghini-huracan-mask3.webp");
+  --shade: url("assets/cars/lamborghini-huracan.webp");
   --film: var(--f-shift);
   --film-next: var(--f-shift);
 }
@@ -493,8 +518,8 @@ p { text-wrap: pretty; }
 .car[data-film="matred"]     { --film: var(--f-matred); }
 .car[data-film="nardo"]      { --film: var(--f-nardo); }
 .car[data-film="mantis"]     { --film: var(--f-mantis); }
-.car[data-film="pearl"]      { --film: var(--f-pearl); }
-.car[data-film="pearlsatin"] { --film: var(--f-pearlsatin); }
+.car[data-film="pearl"]      { --film: var(--f-pearl); --shade-amt: .62; }
+.car[data-film="pearlsatin"] { --film: var(--f-pearlsatin); --shade-amt: .44; }
 .car[data-film="carbon"]     { --film: var(--f-carbon); }
 .car[data-film="neongreen"]  { --film: var(--f-neongreen); }
 .car[data-film="neonyellow"] { --film: var(--f-neonyellow); }
@@ -522,8 +547,8 @@ p { text-wrap: pretty; }
 .car[data-film-next="matred"]     { --film-next: var(--f-matred); }
 .car[data-film-next="nardo"]      { --film-next: var(--f-nardo); }
 .car[data-film-next="mantis"]     { --film-next: var(--f-mantis); }
-.car[data-film-next="pearl"]      { --film-next: var(--f-pearl); }
-.car[data-film-next="pearlsatin"] { --film-next: var(--f-pearlsatin); }
+.car[data-film-next="pearl"]      { --film-next: var(--f-pearl); --shade-amt-next: .62; }
+.car[data-film-next="pearlsatin"] { --film-next: var(--f-pearlsatin); --shade-amt-next: .44; }
 .car[data-film-next="carbon"]     { --film-next: var(--f-carbon); }
 .car[data-film-next="neongreen"]  { --film-next: var(--f-neongreen); }
 .car[data-film-next="neonyellow"] { --film-next: var(--f-neonyellow); }
