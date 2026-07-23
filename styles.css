@@ -71,7 +71,10 @@
   --text-display: clamp(2.8rem, 1.4rem + 6.5vw, 6rem);
 
   /* ---- Space / layout ---- */
-  --space-section: clamp(5rem, 4rem + 6vw, 10rem);
+  /* v44: tightened from clamp(5rem, 4rem+6vw, 10rem). Gallery-grade air only
+     earns its keep on visually rich sections; the text-only middle of the page
+     was rendering empty screens on phones. */
+  --space-section: clamp(4rem, 3rem + 4.5vw, 7.5rem);
   --gutter: clamp(1.25rem, 0.8rem + 3vw, 3rem);
   --maxw: 1240px;
 
@@ -693,16 +696,29 @@ p { text-wrap: pretty; }
   to   { background-position: -30% 0; opacity: 0; }
 }
 
-/* studio floor: reflection puddle under the car */
+/* studio floor: the car stands on a lit stage, not in a void. Three layers,
+   all static paint (no animation): a soft light pool the key light would
+   throw, the reflection puddle, and a hairline podium edge. */
 .car__floor {
   position: absolute;
   left: 6%;
   right: 6%;
   bottom: -4%;
   height: 14%;
-  background: radial-gradient(50% 100% at 50% 0%, oklch(0 0 0 / 0.65), transparent 75%);
+  background:
+    radial-gradient(46% 130% at 50% 18%, oklch(0.42 0.015 100 / 0.3), transparent 72%),
+    radial-gradient(50% 100% at 50% 0%, oklch(0 0 0 / 0.65), transparent 75%);
   z-index: 0;
   pointer-events: none;
+}
+.car__floor::after {
+  content: "";
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 32%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 22%, var(--line) 78%, transparent);
 }
 
 /* ---------- Film bar ---------- */
@@ -784,7 +800,9 @@ p { text-wrap: pretty; }
   background: rgba(12, 12, 14, 0.82);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 214, 0, 0.55);
+  /* v44 yellow discipline: the accent belongs to the CTA, not to furniture.
+     The transient attention ring below stays yellow; the resting frame is quiet. */
+  border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
@@ -793,7 +811,7 @@ p { text-wrap: pretty; }
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--yellow);
+  color: var(--ink-2);
 }
 .car__picker .car-select { background-color: rgba(20, 20, 22, 0.9); min-width: 13rem; }
 /* attention ring: compositor-only scale+fade on a ::after, three beats then
@@ -1159,6 +1177,32 @@ p { text-wrap: pretty; }
 }
 @keyframes ticker { to { translate: -50% 0; } }
 
+/* ---------- Film brands (v44) ----------
+   The only external trust we can show while the Google reviews have no text:
+   the catalogs themselves. Wordmarks in the house type, muted so they read as
+   a fact, not an ad; logos-only rule - no captions, no links out. */
+.brands { border-bottom: 1px solid var(--line-soft); }
+.brands__row {
+  list-style: none;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.5rem var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.9rem clamp(1.6rem, 4vw, 3.4rem);
+}
+.brands__mark {
+  font-weight: 800;
+  font-size: clamp(0.92rem, 0.8rem + 0.5vw, 1.08rem);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease);
+}
+.brands__row:hover .brands__mark { color: var(--ink-2); }
+
 /* ---------- Sections ---------- */
 .services, .why, .finishes, .process, .faq, .book, .build { padding-top: var(--space-section); }
 
@@ -1364,6 +1408,38 @@ p { text-wrap: pretty; }
 .qa[open] summary::after { rotate: 45deg; }
 .qa summary:hover { color: var(--yellow); }
 .qa p { padding: 0 0.2rem 1.4rem; color: var(--ink-2); max-width: 68ch; }
+
+/* v44: ten questions one-per-row ran ~1500px of page. Desktop pairs them in
+   two columns (the narrow cap widens to hold the pair); phones fold the list
+   to five, app.js wires the un-fold. */
+@media (min-width: 980px) {
+  .faq .wrap--narrow {
+    max-width: 1120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.5rem;
+    align-items: start;
+  }
+  .faq .section__h { grid-column: 1 / -1; }
+}
+.faq__more {
+  display: none;
+  margin-top: 1.2rem;
+  padding: 0.85em 1.5em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+}
+.faq__more:hover { border-color: var(--yellow); color: var(--yellow); }
+@media (max-width: 720px) {
+  .faq.is-folded .qa:nth-of-type(n + 6) { display: none; }
+  .faq.is-folded .faq__more { display: inline-flex; }
+}
 
 /* ---------- Book ---------- */
 .book { padding-bottom: var(--space-section); }
@@ -1601,58 +1677,9 @@ textarea { resize: vertical; min-height: 5.5em; }
 .reviews__lead { margin: 0.7rem auto 0; max-width: 46ch; color: var(--ink-2); }
 .reviews__link { margin-top: 1.4rem; }
 
-/* ---------- WhatsApp floating button (mobile) ---------- */
-.fab-stack { display: none; }
-@media (max-width: 720px) {
-  .fab-stack {
-    position: fixed;
-    z-index: 60;
-    right: 1rem;
-    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-  .fab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.25rem;
-    height: 3.25rem;
-    border-radius: 50%;
-    color: #fff;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-    /* staged entrance: hidden until the visitor scrolls past the hero,
-       then scale+rise+fade in on the house expo-out curve */
-    opacity: 0;
-    translate: 0 16px;
-    scale: 0.6;
-    pointer-events: none;
-    transition: opacity var(--dur-5) var(--ease), translate var(--dur-5) var(--ease),
-                scale var(--dur-5) var(--ease), transform var(--dur-1) var(--ease);
-  }
-  .fab svg { width: 1.7rem; height: 1.7rem; fill: currentColor; }
-  .fab--sms  { background: var(--yellow); color: var(--yellow-ink); }
-  .fab--msgr { background: #0084ff; }
-  .fab--wa   { background: #25d366; }
-  .fab-stack.is-on .fab { opacity: 1; translate: 0 0; scale: 1; pointer-events: auto; }
-  /* каскад: верхняя выезжает первой */
-  .fab-stack.is-on .fab:nth-child(1) { transition-delay: 0ms; }
-  .fab-stack.is-on .fab:nth-child(2) { transition-delay: 70ms; }
-  .fab-stack.is-on .fab:nth-child(3) { transition-delay: 140ms; }
-  .fab:active { transform: scale(0.92); }
-  /* rare attention nudge: one green ring on WhatsApp, never a loop */
-  @keyframes fabring {
-    0% { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.55); }
-    100% { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 16px rgba(37, 211, 102, 0); }
-  }
-  .fab.is-nudge { animation: fabring 900ms var(--ease); }
-  @media (prefers-reduced-motion: reduce) {
-    .fab { transition: none; translate: 0 0; scale: 1; }
-    .fab.is-nudge { animation: none; }
-  }
-  [dir="rtl"] .fab-stack { right: auto; left: 1rem; }
-}
+/* v44: the mobile FAB stack (SMS/Messenger/WhatsApp circles, bottom-right)
+   is retired - the .mbar quick-contact bar carries the same three channels
+   with labels and full-width tap zones. */
 
 /* ---------- Gallery lightbox ---------- */
 .build__shot img { cursor: zoom-in; }
@@ -1961,9 +1988,10 @@ textarea { resize: vertical; min-height: 5.5em; }
      growing, so the type must too, or "wrap studio" breaks the lockup */
   .hero__h { font-size: clamp(3rem, 1rem + 3.05vw, 3.8rem); }
   .hero__car { margin-top: 0; min-width: 0; }
-  /* primary CTA takes its own row; the contact trio reads as one row below it */
-  .hero__actions { max-width: 34rem; }
-  .hero__actions .btn--solid { flex-basis: 100%; justify-content: center; }
+  /* primary CTA takes its own row; the contact trio reads as one row below it.
+     v44: column layout instead of flex-basis 100% - the button keeps its
+     natural width, so the yellow reads as a button, not a taxi-grade banner. */
+  .hero__actions { max-width: 34rem; flex-direction: column; align-items: flex-start; }
 }
 
 /* v34: contact trio as round icon buttons - SMS, Messenger, WhatsApp,
@@ -2065,7 +2093,7 @@ textarea { resize: vertical; min-height: 5.5em; }
 @media (prefers-reduced-motion: reduce) {
   .btn--solid:hover, .btn--film:hover, .btn--film:active,
   .icon-btn:hover, .icon-btn:active,
-  .btn:active, .fab:active,
+  .btn:active,
   .swatch:hover,
   .swatch:has(.swatch__btn:hover) { transform: none; translate: 0 0; }
 
@@ -2081,4 +2109,57 @@ textarea { resize: vertical; min-height: 5.5em; }
 
   /* form charge bar: show the fill state without the animated sweep */
   .form__submit.is-charging::after { transition: none; }
+
+  /* quick-contact bar: cross-fade in place instead of sliding up */
+  .mbar { translate: 0 0; opacity: 0; transition: opacity var(--dur-3) var(--ease), visibility 0s var(--dur-3); }
+  .mbar.is-on { opacity: 1; transition: opacity var(--dur-3) var(--ease); }
+}
+
+/* ---------- Mobile quick-contact bar (v44) ----------
+   The page runs ~14 phone screens; after the hero the next contact control
+   used to be the form at the very bottom. app.js flips .is-on once the hero
+   scrolls away and drops it over the booking section. visibility (not
+   aria-hidden) keeps the off-screen links out of the tab order. */
+.mbar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 60;
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(12, 12, 14, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+  visibility: hidden;
+  translate: 0 110%;
+  transition: translate var(--dur-3) var(--ease), visibility 0s var(--dur-3);
+}
+.mbar.is-on {
+  visibility: visible;
+  translate: 0 0;
+  transition: translate var(--dur-3) var(--ease);
+}
+.mbar__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 54px;
+  padding: 0 0.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.mbar__link + .mbar__link { border-inline-start: 1px solid var(--line-soft); }
+.mbar__link:active { background: oklch(1 0 0 / 0.06); }
+.mbar__link svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+/* brand color on the glyph only: instant recognition, no yellow spent */
+.mbar__link--msgr svg { fill: #0866ff; }
+.mbar__link--wa svg { fill: #25d366; }
+@media (max-width: 720px) {
+  .mbar { display: grid; }
+  /* the bar rides over the footer at the very bottom - clear its height */
+  .footer { padding-bottom: calc(2rem + 54px + env(safe-area-inset-bottom)); }
 }

@@ -46,7 +46,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=43" />
+  <link rel="stylesheet" href="/styles.css?v=44" />
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -392,6 +392,19 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       </div>
     </div>
 
+    <!-- FILM BRANDS: the catalogs we actually plot from. Wordmarks, not logos:
+         official vector marks need each maker's brand portal; type keeps the
+         strip consistent and honest. Proper nouns, so no i18n keys. -->
+    <section class="brands" aria-label="Films we install: 3M, Avery Dennison, KPMF, Hexis, Oracal">
+      <ul class="brands__row" role="list">
+        <li class="brands__mark">3M</li>
+        <li class="brands__mark">Avery&nbsp;Dennison</li>
+        <li class="brands__mark">KPMF</li>
+        <li class="brands__mark">Hexis</li>
+        <li class="brands__mark">Oracal</li>
+      </ul>
+    </section>
+
     <!-- LATEST BUILD -->
     <section class="build" id="work" aria-labelledby="build-h">
       <div class="wrap">
@@ -510,12 +523,14 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <div class="wrap">
         <h2 id="fin-h" class="section__h" data-i18n="fin.h">Acabados<span class="dot">.</span></h2>
         <p class="section__lead" data-i18n="fin.lead">Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal. Si existe en rollo, lo ponemos en tu auto.</p>
+        <!-- Color-shift leads: the radar says shift/purple/pink over-index, so
+             the class that sells the studio gets the first slot, not the last -->
         <ul class="swatches" role="list">
+          <li class="swatch swatch--shift"><button type="button" class="swatch__btn" data-apply-film="shift" aria-label="See this finish on a car"></button><span data-i18n="fin.shift">Color-shift</span></li>
           <li class="swatch swatch--gloss"><button type="button" class="swatch__btn" data-apply-film="rosso" aria-label="See this finish on a car"></button><span data-i18n="fin.gloss">Brillante</span></li>
           <li class="swatch swatch--satin"><button type="button" class="swatch__btn" data-apply-film="satin" aria-label="See this finish on a car"></button><span data-i18n="fin.satin">Satinado</span></li>
           <li class="swatch swatch--matte"><button type="button" class="swatch__btn" data-apply-film="graphite" aria-label="See this finish on a car"></button><span data-i18n="fin.matte">Mate</span></li>
           <li class="swatch swatch--metal"><button type="button" class="swatch__btn" data-apply-film="bluemet" aria-label="See this finish on a car"></button><span data-i18n="fin.metal">Met&aacute;lico</span></li>
-          <li class="swatch swatch--shift"><button type="button" class="swatch__btn" data-apply-film="shift" aria-label="See this finish on a car"></button><span data-i18n="fin.shift">Color-shift</span></li>
           <li class="swatch swatch--carbon"><button type="button" class="swatch__btn" data-apply-film="carbon" aria-label="See this finish on a car"></button><span data-i18n="fin.carbon">Efecto carbono</span></li>
         </ul>
       </div>
@@ -594,6 +609,9 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <summary data-i18n="faq.10.q">&iquest;Cu&aacute;nto tarda un wrap?</summary>
           <p data-i18n="faq.10.a">Un cambio de color completo toma de 3 a 5 d&iacute;as en el taller. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotizaci&oacute;n en la consulta.</p>
         </details>
+        <!-- Phones fold the list to the first five; this un-folds it. Desktop
+             shows everything in two columns and never renders the button. -->
+        <button class="faq__more" type="button" id="faq-more" data-i18n="faq.more">Ver todas las preguntas</button>
       </div>
     </section>
 
@@ -687,6 +705,27 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     </div>
   </footer>
 
+  <!-- Mobile quick-contact bar. The page runs ~14 phone screens and the hero
+       CTA is gone after the first one; this keeps the studio one thumb away.
+       Owner-confirmed channel order: number (SMS), Messenger, WhatsApp.
+       app.js shows it after the hero and hides it over the booking form;
+       visibility (not aria-hidden) keeps the links out of the tab order
+       while it is off screen. Brand names + SMS need no i18n. -->
+  <nav class="mbar" id="mbar" aria-label="Quick contact">
+    <a class="mbar__link mbar__link--sms" href="sms:+13527790041">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 3C6.477 3 2 6.756 2 11.4c0 2.402 1.204 4.56 3.132 6.096-.096.864-.42 2.064-1.224 3.024-.168.198.006.492.264.456 1.548-.246 2.976-.966 3.93-1.578.9.258 1.878.402 2.898.402 5.523 0 10-3.756 10-8.4S17.523 3 12 3Zm-4.3 9.7a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm4.3 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm4.3 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Z"/></svg>
+      <span>SMS</span>
+    </a>
+    <a class="mbar__link mbar__link--msgr" href="https://m.me/ZapWrapNaples" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.24 0 0 4.952 0 11.64c0 3.499 1.434 6.522 3.769 8.61a.96.96 0 0 1 .323.683l.065 2.135a.96.96 0 0 0 1.347.849l2.381-1.05a.96.96 0 0 1 .641-.048c1.096.301 2.263.466 3.474.466 6.76 0 12-4.952 12-11.64S18.76 0 12 0Zm7.207 8.958-3.525 5.593a1.8 1.8 0 0 1-2.604.48l-2.804-2.102a.72.72 0 0 0-.867.003l-3.786 2.873c-.505.384-1.165-.221-.827-.758l3.525-5.593a1.8 1.8 0 0 1 2.604-.48l2.804 2.102a.72.72 0 0 0 .867-.003l3.786-2.873c.505-.384 1.165.221.827.758Z"/></svg>
+      <span>Messenger</span>
+    </a>
+    <a class="mbar__link mbar__link--wa" href="https://wa.me/13527790041" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -771,25 +810,14 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     ]
   }
   </script>
-  <script src="/i18n.js?v=7" defer></script>
+  <script src="/i18n.js?v=8" defer></script>
   <div class="exitbar" id="exitbar" hidden>
     <p class="exitbar__text"><span data-i18n="exit.msg">Ll&eacute;vate tu color: recibe los c&oacute;digos exactos de 3M y Avery por WhatsApp</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Escribe al estudio</a></p>
     <button class="exitbar__close" type="button" aria-label="Close">&#10005;</button>
   </div>
-  <!-- Плавающий стек каналов (мобайл): выезжает справа после пролистывания хиро.
-       Порядок владельца: номер (SMS, не звонок) → Messenger → WhatsApp. -->
-  <div class="fab-stack" id="fab-stack" role="group" aria-label="Message the studio">
-    <a class="fab fab--sms" href="sms:+13527790041" aria-label="Text the studio: (352) 779-0041">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 3C6.477 3 2 6.756 2 11.4c0 2.402 1.204 4.56 3.132 6.096-.096.864-.42 2.064-1.224 3.024-.168.198.006.492.264.456 1.548-.246 2.976-.966 3.93-1.578.9.258 1.878.402 2.898.402 5.523 0 10-3.756 10-8.4S17.523 3 12 3Zm-4.3 9.7a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm4.3 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm4.3 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Z"/></svg>
-    </a>
-    <a class="fab fab--msgr" href="https://m.me/ZapWrapNaples" rel="noopener" aria-label="Message on Messenger">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.24 0 0 4.952 0 11.64c0 3.499 1.434 6.522 3.769 8.61a.96.96 0 0 1 .323.683l.065 2.135a.96.96 0 0 0 1.347.849l2.381-1.05a.96.96 0 0 1 .641-.048c1.096.301 2.263.466 3.474.466 6.76 0 12-4.952 12-11.64S18.76 0 12 0Zm7.207 8.958-3.525 5.593a1.8 1.8 0 0 1-2.604.48l-2.804-2.102a.72.72 0 0 0-.867.003l-3.786 2.873c-.505.384-1.165-.221-.827-.758l3.525-5.593a1.8 1.8 0 0 1 2.604-.48l2.804 2.102a.72.72 0 0 0 .867-.003l3.786-2.873c.505-.384 1.165.221.827.758Z"/></svg>
-    </a>
-    <a class="fab fab--wa" href="https://wa.me/13527790041" rel="noopener" aria-label="Message on WhatsApp">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-    </a>
-  </div>
-  <script src="/app.js?v=42" defer></script>
+  <!-- v44: плавающий FAB-стек заменён нижним контакт-баром .mbar (тот же
+       порядок каналов, но с подписями и тап-зонами на всю ширину). -->
+  <script src="/app.js?v=43" defer></script>
 </body>
 </html>

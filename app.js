@@ -462,6 +462,70 @@
     });
   }
 
+  /* ---- v44: one-shot intro on the shutter - the film wipes ON as the block
+     arrives on screen, so it reads as a live control, not a static photo.
+     The user's hand always wins: any input cancels the flight. ---- */
+  if (baStage && baRange && !prefersReduced && "IntersectionObserver" in window) {
+    var baTouched = false;
+    baRange.addEventListener("input", function () { baTouched = true; }, { once: true });
+    /* park the shutter almost-closed until the intro runs; if it never runs
+       (no scroll that far), the almost-closed frame still reads correctly */
+    baStage.style.setProperty("--cut", "96%");
+    baRange.value = 96;
+    var baIO = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      baIO.disconnect();
+      if (baTouched) return;
+      var t0 = null;
+      var wipe = function (ts) {
+        if (baTouched) return;
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 1100, 1);
+        var eased = 1 - Math.pow(1 - p, 4);
+        var cut = 96 + (50 - 96) * eased;
+        baStage.style.setProperty("--cut", cut + "%");
+        baRange.value = cut;
+        if (p < 1) requestAnimationFrame(wipe);
+      };
+      requestAnimationFrame(wipe);
+    }, { threshold: 0.45 });
+    baIO.observe(baStage);
+  }
+
+  /* ---- v44: phones fold the FAQ to the first five; one tap un-folds.
+     The fold styles live behind a max-width media query, so the class is
+     inert on desktop even if a rotation carries it across the breakpoint. ---- */
+  var faqSection = document.querySelector(".faq");
+  var faqMore = document.getElementById("faq-more");
+  if (faqSection && faqMore) {
+    if (window.matchMedia("(max-width: 720px)").matches) faqSection.classList.add("is-folded");
+    faqMore.addEventListener("click", function () { faqSection.classList.remove("is-folded"); });
+  }
+
+  /* ---- v44: quick-contact bar - on once the hero scrolls away, off while
+     the booking section is on screen (the form is the same channels; a bar
+     over the submit button would only cover it). Desktop never shows it. ---- */
+  var mbar = document.getElementById("mbar");
+  var heroSection = document.querySelector(".hero");
+  var bookSection = document.getElementById("book");
+  if (mbar && heroSection && "IntersectionObserver" in window) {
+    var mbarHeroGone = false;
+    var mbarBookHere = false;
+    var mbarSync = function () { mbar.classList.toggle("is-on", mbarHeroGone && !mbarBookHere); };
+    var mbarHeroIO = new IntersectionObserver(function (entries) {
+      mbarHeroGone = !entries[0].isIntersecting;
+      mbarSync();
+    }, { rootMargin: "80px 0px 0px" });
+    mbarHeroIO.observe(heroSection);
+    if (bookSection) {
+      var mbarBookIO = new IntersectionObserver(function (entries) {
+        mbarBookHere = entries[0].isIntersecting;
+        mbarSync();
+      }, { threshold: 0.12 });
+      mbarBookIO.observe(bookSection);
+    }
+  }
+
   /* ---- v28: the submit button charges as required fields fill ---- */
   var form = document.getElementById("consult-form");
   var submitBtn = form && form.querySelector(".form__submit");
@@ -545,33 +609,8 @@
     }
   }
 
-  /* ---- Floating channel stack (SMS / Messenger / WhatsApp):
-     enters after the hero, WhatsApp nudges rarely ---- */
-  var fab = document.getElementById("fab-stack");
-  var heroEl = document.querySelector(".hero");
-  if (fab && heroEl) {
-    var fabShown = false;
-    var fabCheck = function () {
-      var on = window.scrollY > heroEl.offsetHeight * 0.6;
-      if (on !== fabShown) {
-        fabShown = on;
-        fab.classList.toggle("is-on", on);
-      }
-    };
-    fabCheck();
-    window.addEventListener("scroll", fabCheck, { passive: true });
-    var fabNudge = fab.querySelector(".fab--wa");
-    if (!prefersReduced && fabNudge) {
-      /* two rings total, then quiet: recurring attention motion must stay rare */
-      var fabNudges = 0;
-      var fabNudgeTimer = setInterval(function () {
-        if (!fabShown || document.hidden) return;
-        fabNudge.classList.add("is-nudge");
-        if (++fabNudges >= 2) clearInterval(fabNudgeTimer);
-      }, 15000);
-      fabNudge.addEventListener("animationend", function () { fabNudge.classList.remove("is-nudge"); });
-    }
-  }
+  /* v44: the floating FAB stack is retired - the .mbar quick-contact bar
+     (wired above) carries the same three channels with labels. */
 
   /* ---- Gallery lightbox: an accessible modal dialog ----
      Keyboard: Enter/Space opens a photo, Esc closes, arrows page through, Tab is
