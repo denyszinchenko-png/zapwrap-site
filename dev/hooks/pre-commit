@@ -1,0 +1,35 @@
+#!/bin/sh
+# Zap Wrap site guard. Enable once per clone with:
+#   git config core.hooksPath dev/hooks
+#
+# 1. es/ ru/ uk/ he/ and sitemap.xml are BUILD OUTPUT of dev/build-i18n.js.
+#    Whenever their sources are in the commit, regenerate and stage them, so
+#    the language pages can never drift from index.html / i18n.js.
+# 2. Hand-edits to the generated pages (without touching a source) are blocked.
+# 3. Fail fast on JS syntax errors before anything ships.
+
+set -e
+cd "$(git rev-parse --show-toplevel)"
+
+staged="$(git diff --cached --name-only)"
+src_re='^(index\.html|i18n\.js|dev/build-i18n\.js)$'
+gen_re='^((es|ru|uk|he)/index\.html|sitemap\.xml)$'
+
+if printf '%s\n' "$staged" | grep -qE "$gen_re" && \
+   ! printf '%s\n' "$staged" | grep -qE "$src_re"; then
+  echo "[pre-commit] BLOCKED: es/ ru/ uk/ he/ and sitemap.xml are generated." >&2
+  echo "[pre-commit] Edit index.html or i18n.js, then run: node dev/build-i18n.js" >&2
+  exit 1
+fi
+
+if printf '%s\n' "$staged" | grep -qE "$src_re"; then
+  echo "[pre-commit] sources changed - rebuilding language pages"
+  node dev/build-i18n.js
+  git add es/index.html ru/index.html uk/index.html he/index.html sitemap.xml
+fi
+
+for f in app.js i18n.js dev/build-i18n.js dev/rebuild-masks.js; do
+  [ -f "$f" ] && node --check "$f" >/dev/null
+done
+
+echo "[pre-commit] OK"
