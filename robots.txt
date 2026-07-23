@@ -1,5 +1,22 @@
+# AI crawlers named explicitly: this studio wants to be findable in AI answers.
+# A specific group overrides the wildcard entirely, so /dev/ is repeated.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: FacebookBot
+User-agent: Amazonbot
+Allow: /
+Disallow: /dev/
+
 User-agent: *
 Allow: /
 Disallow: /dev/
+
+Content-Signal: search=yes, ai-retrieval=yes, ai-train=yes
 
 Sitemap: https://zapwrapnaples.com/sitemap.xml
