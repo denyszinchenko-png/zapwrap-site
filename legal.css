@@ -21,7 +21,8 @@
 
 .legal__h {
   font-family: var(--font-display);
-  font-weight: 400;
+  /* 400 was tuned for the retired Anton face; Montserrat display runs 800 */
+  font-weight: 800;
   font-size: var(--text-h2);
   line-height: 1.02;
   text-transform: uppercase;
@@ -51,7 +52,7 @@
 
 .legal__body h2 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: var(--text-h3);
   line-height: 1.1;
   text-transform: uppercase;
