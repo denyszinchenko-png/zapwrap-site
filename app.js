@@ -264,7 +264,10 @@
       userFlips++;
       if (userFlips >= 2 && filmCta && filmCta.hidden) {
         filmCta.hidden = false;
-        requestAnimationFrame(function () { filmCta.classList.add("is-in"); });
+        /* commit the hidden->shown style before the class flips, or the
+           420ms entrance collapses into a snap (rAF alone races the recalc) */
+        void filmCta.offsetWidth;
+        filmCta.classList.add("is-in");
       }
     }, { capture: true });
   });
@@ -488,7 +491,7 @@
      until analytics can judge a real split) ---- */
   var HEADLINES = {
     b: ["Stop repainting", "your car. <em>Wrap</em>", "it instead."],
-    c: ["Factory paint.", "<em>New</em> color.", "5 days flat."]
+    c: ["Factory paint.", "<em>New</em> color.", "3 to 5 days."]
   };
   var hlKey = (location.search.match(/[?&]hl=([bc])/) || [])[1];
   var langNow = null;
@@ -531,7 +534,8 @@
         document.removeEventListener("mouseout", onExit);
         if (exitStore) exitStore.setItem("zw-exit", "1");
         exitbar.hidden = false;
-        requestAnimationFrame(function () { exitbar.classList.add("is-in"); });
+        void exitbar.offsetWidth;
+        exitbar.classList.add("is-in");
       };
       document.addEventListener("mouseout", onExit);
       exitbar.querySelector(".exitbar__close").addEventListener("click", function () {
@@ -558,9 +562,12 @@
     window.addEventListener("scroll", fabCheck, { passive: true });
     var fabNudge = fab.querySelector(".fab--wa");
     if (!prefersReduced && fabNudge) {
-      setInterval(function () {
+      /* two rings total, then quiet: recurring attention motion must stay rare */
+      var fabNudges = 0;
+      var fabNudgeTimer = setInterval(function () {
         if (!fabShown || document.hidden) return;
         fabNudge.classList.add("is-nudge");
+        if (++fabNudges >= 2) clearInterval(fabNudgeTimer);
       }, 15000);
       fabNudge.addEventListener("animationend", function () { fabNudge.classList.remove("is-nudge"); });
     }

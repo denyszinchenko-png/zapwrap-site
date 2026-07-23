@@ -67,6 +67,9 @@
 
   /* ---- z-index scale ---- */
   --z-nav: 100;
+
+  /* dark-only site: native scrollbars, autofill and select chrome must match */
+  color-scheme: dark;
 }
 
 /* ---------- Reset / base ---------- */
@@ -163,7 +166,10 @@ p { text-wrap: pretty; }
               color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
 }
 .btn--solid { background: var(--yellow); color: var(--yellow-ink); }
-.btn--solid:hover { transform: translateY(-2px); background: oklch(0.905 0.16 101); }
+/* pointer-only: a tap must not leave a sticky lift behind; press feedback is :active */
+@media (hover: hover) and (pointer: fine) {
+  .btn--solid:hover { transform: translateY(-2px); background: oklch(0.905 0.16 101); }
+}
 .btn--ghost { border-color: var(--line); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--yellow); color: var(--yellow); }
 .btn:focus-visible, a:focus-visible, .fsw:focus-visible, summary:focus-visible {
@@ -723,12 +729,14 @@ p { text-wrap: pretty; }
   cursor: pointer;
   transition: border-color var(--dur-1) var(--ease);
 }
-.car-select:hover, .car-select:focus-visible { border-color: var(--yellow); outline: none; }
+.car-select:hover { border-color: var(--yellow); }
+.car-select:focus-visible { border-color: var(--yellow); outline: 2px solid var(--yellow); outline-offset: 2px; }
 .car-select option, .car-select optgroup { background: #141416; color: var(--ink); }
 
 /* "Pick your car" in its own slot above the car: prominent, and it can
    never collide with a tall body (4Runner/Sprinter roofs reach the top) */
 .car__picker {
+  position: relative;
   order: 1;
   align-self: flex-end;
   margin: 0 0 0.7rem;
@@ -751,20 +759,31 @@ p { text-wrap: pretty; }
   color: var(--yellow);
 }
 .car__picker .car-select { background-color: rgba(20, 20, 22, 0.9); min-width: 13rem; }
-@keyframes pickerpulse {
-  0%, 100% { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 214, 0, 0.45); }
-  50% { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 12px rgba(255, 214, 0, 0); }
+/* attention ring: compositor-only scale+fade on a ::after, three beats then
+   rest - the old box-shadow pulse repainted the hero card forever */
+.car__picker::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 2px solid rgba(255, 214, 0, 0.45);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
 }
-.car__picker.is-idle { animation: pickerpulse 2.4s var(--ease) infinite; }
-/* staged entrance, then the pulse takes over (0.7s in) */
+@keyframes pickerring {
+  from { opacity: 0.5; transform: scale(1); }
+  to   { opacity: 0;   transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .car__picker.is-idle::after { animation: pickerring 2.4s var(--ease-in-out) 3; }
+  .car__picker.is-entering::after { animation: pickerring 2.4s var(--ease-in-out) 700ms 3; }
+}
+/* staged entrance (same beat as before; the ring runs on the ::after) */
 @keyframes pickerin {
   from { opacity: 0; transform: translateY(-12px) scale(0.94); }
   to { opacity: 1; transform: none; }
 }
-.car__picker.is-entering {
-  animation: pickerin 600ms var(--ease) both,
-             pickerpulse 2.4s var(--ease) 700ms infinite;
-}
+.car__picker.is-entering { animation: pickerin 600ms var(--ease) both; }
 /* yellow underline sweep under both control labels */
 .car__picker-label, .filmbar__label { position: relative; }
 @keyframes labelsweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -858,7 +877,9 @@ p { text-wrap: pretty; }
 .films__tab--pearl  { --tf: var(--f-pearl); }
 .films__tab--carbon { --tf: var(--f-carbon); }
 .films__tab--neon   { --tf: var(--f-neongreen); }
-.films__tab:hover { color: var(--ink); border-color: oklch(1 0 0 / 0.32); transform: translateY(-1px); }
+@media (hover: hover) and (pointer: fine) {
+  .films__tab:hover { color: var(--ink); border-color: oklch(1 0 0 / 0.32); transform: translateY(-1px); }
+}
 .films__tab:active { transform: scale(0.96); }
 .films__tab[aria-selected="true"] {
   color: var(--yellow-ink);
@@ -951,7 +972,6 @@ p { text-wrap: pretty; }
   translate: -85% 0;
   transition: translate 640ms var(--ease-out);
 }
-.fsw:hover .fsw__paint::after,
 .fsw:focus-visible .fsw__paint::after { translate: 85% 0; }
 
 .fsw__name {
@@ -964,7 +984,9 @@ p { text-wrap: pretty; }
 }
 .fsw__code {
   padding: 0.1rem 0.55rem 0.45rem;
-  font-size: 0.6rem;
+  /* the real 3M/Avery code is the credibility layer - 0.6rem was squint
+     material for the 28-55 audience; contrast was never the problem */
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.07em;
   color: var(--muted);
@@ -988,7 +1010,10 @@ p { text-wrap: pretty; }
   transform: scale(0);
   transition: transform var(--dur-3) var(--ease-spring);
 }
-.fsw:hover { border-color: oklch(1 0 0 / 0.32); color: var(--ink); transform: translateY(-3px); }
+@media (hover: hover) and (pointer: fine) {
+  .fsw:hover { border-color: oklch(1 0 0 / 0.32); color: var(--ink); transform: translateY(-3px); }
+  .fsw:hover .fsw__paint::after { translate: 85% 0; }
+}
 .fsw:active { transform: scale(0.975); }
 .fsw.is-active { border-color: var(--yellow); background: oklch(0.22 0 0 / 0.7); }
 .fsw.is-active .fsw__name { color: var(--ink); }
@@ -1162,7 +1187,7 @@ p { text-wrap: pretty; }
 }
 .svc__tag {
   vertical-align: middle;
-  margin-left: 0.5rem;
+  margin-inline-start: 0.5rem;
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 700;
@@ -1226,9 +1251,7 @@ p { text-wrap: pretty; }
   padding: 0.9rem 1rem;
   border: 1px solid var(--line-soft);
   overflow: hidden;
-  transition: transform var(--dur-3) var(--ease);
 }
-.swatch:hover { transform: translateY(-4px); }
 .swatch span {
   position: relative;
   z-index: 1;
@@ -1364,6 +1387,12 @@ input, select, textarea {
 }
 input::placeholder, textarea::placeholder { color: var(--muted); }
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--yellow); }
+/* keyboard focus gets the house outline, same grammar as buttons/links;
+   a 1px border tint alone is too weak an indicator on the near-black form */
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
 select:invalid { color: var(--muted); }
 textarea { resize: vertical; min-height: 5.5em; }
 
@@ -1395,6 +1424,12 @@ textarea { resize: vertical; min-height: 5.5em; }
 @media (prefers-reduced-motion: no-preference) {
   .will-reveal { opacity: 0.001; translate: 0 30px; }
   .reveal { transition: opacity var(--dur) var(--ease), translate var(--dur) var(--ease); }
+  /* transition declarations replace, never merge: without this line the
+     .reveal rule above clobbers the service-row hover wash (styles v28 bug) */
+  .svc__row.reveal {
+    transition: background-color var(--dur-3) var(--ease),
+                opacity var(--dur) var(--ease), translate var(--dur) var(--ease);
+  }
 }
 
 
@@ -1415,7 +1450,8 @@ textarea { resize: vertical; min-height: 5.5em; }
   cursor: pointer;
   transition: border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
 }
-.lang-select:hover, .lang-select:focus-visible { border-color: var(--yellow); color: var(--ink); outline: none; }
+.lang-select:hover { border-color: var(--yellow); color: var(--ink); }
+.lang-select:focus-visible { border-color: var(--yellow); color: var(--ink); outline: 2px solid var(--yellow); outline-offset: 2px; }
 .lang-select option { background: #141416; color: var(--ink); }
 @media (max-width: 720px) {
   .lang-select { margin-left: auto; margin-right: 0.6rem; }
@@ -1429,11 +1465,21 @@ textarea { resize: vertical; min-height: 5.5em; }
 }
 [dir="rtl"] .hero__h, [dir="rtl"] .hero__sub, [dir="rtl"] .hero__intro { text-align: right; }
 [dir="rtl"] .section__h .dot { display: none; }
+/* the service-row hover nudge must follow the reading direction */
+[dir="rtl"] .svc__row:hover .svc__name,
+[dir="rtl"] .svc__row:hover .svc__desc { transform: translateX(-0.6rem); }
 .lang-select { width: auto; flex: 0 0 auto; }
 @media (max-width: 480px) {
   .brand__loc { display: none; }
-  .nav__cta { font-size: 0.85rem; padding: 0.6em 0.9em; }
+  .nav__cta { font-size: 0.85rem; padding: 0.6em 0.9em; white-space: nowrap; }
   .lang-select { padding: 0.45em 0.7em; font-size: 0.8rem; margin-right: 0.45rem; }
+}
+/* 375px audit: the bar overflowed the viewport by ~5px (clipped burger,
+   horizontal jiggle) - shave the fixed costs, never wrap the CTA */
+@media (max-width: 400px) {
+  .nav { gap: 0.8rem; padding-inline: 0.7rem; }
+  .brand__word { font-size: 1.1rem; }
+  .nav__cta { padding: 0.6em 0.75em; }
 }
 
 /* ---------- Film-name toast on the car ---------- */
@@ -1691,7 +1737,9 @@ textarea { resize: vertical; min-height: 5.5em; }
   cursor: pointer;
 }
 .swatch__btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
-.swatch:has(.swatch__btn:hover) { translate: 0 -4px; }
+@media (hover: hover) and (pointer: fine) {
+  .swatch:has(.swatch__btn:hover) { translate: 0 -4px; }
+}
 .swatch { transition: translate var(--dur-2) var(--ease); }
 
 /* 5) try-this-color bridge from the build */
@@ -1864,6 +1912,10 @@ textarea { resize: vertical; min-height: 5.5em; }
     align-items: center;
     padding-bottom: clamp(1.5rem, 2vw, 3rem);
   }
+  /* The split grid hands the headline a ~530px column; the stacked-layout
+     6rem cap breaks the 3-line lockup into 6 lines and shoves the CTA below
+     the fold. Re-clamp to what the column actually holds. */
+  .hero__h { font-size: clamp(3rem, 1.1rem + 3.3vw, 4.6rem); }
   .hero__car { margin-top: 0; min-width: 0; }
   /* primary CTA takes its own row; the contact trio reads as one row below it */
   .hero__actions { max-width: 34rem; }
@@ -1887,7 +1939,9 @@ textarea { resize: vertical; min-height: 5.5em; }
               border-color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
 }
 .icon-btn svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
-.icon-btn:hover { transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover { transform: translateY(-2px); }
+}
 .icon-btn:active { transform: scale(0.94); }
 .icon-btn--sms:hover  { color: #34c759; border-color: #34c759; }
 .icon-btn--msgr:hover { color: #0084ff; border-color: #0084ff; }
@@ -1900,7 +1954,9 @@ textarea { resize: vertical; min-height: 5.5em; }
   color: var(--ink);
   background: oklch(0.17 0.005 260 / 0.85);
 }
-.btn--film:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) {
+  .btn--film:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+}
 .btn--film:active { transform: scale(0.97); }
 .btn__swatch {
   flex: none;
