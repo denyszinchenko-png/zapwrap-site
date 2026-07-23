@@ -112,6 +112,10 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
+  /* clip, not hidden: kills the sideways jiggle from off-canvas entrance
+     states (hero car starts translated 60px right) without creating a
+     scroll container, so the sticky nav keeps working */
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
@@ -1507,12 +1511,17 @@ textarea { resize: vertical; min-height: 5.5em; }
   .nav__cta { font-size: 0.85rem; padding: 0.6em 0.9em; white-space: nowrap; }
   .lang-select { padding: 0.45em 0.7em; font-size: 0.8rem; margin-right: 0.45rem; }
 }
-/* 375px audit: the bar overflowed the viewport by ~5px (clipped burger,
-   horizontal jiggle) - shave the fixed costs, never wrap the CTA */
+/* 375px audit: brand + lang + CTA + burger cost ~415px - shave every fixed
+   cost so the burger stops hanging off the edge; never wrap the CTA */
 @media (max-width: 400px) {
-  .nav { gap: 0.8rem; padding-inline: 0.7rem; }
-  .brand__word { font-size: 1.1rem; }
-  .nav__cta { padding: 0.6em 0.75em; }
+  .nav { gap: 0.5rem; padding-inline: 0.6rem; }
+  .brand__word { font-size: 1rem; }
+  .nav__cta { font-size: 0.8rem; padding: 0.6em 0.7em; }
+  .nav__burger { margin-left: 0; }
+}
+/* smallest phones: the bolt alone is the brand - the word costs 100px */
+@media (max-width: 352px) {
+  .brand__word, .brand__loc { display: none; }
 }
 
 /* ---------- Film-name toast on the car ---------- */
@@ -1948,7 +1957,9 @@ textarea { resize: vertical; min-height: 5.5em; }
   /* The split grid hands the headline a ~530px column; the stacked-layout
      6rem cap breaks the 3-line lockup into 6 lines and shoves the CTA below
      the fold. Re-clamp to what the column actually holds. */
-  .hero__h { font-size: clamp(3rem, 1.1rem + 3.3vw, 4.6rem); }
+  /* cap must respect the fixed --maxw column: past ~1470px the column stops
+     growing, so the type must too, or "wrap studio" breaks the lockup */
+  .hero__h { font-size: clamp(3rem, 1rem + 3.05vw, 3.8rem); }
   .hero__car { margin-top: 0; min-width: 0; }
   /* primary CTA takes its own row; the contact trio reads as one row below it */
   .hero__actions { max-width: 34rem; }
