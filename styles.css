@@ -2001,6 +2001,17 @@ textarea { resize: vertical; min-height: 5.5em; }
 }
 .btn__swatch--graphite { background: linear-gradient(135deg, #43464c, #17181b 72%); }
 
+/* entity statement: quiet, quotable, closes the page for humans and machines */
+.book__entity {
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 78ch;
+}
+
 /* v33: what-happens-next steps under the consult form */
 .book__next {
   list-style: none;

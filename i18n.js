@@ -15,7 +15,7 @@
       "nav.work": "Trabajos", "nav.services": "Servicios", "nav.finishes": "Acabados", "nav.faq": "FAQ",
       "footer.privacy": "Política de Privacidad", "footer.terms": "Términos del Servicio",
       "nav.cta": "Reservar consulta", "nav.call": "Llamar al estudio",
-      "hero.intro": "Estudio de vinilo &middot; Naples, Florida",
+      "hero.intro": "Estudio solo-vinilo &middot; 8 a&ntilde;os instalando &middot; 5.0 en Google",
       "hero.l1": "El estudio", "hero.l2": "de <em>wraps</em>", "hero.l3": "de Naples",
       "hero.sub": "Cambio de color completo, chrome delete, gr&aacute;ficos a medida. El vinilo es todo nuestro trabajo, no una l&iacute;nea del men&uacute;. No shortcuts.",
       "hero.book": "Reservar consulta <span aria-hidden=\"true\">&rarr;</span>",
@@ -47,18 +47,18 @@
       "cta.like": "&iquest;Te gusta este color? M&iacute;ralo en tu auto:",
       "cta.link": "Escr&iacute;benos por WhatsApp",
       "rev.h": "Calificaci&oacute;n 5.0 en Google",
-      "rev.lead": "Los conductores de Naples califican el trabajo, no los anuncios. Cada rese&ntilde;a es p&uacute;blica y verificada por Google.",
+      "rev.lead": "Los conductores de Naples califican el trabajo, no los anuncios. Cada rese&ntilde;a es p&uacute;blica en Google: l&eacute;elas todas antes de llamar.",
       "rev.link": "Lee las rese&ntilde;as en Google",
       "try.build": "Mira este gris oscuro mate en tu auto <span aria-hidden=\"true\">&rarr;</span>",
       "ba.cap": "Arrastra la l&iacute;nea: de blanco f&aacute;brica a gris oscuro mate",
       "ba.before": "F&aacute;brica", "ba.after": "Con wrap",
       "exit.msg": "Ll&eacute;vate tu color: recibe los c&oacute;digos exactos de 3M y Avery por WhatsApp",
       "exit.link": "Escribe al estudio",
-      "build.h": "&Uacute;ltimo proyecto<span class=\"dot\">.</span>",
+      "build.h": "&Uacute;ltimo wrap<span class=\"dot\">.</span>",
       "build.lead": "BMW X6 M Competition 2026: cambio de color completo, de blanco f&aacute;brica a gris oscuro mate. Cada esquina, curva y borde envuelto, con paneles desmontados donde el borde lo exig&iacute;a.",
       "build.credit": "Instalado por Zap Wrap para Studio Design USA &middot; Fotos: Angel Enrique Hernandez",
-      "svc.h": "Qu&eacute; hacemos<span class=\"dot\">.</span>",
-      "svc.lead": "Una especializaci&oacute;n, al nivel de los ex&oacute;ticos. El cer&aacute;mico es un sellado que aplicamos sobre un wrap terminado, nunca un servicio aparte. Si no es vinilo, no est&aacute; en el men&uacute;.",
+      "svc.h": "Wraps de auto en Naples<span class=\"dot\">.</span>",
+      "svc.lead": "Una especializaci&oacute;n: wraps de vinilo para autos, al nivel de los ex&oacute;ticos. El cer&aacute;mico es un sellado que aplicamos sobre un wrap terminado, nunca un servicio aparte. Si no es vinilo, no est&aacute; en el men&uacute;.",
       "svc.full": "Cambio de color completo",
       "svc.full.d": "Satinado, brillante, met&aacute;lico, color-shift. La pintura de f&aacute;brica queda sellada debajo, intacta. 3 a 5 d&iacute;as en el taller.",
       "svc.chrome": "Chrome delete",
@@ -94,7 +94,7 @@
       "proc.3.d": "3 a 5 d&iacute;as en el taller. Desmontamos paneles donde el borde lo exige. Eso es lo de no shortcuts.",
       "proc.4.t": "Sellado y entrega",
       "proc.4.d": "Capa cer&aacute;mica opcional sobre el vinilo, gu&iacute;a de cuidado en mano y foto de revelado con luz de estudio.",
-      "faq.h": "Respuestas directas<span class=\"dot\">.</span>",
+      "faq.h": "Preguntas sobre wraps, respuestas directas<span class=\"dot\">.</span>",
       "faq.1.q": "&iquest;El wrap da&ntilde;a mi pintura?",
       "faq.1.a": "Al contrario. El vinilo protege la pintura de f&aacute;brica del sol, la arena y las piedras, y un retiro profesional la deja como la encontramos. Por eso los autos con wrap se revenden bien.",
       "faq.2.q": "&iquest;Cu&aacute;nto dura un wrap?",
@@ -111,6 +111,10 @@
       "faq.7.a": "Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal: l&iacute;neas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la gu&iacute;a de cuidado de ese vinilo exacto.",
       "faq.8.q": "&iquest;D&oacute;nde est&aacute; el estudio?",
       "faq.8.a": "Naples, Florida, con cita previa. Nos llegan autos desde Bonita Springs, Marco Island, Fort Myers y Cape Coral: un wrap bien hecho vale el viaje.",
+      "faq.9.q": "&iquest;Trabajan ex&oacute;ticos y superautos?",
+      "faq.9.a": "Los ex&oacute;ticos son la especialidad del estudio: por eso existe Zap Wrap Naples. Defensas bajas, paneles de carbono, sensores y aerodin&aacute;mica compleja cambian c&oacute;mo se debe forrar un auto, as&iacute; que los ex&oacute;ticos se hacen con paneles desmontados y el vinilo trazado sobre la carrocer&iacute;a exacta antes de cortar. Trae el auto a la consulta y mira el trazado primero.",
+      "faq.10.q": "&iquest;Cu&aacute;nto tarda un wrap?",
+      "faq.10.a": "Un cambio de color completo toma de 3 a 5 d&iacute;as en el taller. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotizaci&oacute;n en la consulta.",
       "book.h": "Tr&aacute;enos el auto<span class=\"dot\">.</span>",
       "book.lead": "Las consultas son en el estudio y sin presi&oacute;n. Entra con un c&oacute;digo de pintura y sal sabiendo exactamente c&oacute;mo se ver&aacute; tu wrap. Env&iacute;a los datos y respondemos en un d&iacute;a h&aacute;bil.",
       "book.call": "Llamar", "book.msg": "Escribir al estudio", "book.msg2": "Escribir al estudio",
@@ -126,7 +130,11 @@
       "f.o5": "Comercial / flota", "f.o6": "Sellado cer&aacute;mico extra", "f.o7": "A&uacute;n no s&eacute; - aconséjame",
       "f.submit": "Pedir mi consulta <span aria-hidden=\"true\">&rarr;</span>",
       "f.fine": "Sin spam. Tus datos solo llegan al estudio.",
-      "book.next.1": "Tus datos llegan directo al estudio: respondemos en un d&iacute;a h&aacute;bil.",
+      "book.next.1": "Tu solicitud se abre en WhatsApp ya escrita: rev&iacute;sala, toca enviar y llega al estudio. Respondemos en un d&iacute;a h&aacute;bil.",
+      "f.alt": "&iquest;Sin WhatsApp? <a href=\"tel:+13527790041\">Llama al (352) 779-0041</a> o <a href=\"sms:+13527790041\">escribe al estudio</a> con los mismos datos.",
+      "book.entity": "Zap Wrap Naples es un estudio de wraps de vinilo en Naples, Florida: el estudio de wraps ex&oacute;ticos de Naples. Instalamos cambios de color completos, chrome deletes, wraps parciales, gr&aacute;ficos a medida y wraps de flotas comerciales para conductores de Naples, Bonita Springs, Marco Island, Fort Myers y Cape Coral. Es un estudio de due&ntilde;o-instalador: quien cotiza tu auto tiene 8 a&ntilde;os de experiencia profesional y lo forra &eacute;l mismo. El vinilo es el &uacute;nico oficio; el cer&aacute;mico se ofrece solo como sellado final sobre un wrap nuevo. No shortcuts.",
+      "meta.title": "Car Wraps en Naples FL | Cambio de Color y Chrome Delete | Zap Wrap",
+      "meta.desc": "Estudio de car wraps en Naples FL: cambios de color completos, chrome deletes y wraps de flotas. Especialistas en vinilo para Naples, Bonita Springs y Marco Island. No shortcuts.",
       "book.next.2": "Consulta de 15 minutos: tu auto, muestras reales de vinilo, sin rodeos.",
       "book.next.3": "Sales con la cotizaci&oacute;n exacta y tu turno de instalaci&oacute;n.",
     },
@@ -136,7 +144,7 @@
       "nav.work": "Работы", "nav.services": "Услуги", "nav.finishes": "Финиши", "nav.faq": "Вопросы",
       "footer.privacy": "Политика конфиденциальности", "footer.terms": "Условия использования",
       "nav.cta": "Записаться", "nav.call": "Позвонить в студию",
-      "hero.intro": "Студия винилового врапа &middot; Нейплс, Флорида",
+      "hero.intro": "Только винил &middot; 8 лет в оклейке &middot; 5.0 на Google",
       "hero.l1": "Экзотик-", "hero.l2": "<em>врап</em> студия", "hero.l3": "Нейплса",
       "hero.sub": "Полная смена цвета, chrome delete, кастомная графика. Винил - вся наша работа, а не строчка в меню. No shortcuts.",
       "hero.book": "Записаться на консульт <span aria-hidden=\"true\">&rarr;</span>",
@@ -168,18 +176,18 @@
       "cta.like": "Нравится цвет? Посмотри его на своей машине:",
       "cta.link": "Напиши нам в WhatsApp",
       "rev.h": "Оценка 5.0 в Google",
-      "rev.lead": "Водители Нейплса оценивают работу, а не рекламу. Каждый отзыв публичный и проверен Google.",
+      "rev.lead": "Водители Нейплса оценивают работу, а не рекламу. Каждый отзыв публичный, на Google: прочитай все перед звонком.",
       "rev.link": "Читать отзывы в Google",
       "try.build": "Посмотри этот тёмно-серый мат на своей машине <span aria-hidden=\"true\">&rarr;</span>",
       "ba.cap": "Потяни линию: заводской белый - тёмно-серый мат",
       "ba.before": "Завод", "ba.after": "В плёнке",
       "exit.msg": "Забери свой цвет: точные коды 3M и Avery в WhatsApp",
       "exit.link": "Написать студии",
-      "build.h": "Свежая работа<span class=\"dot\">.</span>",
+      "build.h": "Свежая оклейка<span class=\"dot\">.</span>",
       "build.lead": "BMW X6 M Competition 2026: полная смена цвета, с заводского белого в тёмно-серый мат. Каждый угол, изгиб и кромка оклеены, панели сняты там, где этого требовала кромка.",
       "build.credit": "Установка: Zap Wrap для Studio Design USA &middot; Фото: Angel Enrique Hernandez",
-      "svc.h": "Что мы делаем<span class=\"dot\">.</span>",
-      "svc.lead": "Одна специализация - на уровне экзотиков. Керамика - это финишное покрытие поверх готового врапа, никогда не отдельная услуга. Если это не винил, этого нет в меню.",
+      "svc.h": "Оклейка авто в Нейплсе<span class=\"dot\">.</span>",
+      "svc.lead": "Одна специализация: виниловая оклейка авто на уровне экзотиков. Керамика - это финишное покрытие поверх готового врапа, никогда не отдельная услуга. Если это не винил, этого нет в меню.",
       "svc.full": "Полная смена цвета",
       "svc.full.d": "Сатин, глянец, металлик, хамелеон. Заводская краска запечатана под плёнкой и остаётся нетронутой. 3-5 дней в боксе.",
       "svc.chrome": "Chrome delete",
@@ -189,7 +197,7 @@
       "svc.graphics": "Графика и леттеринг",
       "svc.graphics.d": "Полосы, ливреи, декали - режем и клеим сами, в студии.",
       "svc.fleet": "Коммерческий транспорт",
-      "svc.fleet.d": "Оклеенный вэн - это билборд, который у твоего бизнеса уже есть. Печать, резка, установка - и так по всему флиту.",
+      "svc.fleet.d": "Оклеенный вэн - это билборд, который у твоего бизнеса уже есть. Печать, резка, установка - и так по всему автопарку.",
       "svc.ceramic": "Керамика <span class=\"svc__tag\">финиш</span>",
       "svc.ceramic.d": "Керамический слой поверх свежей плёнки: легче мойка, глубже финиш. Только поверх врапа.",
       "svc.quote": "Каждый проект считаем лично: приезжай на машине или с кодом краски - уедешь с точной цифрой. <a href=\"#book\">Записаться на консульт</a>",
@@ -215,7 +223,7 @@
       "proc.3.d": "3-5 дней в боксе. Панели снимаем там, где этого требует кромка. Это и есть no shortcuts.",
       "proc.4.t": "Финиш и выдача",
       "proc.4.d": "Опциональная керамика поверх плёнки, гайд по уходу на руки, кадр ревила в студийном свете.",
-      "faq.h": "Прямые ответы<span class=\"dot\">.</span>",
+      "faq.h": "Вопросы об оклейке, прямые ответы<span class=\"dot\">.</span>",
       "faq.1.q": "Плёнка испортит краску?",
       "faq.1.a": "Наоборот. Плёнка защищает заводское ЛКП от солнца, песка и сколов, а профессиональный демонтаж оставляет краску такой, какой мы её нашли. Поэтому оклеенные машины хорошо продаются.",
       "faq.2.q": "Сколько живёт врап?",
@@ -232,6 +240,10 @@
       "faq.7.a": "Работаем с полными каталогами 3M, Avery Dennison, KPMF, Hexis и Oracal: линейки с заводской поддержкой, никаких no-name рулонов. Финиш выбираешь по живым образцам на консультации, а с машиной отдаём гайд по уходу именно за этой плёнкой.",
       "faq.8.q": "Где находится студия?",
       "faq.8.a": "Naples, Флорида, по записи. К нам едут из Bonita Springs, Marco Island, Fort Myers и Cape Coral: правильная оклейка стоит дороги.",
+      "faq.9.q": "Оклеиваете экзотики и суперкары?",
+      "faq.9.a": "Экзотики - специализация студии: ради них Zap Wrap Naples и существует. Низкие бамперы, карбоновые панели, датчики и сложная аэродинамика меняют сам подход к оклейке, поэтому экзотики клеятся со снятием панелей, а плёнка выкраивается по конкретному кузову до первого реза. Приезжай на консультацию и посмотри раскрой первым.",
+      "faq.10.q": "Сколько занимает оклейка?",
+      "faq.10.a": "Полная смена цвета - 3-5 дней в боксе. Chrome delete и крыша или капот - быстрее. Точные сроки получишь вместе со сметой на консультации в студии.",
       "book.h": "Привози машину<span class=\"dot\">.</span>",
       "book.lead": "Консультации - в студии и без давления. Заходишь с кодом краски - выходишь, точно зная, как будет выглядеть твой врап. Отправь данные, ответим в течение рабочего дня.",
       "book.call": "Телефон", "book.msg": "Написать студии", "book.msg2": "Написать студии",
@@ -244,10 +256,14 @@
       "ph.notes": "Идеи финиша, сроки, код краски...",
       "f.choose": "Выбери услугу", "f.o1": "Полная смена цвета", "f.o2": "Chrome delete",
       "f.o3": "Частичная оклейка / крыша / капот", "f.o4": "Графика / леттеринг",
-      "f.o5": "Коммерческий / флит", "f.o6": "Керамика (финиш)", "f.o7": "Пока не знаю - посоветуйте",
+      "f.o5": "Коммерческий / автопарк", "f.o6": "Керамика (финиш)", "f.o7": "Пока не знаю - посоветуйте",
       "f.submit": "Запросить консульт <span aria-hidden=\"true\">&rarr;</span>",
       "f.fine": "Без спама. Твои данные попадают только в студию.",
-      "book.next.1": "Заявка попадает прямо в студию: отвечаем в течение рабочего дня.",
+      "book.next.1": "Заявка открывается в WhatsApp уже заполненной: проверь, нажми отправить, и она в студии. Отвечаем в течение рабочего дня.",
+      "f.alt": "Нет WhatsApp? <a href=\"tel:+13527790041\">Позвони (352) 779-0041</a> или <a href=\"sms:+13527790041\">напиши SMS</a> с теми же данными.",
+      "book.entity": "Zap Wrap Naples - студия виниловой оклейки в Нейплсе, Флорида: студия экзотик-врапа Нейплса. Делаем полную смену цвета, chrome delete, частичную оклейку, кастомную графику и оклейку коммерческих автопарков для водителей Нейплса, Bonita Springs, Marco Island, Fort Myers и Cape Coral. Студия работает от владельца: тот, кто считает смету, имеет 8 лет профессионального опыта и клеит сам. Винил - единственное ремесло; керамика предлагается только как финишное покрытие поверх новой оклейки. No shortcuts.",
+      "meta.title": "Оклейка авто в Нейплсе, Флорида | Смена цвета и Chrome Delete | Zap Wrap",
+      "meta.desc": "Студия виниловой оклейки в Нейплсе, Флорида: полная смена цвета, chrome delete, оклейка автопарков. Специалисты по винилу: Нейплс, Bonita Springs, Marco Island. No shortcuts.",
       "book.next.2": "15 минут консультации: твоя машина, живые образцы плёнки, разговор по делу.",
       "book.next.3": "Уезжаешь с точной ценой и слотом на оклейку.",
     },
@@ -257,7 +273,7 @@
       "nav.work": "Роботи", "nav.services": "Послуги", "nav.finishes": "Фініші", "nav.faq": "Питання",
       "footer.privacy": "Політика конфіденційності", "footer.terms": "Умови використання",
       "nav.cta": "Записатися", "nav.call": "Зателефонувати",
-      "hero.intro": "Студія вінілового врапу &middot; Нейплс, Флорида",
+      "hero.intro": "Тільки вініл &middot; 8 років в обклейці &middot; 5.0 на Google",
       "hero.l1": "Екзотик-", "hero.l2": "<em>врап</em> студія", "hero.l3": "Нейплса",
       "hero.sub": "Повна зміна кольору, chrome delete, кастомна графіка. Вініл - вся наша робота, а не рядок у меню. No shortcuts.",
       "hero.book": "Записатися на консульт <span aria-hidden=\"true\">&rarr;</span>",
@@ -289,18 +305,18 @@
       "cta.like": "Подобається колір? Поглянь на своїй автівці:",
       "cta.link": "Напиши нам у WhatsApp",
       "rev.h": "Оцінка 5.0 у Google",
-      "rev.lead": "Водії Нейплза оцінюють роботу, а не рекламу. Кожен відгук публічний і перевірений Google.",
+      "rev.lead": "Водії Нейплса оцінюють роботу, а не рекламу. Кожен відгук публічний, на Google: прочитай усі перед дзвінком.",
       "rev.link": "Читати відгуки в Google",
       "try.build": "Поглянь цей темно-сірий мат на своїй автівці <span aria-hidden=\"true\">&rarr;</span>",
       "ba.cap": "Потягни лінію: заводський білий - темно-сірий мат",
       "ba.before": "Завод", "ba.after": "У плівці",
       "exit.msg": "Забери свій колір: точні коди 3M і Avery у WhatsApp",
       "exit.link": "Написати студії",
-      "build.h": "Свіжа робота<span class=\"dot\">.</span>",
+      "build.h": "Свіжа обклейка<span class=\"dot\">.</span>",
       "build.lead": "BMW X6 M Competition 2026: повна зміна кольору, із заводського білого в темно-сірий мат. Кожен кут, вигин і кромка обклеєні, панелі зняті там, де цього вимагала кромка.",
       "build.credit": "Встановлення: Zap Wrap для Studio Design USA &middot; Фото: Angel Enrique Hernandez",
-      "svc.h": "Що ми робимо<span class=\"dot\">.</span>",
-      "svc.lead": "Одна спеціалізація - на рівні екзотиків. Кераміка - це фінішне покриття поверх готового врапу, ніколи не окрема послуга. Якщо це не вініл, цього немає в меню.",
+      "svc.h": "Обклейка авто в Нейплсі<span class=\"dot\">.</span>",
+      "svc.lead": "Одна спеціалізація: вінілова обклейка авто на рівні екзотиків. Кераміка - це фінішне покриття поверх готового врапу, ніколи не окрема послуга. Якщо це не вініл, цього немає в меню.",
       "svc.full": "Повна зміна кольору",
       "svc.full.d": "Сатин, глянець, металік, хамелеон. Заводська фарба запечатана під плівкою і лишається неторканою. 3-5 днів у боксі.",
       "svc.chrome": "Chrome delete",
@@ -310,7 +326,7 @@
       "svc.graphics": "Графіка та леттеринг",
       "svc.graphics.d": "Смуги, лівреї, декалі - ріжемо і клеїмо самі, в студії.",
       "svc.fleet": "Комерційний транспорт",
-      "svc.fleet.d": "Обклеєний вен - це білборд, який у твого бізнесу вже є. Друк, різка, встановлення - і так по всьому фліту.",
+      "svc.fleet.d": "Обклеєний вен - це білборд, який у твого бізнесу вже є. Друк, різка, встановлення - і так по всьому автопарку.",
       "svc.ceramic": "Кераміка <span class=\"svc__tag\">фініш</span>",
       "svc.ceramic.d": "Керамічний шар поверх свіжої плівки: легше мийка, глибший фініш. Тільки поверх врапу.",
       "svc.quote": "Кожен проєкт рахуємо особисто: приїжджай автівкою або з кодом фарби - поїдеш із точною цифрою. <a href=\"#book\">Записатися на консульт</a>",
@@ -336,7 +352,7 @@
       "proc.3.d": "3-5 днів у боксі. Панелі знімаємо там, де цього вимагає кромка. Це і є no shortcuts.",
       "proc.4.t": "Фініш і видача",
       "proc.4.d": "Опціональна кераміка поверх плівки, гайд із догляду на руки, кадр ревілу в студійному світлі.",
-      "faq.h": "Прямі відповіді<span class=\"dot\">.</span>",
+      "faq.h": "Питання про обклейку, прямі відповіді<span class=\"dot\">.</span>",
       "faq.1.q": "Плівка зіпсує фарбу?",
       "faq.1.a": "Навпаки. Плівка захищає заводське ЛФП від сонця, піску та сколів, а професійний демонтаж лишає фарбу такою, якою ми її знайшли. Тому обклеєні автівки добре продаються.",
       "faq.2.q": "Скільки живе врап?",
@@ -353,6 +369,10 @@
       "faq.7.a": "Працюємо з повними каталогами 3M, Avery Dennison, KPMF, Hexis і Oracal: лінійки з заводською підтримкою, жодних no-name рулонів. Фініш обираєш за живими зразками на консультації, а з автівкою віддаємо гайд з догляду саме за цією плівкою.",
       "faq.8.q": "Де студія?",
       "faq.8.a": "Naples, Флорида, за записом. До нас їдуть з Bonita Springs, Marco Island, Fort Myers і Cape Coral: правильна обклейка варта дороги.",
+      "faq.9.q": "Обклеюєте екзотики та суперкари?",
+      "faq.9.a": "Екзотики - спеціалізація студії: заради них Zap Wrap Naples і існує. Низькі бампери, карбонові панелі, датчики та складна аеродинаміка змінюють сам підхід до обклейки, тому екзотики клеяться зі зняттям панелей, а плівка розкроюється під конкретний кузов до першого різу. Приїжджай на консультацію і подивись розкрій першим.",
+      "faq.10.q": "Скільки триває обклейка?",
+      "faq.10.a": "Повна зміна кольору - 3-5 днів у боксі. Chrome delete і дах чи капот - швидше. Точні терміни отримаєш разом із кошторисом на консультації в студії.",
       "book.h": "Привозь автівку<span class=\"dot\">.</span>",
       "book.lead": "Консультації - в студії та без тиску. Заходиш із кодом фарби - виходиш, точно знаючи, як виглядатиме твій врап. Надішли дані, відповімо протягом робочого дня.",
       "book.call": "Телефон", "book.msg": "Написати студії", "book.msg2": "Написати студії",
@@ -365,10 +385,14 @@
       "ph.notes": "Ідеї фінішу, терміни, код фарби...",
       "f.choose": "Обери послугу", "f.o1": "Повна зміна кольору", "f.o2": "Chrome delete",
       "f.o3": "Часткова оклейка / дах / капот", "f.o4": "Графіка / леттеринг",
-      "f.o5": "Комерційний / фліт", "f.o6": "Кераміка (фініш)", "f.o7": "Ще не знаю - порадьте",
+      "f.o5": "Комерційний / автопарк", "f.o6": "Кераміка (фініш)", "f.o7": "Ще не знаю - порадьте",
       "f.submit": "Запросити консульт <span aria-hidden=\"true\">&rarr;</span>",
       "f.fine": "Без спаму. Твої дані потрапляють лише в студію.",
-      "book.next.1": "Заявка потрапляє прямо в студію: відповідаємо протягом робочого дня.",
+      "book.next.1": "Заявка відкривається у WhatsApp уже заповненою: перевір, натисни надіслати, і вона в студії. Відповідаємо протягом робочого дня.",
+      "f.alt": "Немає WhatsApp? <a href=\"tel:+13527790041\">Подзвони (352) 779-0041</a> або <a href=\"sms:+13527790041\">напиши SMS</a> з тими ж даними.",
+      "book.entity": "Zap Wrap Naples - студія вінілової обклейки в Нейплсі, Флорида: студія екзотик-врапу Нейплса. Робимо повну зміну кольору, chrome delete, часткову обклейку, кастомну графіку та обклейку комерційних автопарків для водіїв Нейплса, Bonita Springs, Marco Island, Fort Myers і Cape Coral. Студія працює від власника: той, хто рахує кошторис, має 8 років професійного досвіду і клеїть сам. Вініл - єдине ремесло; кераміка пропонується лише як фінішне покриття поверх нової обклейки. No shortcuts.",
+      "meta.title": "Обклейка авто в Нейплсі, Флорида | Зміна кольору та Chrome Delete | Zap Wrap",
+      "meta.desc": "Студія вінілової обклейки в Нейплсі, Флорида: повна зміна кольору, chrome delete, обклейка автопарків. Фахівці з вінілу: Нейплс, Bonita Springs, Marco Island. No shortcuts.",
       "book.next.2": "15 хвилин консультації: твоя автівка, живі зразки плівки, розмова по суті.",
       "book.next.3": "Їдеш з точною ціною та слотом на обклейку.",
     },
@@ -378,7 +402,7 @@
       "nav.work": "עבודות", "nav.services": "שירותים", "nav.finishes": "גימורים", "nav.faq": "שאלות",
       "footer.privacy": "מדיניות פרטיות", "footer.terms": "תנאי שימוש",
       "nav.cta": "לקבוע ייעוץ", "nav.call": "להתקשר לסטודיו",
-      "hero.intro": "סטודיו לציפוי ויניל &middot; נייפלס, פלורידה",
+      "hero.intro": "סטודיו ויניל בלבד &middot; 8 שנות ניסיון &middot; 5.0 בגוגל",
       "hero.l1": "סטודיו", "hero.l2": "ה<em>ראפ</em> האקזוטי", "hero.l3": "של נייפלס",
       "hero.sub": "החלפת צבע מלאה, chrome delete, גרפיקה בהתאמה אישית. ויניל הוא כל העבודה שלנו, לא שורה בתפריט. No shortcuts.",
       "hero.book": "לקבוע ייעוץ <span aria-hidden=\"true\">&larr;</span>",
@@ -410,18 +434,18 @@
       "cta.like": "אוהבים את הצבע? תראו אותו על הרכב שלכם:",
       "cta.link": "כתבו לנו בוואטסאפ",
       "rev.h": "דירוג 5.0 בגוגל",
-      "rev.lead": "נהגים בניידפלס מדרגים את העבודה, לא את הפרסומות. כל ביקורת ציבורית ומאומתת על ידי גוגל.",
+      "rev.lead": "נהגים בנייפלס מדרגים את העבודה, לא את הפרסומות. כל ביקורת ציבורית בגוגל: קראו את כולן לפני שמתקשרים.",
       "rev.link": "לקריאת הביקורות בגוגל",
       "try.build": "תראו את האפור הכהה המט הזה על הרכב שלכם <span aria-hidden=\"true\">&larr;</span>",
       "ba.cap": "גררו את הקו: מלבן מפעל לאפור כהה מט",
       "ba.before": "מפעל", "ba.after": "עטוף",
       "exit.msg": "קחו את הצבע איתכם: קבלו את הקודים המדויקים של 3M ו-Avery בוואטסאפ",
       "exit.link": "כתבו לסטודיו",
-      "build.h": "פרויקט אחרון<span class=\"dot\">.</span>",
+      "build.h": "ראפ אחרון<span class=\"dot\">.</span>",
       "build.lead": "BMW X6 M Competition 2026: החלפת צבע מלאה, מלבן מקורי לאפור כהה מט. כל פינה, קימור וקצה עטופים, פאנלים פורקו היכן שהקצה דרש זאת.",
       "build.credit": "התקנה: Zap Wrap עבור Studio Design USA &middot; צילום: Angel Enrique Hernandez",
-      "svc.h": "מה אנחנו עושים<span class=\"dot\">.</span>",
-      "svc.lead": "התמחות אחת, ברמה של רכבי יוקרה. קרמיקה היא ציפוי גימור מעל ראפ מוכן, לעולם לא שירות נפרד. אם זה לא ויניל, זה לא בתפריט.",
+      "svc.h": "ציפוי רכב בנייפלס<span class=\"dot\">.</span>",
+      "svc.lead": "התמחות אחת: ציפוי ויניל לרכב, ברמה של רכבי יוקרה. קרמיקה היא ציפוי גימור מעל ראפ מוכן, לעולם לא שירות נפרד. אם זה לא ויניל, זה לא בתפריט.",
       "svc.full": "החלפת צבע מלאה",
       "svc.full.d": "סאטן, מבריק, מטאלי, קולור-שיפט. צבע המפעל נאטם מתחת ונשאר ללא פגע. 3-5 ימים במוסך.",
       "svc.chrome": "Chrome delete",
@@ -457,7 +481,7 @@
       "proc.3.d": "3-5 ימים במוסך. פאנלים יורדים היכן שהקצה דורש. זה ה-no shortcuts שלנו.",
       "proc.4.t": "איטום ומסירה",
       "proc.4.d": "שכבה קרמית אופציונלית מעל הציפוי, מדריך טיפול ביד, וצילום חשיפה באור הסטודיו.",
-      "faq.h": "תשובות ישרות<span class=\"dot\">.</span>",
+      "faq.h": "שאלות על ציפוי, תשובות ישרות<span class=\"dot\">.</span>",
       "faq.1.q": "האם הציפוי יפגע בצבע שלי?",
       "faq.1.a": "להפך. הציפוי מגן על צבע המפעל משמש, חול ואבנים, והסרה מקצועית משאירה את הצבע כפי שמצאנו אותו. לכן רכבים עטופים נמכרים טוב.",
       "faq.2.q": "כמה זמן מחזיק ראפ?",
@@ -474,6 +498,10 @@
       "faq.7.a": "אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה.",
       "faq.8.q": "איפה הסטודיו?",
       "faq.8.a": "נייפלס, פלורידה, בתיאום מראש. מגיעים אלינו מבוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל: ציפוי טוב שווה את הנסיעה.",
+      "faq.9.q": "אתם עוטפים רכבי יוקרה וסופרקארים?",
+      "faq.9.a": "רכבי יוקרה הם ההתמחות של הסטודיו: בשבילם Zap Wrap Naples קיים. פגושים נמוכים, פאנלים מקרבון, חיישנים ואווירודינמיקה מורכבת משנים את כל הגישה לציפוי, ולכן רכבי יוקרה נעטפים עם פירוק פאנלים והוויניל נחתך לפי המרכב המדויק לפני החיתוך הראשון. תביאו את הרכב לייעוץ ותראו את התכנון קודם.",
+      "faq.10.q": "כמה זמן לוקח ראפ?",
+      "faq.10.a": "החלפת צבע מלאה לוקחת 3 עד 5 ימים בסדנה. חיסול כרום וגג או מכסה מנוע לוקחים פחות. את לוח הזמנים המדויק תקבלו יחד עם הצעת המחיר בייעוץ בסטודיו.",
       "book.h": "תביאו לנו את הרכב<span class=\"dot\">.</span>",
       "book.lead": "הייעוץ בסטודיו וללא לחץ. נכנסים עם קוד צבע - יוצאים בידיעה מדויקת איך הראפ ייראה. שלחו פרטים ונחזור תוך יום עסקים.",
       "book.call": "טלפון", "book.msg": "הודעה לסטודיו", "book.msg2": "הודעה לסטודיו",
@@ -489,7 +517,11 @@
       "f.o5": "מסחרי / צי רכב", "f.o6": "איטום קרמי (תוספת)", "f.o7": "עוד לא בטוח - תייעצו לי",
       "f.submit": "לבקש ייעוץ <span aria-hidden=\"true\">&larr;</span>",
       "f.fine": "בלי ספאם. הפרטים שלכם מגיעים רק לסטודיו.",
-      "book.next.1": "הפרטים מגיעים ישר לסטודיו: אנחנו חוזרים תוך יום עסקים.",
+      "book.next.1": "הבקשה נפתחת בוואטסאפ כבר מוכנה: בדקו, לחצו שלח, והיא בסטודיו. אנחנו חוזרים תוך יום עסקים.",
+      "f.alt": "אין וואטסאפ? <a href=\"tel:+13527790041\">התקשרו (352) 779-0041</a> או <a href=\"sms:+13527790041\">שלחו SMS</a> עם אותם פרטים.",
+      "book.entity": "Zap Wrap Naples הוא סטודיו לציפוי ויניל בנייפלס, פלורידה: סטודיו האקזוטיק-ראפ של נייפלס. הסטודיו מתקין החלפות צבע מלאות, חיסול כרום, ציפויים חלקיים, גרפיקה בהתאמה אישית וציפויי ציי רכב מסחריים לנהגים מנייפלס, בוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל. הסטודיו מנוהל על ידי הבעלים: מי שמתמחר את הרכב שלכם הוא מתקין עם 8 שנות ניסיון מקצועי שעוטף בעצמו. ויניל הוא המקצוע היחיד; קרמיקה מוצעת רק כציפוי גימור מעל ראפ חדש. No shortcuts.",
+      "meta.title": "ציפוי רכב בנייפלס פלורידה | החלפת צבע וחיסול כרום | Zap Wrap",
+      "meta.desc": "סטודיו לציפוי רכב בנייפלס, פלורידה: החלפות צבע מלאות, חיסול כרום וציפויי ציים. מומחי ויניל לנייפלס, בוניטה ספרינגס ומרקו איילנד. No shortcuts.",
       "book.next.2": "פגישת ייעוץ של 15 דקות: הרכב שלכם, דוגמאות ויניל אמיתיות, דיבור ישיר.",
       "book.next.3": "יוצאים עם מחיר מדויק ותור להתקנה.",
     },
@@ -497,7 +529,8 @@
 
   var orig = null;
   function snapshot() {
-    orig = { text: {}, ph: {}, label: {} };
+    var md = document.querySelector('meta[name="description"]');
+    orig = { text: {}, ph: {}, label: {}, title: document.title, desc: md ? md.getAttribute("content") : "" };
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       orig.text[el.getAttribute("data-i18n")] = el.innerHTML;
     });
@@ -530,10 +563,16 @@
     document.documentElement.setAttribute("lang", lang);
     document.documentElement.setAttribute("dir", RTL[lang] ? "rtl" : "ltr");
     try { localStorage.setItem(STORE, lang); } catch (e) { /* private mode */ }
-    /* keep the canonical on the URL that serves THIS language, or the hreflang
-       set collapses onto one page and the alternates stop counting */
+    /* title + description follow the language (dict stores display HTML; the
+       title bar wants plain text) */
+    var strip = function (s) { var t = document.createElement("div"); t.innerHTML = s; return t.textContent; };
+    document.title = d["meta.title"] ? strip(d["meta.title"]) : orig.title;
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute("content", d["meta.desc"] ? strip(d["meta.desc"]) : orig.desc);
+    /* the canonical for a language is its prerendered page (dev/build-i18n.js),
+       so an in-place swap on "/" still points crawlers at the real URL */
     var can = document.querySelector('link[rel="canonical"]');
-    if (can) can.setAttribute("href", "https://zapwrapnaples.com/" + (lang === "en" ? "" : "?lang=" + lang));
+    if (can) can.setAttribute("href", "https://zapwrapnaples.com/" + (lang === "en" ? "" : lang + "/"));
     /* the address bar must agree with that canonical: when the language came
        from localStorage or navigator (no ?lang in the URL), sync the URL too,
        keeping any other params (utm) intact */
@@ -570,11 +609,23 @@
   }
 
   function boot() {
-    var lang = initial();
+    /* prerendered pages (/es/ /ru/ /uk/ /he/) arrive already translated by
+       dev/build-i18n.js and marked with data-baked - no swapping there */
+    var baked = document.documentElement.getAttribute("data-baked") || null;
+    var lang = baked || initial();
     var sel = document.getElementById("lang-select");
     if (sel) {
       sel.value = lang;
-      sel.addEventListener("change", function () { apply(sel.value); });
+      sel.addEventListener("change", function () {
+        try { localStorage.setItem(STORE, sel.value); } catch (e) { /* private mode */ }
+        /* languages are real URLs now: switching navigates, so the address bar,
+           canonical and content always agree */
+        location.href = sel.value === "en" ? "/" : "/" + sel.value + "/";
+      });
+    }
+    if (baked) {
+      try { localStorage.setItem(STORE, baked); } catch (e) { /* private mode */ }
+      return;
     }
     if (lang !== "en") apply(lang);
   }
