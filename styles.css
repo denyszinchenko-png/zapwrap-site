@@ -2163,3 +2163,91 @@ textarea { resize: vertical; min-height: 5.5em; }
   /* the bar rides over the footer at the very bottom - clear its height */
   .footer { padding-bottom: calc(2rem + 54px + env(safe-area-inset-bottom)); }
 }
+
+/* ============================================================
+   LEGAL + A11Y FURNITURE
+   Skip link, cookie notice, trademark line. Added 2026-07-23 with
+   the legal pass: none of it is decorative, all of it is required
+   to be reachable by keyboard and readable at 200% zoom.
+   ============================================================ */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent, #ffd600);
+  color: #0a0a0b;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 6px 0;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.consent {
+  position: fixed;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 120;
+  width: min(720px, calc(100vw - 2rem));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(18, 18, 20, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+}
+.consent[hidden] { display: none; }
+.consent__text {
+  flex: 1 1 20rem;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+.consent__text a { color: #fff; text-decoration: underline; }
+.consent__btns { display: flex; gap: 0.5rem; margin-left: auto; }
+.consent__btn {
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.consent__btn--ok {
+  background: var(--accent, #ffd600);
+  border-color: var(--accent, #ffd600);
+  color: #0a0a0b;
+}
+.consent__btn:hover { border-color: #fff; color: #fff; }
+.consent__btn--ok:hover { background: #fff; border-color: #fff; color: #0a0a0b; }
+.consent__btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.footer__tm {
+  grid-column: 1 / -1;
+  max-width: 70ch;
+  font-size: 0.7rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+@media (max-width: 560px) {
+  .consent { gap: 0.6rem; padding: 0.85rem 0.95rem; }
+  .consent__btns { width: 100%; margin-left: 0; }
+  .consent__btn { flex: 1 1 auto; }
+}

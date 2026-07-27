@@ -742,3 +742,37 @@
     pixelTrack("Contact", href);
   }, true);
 })();
+
+/* ---- Cookie notice. The consent bootstrap in the page head already applied
+   any stored choice before the trackers loaded; this only handles the first
+   visit, and flips consent live so a Decline takes effect without a reload. ---- */
+(function () {
+  "use strict";
+  var KEY = "zw-consent";
+  var bar = document.getElementById("consent");
+  if (!bar) return;
+
+  var stored = null;
+  try { stored = window.localStorage.getItem(KEY); } catch (e) {}
+  if (stored === "allow" || stored === "deny") return;
+  bar.hidden = false;
+
+  function apply(choice) {
+    try { window.localStorage.setItem(KEY, choice); } catch (e) {}
+    var v = choice === "deny" ? "denied" : "granted";
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
+      });
+    }
+    if (typeof window.fbq === "function") {
+      window.fbq("consent", choice === "deny" ? "revoke" : "grant");
+    }
+    bar.hidden = true;
+  }
+
+  var ok = document.getElementById("consent-ok");
+  var no = document.getElementById("consent-no");
+  if (ok) ok.addEventListener("click", function () { apply("allow"); });
+  if (no) no.addEventListener("click", function () { apply("deny"); });
+})();

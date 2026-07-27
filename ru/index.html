@@ -47,7 +47,24 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-cyrillic.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=44" />
+  <link rel="stylesheet" href="/styles.css?v=45" />
+<!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
+     on a previous visit never has data leave the browser at all: Consent Mode v2
+     defaults are set here, and app.js flips them live when the notice is used. -->
+<script>
+(function () {
+  var c = null;
+  try { c = window.localStorage.getItem('zw-consent'); } catch (e) {}
+  window.zwConsent = c;
+  var v = c === 'deny' ? 'denied' : 'granted';
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
+  });
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -59,6 +76,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1584101513429246');
+if (window.zwConsent === 'deny') { fbq('consent', 'revoke'); }
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -75,6 +93,10 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
 </script>
 </head>
 <body id="top">
+
+  <!-- Keyboard and screen-reader users get past the nav in one tab: visually
+       hidden until focused (styles.css .skip-link) -->
+  <a class="skip-link" href="#services" data-i18n="a11y.skip">Перейти к основному содержимому</a>
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -467,7 +489,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <ul class="svc" role="list">
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.full">Полная смена цвета</h3>
-            <p class="svc__desc" data-i18n="svc.full.d">Сатин, глянец, металлик, хамелеон. Заводская краска запечатана под плёнкой и остаётся нетронутой. 3-5 дней в боксе.</p>
+            <p class="svc__desc" data-i18n="svc.full.d">Сатин, глянец, металлик, color-shift. Здоровое заводское ЛКП остаётся запечатанным под плёнкой и нетронутым. 3-5 дней работы.</p>
           </li>
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.chrome">Chrome delete</h3>
@@ -501,7 +523,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <dl class="why__list">
           <div class="why__item reveal">
             <dt data-i18n="why.1.t">Заводская краска остаётся заводской.</dt>
-            <dd data-i18n="why.1.d">Плёнка запечатывает родное ЛКП и снимается чисто. Полностью обратимо, цена при перепродаже не страдает.</dd>
+            <dd data-i18n="why.1.d">На здоровом заводском ЛКП плёнка запечатывает оригинал и снимается чисто. Сначала осматриваем краску и честно говорим, что видим.</dd>
           </div>
           <div class="why__item reveal">
             <dt data-i18n="why.2.t">5-7 лет финиша.</dt>
@@ -544,7 +566,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <ol class="steps" role="list">
           <li class="step reveal">
             <span class="step__n">1</span>
-            <h3 data-i18n="proc.1.t">Консультация в студии</h3>
+            <h3 data-i18n="proc.1.t">Личная консультация</h3>
             <p data-i18n="proc.1.d">Приезжай на машине или просто с кодом краски. Смотрим кузов, обсуждаем финиши, называем честную цену.</p>
           </li>
           <li class="step reveal">
@@ -555,7 +577,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <li class="step reveal">
             <span class="step__n">3</span>
             <h3 data-i18n="proc.3.t">Установка</h3>
-            <p data-i18n="proc.3.d">3-5 дней в боксе. Панели снимаем там, где этого требует кромка. Это и есть no shortcuts.</p>
+            <p data-i18n="proc.3.d">3-5 дней работы в закрытом боксе, забронированном под вашу машину. Панели снимаются там, где этого требует кромка. Это и есть no shortcuts.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">4</span>
@@ -572,7 +594,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <h2 id="faq-h" class="section__h" data-i18n="faq.h">Вопросы об оклейке, прямые ответы<span class="dot">.</span></h2>
         <details class="qa">
           <summary data-i18n="faq.1.q">Плёнка испортит краску?</summary>
-          <p data-i18n="faq.1.a">Наоборот. Плёнка защищает заводское ЛКП от солнца, песка и сколов, а профессиональный демонтаж оставляет краску такой, какой мы её нашли. Поэтому оклеенные машины хорошо продаются.</p>
+          <p data-i18n="faq.1.a">На здоровом заводском ЛКП - нет. Плёнка защищает оригинал от солнца, песка и сколов, а профессиональный демонтаж оставляет краску такой, какой мы её нашли. Краска, которая уже сыпется, перекрашена или зашпаклёвана - другая история: мы осматриваем машину и честно говорим об этом до того, как что-то резать.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.2.q">Сколько живёт врап?</summary>
@@ -584,7 +606,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.4.q">Можно оклеить лизинговую машину?</summary>
-          <p data-i18n="faq.4.a">Да. Плёнка снимается чисто до возврата машины. Это единственная смена цвета, которую разрешает лизинг.</p>
+          <p data-i18n="faq.4.a">Обычно да: плёнка снимается начисто до сдачи машины, поэтому это та смена цвета, с которой большинство лизингов мирится. Сначала проверьте свой договор, некоторые это ограничивают, и это ваша зона ответственности.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.5.q">Как мыть оклеенную машину?</summary>
@@ -592,15 +614,15 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">Сколько стоит оклейка?</summary>
-          <p data-i18n="faq.6.a">Каждая машина своя: размер и форма кузова, выбранная линейка плёнки, состояние лака, детали, которые придётся снимать. Поэтому считаем только вживую: приезжай с машиной или кодом краски - уедешь с точной цифрой, которая потом не поплывёт.</p>
+          <p data-i18n="faq.6.a">Каждая машина разная: размер и форма кузова, линейка плёнки, состояние ЛКП, молдинги, которые надо снять. Поэтому считаем только лично: привозите машину или код краски и уезжаете с письменной цифрой плюс налог штата Флорида, которая потом не меняется.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">Какие плёнки ставите?</summary>
           <p data-i18n="faq.7.a">Работаем с полными каталогами 3M, Avery Dennison, KPMF, Hexis и Oracal: линейки с заводской поддержкой, никаких no-name рулонов. Финиш выбираешь по живым образцам на консультации, а с машиной отдаём гайд по уходу именно за этой плёнкой.</p>
         </details>
         <details class="qa">
-          <summary data-i18n="faq.8.q">Где находится студия?</summary>
-          <p data-i18n="faq.8.a">Naples, Флорида, по записи. К нам едут из Bonita Springs, Marco Island, Fort Myers и Cape Coral: правильная оклейка стоит дороги.</p>
+          <summary data-i18n="faq.8.q">Где проходит работа?</summary>
+          <p data-i18n="faq.8.a">Нейплс, Флорида, по записи: под ваш проект бронируем закрытый бокс и подтверждаем адрес вместе с датой, поэтому адреса, куда можно приехать без записи, нет. К нам едут из Бониты-Спрингс, Марко-Айленда, Форт-Майерса и Кейп-Корала: хорошая оклейка стоит дороги.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">Оклеиваете экзотики и суперкары?</summary>
@@ -608,7 +630,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">Сколько занимает оклейка?</summary>
-          <p data-i18n="faq.10.a">Полная смена цвета - 3-5 дней в боксе. Chrome delete и крыша или капот - быстрее. Точные сроки получишь вместе со сметой на консультации в студии.</p>
+          <p data-i18n="faq.10.a">Полная смена цвета - 3-5 дней работы. Chrome delete, крыша или капот занимают меньше. Точный график вы получаете вместе со сметой на консультации.</p>
         </details>
         <!-- Phones fold the list to the first five; this un-folds it. Desktop
              shows everything in two columns and never renders the button. -->
@@ -621,12 +643,12 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <div class="wrap book__grid">
         <div class="book__pitch">
           <h2 id="book-h" class="section__h" data-i18n="book.h">Привози машину<span class="dot">.</span></h2>
-          <p class="section__lead" data-i18n="book.lead">Консультации - в студии и без давления. Заходишь с кодом краски - выходишь, точно зная, как будет выглядеть твой врап. Отправь данные, ответим в течение рабочего дня.</p>
+          <p class="section__lead" data-i18n="book.lead">Консультации личные и без давления. Приезжайте с кодом краски и уезжайте, точно зная, как будет выглядеть ваша оклейка. Отправьте данные - ответим в течение рабочего дня.</p>
           <ul class="book__contact" role="list">
             <li><span class="book__k" data-i18n="book.call">Телефон</span><span><a href="tel:+13527790041">(352) 779-0041</a> <span class="book__note">&middot; Naples studio line</span></span></li>
             <li><span class="book__k">Messenger</span><a href="https://m.me/ZapWrapNaples" rel="noopener" data-i18n="book.msg">Написать студии</a></li>
             <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener" data-i18n="book.msg2">Написать студии</a></li>
-            <li><span class="book__k" data-i18n="book.studio">Студия</span><span data-i18n="book.studio.v">Нейплс, Флорида &middot; по записи</span></li>
+            <li><span class="book__k" data-i18n="book.studio">Где</span><span data-i18n="book.studio.v">Нейплс, Флорида &middot; закрытый бокс, по записи</span></li>
             <li><span class="book__k" data-i18n="book.hours">Часы</span><span data-i18n="book.hours.v">Вс-Чт 8:00-20:00 &middot; Пт 8:00-17:00 &middot; Сб выходной</span></li>
             <li><span class="book__k" data-i18n="book.serving">Работаем</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
           </ul>
@@ -678,7 +700,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <li data-i18n="book.next.2">15 минут консультации: твоя машина, живые образцы плёнки, разговор по делу.</li>
             <li data-i18n="book.next.3">Уезжаешь с точной ценой и слотом на оклейку.</li>
           </ol>
-          <p class="form__fine" data-i18n="f.fine">Без спама. Твои данные попадают только в студию.</p>
+          <p class="form__fine" data-i18n="f.fine">Никакого спама. Ваши данные уходят только в студию и нужны, чтобы ответить по смете. Отправляя форму, вы принимаете <a href="/privacy.html">политику конфиденциальности</a>.</p>
           <p class="form__fine" data-i18n="f.alt">Нет WhatsApp? <a href="tel:+13527790041">Позвони (352) 779-0041</a> или <a href="sms:+13527790041">напиши SMS</a> с теми же данными.</p>
         </form>
       </div>
@@ -701,10 +723,24 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <small class="footer__legal">
         <a href="/privacy.html" data-i18n="footer.privacy">Политика конфиденциальности</a>
         <a href="/terms.html" data-i18n="footer.terms">Условия использования</a>
+        <a href="/terms.html#accessibility" data-i18n="footer.a11y">Доступность</a>
       </small>
       <small>&copy; 2026 Zap Wrap LLC &middot; No shortcuts.</small>
+      <!-- Nominative use of the film makers' names: legal only while we never
+           imply they authorized, certified or endorse us. -->
+      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, KPMF, Hexis и Oracal - товарные знаки их правообладателей. Zap Wrap LLC независимый установщик: не авторизованный дилер, не сертифицированный установщик и не аффилированное лицо какого-либо производителя плёнки. Названия, модели и изображения автомобилей приведены только для идентификации.</small>
     </div>
   </footer>
+
+  <!-- Cookie notice. Shown only until a choice is stored; Decline is real, it
+       revokes Meta consent and flips Consent Mode to denied without a reload. -->
+  <div class="consent" id="consent" role="region" aria-label="Cookie notice" hidden>
+    <p class="consent__text" data-i18n="cookie.text">Мы используем cookies Google Analytics и рекламы Meta, чтобы видеть, какая реклама реально приводит машины. Ничего из того, что вы пишете в форме, к ним не уходит. <a href="/privacy.html">Политика конфиденциальности</a></p>
+    <div class="consent__btns">
+      <button type="button" class="consent__btn consent__btn--no" id="consent-no" data-i18n="cookie.no">Отклонить</button>
+      <button type="button" class="consent__btn consent__btn--ok" id="consent-ok" data-i18n="cookie.ok">Принять</button>
+    </div>
+  </div>
 
   <!-- Mobile quick-contact bar. The page runs ~14 phone screens and the hero
        CTA is gone after the first one; this keeps the studio one thumb away.
@@ -798,20 +834,20 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Плёнка испортит краску?", "acceptedAnswer": { "@type": "Answer", "text": "Наоборот. Плёнка защищает заводское ЛКП от солнца, песка и сколов, а профессиональный демонтаж оставляет краску такой, какой мы её нашли. Поэтому оклеенные машины хорошо продаются." } },
+      { "@type": "Question", "name": "Плёнка испортит краску?", "acceptedAnswer": { "@type": "Answer", "text": "На здоровом заводском ЛКП - нет. Плёнка защищает оригинал от солнца, песка и сколов, а профессиональный демонтаж оставляет краску такой, какой мы её нашли. Краска, которая уже сыпется, перекрашена или зашпаклёвана - другая история: мы осматриваем машину и честно говорим об этом до того, как что-то резать." } },
       { "@type": "Question", "name": "Сколько живёт врап?", "acceptedAnswer": { "@type": "Answer", "text": "5-7 лет при правильном уходе под солнцем Флориды. Гараж и ручная мойка - и ты у верхней границы." } },
       { "@type": "Question", "name": "Это правда дешевле перекраса?", "acceptedAnswer": { "@type": "Answer", "text": "Качественный перекрас премиальной машины стоит дороже полного врапа, занимает больше времени и необратим. Плёнка даёт цвет сейчас - и заводскую краску обратно, когда захочешь." } },
-      { "@type": "Question", "name": "Можно оклеить лизинговую машину?", "acceptedAnswer": { "@type": "Answer", "text": "Да. Плёнка снимается чисто до возврата машины. Это единственная смена цвета, которую разрешает лизинг." } },
+      { "@type": "Question", "name": "Можно оклеить лизинговую машину?", "acceptedAnswer": { "@type": "Answer", "text": "Обычно да: плёнка снимается начисто до сдачи машины, поэтому это та смена цвета, с которой большинство лизингов мирится. Сначала проверьте свой договор, некоторые это ограничивают, и это ваша зона ответственности." } },
       { "@type": "Question", "name": "Как мыть оклеенную машину?", "acceptedAnswer": { "@type": "Answer", "text": "Руками или бесконтактно, без воска по мату и сатину, без прямой струи высокого давления по кромкам. Полный гайд по уходу выдаём при получении." } },
-      { "@type": "Question", "name": "Сколько стоит оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Каждая машина своя: размер и форма кузова, выбранная линейка плёнки, состояние лака, детали, которые придётся снимать. Поэтому считаем только вживую: приезжай с машиной или кодом краски - уедешь с точной цифрой, которая потом не поплывёт." } },
+      { "@type": "Question", "name": "Сколько стоит оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Каждая машина разная: размер и форма кузова, линейка плёнки, состояние ЛКП, молдинги, которые надо снять. Поэтому считаем только лично: привозите машину или код краски и уезжаете с письменной цифрой плюс налог штата Флорида, которая потом не меняется." } },
       { "@type": "Question", "name": "Какие плёнки ставите?", "acceptedAnswer": { "@type": "Answer", "text": "Работаем с полными каталогами 3M, Avery Dennison, KPMF, Hexis и Oracal: линейки с заводской поддержкой, никаких no-name рулонов. Финиш выбираешь по живым образцам на консультации, а с машиной отдаём гайд по уходу именно за этой плёнкой." } },
-      { "@type": "Question", "name": "Где находится студия?", "acceptedAnswer": { "@type": "Answer", "text": "Naples, Флорида, по записи. К нам едут из Bonita Springs, Marco Island, Fort Myers и Cape Coral: правильная оклейка стоит дороги." } },
+      { "@type": "Question", "name": "Где проходит работа?", "acceptedAnswer": { "@type": "Answer", "text": "Нейплс, Флорида, по записи: под ваш проект бронируем закрытый бокс и подтверждаем адрес вместе с датой, поэтому адреса, куда можно приехать без записи, нет. К нам едут из Бониты-Спрингс, Марко-Айленда, Форт-Майерса и Кейп-Корала: хорошая оклейка стоит дороги." } },
       { "@type": "Question", "name": "Оклеиваете экзотики и суперкары?", "acceptedAnswer": { "@type": "Answer", "text": "Экзотики - специализация студии: ради них Zap Wrap Naples и существует. Низкие бамперы, карбоновые панели, датчики и сложная аэродинамика меняют сам подход к оклейке, поэтому экзотики клеятся со снятием панелей, а плёнка выкраивается по конкретному кузову до первого реза. Приезжай на консультацию и посмотри раскрой первым." } },
-      { "@type": "Question", "name": "Сколько занимает оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Полная смена цвета - 3-5 дней в боксе. Chrome delete и крыша или капот - быстрее. Точные сроки получишь вместе со сметой на консультации в студии." } }
+      { "@type": "Question", "name": "Сколько занимает оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Полная смена цвета - 3-5 дней работы. Chrome delete, крыша или капот занимают меньше. Точный график вы получаете вместе со сметой на консультации." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=8" defer></script>
+  <script src="/i18n.js?v=9" defer></script>
   <div class="exitbar" id="exitbar" hidden>
     <p class="exitbar__text"><span data-i18n="exit.msg">Забери свой цвет: точные коды 3M и Avery в WhatsApp</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Написать студии</a></p>
@@ -819,6 +855,6 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
   </div>
   <!-- v44: плавающий FAB-стек заменён нижним контакт-баром .mbar (тот же
        порядок каналов, но с подписями и тап-зонами на всю ширину). -->
-  <script src="/app.js?v=43" defer></script>
+  <script src="/app.js?v=44" defer></script>
 </body>
 </html>

@@ -46,7 +46,24 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=44" />
+  <link rel="stylesheet" href="/styles.css?v=45" />
+<!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
+     on a previous visit never has data leave the browser at all: Consent Mode v2
+     defaults are set here, and app.js flips them live when the notice is used. -->
+<script>
+(function () {
+  var c = null;
+  try { c = window.localStorage.getItem('zw-consent'); } catch (e) {}
+  window.zwConsent = c;
+  var v = c === 'deny' ? 'denied' : 'granted';
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
+  });
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -58,6 +75,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1584101513429246');
+if (window.zwConsent === 'deny') { fbq('consent', 'revoke'); }
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -74,6 +92,10 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
 </script>
 </head>
 <body id="top">
+
+  <!-- Keyboard and screen-reader users get past the nav in one tab: visually
+       hidden until focused (styles.css .skip-link) -->
+  <a class="skip-link" href="#services" data-i18n="a11y.skip">Saltar al contenido principal</a>
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -466,7 +488,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <ul class="svc" role="list">
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.full">Cambio de color completo</h3>
-            <p class="svc__desc" data-i18n="svc.full.d">Satinado, brillante, met&aacute;lico, color-shift. La pintura de f&aacute;brica queda sellada debajo, intacta. 3 a 5 d&iacute;as en el taller.</p>
+            <p class="svc__desc" data-i18n="svc.full.d">Satinado, brillante, met&aacute;lico, color-shift. La pintura de f&aacute;brica en buen estado queda sellada debajo y sin tocar. De 3 a 5 d&iacute;as de trabajo.</p>
           </li>
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.chrome">Chrome delete</h3>
@@ -500,7 +522,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <dl class="why__list">
           <div class="why__item reveal">
             <dt data-i18n="why.1.t">Tu pintura queda de f&aacute;brica.</dt>
-            <dd data-i18n="why.1.d">El vinilo sella la pintura original y se retira limpio. Totalmente reversible, el valor de reventa intacto.</dd>
+            <dd data-i18n="why.1.d">Sobre pintura de f&aacute;brica en buen estado el vinilo sella el acabado original y se retira limpio. Revisamos la pintura primero y te decimos lo que vemos.</dd>
           </div>
           <div class="why__item reveal">
             <dt data-i18n="why.2.t">5 a 7 a&ntilde;os de acabado.</dt>
@@ -543,7 +565,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <ol class="steps" role="list">
           <li class="step reveal">
             <span class="step__n">1</span>
-            <h3 data-i18n="proc.1.t">Consulta en el estudio</h3>
+            <h3 data-i18n="proc.1.t">Consulta en persona</h3>
             <p data-i18n="proc.1.d">Trae el auto o solo el c&oacute;digo de pintura. Revisamos la carrocer&iacute;a, hablamos de acabados y cotizamos directo.</p>
           </li>
           <li class="step reveal">
@@ -554,7 +576,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <li class="step reveal">
             <span class="step__n">3</span>
             <h3 data-i18n="proc.3.t">Instalaci&oacute;n</h3>
-            <p data-i18n="proc.3.d">3 a 5 d&iacute;as en el taller. Desmontamos paneles donde el borde lo exige. Eso es lo de no shortcuts.</p>
+            <p data-i18n="proc.3.d">De 3 a 5 d&iacute;as de trabajo, en un taller cerrado reservado para tu auto. Los paneles se desmontan donde el borde lo exige. Esa es la parte del no shortcuts.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">4</span>
@@ -571,7 +593,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <h2 id="faq-h" class="section__h" data-i18n="faq.h">Preguntas sobre wraps, respuestas directas<span class="dot">.</span></h2>
         <details class="qa">
           <summary data-i18n="faq.1.q">&iquest;El wrap da&ntilde;a mi pintura?</summary>
-          <p data-i18n="faq.1.a">Al contrario. El vinilo protege la pintura de f&aacute;brica del sol, la arena y las piedras, y un retiro profesional la deja como la encontramos. Por eso los autos con wrap se revenden bien.</p>
+          <p data-i18n="faq.1.a">No sobre pintura de f&aacute;brica en buen estado. El vinilo protege el acabado original del sol, la arena y las piedras, y un retiro profesional lo deja como lo encontramos. Pintura que ya est&aacute; fallando, repintada o con masilla es otra historia: revisamos el auto y te lo decimos con honestidad antes de cortar nada.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.2.q">&iquest;Cu&aacute;nto dura un wrap?</summary>
@@ -583,7 +605,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.4.q">&iquest;Puedo envolver un auto en leasing?</summary>
-          <p data-i18n="faq.4.a">S&iacute;. El wrap se retira limpio antes de devolver el auto. Es el &uacute;nico cambio de color que un leasing permite.</p>
+          <p data-i18n="faq.4.a">Normalmente s&iacute;: el wrap se retira limpio antes de devolver el auto, por eso es el cambio de color que la mayor&iacute;a de los leasings tolera. Revisa primero tu contrato, algunos lo restringen, y esa confirmaci&oacute;n te toca a ti.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.5.q">&iquest;C&oacute;mo lavo un auto con wrap?</summary>
@@ -591,15 +613,15 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">&iquest;Cu&aacute;nto cuesta un wrap?</summary>
-          <p data-i18n="faq.6.a">Cada auto es distinto: tama&ntilde;o y forma de la carrocer&iacute;a, la l&iacute;nea de vinilo que elijas, el estado de la pintura, molduras que hay que desmontar. Por eso cotizamos solo en persona: trae el auto o el c&oacute;digo de pintura y sales con un n&uacute;mero exacto que no cambia despu&eacute;s.</p>
+          <p data-i18n="faq.6.a">Cada auto es distinto: tama&ntilde;o y forma de la carrocer&iacute;a, la l&iacute;nea de vinilo que elijas, el estado de la pintura, molduras que hay que desmontar. Por eso cotizamos solo en persona: trae el auto o el c&oacute;digo de pintura y sales con un n&uacute;mero por escrito, m&aacute;s el impuesto de Florida, que no cambia despu&eacute;s.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">&iquest;Qu&eacute; vinilos instalan?</summary>
           <p data-i18n="faq.7.a">Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal: l&iacute;neas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la gu&iacute;a de cuidado de ese vinilo exacto.</p>
         </details>
         <details class="qa">
-          <summary data-i18n="faq.8.q">&iquest;D&oacute;nde est&aacute; el estudio?</summary>
-          <p data-i18n="faq.8.a">Naples, Florida, con cita previa. Nos llegan autos desde Bonita Springs, Marco Island, Fort Myers y Cape Coral: un wrap bien hecho vale el viaje.</p>
+          <summary data-i18n="faq.8.q">&iquest;D&oacute;nde se hace el trabajo?</summary>
+          <p data-i18n="faq.8.a">Naples, Florida, con cita previa: reservamos un taller cerrado para tu proyecto y confirmamos la direcci&oacute;n contigo al fijar la fecha, as&iacute; que no hay mostrador de entrada libre. Nos llegan autos desde Bonita Springs, Marco Island, Fort Myers y Cape Coral: un wrap bien hecho vale el viaje.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">&iquest;Trabajan ex&oacute;ticos y superautos?</summary>
@@ -607,7 +629,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">&iquest;Cu&aacute;nto tarda un wrap?</summary>
-          <p data-i18n="faq.10.a">Un cambio de color completo toma de 3 a 5 d&iacute;as en el taller. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotizaci&oacute;n en la consulta.</p>
+          <p data-i18n="faq.10.a">Un cambio de color completo toma de 3 a 5 d&iacute;as de trabajo. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotizaci&oacute;n en la consulta.</p>
         </details>
         <!-- Phones fold the list to the first five; this un-folds it. Desktop
              shows everything in two columns and never renders the button. -->
@@ -620,12 +642,12 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <div class="wrap book__grid">
         <div class="book__pitch">
           <h2 id="book-h" class="section__h" data-i18n="book.h">Tr&aacute;enos el auto<span class="dot">.</span></h2>
-          <p class="section__lead" data-i18n="book.lead">Las consultas son en el estudio y sin presi&oacute;n. Entra con un c&oacute;digo de pintura y sal sabiendo exactamente c&oacute;mo se ver&aacute; tu wrap. Env&iacute;a los datos y respondemos en un d&iacute;a h&aacute;bil.</p>
+          <p class="section__lead" data-i18n="book.lead">Las consultas son en persona y sin presi&oacute;n. Ven con un c&oacute;digo de pintura y sal sabiendo exactamente c&oacute;mo se ver&aacute; tu wrap. Env&iacute;a los datos y respondemos en un d&iacute;a h&aacute;bil.</p>
           <ul class="book__contact" role="list">
             <li><span class="book__k" data-i18n="book.call">Llamar</span><span><a href="tel:+13527790041">(352) 779-0041</a> <span class="book__note">&middot; Naples studio line</span></span></li>
             <li><span class="book__k">Messenger</span><a href="https://m.me/ZapWrapNaples" rel="noopener" data-i18n="book.msg">Escribir al estudio</a></li>
             <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener" data-i18n="book.msg2">Escribir al estudio</a></li>
-            <li><span class="book__k" data-i18n="book.studio">Estudio</span><span data-i18n="book.studio.v">Naples, FL &middot; con cita</span></li>
+            <li><span class="book__k" data-i18n="book.studio">D&oacute;nde</span><span data-i18n="book.studio.v">Naples, FL &middot; taller cerrado, con cita</span></li>
             <li><span class="book__k" data-i18n="book.hours">Horario</span><span data-i18n="book.hours.v">Dom-Jue 8am-8pm &middot; Vie 8am-5pm &middot; S&aacute;b cerrado</span></li>
             <li><span class="book__k" data-i18n="book.serving">Servimos</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
           </ul>
@@ -677,7 +699,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <li data-i18n="book.next.2">Consulta de 15 minutos: tu auto, muestras reales de vinilo, sin rodeos.</li>
             <li data-i18n="book.next.3">Sales con la cotizaci&oacute;n exacta y tu turno de instalaci&oacute;n.</li>
           </ol>
-          <p class="form__fine" data-i18n="f.fine">Sin spam. Tus datos solo llegan al estudio.</p>
+          <p class="form__fine" data-i18n="f.fine">Sin spam. Tus datos van solo al estudio y los usamos para responder sobre tu presupuesto. Al enviar aceptas nuestra <a href="/privacy.html">Pol&iacute;tica de Privacidad</a>.</p>
           <p class="form__fine" data-i18n="f.alt">&iquest;Sin WhatsApp? <a href="tel:+13527790041">Llama al (352) 779-0041</a> o <a href="sms:+13527790041">escribe al estudio</a> con los mismos datos.</p>
         </form>
       </div>
@@ -700,10 +722,24 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <small class="footer__legal">
         <a href="/privacy.html" data-i18n="footer.privacy">Política de Privacidad</a>
         <a href="/terms.html" data-i18n="footer.terms">Términos del Servicio</a>
+        <a href="/terms.html#accessibility" data-i18n="footer.a11y">Accesibilidad</a>
       </small>
       <small>&copy; 2026 Zap Wrap LLC &middot; No shortcuts.</small>
+      <!-- Nominative use of the film makers' names: legal only while we never
+           imply they authorized, certified or endorse us. -->
+      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, KPMF, Hexis y Oracal son marcas de sus respectivos due&ntilde;os. Zap Wrap LLC es un instalador independiente: no es distribuidor autorizado, instalador certificado ni afiliado de ning&uacute;n fabricante de vinilo. Los nombres, modelos y renders de veh&iacute;culos se muestran solo a modo de identificaci&oacute;n.</small>
     </div>
   </footer>
+
+  <!-- Cookie notice. Shown only until a choice is stored; Decline is real, it
+       revokes Meta consent and flips Consent Mode to denied without a reload. -->
+  <div class="consent" id="consent" role="region" aria-label="Cookie notice" hidden>
+    <p class="consent__text" data-i18n="cookie.text">Usamos cookies de Google Analytics y de publicidad de Meta para ver qu&eacute; anuncios traen autos de verdad. Nada de lo que escribes en el formulario llega a ellos. <a href="/privacy.html">Pol&iacute;tica de Privacidad</a></p>
+    <div class="consent__btns">
+      <button type="button" class="consent__btn consent__btn--no" id="consent-no" data-i18n="cookie.no">Rechazar</button>
+      <button type="button" class="consent__btn consent__btn--ok" id="consent-ok" data-i18n="cookie.ok">Aceptar</button>
+    </div>
+  </div>
 
   <!-- Mobile quick-contact bar. The page runs ~14 phone screens and the hero
        CTA is gone after the first one; this keeps the studio one thumb away.
@@ -797,20 +833,20 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "¿El wrap daña mi pintura?", "acceptedAnswer": { "@type": "Answer", "text": "Al contrario. El vinilo protege la pintura de fábrica del sol, la arena y las piedras, y un retiro profesional la deja como la encontramos. Por eso los autos con wrap se revenden bien." } },
+      { "@type": "Question", "name": "¿El wrap daña mi pintura?", "acceptedAnswer": { "@type": "Answer", "text": "No sobre pintura de fábrica en buen estado. El vinilo protege el acabado original del sol, la arena y las piedras, y un retiro profesional lo deja como lo encontramos. Pintura que ya está fallando, repintada o con masilla es otra historia: revisamos el auto y te lo decimos con honestidad antes de cortar nada." } },
       { "@type": "Question", "name": "¿Cuánto dura un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "5 a 7 años con buen cuidado bajo el sol de Florida. Con garaje y lavado a mano estarás en el tope del rango." } },
       { "@type": "Question", "name": "¿Es realmente más barato que repintar?", "acceptedAnswer": { "@type": "Answer", "text": "Un repintado de calidad en un auto premium cuesta más que un wrap completo, tarda más y es permanente. El vinilo te da el color ahora y la pintura de fábrica de vuelta cuando quieras." } },
-      { "@type": "Question", "name": "¿Puedo envolver un auto en leasing?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El wrap se retira limpio antes de devolver el auto. Es el único cambio de color que un leasing permite." } },
+      { "@type": "Question", "name": "¿Puedo envolver un auto en leasing?", "acceptedAnswer": { "@type": "Answer", "text": "Normalmente sí: el wrap se retira limpio antes de devolver el auto, por eso es el cambio de color que la mayoría de los leasings tolera. Revisa primero tu contrato, algunos lo restringen, y esa confirmación te toca a ti." } },
       { "@type": "Question", "name": "¿Cómo lavo un auto con wrap?", "acceptedAnswer": { "@type": "Answer", "text": "A mano o touchless, sin cera sobre mate o satinado, y evita la alta presión directa en bordes y uniones. Te entregamos la guía completa de cuidado al recoger." } },
-      { "@type": "Question", "name": "¿Cuánto cuesta un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Cada auto es distinto: tamaño y forma de la carrocería, la línea de vinilo que elijas, el estado de la pintura, molduras que hay que desmontar. Por eso cotizamos solo en persona: trae el auto o el código de pintura y sales con un número exacto que no cambia después." } },
+      { "@type": "Question", "name": "¿Cuánto cuesta un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Cada auto es distinto: tamaño y forma de la carrocería, la línea de vinilo que elijas, el estado de la pintura, molduras que hay que desmontar. Por eso cotizamos solo en persona: trae el auto o el código de pintura y sales con un número por escrito, más el impuesto de Florida, que no cambia después." } },
       { "@type": "Question", "name": "¿Qué vinilos instalan?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos con los catálogos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal: líneas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la guía de cuidado de ese vinilo exacto." } },
-      { "@type": "Question", "name": "¿Dónde está el estudio?", "acceptedAnswer": { "@type": "Answer", "text": "Naples, Florida, con cita previa. Nos llegan autos desde Bonita Springs, Marco Island, Fort Myers y Cape Coral: un wrap bien hecho vale el viaje." } },
+      { "@type": "Question", "name": "¿Dónde se hace el trabajo?", "acceptedAnswer": { "@type": "Answer", "text": "Naples, Florida, con cita previa: reservamos un taller cerrado para tu proyecto y confirmamos la dirección contigo al fijar la fecha, así que no hay mostrador de entrada libre. Nos llegan autos desde Bonita Springs, Marco Island, Fort Myers y Cape Coral: un wrap bien hecho vale el viaje." } },
       { "@type": "Question", "name": "¿Trabajan exóticos y superautos?", "acceptedAnswer": { "@type": "Answer", "text": "Los exóticos son la especialidad del estudio: por eso existe Zap Wrap Naples. Defensas bajas, paneles de carbono, sensores y aerodinámica compleja cambian cómo se debe forrar un auto, así que los exóticos se hacen con paneles desmontados y el vinilo trazado sobre la carrocería exacta antes de cortar. Trae el auto a la consulta y mira el trazado primero." } },
-      { "@type": "Question", "name": "¿Cuánto tarda un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Un cambio de color completo toma de 3 a 5 días en el taller. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotización en la consulta." } }
+      { "@type": "Question", "name": "¿Cuánto tarda un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Un cambio de color completo toma de 3 a 5 días de trabajo. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotización en la consulta." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=8" defer></script>
+  <script src="/i18n.js?v=9" defer></script>
   <div class="exitbar" id="exitbar" hidden>
     <p class="exitbar__text"><span data-i18n="exit.msg">Ll&eacute;vate tu color: recibe los c&oacute;digos exactos de 3M y Avery por WhatsApp</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Escribe al estudio</a></p>
@@ -818,6 +854,6 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
   </div>
   <!-- v44: плавающий FAB-стек заменён нижним контакт-баром .mbar (тот же
        порядок каналов, но с подписями и тап-зонами на всю ширину). -->
-  <script src="/app.js?v=43" defer></script>
+  <script src="/app.js?v=44" defer></script>
 </body>
 </html>

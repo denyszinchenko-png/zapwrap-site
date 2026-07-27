@@ -46,7 +46,24 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=44" />
+  <link rel="stylesheet" href="/styles.css?v=45" />
+<!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
+     on a previous visit never has data leave the browser at all: Consent Mode v2
+     defaults are set here, and app.js flips them live when the notice is used. -->
+<script>
+(function () {
+  var c = null;
+  try { c = window.localStorage.getItem('zw-consent'); } catch (e) {}
+  window.zwConsent = c;
+  var v = c === 'deny' ? 'denied' : 'granted';
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
+  });
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -58,6 +75,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1584101513429246');
+if (window.zwConsent === 'deny') { fbq('consent', 'revoke'); }
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -74,6 +92,10 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
 </script>
 </head>
 <body id="top">
+
+  <!-- Keyboard and screen-reader users get past the nav in one tab: visually
+       hidden until focused (styles.css .skip-link) -->
+  <a class="skip-link" href="#services" data-i18n="a11y.skip">דלג לתוכן הראשי</a>
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -466,7 +488,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <ul class="svc" role="list">
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.full">החלפת צבע מלאה</h3>
-            <p class="svc__desc" data-i18n="svc.full.d">סאטן, מבריק, מטאלי, קולור-שיפט. צבע המפעל נאטם מתחת ונשאר ללא פגע. 3-5 ימים במוסך.</p>
+            <p class="svc__desc" data-i18n="svc.full.d">סאטן, מבריק, מטאלי, color-shift. צבע מפעל תקין נשאר אטום מתחת לציפוי וללא נגיעה. 3 עד 5 ימי עבודה.</p>
           </li>
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.chrome">Chrome delete</h3>
@@ -500,7 +522,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <dl class="why__list">
           <div class="why__item reveal">
             <dt data-i18n="why.1.t">צבע המפעל נשאר מקורי.</dt>
-            <dd data-i18n="why.1.d">הציפוי אוטם את הצבע המקורי ומתקלף נקי. הפיך לחלוטין, ערך המכירה נשמר.</dd>
+            <dd data-i18n="why.1.d">על צבע מפעל תקין הציפוי אוטם את המקור ויורד נקי. קודם בודקים את הצבע ואומרים לך בדיוק מה אנחנו רואים.</dd>
           </div>
           <div class="why__item reveal">
             <dt data-i18n="why.2.t">5 עד 7 שנים של גימור.</dt>
@@ -543,7 +565,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <ol class="steps" role="list">
           <li class="step reveal">
             <span class="step__n">1</span>
-            <h3 data-i18n="proc.1.t">ייעוץ בסטודיו</h3>
+            <h3 data-i18n="proc.1.t">ייעוץ פנים אל פנים</h3>
             <p data-i18n="proc.1.d">תביאו את הרכב, או רק את קוד הצבע. בודקים את המרכב, מדברים על גימורים ונותנים מחיר ישיר.</p>
           </li>
           <li class="step reveal">
@@ -554,7 +576,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <li class="step reveal">
             <span class="step__n">3</span>
             <h3 data-i18n="proc.3.t">התקנה</h3>
-            <p data-i18n="proc.3.d">3-5 ימים במוסך. פאנלים יורדים היכן שהקצה דורש. זה ה-no shortcuts שלנו.</p>
+            <p data-i18n="proc.3.d">3 עד 5 ימי עבודה במוסך סגור שהוזמן עבור הרכב שלך. פאנלים יורדים היכן שהקצה דורש. זה החלק של no shortcuts.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">4</span>
@@ -571,7 +593,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <h2 id="faq-h" class="section__h" data-i18n="faq.h">שאלות על ציפוי, תשובות ישרות<span class="dot">.</span></h2>
         <details class="qa">
           <summary data-i18n="faq.1.q">האם הציפוי יפגע בצבע שלי?</summary>
-          <p data-i18n="faq.1.a">להפך. הציפוי מגן על צבע המפעל משמש, חול ואבנים, והסרה מקצועית משאירה את הצבע כפי שמצאנו אותו. לכן רכבים עטופים נמכרים טוב.</p>
+          <p data-i18n="faq.1.a">לא על צבע מפעל תקין. הציפוי מגן על המקור משמש, חול ואבנים, והסרה מקצועית משאירה אותו כפי שמצאנו. צבע שכבר מתקלף, נצבע מחדש או עם שפכטל זה סיפור אחר: אנחנו בודקים את הרכב ואומרים לך בכנות לפני שחותכים משהו.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.2.q">כמה זמן מחזיק ראפ?</summary>
@@ -583,7 +605,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.4.q">אפשר לעטוף רכב בליסינג?</summary>
-          <p data-i18n="faq.4.a">כן. הציפוי יורד נקי לפני החזרת הרכב. זו החלפת הצבע היחידה שליסינג מאפשר.</p>
+          <p data-i18n="faq.4.a">בדרך כלל כן: הציפוי יורד נקי לפני החזרת הרכב, ולכן זה שינוי הצבע שרוב חוזי הליסינג מקבלים. בדוק קודם את החוזה שלך, יש כאלה שמגבילים, וזה באחריותך.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.5.q">איך שוטפים רכב עטוף?</summary>
@@ -591,15 +613,15 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">כמה עולה ציפוי לרכב?</summary>
-          <p data-i18n="faq.6.a">כל רכב שונה: גודל וצורת המרכב, סדרת הוויניל שבוחרים, מצב הצבע, חלקים שצריך לפרק. לכן אנחנו מתמחרים רק פנים מול פנים: תביאו את הרכב או את קוד הצבע ותצאו עם מחיר מדויק שלא זז אחר כך.</p>
+          <p data-i18n="faq.6.a">כל רכב שונה: גודל וצורת המרכב, סדרת הויניל שתבחר, מצב הצבע, פסים שצריך לפרק. לכן אנחנו מתמחרים רק פנים אל פנים: הבא את הרכב או את קוד הצבע וצא עם מספר כתוב, בתוספת מס מדינת פלורידה, שלא זז אחר כך.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">אילו ציפויים אתם מתקינים?</summary>
           <p data-i18n="faq.7.a">אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה.</p>
         </details>
         <details class="qa">
-          <summary data-i18n="faq.8.q">איפה הסטודיו?</summary>
-          <p data-i18n="faq.8.a">נייפלס, פלורידה, בתיאום מראש. מגיעים אלינו מבוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל: ציפוי טוב שווה את הנסיעה.</p>
+          <summary data-i18n="faq.8.q">איפה מתבצעת העבודה?</summary>
+          <p data-i18n="faq.8.a">נייפלס, פלורידה, בתיאום מראש: אנחנו מזמינים מוסך סגור עבור הפרויקט שלך ומאשרים איתך את הכתובת כשנקבע התאריך, ולכן אין דלפק לכניסה ללא תיאום. נהגים מגיעים אלינו מבוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל: ציפוי טוב שווה את הנסיעה.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">אתם עוטפים רכבי יוקרה וסופרקארים?</summary>
@@ -607,7 +629,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">כמה זמן לוקח ראפ?</summary>
-          <p data-i18n="faq.10.a">החלפת צבע מלאה לוקחת 3 עד 5 ימים בסדנה. חיסול כרום וגג או מכסה מנוע לוקחים פחות. את לוח הזמנים המדויק תקבלו יחד עם הצעת המחיר בייעוץ בסטודיו.</p>
+          <p data-i18n="faq.10.a">שינוי צבע מלא לוקח 3 עד 5 ימי עבודה. chrome delete וגגות או מכסי מנוע לוקחים פחות. את לוח הזמנים המדויק תקבל יחד עם ההצעה בייעוץ.</p>
         </details>
         <!-- Phones fold the list to the first five; this un-folds it. Desktop
              shows everything in two columns and never renders the button. -->
@@ -620,12 +642,12 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <div class="wrap book__grid">
         <div class="book__pitch">
           <h2 id="book-h" class="section__h" data-i18n="book.h">תביאו לנו את הרכב<span class="dot">.</span></h2>
-          <p class="section__lead" data-i18n="book.lead">הייעוץ בסטודיו וללא לחץ. נכנסים עם קוד צבע - יוצאים בידיעה מדויקת איך הראפ ייראה. שלחו פרטים ונחזור תוך יום עסקים.</p>
+          <p class="section__lead" data-i18n="book.lead">הייעוץ הוא פנים אל פנים ובלי לחץ. בוא עם קוד הצבע וצא כשאתה יודע בדיוק איך הציפוי ייראה. שלח את הפרטים ונחזור אליך תוך יום עסקים.</p>
           <ul class="book__contact" role="list">
             <li><span class="book__k" data-i18n="book.call">טלפון</span><span><a href="tel:+13527790041">(352) 779-0041</a> <span class="book__note">&middot; Naples studio line</span></span></li>
             <li><span class="book__k">Messenger</span><a href="https://m.me/ZapWrapNaples" rel="noopener" data-i18n="book.msg">הודעה לסטודיו</a></li>
             <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener" data-i18n="book.msg2">הודעה לסטודיו</a></li>
-            <li><span class="book__k" data-i18n="book.studio">סטודיו</span><span data-i18n="book.studio.v">נייפלס, פלורידה &middot; בתיאום מראש</span></li>
+            <li><span class="book__k" data-i18n="book.studio">היכן</span><span data-i18n="book.studio.v">נייפלס, פלורידה &middot; מוסך סגור, בתיאום</span></li>
             <li><span class="book__k" data-i18n="book.hours">שעות</span><span data-i18n="book.hours.v">א'-ה' 8:00-20:00 &middot; ו' 8:00-17:00 &middot; שבת סגור</span></li>
             <li><span class="book__k" data-i18n="book.serving">אזורי שירות</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
           </ul>
@@ -677,7 +699,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <li data-i18n="book.next.2">פגישת ייעוץ של 15 דקות: הרכב שלכם, דוגמאות ויניל אמיתיות, דיבור ישיר.</li>
             <li data-i18n="book.next.3">יוצאים עם מחיר מדויק ותור להתקנה.</li>
           </ol>
-          <p class="form__fine" data-i18n="f.fine">בלי ספאם. הפרטים שלכם מגיעים רק לסטודיו.</p>
+          <p class="form__fine" data-i18n="f.fine">בלי ספאם. הפרטים שלך מגיעים רק לסטודיו ומשמשים כדי לחזור אליך לגבי ההצעה. שליחת הטופס מהווה הסכמה ל<a href="/privacy.html">מדיניות הפרטיות</a> שלנו.</p>
           <p class="form__fine" data-i18n="f.alt">אין וואטסאפ? <a href="tel:+13527790041">התקשרו (352) 779-0041</a> או <a href="sms:+13527790041">שלחו SMS</a> עם אותם פרטים.</p>
         </form>
       </div>
@@ -700,10 +722,24 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <small class="footer__legal">
         <a href="/privacy.html" data-i18n="footer.privacy">מדיניות פרטיות</a>
         <a href="/terms.html" data-i18n="footer.terms">תנאי שימוש</a>
+        <a href="/terms.html#accessibility" data-i18n="footer.a11y">נגישות</a>
       </small>
       <small>&copy; 2026 Zap Wrap LLC &middot; No shortcuts.</small>
+      <!-- Nominative use of the film makers' names: legal only while we never
+           imply they authorized, certified or endorse us. -->
+      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, KPMF, Hexis ו-Oracal הם סימנים מסחריים של בעליהם. Zap Wrap LLC היא מתקינה עצמאית: לא מפיצה מורשית, לא מתקינה מוסמכת ולא חברה קשורה של יצרן ויניל כלשהו. שמות, דגמים והדמיות של רכבים מוצגים לצורכי זיהוי בלבד.</small>
     </div>
   </footer>
+
+  <!-- Cookie notice. Shown only until a choice is stored; Decline is real, it
+       revokes Meta consent and flips Consent Mode to denied without a reload. -->
+  <div class="consent" id="consent" role="region" aria-label="Cookie notice" hidden>
+    <p class="consent__text" data-i18n="cookie.text">אנחנו משתמשים בעוגיות של Google Analytics ופרסום Meta כדי לראות אילו מודעות באמת מביאות רכבים. שום דבר שאתה כותב בטופס לא מגיע אליהם. <a href="/privacy.html">מדיניות פרטיות</a></p>
+    <div class="consent__btns">
+      <button type="button" class="consent__btn consent__btn--no" id="consent-no" data-i18n="cookie.no">דחייה</button>
+      <button type="button" class="consent__btn consent__btn--ok" id="consent-ok" data-i18n="cookie.ok">אישור</button>
+    </div>
+  </div>
 
   <!-- Mobile quick-contact bar. The page runs ~14 phone screens and the hero
        CTA is gone after the first one; this keeps the studio one thumb away.
@@ -797,20 +833,20 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "האם הציפוי יפגע בצבע שלי?", "acceptedAnswer": { "@type": "Answer", "text": "להפך. הציפוי מגן על צבע המפעל משמש, חול ואבנים, והסרה מקצועית משאירה את הצבע כפי שמצאנו אותו. לכן רכבים עטופים נמכרים טוב." } },
+      { "@type": "Question", "name": "האם הציפוי יפגע בצבע שלי?", "acceptedAnswer": { "@type": "Answer", "text": "לא על צבע מפעל תקין. הציפוי מגן על המקור משמש, חול ואבנים, והסרה מקצועית משאירה אותו כפי שמצאנו. צבע שכבר מתקלף, נצבע מחדש או עם שפכטל זה סיפור אחר: אנחנו בודקים את הרכב ואומרים לך בכנות לפני שחותכים משהו." } },
       { "@type": "Question", "name": "כמה זמן מחזיק ראפ?", "acceptedAnswer": { "@type": "Answer", "text": "5 עד 7 שנים עם טיפול נכון בשמש של פלורידה. חניה מקורה ושטיפה ידנית - ותהיו בקצה העליון של הטווח." } },
       { "@type": "Question", "name": "זה באמת זול יותר מצביעה?", "acceptedAnswer": { "@type": "Answer", "text": "צביעה איכותית של רכב יוקרה עולה יותר מראפ מלא, לוקחת יותר זמן והיא בלתי הפיכה. הציפוי נותן לכם את הצבע עכשיו - ואת צבע המפעל בחזרה מתי שתרצו." } },
-      { "@type": "Question", "name": "אפשר לעטוף רכב בליסינג?", "acceptedAnswer": { "@type": "Answer", "text": "כן. הציפוי יורד נקי לפני החזרת הרכב. זו החלפת הצבע היחידה שליסינג מאפשר." } },
+      { "@type": "Question", "name": "אפשר לעטוף רכב בליסינג?", "acceptedAnswer": { "@type": "Answer", "text": "בדרך כלל כן: הציפוי יורד נקי לפני החזרת הרכב, ולכן זה שינוי הצבע שרוב חוזי הליסינג מקבלים. בדוק קודם את החוזה שלך, יש כאלה שמגבילים, וזה באחריותך." } },
       { "@type": "Question", "name": "איך שוטפים רכב עטוף?", "acceptedAnswer": { "@type": "Answer", "text": "ביד או ללא מגע, בלי ווקס על מט וסאטן, ובלי לחץ מים ישיר על קצוות ותפרים. מדריך טיפול מלא ניתן באיסוף." } },
-      { "@type": "Question", "name": "כמה עולה ציפוי לרכב?", "acceptedAnswer": { "@type": "Answer", "text": "כל רכב שונה: גודל וצורת המרכב, סדרת הוויניל שבוחרים, מצב הצבע, חלקים שצריך לפרק. לכן אנחנו מתמחרים רק פנים מול פנים: תביאו את הרכב או את קוד הצבע ותצאו עם מחיר מדויק שלא זז אחר כך." } },
+      { "@type": "Question", "name": "כמה עולה ציפוי לרכב?", "acceptedAnswer": { "@type": "Answer", "text": "כל רכב שונה: גודל וצורת המרכב, סדרת הויניל שתבחר, מצב הצבע, פסים שצריך לפרק. לכן אנחנו מתמחרים רק פנים אל פנים: הבא את הרכב או את קוד הצבע וצא עם מספר כתוב, בתוספת מס מדינת פלורידה, שלא זז אחר כך." } },
       { "@type": "Question", "name": "אילו ציפויים אתם מתקינים?", "acceptedAnswer": { "@type": "Answer", "text": "אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה." } },
-      { "@type": "Question", "name": "איפה הסטודיו?", "acceptedAnswer": { "@type": "Answer", "text": "נייפלס, פלורידה, בתיאום מראש. מגיעים אלינו מבוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל: ציפוי טוב שווה את הנסיעה." } },
+      { "@type": "Question", "name": "איפה מתבצעת העבודה?", "acceptedAnswer": { "@type": "Answer", "text": "נייפלס, פלורידה, בתיאום מראש: אנחנו מזמינים מוסך סגור עבור הפרויקט שלך ומאשרים איתך את הכתובת כשנקבע התאריך, ולכן אין דלפק לכניסה ללא תיאום. נהגים מגיעים אלינו מבוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל: ציפוי טוב שווה את הנסיעה." } },
       { "@type": "Question", "name": "אתם עוטפים רכבי יוקרה וסופרקארים?", "acceptedAnswer": { "@type": "Answer", "text": "רכבי יוקרה הם ההתמחות של הסטודיו: בשבילם Zap Wrap Naples קיים. פגושים נמוכים, פאנלים מקרבון, חיישנים ואווירודינמיקה מורכבת משנים את כל הגישה לציפוי, ולכן רכבי יוקרה נעטפים עם פירוק פאנלים והוויניל נחתך לפי המרכב המדויק לפני החיתוך הראשון. תביאו את הרכב לייעוץ ותראו את התכנון קודם." } },
-      { "@type": "Question", "name": "כמה זמן לוקח ראפ?", "acceptedAnswer": { "@type": "Answer", "text": "החלפת צבע מלאה לוקחת 3 עד 5 ימים בסדנה. חיסול כרום וגג או מכסה מנוע לוקחים פחות. את לוח הזמנים המדויק תקבלו יחד עם הצעת המחיר בייעוץ בסטודיו." } }
+      { "@type": "Question", "name": "כמה זמן לוקח ראפ?", "acceptedAnswer": { "@type": "Answer", "text": "שינוי צבע מלא לוקח 3 עד 5 ימי עבודה. chrome delete וגגות או מכסי מנוע לוקחים פחות. את לוח הזמנים המדויק תקבל יחד עם ההצעה בייעוץ." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=8" defer></script>
+  <script src="/i18n.js?v=9" defer></script>
   <div class="exitbar" id="exitbar" hidden>
     <p class="exitbar__text"><span data-i18n="exit.msg">קחו את הצבע איתכם: קבלו את הקודים המדויקים של 3M ו-Avery בוואטסאפ</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">כתבו לסטודיו</a></p>
@@ -818,6 +854,6 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
   </div>
   <!-- v44: плавающий FAB-стек заменён нижним контакт-баром .mbar (тот же
        порядок каналов, но с подписями и тап-зонами на всю ширину). -->
-  <script src="/app.js?v=43" defer></script>
+  <script src="/app.js?v=44" defer></script>
 </body>
 </html>
