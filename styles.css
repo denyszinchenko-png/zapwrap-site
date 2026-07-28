@@ -2238,12 +2238,17 @@ textarea { resize: vertical; min-height: 5.5em; }
 .consent__btn--ok:hover { background: #fff; border-color: #fff; color: #0a0a0b; }
 .consent__btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 
+/* The trademark line is legal text: quiet on purpose, but it still has to be
+   readable. At 0.7rem it counts as small text, so WCAG wants 4.5:1 and 0.38
+   alpha only reached 3.5:1 over --bg (axe 4.12.1, 2026-07-27). 0.5 composites
+   to about #808080 on the studio black: ~5:1, with headroom. Do not dial it
+   back down to "make it whisper" - that is what failed the audit. */
 .footer__tm {
   grid-column: 1 / -1;
   max-width: 70ch;
   font-size: 0.7rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 560px) {

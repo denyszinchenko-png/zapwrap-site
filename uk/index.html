@@ -47,7 +47,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-cyrillic.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=45" />
+  <link rel="stylesheet" href="/styles.css?v=46" />
 <!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
      on a previous visit never has data leave the browser at all: Consent Mode v2
      defaults are set here, and app.js flips them live when the notice is used. -->
@@ -848,7 +848,11 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
   }
   </script>
   <script src="/i18n.js?v=9" defer></script>
-  <div class="exitbar" id="exitbar" hidden>
+  <!-- role=region plus a name so the bar's text sits inside a landmark: it
+       lives outside main/footer by design (fixed, revealed on exit intent) and
+       axe flags any content that belongs to no landmark. Same pattern as the
+       cookie notice below. -->
+  <div class="exitbar" id="exitbar" role="region" aria-label="Film code offer" hidden>
     <p class="exitbar__text"><span data-i18n="exit.msg">Забери свій колір: точні коди 3M і Avery у WhatsApp</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Написати студії</a></p>
     <button class="exitbar__close" type="button" aria-label="Close">&#10005;</button>
