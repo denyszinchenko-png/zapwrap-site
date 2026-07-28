@@ -197,6 +197,54 @@
     });
   }
 
+  /* ---- v45: Make -> Model split. 66 models in one native select is a long
+     wheel on a phone. The make list is built from the existing optgroups and
+     the original select keeps only the chosen make's models (plus the
+     "request my car" row), so the no-JS fallback stays the full grouped list. ---- */
+  if (carSelect) {
+    var carGroups = Array.prototype.slice.call(carSelect.querySelectorAll("optgroup"));
+    var requestOpt = carSelect.querySelector('option[value="__request"]');
+    if (carGroups.length > 1) {
+      var modelsByMake = {};
+      carGroups.forEach(function (g) {
+        modelsByMake[g.label] = Array.prototype.slice.call(g.querySelectorAll("option"))
+          .filter(function (o) { return o.value !== "__request"; });
+      });
+      var makeSelect = document.createElement("select");
+      makeSelect.id = "car-make";
+      makeSelect.className = "car-select car-select--make";
+      makeSelect.setAttribute("aria-label", "Car make");
+      Object.keys(modelsByMake).forEach(function (make) {
+        var o = document.createElement("option");
+        o.value = make;
+        o.textContent = make;
+        makeSelect.appendChild(o);
+      });
+      var fillModels = function (make, keep) {
+        while (carSelect.firstChild) carSelect.removeChild(carSelect.firstChild);
+        modelsByMake[make].forEach(function (o) { carSelect.appendChild(o); });
+        if (requestOpt) carSelect.appendChild(requestOpt);
+        carSelect.value = keep && carSelect.querySelector('option[value="' + keep + '"]')
+          ? keep
+          : modelsByMake[make][0].value;
+      };
+      var currentMake = null;
+      carGroups.forEach(function (g) {
+        if (g.querySelector('option[value="' + currentCar + '"]')) currentMake = g.label;
+      });
+      if (!currentMake) currentMake = Object.keys(modelsByMake)[0];
+      makeSelect.value = "";
+      carSelect.parentNode.insertBefore(makeSelect, carSelect);
+      makeSelect.value = currentMake;
+      fillModels(currentMake, currentCar);
+      makeSelect.addEventListener("change", function () {
+        fillModels(makeSelect.value, null);
+        /* run the normal model-change path so the hero car actually swaps */
+        carSelect.dispatchEvent(new Event("change"));
+      });
+    }
+  }
+
   /* ---- Discoverability choreography (staged like a timeline):
      0.0s picker enters (translate/scale/opacity, expo-out) -> 0.7s pulse
      2.2s demo wipe starts -> chips cascade left-to-right under it
@@ -511,7 +559,15 @@
   if (mbar && heroSection && "IntersectionObserver" in window) {
     var mbarHeroGone = false;
     var mbarBookHere = false;
-    var mbarSync = function () { mbar.classList.toggle("is-on", mbarHeroGone && !mbarBookHere); };
+    /* v45: the consent card and this bar share the bottom edge, and consent
+       sits higher (z-index 120 vs 60) - the bar would light up unclickable
+       underneath it. Consent wins; the bar joins after Accept/Decline. */
+    var mbarConsent = document.getElementById("consent");
+    var mbarSync = function () {
+      var consentOpen = !!(mbarConsent && !mbarConsent.hidden);
+      mbar.classList.toggle("is-on", mbarHeroGone && !mbarBookHere && !consentOpen);
+    };
+    document.addEventListener("zw:consent", mbarSync);
     var mbarHeroIO = new IntersectionObserver(function (entries) {
       mbarHeroGone = !entries[0].isIntersecting;
       mbarSync();
@@ -629,9 +685,14 @@
       '<img alt="" decoding="async" />' +
       '<button class="lightbox__btn lightbox__close" type="button" aria-label="Close photo viewer">&#10005;</button>' +
       '<button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo">&#8249;</button>' +
-      '<button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">&#8250;</button>';
+      '<button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">&#8250;</button>' +
+      /* v45: frame counter + caption; aria-hidden because the img alt already
+         carries the same words for screen readers */
+      '<p class="lightbox__meta" aria-hidden="true"><span class="lightbox__count"></span><span class="lightbox__cap"></span></p>';
     document.body.appendChild(lb);
     var lbImg = lb.querySelector("img");
+    var lbCount = lb.querySelector(".lightbox__count");
+    var lbCap = lb.querySelector(".lightbox__cap");
     var lbIdx = 0;
     var lbOpener = null;   // the photo to hand focus back to on close
     var lbInerted = [];    // background elements we froze while the dialog is open
@@ -642,6 +703,8 @@
       var shot = shots[lbIdx];
       lbImg.src = shot.getAttribute("data-full") || shot.currentSrc || shot.src;
       lbImg.alt = shots[lbIdx].alt || "";
+      if (lbCount) lbCount.textContent = (lbIdx + 1) + " / " + shots.length;
+      if (lbCap) lbCap.textContent = shots[lbIdx].alt || "";
     };
     // Hide the rest of the page from the tab order and screen readers while the
     // dialog is up. inert also implies aria-hidden; the Tab trap below is the
@@ -769,6 +832,9 @@
       window.fbq("consent", choice === "deny" ? "revoke" : "grant");
     }
     bar.hidden = true;
+    /* v45: the quick-contact bar holds back while consent is open - tell it
+       the way is clear now (listener lives in the mbar block above) */
+    document.dispatchEvent(new CustomEvent("zw:consent"));
   }
 
   var ok = document.getElementById("consent-ok");

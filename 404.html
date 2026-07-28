@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found | Zap Wrap Naples</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/styles.css?v=48" />
+  <style>
+    /* 404 is a dead end by definition: one screen, no chrome, every line an exit.
+       Layout is local so the page stays valid even if styles.css moves on. */
+    .nf {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 1.1rem;
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 2rem clamp(1.2rem, 5vw, 2rem);
+    }
+    .nf__brand { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; text-decoration: none; }
+    .nf__brand svg { width: 22px; height: 22px; fill: var(--yellow, #ffd600); }
+    .nf__brand span { font-family: var(--font-display, sans-serif); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink, #fff); }
+    .nf__code { font-family: var(--font-display, sans-serif); font-size: clamp(4rem, 18vw, 7rem); font-weight: 800; line-height: 0.9; color: var(--yellow, #ffd600); }
+    .nf__h { font-size: clamp(1.3rem, 4vw, 1.8rem); margin: 0; color: var(--ink, #fff); }
+    .nf__p { margin: 0; max-width: 34rem; color: var(--ink-2, #cfcfcf); line-height: 1.6; }
+    .nf__links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin-top: 0.4rem; }
+    .nf__links a { color: var(--ink-2, #cfcfcf); text-decoration: underline; text-underline-offset: 3px; min-height: 44px; display: inline-flex; align-items: center; }
+    .nf__links a:hover { color: var(--yellow, #ffd600); }
+    .nf__cta { margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <a class="nf__brand" href="/" aria-label="Zap Wrap Naples - home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 5 14h5l-1 8 8.5-12h-5z"/></svg>
+      <span>Zap&nbsp;Wrap <small style="font-weight:600;opacity:.65;">Naples&nbsp;FL</small></span>
+    </a>
+    <p class="nf__code" aria-hidden="true">404</p>
+    <h1 class="nf__h">This page took a wrong turn.</h1>
+    <p class="nf__p">The address does not exist or has moved. The studio is still here: wraps, finishes and the booking form are one tap away.</p>
+    <nav class="nf__links" aria-label="Main sections">
+      <a href="/">Home</a>
+      <a href="/#work">Work</a>
+      <a href="/#services">Services</a>
+      <a href="/#finishes">Finishes</a>
+      <a href="/#faq">FAQ</a>
+      <a href="tel:+13527790041">Call (352) 779-0041</a>
+      <a href="https://wa.me/13527790041" rel="noopener">WhatsApp the studio</a>
+    </nav>
+    <a class="btn btn--solid nf__cta" href="/#book">Book a consult <span aria-hidden="true">&rarr;</span></a>
+  </main>
+</body>
+</html>
