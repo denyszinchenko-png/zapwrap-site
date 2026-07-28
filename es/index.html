@@ -46,7 +46,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=48" />
+  <link rel="stylesheet" href="/styles.css?v=49" />
 <!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
      on a previous visit never has data leave the browser at all: Consent Mode v2
      defaults are set here, and app.js flips them live when the notice is used. -->
@@ -476,6 +476,27 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <p class="reviews__stars" id="rev-stars" aria-hidden="true"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></p>
         <h2 id="rev-h" class="reviews__h" data-i18n="rev.h">Calificaci&oacute;n 5.0 en Google</h2>
         <p class="reviews__lead" data-i18n="rev.lead">Los conductores de Naples califican el trabajo, no los anuncios. Cada rese&ntilde;a es p&uacute;blica en Google: l&eacute;elas todas antes de llamar.</p>
+        <!-- v46: proof row - a real Google quote + the owner at work. The quote
+             is verbatim from the public review (trailing ellipsis is the
+             reviewer's own); quotes stay in the original language on every
+             locale, only the frame around them translates. -->
+        <div class="reviews__proof">
+          <blockquote class="reviews__quote">
+            <p class="reviews__quote-stars" aria-hidden="true"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></p>
+            <p class="reviews__quote-text">&ldquo;Wrapped my BMW in this killer green chrome four years ago, and it&rsquo;s still &hellip;&rdquo;</p>
+            <footer class="reviews__quote-by">
+              <span>Ruslana S. &middot; BMW &middot; green chrome</span>
+              <a href="https://g.page/r/CYApW4xxv-WLEBM" rel="noopener" target="_blank" data-i18n="rev.verify">Verificar en Google</a>
+            </footer>
+          </blockquote>
+          <figure class="reviews__owner">
+            <img src="/assets/owner/owner-install-w480.webp" srcset="/assets/owner/owner-install-w480.webp 480w, /assets/owner/owner-install.webp 960w" sizes="(max-width: 720px) 44vw, 300px" width="480" height="600" alt="The owner of Zap Wrap Naples laying a vinyl panel by hand" loading="lazy" />
+            <figcaption>
+              <strong data-i18n="rev.owner.t">Instalado por el due&ntilde;o.</strong>
+              <span data-i18n="rev.owner.d">8 a&ntilde;os en los paneles. El instalador que cotiza tu auto es el mismo que lo forra.</span>
+            </figcaption>
+          </figure>
+        </div>
         <a class="btn btn--ghost reviews__link" href="https://g.page/r/CYApW4xxv-WLEBM" rel="noopener" target="_blank" data-i18n="rev.link">Lee las rese&ntilde;as en Google</a>
       </div>
     </section>
@@ -852,7 +873,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     ]
   }
   </script>
-  <script src="/i18n.js?v=10" defer></script>
+  <script src="/i18n.js?v=11" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the
