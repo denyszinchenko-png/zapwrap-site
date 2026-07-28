@@ -16,6 +16,10 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const ORIGIN = "https://zapwrapnaples.com";
 const LANGS = ["es", "ru", "uk", "he"];
+/* EN-only service pages (hand-authored in the repo root, not prerendered from
+   index.html). Listed here so the sitemap covers them; full i18n of these
+   pages is a separate task. */
+const SERVICE_PAGES = ["color-change-wrap-naples", "chrome-delete-naples", "fleet-wraps-naples"];
 const RTL = { he: true };
 const OG_LOCALE = { en: "en_US", es: "es_US", ru: "ru_RU", uk: "uk_UA", he: "he_IL" };
 /* cyrillic pages preload the cyrillic subset on top of latin (codes/badges stay latin) */
@@ -188,10 +192,17 @@ ${cluster}
     <changefreq>weekly</changefreq>
     <priority>${l === "en" ? "1.0" : "0.8"}</priority>
   </url>`).join("\n");
+  const services = SERVICE_PAGES.map((slug) => `  <url>
+    <loc>${ORIGIN}/${slug}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls}
+${services}
   <url>
     <loc>${ORIGIN}/privacy.html</loc>
     <lastmod>2026-07-19</lastmod>
@@ -232,4 +243,4 @@ for (const lang of LANGS) {
 
 const today = process.argv[2] || new Date().toISOString().slice(0, 10);
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap(today));
-console.log("sitemap.xml written (" + (LANGS.length + 3) + " URLs)");
+console.log("sitemap.xml written (" + (LANGS.length + SERVICE_PAGES.length + 3) + " URLs)");
