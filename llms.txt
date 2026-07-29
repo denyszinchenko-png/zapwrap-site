@@ -13,7 +13,7 @@
 
 ## Films and Finishes
 
-- [Finishes](https://zapwrapnaples.com/#finishes): Installs from the full 3M, Avery Dennison, KPMF, Hexis and Oracal catalogs with real manufacturer film codes. Gloss, satin, matte, metallic, color-shift, iridescent, chrome, pearl, carbon-look and neon.
+- [Finishes](https://zapwrapnaples.com/#finishes): Installs from the full 3M, Avery Dennison, TeckWrap, KPMF, Hexis and Oracal catalogs with real manufacturer film codes. Gloss, satin, matte, metallic, color-shift, iridescent, chrome, pearl, carbon-look and neon.
 - [Wrap preview tool](https://zapwrapnaples.com/): On-site configurator: pick a car model and preview real film codes on it before the consult.
 
 ## FAQ
