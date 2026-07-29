@@ -3,6 +3,9 @@
 *.code-workspace
 .claude/
 
+# dev/build-new-car-masks.py оставляет кеш байткода при импорте или проверке
+__pycache__/
+
 # Internal brand/positioning spec - the site does not need it and this
 # repository is public. Archived at ~/files/zapwrap-PRODUCT.md
 PRODUCT.md
