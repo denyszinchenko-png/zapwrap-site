@@ -1146,10 +1146,27 @@ p { text-wrap: pretty; }
     overscroll-behavior-x: contain;
     padding-bottom: 0.3rem;
     scrollbar-width: none;
+    /* Apple-style swipe affordance: the trailing edge dissolves so the row
+       visibly "continues" past the screen instead of ending on a hard cut.
+       Trailing-only keeps the first swatch and the active-tab pill crisp at the
+       left, and the fade rides the scroll: it fades whatever end still has more.
+       Paired with the one-shot auto-nudge in app.js and the peek below, the row
+       reads as draggable at a glance. */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.4rem), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 2.4rem), transparent);
+    /* a hair of lead space so the first item is never flush to the fade */
+    scroll-padding-inline: 0.1rem 2.4rem;
+  }
+  /* once scrolled to the very end there is nothing more to hint, so drop the fade */
+  .films__rail.is-scroll-end,
+  .films__tabs.is-scroll-end {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
   .films__rail { scroll-snap-type: x proximity; }
   .films__rail::-webkit-scrollbar,
   .films__tabs::-webkit-scrollbar { display: none; }
+  /* narrower than a quarter viewport so the next swatch always peeks in */
   .fsw { flex: 0 0 7.3rem; scroll-snap-align: start; }
   .fsw__paint { height: 2.2rem; }
   .films__tab { font-size: 0.74rem; }
@@ -2013,9 +2030,19 @@ textarea { resize: vertical; min-height: 5.5em; }
     display: grid;
     grid-template-columns: minmax(30rem, 0.9fr) minmax(0, 1.1fr);
     column-gap: clamp(2rem, 3.5vw, 4rem);
-    align-items: center;
+    /* start, not center: centering the shorter text column against the tall
+       car+film column opened dead space above the headline and pushed the film
+       swatches past the fold. Aligning to the top closes the gap and lifts the
+       whole picker into the first screen. */
+    align-items: start;
+    /* tighter top so the eyebrow sits just under the nav, and a real bottom so
+       the film rail clears the fold on a laptop viewport */
+    padding-top: clamp(1.5rem, 0.5rem + 1.6vw, 2.75rem);
     padding-bottom: clamp(1.5rem, 2vw, 3rem);
   }
+  /* nudge the text block to optical-center against the car without reopening the
+     old gap: a small top offset reads balanced, the picker still clears the fold */
+  .hero__intro { margin-top: clamp(0.5rem, 2vw, 2.5rem); }
   /* The split grid hands the headline a ~530px column; the stacked-layout
      6rem cap breaks the 3-line lockup into 6 lines and shoves the CTA below
      the fold. Re-clamp to what the column actually holds. */

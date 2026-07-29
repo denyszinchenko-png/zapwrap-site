@@ -83,6 +83,60 @@
       });
     });
   }
+  /* ---- Swipe affordance: trailing fade rides the scroll, plus a one-shot
+     "peek nudge" the first time the picker comes into view. On a phone the film
+     classes and swatches scroll horizontally; without a cue they read as a fixed
+     short list. The nudge rocks the row a little to the right and back so the
+     hidden items flash - the same "there is more, drag it" signal Apple uses on
+     its product rows. No-op on desktop (the rows wrap, nothing overflows) and
+     skipped under reduced-motion. */
+  var isOverflowing = function (el) { return el && el.scrollWidth - el.clientWidth > 8; };
+  var markScrollEnd = function (el) {
+    if (!el) return;
+    var atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
+    el.classList.toggle("is-scroll-end", atEnd);
+  };
+  var scrollTracks = function () {
+    var tracks = [filmsWrap.querySelector(".films__tabs")];
+    var onPanel = filmsWrap.querySelector(".films__panel.is-on .films__rail");
+    if (onPanel) tracks.push(onPanel);
+    return tracks.filter(Boolean);
+  };
+  if (filmsWrap) {
+    filmsWrap.querySelectorAll(".films__tabs, .films__rail").forEach(function (el) {
+      markScrollEnd(el);
+      el.addEventListener("scroll", function () { markScrollEnd(el); }, { passive: true });
+    });
+  }
+  var nudgeTrack = function (el) {
+    if (!el || !isOverflowing(el)) return;
+    var peek = Math.min(64, el.scrollWidth - el.clientWidth);
+    try {
+      el.scrollTo({ left: peek, behavior: "smooth" });
+      setTimeout(function () { el.scrollTo({ left: 0, behavior: "smooth" }); }, 620);
+    } catch (err) {
+      el.scrollLeft = peek;
+      setTimeout(function () { el.scrollLeft = 0; }, 620);
+    }
+  };
+  if (filmsWrap && !prefersReduced && "IntersectionObserver" in window) {
+    var hinted = false;
+    var hintIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (hinted || !entry.isIntersecting) return;
+        hinted = true;
+        hintIO.disconnect();
+        /* let the hero entrance settle first, then hint the tabs, then the rail */
+        setTimeout(function () {
+          var tracks = scrollTracks();
+          nudgeTrack(tracks[0]);
+          if (tracks[1]) setTimeout(function () { nudgeTrack(tracks[1]); }, 900);
+        }, 1100);
+      });
+    }, { threshold: 0.55 });
+    hintIO.observe(filmsWrap);
+  }
+
   /* A film picked from anywhere else - the finishes swatches, the build CTA, the
      opening demo - has to bring its class forward, or the pick lands off-screen. */
   var revealFilmChip = function (chip) {
