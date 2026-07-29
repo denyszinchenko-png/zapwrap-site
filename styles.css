@@ -528,6 +528,10 @@ p { text-wrap: pretty; }
   /* --- Carbon --- */
   --f-carbon:     repeating-linear-gradient(45deg, #1a1a1c 0 4px, #2a2a2e 4px 8px);                     /* 3M CFS12 Black Carbon Fiber */
   /* --- Neon (level 4, ~6 month life - flagged in the UI, never sold silently) --- */
+  --f-twsunset:   linear-gradient(115deg, #6a55b8 8%, #8f6fd0 45%, #a8736e 88%);            /* TeckWrap RD20PRO-HD Purple Sunset */
+  --f-twcandy:    linear-gradient(115deg, #6b2872 8%, #4d1c52 55%, #35143a);                /* TeckWrap GAL03-HD Candy Purple */
+  --f-twcherry:   linear-gradient(115deg, #d94a4a 6%, #93090a 48%, #5e0405 92%);            /* TeckWrap CHM04-HD Cherry Red Chrome */
+  --f-twnova:     linear-gradient(115deg, #5b4fd0 6%, #2a1c7b 48%, #150e45 92%);            /* TeckWrap CHM26-HD Nova Blue Chrome */
   --f-neongreen:  linear-gradient(115deg, #7cff62 8%, #5aff3a 55%, #3fe01f);                            /* 3M VCW17120 Satin Neon Green */
   --f-neonyellow: linear-gradient(115deg, #f0ff5c 8%, #e8ff2a 55%, #cbe012);                            /* 3M VCW17076 Satin Neon Yellow */
 }
@@ -566,6 +570,10 @@ p { text-wrap: pretty; }
 .car[data-film="mantis"]     { --film: var(--f-mantis); }
 .car[data-film="pearl"]      { --film: var(--f-pearl); --shade-amt: .62; }
 .car[data-film="pearlsatin"] { --film: var(--f-pearlsatin); --shade-amt: .44; }
+.car[data-film="twsunset"]   { --film: var(--f-twsunset); }
+.car[data-film="twcandy"]    { --film: var(--f-twcandy); }
+.car[data-film="twcherry"]   { --film: var(--f-twcherry); }
+.car[data-film="twnova"]     { --film: var(--f-twnova); }
 .car[data-film="carbon"]     { --film: var(--f-carbon); }
 .car[data-film="neongreen"]  { --film: var(--f-neongreen); }
 .car[data-film="neonyellow"] { --film: var(--f-neonyellow); }
@@ -595,6 +603,10 @@ p { text-wrap: pretty; }
 .car[data-film-next="mantis"]     { --film-next: var(--f-mantis); }
 .car[data-film-next="pearl"]      { --film-next: var(--f-pearl); --shade-amt-next: .62; }
 .car[data-film-next="pearlsatin"] { --film-next: var(--f-pearlsatin); --shade-amt-next: .44; }
+.car[data-film-next="twsunset"]   { --film-next: var(--f-twsunset); }
+.car[data-film-next="twcandy"]    { --film-next: var(--f-twcandy); }
+.car[data-film-next="twcherry"]   { --film-next: var(--f-twcherry); }
+.car[data-film-next="twnova"]     { --film-next: var(--f-twnova); }
 .car[data-film-next="carbon"]     { --film-next: var(--f-carbon); }
 .car[data-film-next="neongreen"]  { --film-next: var(--f-neongreen); }
 .car[data-film-next="neonyellow"] { --film-next: var(--f-neonyellow); }
@@ -1087,6 +1099,10 @@ p { text-wrap: pretty; }
 .fsw--austral    { --f: var(--f-austral); }
 .fsw--morpheus   { --f: var(--f-morpheus); }
 .fsw--purpleblue { --f: var(--f-purpleblue); }
+.fsw--twsunset   { --f: var(--f-twsunset); }
+.fsw--twcandy    { --f: var(--f-twcandy); }
+.fsw--twcherry   { --f: var(--f-twcherry); }
+.fsw--twnova     { --f: var(--f-twnova); }
 .fsw--chrpurple  { --f: var(--f-chrpurple); }
 .fsw--chrpink    { --f: var(--f-chrpink); }
 .fsw--bluemet    { --f: var(--f-bluemet); }

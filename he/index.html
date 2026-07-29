@@ -46,7 +46,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=49" />
+  <link rel="stylesheet" href="/styles.css?v=50" />
 <!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
      on a previous visit never has data leave the browser at all: Consent Mode v2
      defaults are set here, and app.js flips them live when the notice is used. -->
@@ -298,7 +298,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <p class="filmbar__pitch" data-i18n="pitch"><strong>תראו את הרכב שלכם בצבע חדש.</strong> בחרו את הדגם הקרוב ביותר ועברו בין הציפויים. בייעוץ נשרטט את הרכב המדויק שלכם לפי הקטלוגים האמיתיים של 3M ו-Avery. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">הדגם שלכם לא כאן? שלחו אותו לסטודיו</a></p>
           <span class="filmbar__row filmbar__row--head">
             <span class="filmbar__label" data-i18n="filmbar.film">בחרו ציפוי</span>
-            <span class="filmbar__hint" data-i18n="filmbar.hint">קודים אמיתיים של 3M, Avery, Oracal, Hexis ו-KPMF</span>
+            <span class="filmbar__hint" data-i18n="filmbar.hint">קודים אמיתיים של 3M, Avery, TeckWrap, Oracal, Hexis ו-KPMF</span>
           </span>
           <div class="films" id="films">
             <div class="films__tabs" role="tablist" aria-label="Finish class">
@@ -321,6 +321,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
                 <button class="fsw fsw--coral" type="button" data-set-film="coral" data-film-code="3M SP213" title="3M 2080 SP213 Satin Flip Electric Coral"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.coral">Flip Electric Coral סאטן</span><span class="fsw__code">3M SP213</span></button>
                 <button class="fsw fsw--deepspace" type="button" data-set-film="deepspace" data-film-code="3M GP278" title="3M 2080 GP278 Flip Deep Space"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.deepspace">Flip Deep Space</span><span class="fsw__code">3M GP278</span></button>
                 <button class="fsw fsw--aura" type="button" data-set-film="aura" data-film-code="3M SP264" title="3M 2080 SP264 Satin Flip Golden Aura"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.aura">Flip Golden Aura סאטן</span><span class="fsw__code">3M SP264</span></button>
+                <button class="fsw fsw--twsunset" type="button" data-set-film="twsunset" data-film-code="TeckWrap RD20PRO-HD" title="TeckWrap RD20PRO-HD Purple Sunset color shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twsunset">Purple Sunset שינוי גוון</span><span class="fsw__code">TeckWrap RD20PRO-HD</span></button>
                 <button class="fsw fsw--sunset" type="button" data-set-film="sunset" data-film-code="Oracal 970RA-100" title="Oracal 970RA-100 Gloss Sunset Shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.sunset">Sunset Shift מבריק</span><span class="fsw__code">Oracal 970RA-100</span></button>
               </div>
             </div>
@@ -335,6 +336,8 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <div class="films__panel" role="tabpanel" id="fp-chrome" aria-labelledby="ft-chrome">
               <span class="films__ph" data-i18n="fc.chrome">סופר כרום</span>
               <div class="films__rail">
+                <button class="fsw fsw--twcherry" type="button" data-set-film="twcherry" data-film-code="TeckWrap CHM04-HD" title="TeckWrap CHM04-HD Cherry Red Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twcherry">Cherry Red כרום</span><span class="fsw__code">TeckWrap CHM04-HD</span></button>
+                <button class="fsw fsw--twnova" type="button" data-set-film="twnova" data-film-code="TeckWrap CHM26-HD" title="TeckWrap CHM26-HD Nova Blue Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twnova">Nova Blue כרום</span><span class="fsw__code">TeckWrap CHM26-HD</span></button>
                 <button class="fsw fsw--chrpurple" type="button" data-set-film="chrpurple" data-film-code="Hexis HX30SCH06B" title="Hexis HX30SCH06B Gloss Purple Super Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.chrpurple">סופר כרום סגול</span><span class="fsw__code">Hexis HX30SCH06B</span></button>
                 <button class="fsw fsw--chrpink" type="button" data-set-film="chrpink" data-film-code="Hexis HX30SCH10B" title="Hexis HX30SCH10B Gloss Pink Super Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.chrpink">סופר כרום ורוד</span><span class="fsw__code">Hexis HX30SCH10B</span></button>
               </div>
@@ -350,6 +353,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <div class="films__panel" role="tabpanel" id="fp-gloss" aria-labelledby="ft-gloss">
               <span class="films__ph" data-i18n="fc.gloss">מבריק</span>
               <div class="films__rail">
+                <button class="fsw fsw--twcandy" type="button" data-set-film="twcandy" data-film-code="TeckWrap GAL03-HD" title="TeckWrap GAL03-HD Candy Purple"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twcandy">Candy Purple מבריק</span><span class="fsw__code">TeckWrap GAL03-HD</span></button>
                 <button class="fsw fsw--pink" type="button" data-set-film="pink" data-film-code="3M G103" title="3M 2080 G103 Gloss Hot Pink"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.pink">Hot Pink מבריק</span><span class="fsw__code">3M G103</span></button>
                 <button class="fsw fsw--rosso" type="button" data-set-film="rosso" data-film-code="3M G13" title="3M 2080 G13 Gloss Hot Rod Red"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.rosso">Hot Rod Red מבריק</span><span class="fsw__code">3M G13</span></button>
                 <button class="fsw fsw--envy" type="button" data-set-film="envy" data-film-code="3M G336" title="3M 2080 G336 Gloss Green Envy"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.envy">Green Envy מבריק</span><span class="fsw__code">3M G336</span></button>
@@ -566,7 +570,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     <section class="finishes" id="finishes" aria-labelledby="fin-h">
       <div class="wrap">
         <h2 id="fin-h" class="section__h" data-i18n="fin.h">גימורים<span class="dot">.</span></h2>
-        <p class="section__lead" data-i18n="fin.lead">עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, KPMF, Hexis ו-Oracal. אם זה קיים בגליל - נשים את זה על הרכב שלכם.</p>
+        <p class="section__lead" data-i18n="fin.lead">עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, TeckWrap, KPMF, Hexis ו-Oracal. אם זה קיים בגליל - נשים את זה על הרכב שלכם.</p>
         <!-- Color-shift leads: the radar says shift/purple/pink over-index, so
              the class that sells the studio gets the first slot, not the last -->
         <ul class="swatches" role="list">
@@ -639,7 +643,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">אילו ציפויים אתם מתקינים?</summary>
-          <p data-i18n="faq.7.a">אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה.</p>
+          <p data-i18n="faq.7.a">אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, TeckWrap, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.8.q">איפה מתבצעת העבודה?</summary>
@@ -754,7 +758,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <small>&copy; 2026 Zap Wrap LLC &middot; No shortcuts.</small>
       <!-- Nominative use of the film makers' names: legal only while we never
            imply they authorized, certified or endorse us. -->
-      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, KPMF, Hexis ו-Oracal הם סימנים מסחריים של בעליהם. Zap Wrap LLC היא מתקינה עצמאית: לא מפיצה מורשית, לא מתקינה מוסמכת ולא חברה קשורה של יצרן ויניל כלשהו. שמות, דגמים והדמיות של רכבים מוצגים לצורכי זיהוי בלבד.</small>
+      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, TeckWrap, KPMF, Hexis ו-Oracal הם סימנים מסחריים של בעליהם. Zap Wrap LLC היא מתקינה עצמאית: לא מפיצה מורשית, לא מתקינה מוסמכת ולא חברה קשורה של יצרן ויניל כלשהו. שמות, דגמים והדמיות של רכבים מוצגים לצורכי זיהוי בלבד.</small>
     </div>
   </footer>
 
@@ -866,14 +870,14 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       { "@type": "Question", "name": "אפשר לעטוף רכב בליסינג?", "acceptedAnswer": { "@type": "Answer", "text": "בדרך כלל כן: הציפוי יורד נקי לפני החזרת הרכב, ולכן זה שינוי הצבע שרוב חוזי הליסינג מקבלים. בדוק קודם את החוזה שלך, יש כאלה שמגבילים, וזה באחריותך." } },
       { "@type": "Question", "name": "איך שוטפים רכב עטוף?", "acceptedAnswer": { "@type": "Answer", "text": "ביד או ללא מגע, בלי ווקס על מט וסאטן, ובלי לחץ מים ישיר על קצוות ותפרים. מדריך טיפול מלא ניתן באיסוף." } },
       { "@type": "Question", "name": "כמה עולה ציפוי לרכב?", "acceptedAnswer": { "@type": "Answer", "text": "כל רכב שונה: גודל וצורת המרכב, סדרת הויניל שתבחר, מצב הצבע, פסים שצריך לפרק. לכן אנחנו מתמחרים רק פנים אל פנים: הבא את הרכב או את קוד הצבע וצא עם מספר כתוב, בתוספת מס מדינת פלורידה, שלא זז אחר כך." } },
-      { "@type": "Question", "name": "אילו ציפויים אתם מתקינים?", "acceptedAnswer": { "@type": "Answer", "text": "אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה." } },
+      { "@type": "Question", "name": "אילו ציפויים אתם מתקינים?", "acceptedAnswer": { "@type": "Answer", "text": "אנחנו עובדים עם הקטלוגים המלאים של 3M, Avery Dennison, TeckWrap, KPMF, Hexis ו-Oracal: סדרות עם גיבוי יצרן, אף פעם לא גלילים ללא שם. בוחרים גימור מול דוגמאות אמיתיות בפגישה, וכל רכב יוצא עם מדריך טיפול לציפוי המדויק הזה." } },
       { "@type": "Question", "name": "איפה מתבצעת העבודה?", "acceptedAnswer": { "@type": "Answer", "text": "נייפלס, פלורידה, בתיאום מראש: אנחנו מזמינים מוסך סגור עבור הפרויקט שלך ומאשרים איתך את הכתובת כשנקבע התאריך, ולכן אין דלפק לכניסה ללא תיאום. נהגים מגיעים אלינו מבוניטה ספרינגס, מרקו איילנד, פורט מאיירס וקייפ קורל: ציפוי טוב שווה את הנסיעה." } },
       { "@type": "Question", "name": "אתם עוטפים רכבי יוקרה וסופרקארים?", "acceptedAnswer": { "@type": "Answer", "text": "רכבי יוקרה הם ההתמחות של הסטודיו: בשבילם Zap Wrap Naples קיים. פגושים נמוכים, פאנלים מקרבון, חיישנים ואווירודינמיקה מורכבת משנים את כל הגישה לציפוי, ולכן רכבי יוקרה נעטפים עם פירוק פאנלים והוויניל נחתך לפי המרכב המדויק לפני החיתוך הראשון. תביאו את הרכב לייעוץ ותראו את התכנון קודם." } },
       { "@type": "Question", "name": "כמה זמן לוקח ראפ?", "acceptedAnswer": { "@type": "Answer", "text": "שינוי צבע מלא לוקח 3 עד 5 ימי עבודה. chrome delete וגגות או מכסי מנוע לוקחים פחות. את לוח הזמנים המדויק תקבל יחד עם ההצעה בייעוץ." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=11" defer></script>
+  <script src="/i18n.js?v=12" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the

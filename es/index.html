@@ -46,7 +46,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=49" />
+  <link rel="stylesheet" href="/styles.css?v=50" />
 <!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
      on a previous visit never has data leave the browser at all: Consent Mode v2
      defaults are set here, and app.js flips them live when the notice is used. -->
@@ -298,7 +298,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <p class="filmbar__pitch" data-i18n="pitch"><strong>Mira tu auto en un color nuevo.</strong> Elige el modelo m&aacute;s parecido y prueba los vinilos. En la consulta trazamos tu auto exacto con los cat&aacute;logos reales de 3M y Avery. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">&iquest;No est&aacute; tu modelo? Env&iacute;alo al estudio</a></p>
           <span class="filmbar__row filmbar__row--head">
             <span class="filmbar__label" data-i18n="filmbar.film">Elige el vinilo</span>
-            <span class="filmbar__hint" data-i18n="filmbar.hint">C&oacute;digos reales de 3M, Avery, Oracal, Hexis y KPMF</span>
+            <span class="filmbar__hint" data-i18n="filmbar.hint">C&oacute;digos reales de 3M, Avery, TeckWrap, Oracal, Hexis y KPMF</span>
           </span>
           <div class="films" id="films">
             <div class="films__tabs" role="tablist" aria-label="Finish class">
@@ -321,6 +321,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
                 <button class="fsw fsw--coral" type="button" data-set-film="coral" data-film-code="3M SP213" title="3M 2080 SP213 Satin Flip Electric Coral"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.coral">Flip Electric Coral satinado</span><span class="fsw__code">3M SP213</span></button>
                 <button class="fsw fsw--deepspace" type="button" data-set-film="deepspace" data-film-code="3M GP278" title="3M 2080 GP278 Flip Deep Space"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.deepspace">Flip Deep Space</span><span class="fsw__code">3M GP278</span></button>
                 <button class="fsw fsw--aura" type="button" data-set-film="aura" data-film-code="3M SP264" title="3M 2080 SP264 Satin Flip Golden Aura"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.aura">Flip Golden Aura satinado</span><span class="fsw__code">3M SP264</span></button>
+                <button class="fsw fsw--twsunset" type="button" data-set-film="twsunset" data-film-code="TeckWrap RD20PRO-HD" title="TeckWrap RD20PRO-HD Purple Sunset color shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twsunset">Purple Sunset shift</span><span class="fsw__code">TeckWrap RD20PRO-HD</span></button>
                 <button class="fsw fsw--sunset" type="button" data-set-film="sunset" data-film-code="Oracal 970RA-100" title="Oracal 970RA-100 Gloss Sunset Shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.sunset">Sunset Shift brillante</span><span class="fsw__code">Oracal 970RA-100</span></button>
               </div>
             </div>
@@ -335,6 +336,8 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <div class="films__panel" role="tabpanel" id="fp-chrome" aria-labelledby="ft-chrome">
               <span class="films__ph" data-i18n="fc.chrome">Super chrome</span>
               <div class="films__rail">
+                <button class="fsw fsw--twcherry" type="button" data-set-film="twcherry" data-film-code="TeckWrap CHM04-HD" title="TeckWrap CHM04-HD Cherry Red Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twcherry">Cherry Red cromado</span><span class="fsw__code">TeckWrap CHM04-HD</span></button>
+                <button class="fsw fsw--twnova" type="button" data-set-film="twnova" data-film-code="TeckWrap CHM26-HD" title="TeckWrap CHM26-HD Nova Blue Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twnova">Nova Blue cromado</span><span class="fsw__code">TeckWrap CHM26-HD</span></button>
                 <button class="fsw fsw--chrpurple" type="button" data-set-film="chrpurple" data-film-code="Hexis HX30SCH06B" title="Hexis HX30SCH06B Gloss Purple Super Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.chrpurple">Super Chrome p&uacute;rpura</span><span class="fsw__code">Hexis HX30SCH06B</span></button>
                 <button class="fsw fsw--chrpink" type="button" data-set-film="chrpink" data-film-code="Hexis HX30SCH10B" title="Hexis HX30SCH10B Gloss Pink Super Chrome"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.chrpink">Super Chrome rosa</span><span class="fsw__code">Hexis HX30SCH10B</span></button>
               </div>
@@ -350,6 +353,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <div class="films__panel" role="tabpanel" id="fp-gloss" aria-labelledby="ft-gloss">
               <span class="films__ph" data-i18n="fc.gloss">Brillante</span>
               <div class="films__rail">
+                <button class="fsw fsw--twcandy" type="button" data-set-film="twcandy" data-film-code="TeckWrap GAL03-HD" title="TeckWrap GAL03-HD Candy Purple"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.twcandy">Candy Purple brillante</span><span class="fsw__code">TeckWrap GAL03-HD</span></button>
                 <button class="fsw fsw--pink" type="button" data-set-film="pink" data-film-code="3M G103" title="3M 2080 G103 Gloss Hot Pink"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.pink">Hot Pink brillante</span><span class="fsw__code">3M G103</span></button>
                 <button class="fsw fsw--rosso" type="button" data-set-film="rosso" data-film-code="3M G13" title="3M 2080 G13 Gloss Hot Rod Red"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.rosso">Hot Rod Red brillante</span><span class="fsw__code">3M G13</span></button>
                 <button class="fsw fsw--envy" type="button" data-set-film="envy" data-film-code="3M G336" title="3M 2080 G336 Gloss Green Envy"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.envy">Green Envy brillante</span><span class="fsw__code">3M G336</span></button>
@@ -566,7 +570,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     <section class="finishes" id="finishes" aria-labelledby="fin-h">
       <div class="wrap">
         <h2 id="fin-h" class="section__h" data-i18n="fin.h">Acabados<span class="dot">.</span></h2>
-        <p class="section__lead" data-i18n="fin.lead">Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal. Si existe en rollo, lo ponemos en tu auto.</p>
+        <p class="section__lead" data-i18n="fin.lead">Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, TeckWrap, KPMF, Hexis y Oracal. Si existe en rollo, lo ponemos en tu auto.</p>
         <!-- Color-shift leads: the radar says shift/purple/pink over-index, so
              the class that sells the studio gets the first slot, not the last -->
         <ul class="swatches" role="list">
@@ -639,7 +643,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">&iquest;Qu&eacute; vinilos instalan?</summary>
-          <p data-i18n="faq.7.a">Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal: l&iacute;neas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la gu&iacute;a de cuidado de ese vinilo exacto.</p>
+          <p data-i18n="faq.7.a">Trabajamos con los cat&aacute;logos completos de 3M, Avery Dennison, TeckWrap, KPMF, Hexis y Oracal: l&iacute;neas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la gu&iacute;a de cuidado de ese vinilo exacto.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.8.q">&iquest;D&oacute;nde se hace el trabajo?</summary>
@@ -754,7 +758,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <small>&copy; 2026 Zap Wrap LLC &middot; No shortcuts.</small>
       <!-- Nominative use of the film makers' names: legal only while we never
            imply they authorized, certified or endorse us. -->
-      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, KPMF, Hexis y Oracal son marcas de sus respectivos due&ntilde;os. Zap Wrap LLC es un instalador independiente: no es distribuidor autorizado, instalador certificado ni afiliado de ning&uacute;n fabricante de vinilo. Los nombres, modelos y renders de veh&iacute;culos se muestran solo a modo de identificaci&oacute;n.</small>
+      <small class="footer__tm" data-i18n="footer.tm">3M, Avery Dennison, TeckWrap, KPMF, Hexis y Oracal son marcas de sus respectivos due&ntilde;os. Zap Wrap LLC es un instalador independiente: no es distribuidor autorizado, instalador certificado ni afiliado de ning&uacute;n fabricante de vinilo. Los nombres, modelos y renders de veh&iacute;culos se muestran solo a modo de identificaci&oacute;n.</small>
     </div>
   </footer>
 
@@ -866,14 +870,14 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       { "@type": "Question", "name": "¿Puedo envolver un auto en leasing?", "acceptedAnswer": { "@type": "Answer", "text": "Normalmente sí: el wrap se retira limpio antes de devolver el auto, por eso es el cambio de color que la mayoría de los leasings tolera. Revisa primero tu contrato, algunos lo restringen, y esa confirmación te toca a ti." } },
       { "@type": "Question", "name": "¿Cómo lavo un auto con wrap?", "acceptedAnswer": { "@type": "Answer", "text": "A mano o touchless, sin cera sobre mate o satinado, y evita la alta presión directa en bordes y uniones. Te entregamos la guía completa de cuidado al recoger." } },
       { "@type": "Question", "name": "¿Cuánto cuesta un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Cada auto es distinto: tamaño y forma de la carrocería, la línea de vinilo que elijas, el estado de la pintura, molduras que hay que desmontar. Por eso cotizamos solo en persona: trae el auto o el código de pintura y sales con un número por escrito, más el impuesto de Florida, que no cambia después." } },
-      { "@type": "Question", "name": "¿Qué vinilos instalan?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos con los catálogos completos de 3M, Avery Dennison, KPMF, Hexis y Oracal: líneas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la guía de cuidado de ese vinilo exacto." } },
+      { "@type": "Question", "name": "¿Qué vinilos instalan?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos con los catálogos completos de 3M, Avery Dennison, TeckWrap, KPMF, Hexis y Oracal: líneas respaldadas por el fabricante, nunca rollos sin marca. Eliges el acabado con muestras reales en la consulta, y cada proyecto se entrega con la guía de cuidado de ese vinilo exacto." } },
       { "@type": "Question", "name": "¿Dónde se hace el trabajo?", "acceptedAnswer": { "@type": "Answer", "text": "Naples, Florida, con cita previa: reservamos un taller cerrado para tu proyecto y confirmamos la dirección contigo al fijar la fecha, así que no hay mostrador de entrada libre. Nos llegan autos desde Bonita Springs, Marco Island, Fort Myers y Cape Coral: un wrap bien hecho vale el viaje." } },
       { "@type": "Question", "name": "¿Trabajan exóticos y superautos?", "acceptedAnswer": { "@type": "Answer", "text": "Los exóticos son la especialidad del estudio: por eso existe Zap Wrap Naples. Defensas bajas, paneles de carbono, sensores y aerodinámica compleja cambian cómo se debe forrar un auto, así que los exóticos se hacen con paneles desmontados y el vinilo trazado sobre la carrocería exacta antes de cortar. Trae el auto a la consulta y mira el trazado primero." } },
       { "@type": "Question", "name": "¿Cuánto tarda un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Un cambio de color completo toma de 3 a 5 días de trabajo. Los chrome delete y los techos o cofres toman menos. El cronograma exacto te lo damos junto con la cotización en la consulta." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=11" defer></script>
+  <script src="/i18n.js?v=12" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the
