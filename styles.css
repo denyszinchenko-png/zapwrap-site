@@ -537,7 +537,7 @@ p { text-wrap: pretty; }
 }
 
 .car {
-  --mask: url("assets/cars/lamborghini-huracan-mask3.webp");
+  --mask: url("assets/cars/lamborghini-huracan-mask8.webp");
   --shade: url("assets/cars/lamborghini-huracan.webp");
   --film: var(--f-shift);
   --film-next: var(--f-shift);
@@ -1886,8 +1886,8 @@ textarea { resize: vertical; min-height: 5.5em; }
   /* same catalog token the hero car and the graphite tile use (3M M261) */
   background: var(--f-graphite);
   mix-blend-mode: multiply;
-  -webkit-mask-image: url("assets/cars/bmw-x6-mask3.webp");
-  mask-image: url("assets/cars/bmw-x6-mask3.webp");
+  -webkit-mask-image: url("assets/cars/bmw-x6-mask8.webp");
+  mask-image: url("assets/cars/bmw-x6-mask8.webp");
   -webkit-mask-mode: luminance;
   mask-mode: luminance;
   -webkit-mask-size: contain;

@@ -85,18 +85,43 @@ def dilate(b, r):
     return _bin(b, r, True) if r > 0 else b
 
 
+def resolve_prefix(slug):
+    """Префикс шаблона: явная карта, иначе поиск по каталогу шаблонов базы.
+    Правило имени такое же, как в rebuild-masks.js: год отбрасывается, регистр
+    вниз, подчёркивания в дефисы (2020_Honda_Accord -> honda-accord)."""
+    if slug in TEMPLATE_PREFIX:
+        return TEMPLATE_PREFIX[slug]
+    import glob
+    import re
+    for t in glob.glob(os.path.join(TEMPLATES, "*_body_mask.png")):
+        base = os.path.basename(t).replace("_body_mask.png", "")
+        key = re.sub(r"^\d{4}_", "", base).lower().replace("_", "-")
+        # ключ реестра бывает короче имени файла (911 <- porsche-911)
+        if key == slug or key.endswith("-" + slug):
+            return base
+    raise SystemExit(f"{slug}: шаблон body_mask не найден в {TEMPLATES}")
+
+
 def load_sources(slug):
     photo = Image.open(os.path.join(CARS, f"{slug}.webp")).convert("RGBA")
     if photo.size != (W, H):
         photo = photo.resize((W, H), Image.LANCZOS)
-    prefix = TEMPLATE_PREFIX[slug]
+    prefix = resolve_prefix(slug)
     body = Image.open(os.path.join(TEMPLATES, f"{prefix}_body_mask.png")).convert("L")
     body = body.resize((W, H), Image.LANCZOS)
     return np.array(photo), np.array(body)
 
 
-def build(slug, verbose=True):
+def build(slug, verbose=True, prev_suffix=None):
     ph, body_img = load_sources(slug)
+    prev_painted = None
+    if prev_suffix:
+        prev_path = os.path.join(CARS, f"{slug}{prev_suffix}.webp")
+        if os.path.exists(prev_path):
+            prev = Image.open(prev_path).convert("RGBA")
+            if prev.size != (W, H):
+                prev = prev.resize((W, H), Image.LANCZOS)
+            prev_painted = np.array(prev)[:, :, 3] > 40
     rgb = ph[:, :, :3].astype(float)
     alpha = ph[:, :, 3]
 
@@ -107,8 +132,20 @@ def build(slug, verbose=True):
     sil = alpha > 40
     sil = ndimage.binary_fill_holes(sil)
 
+    # Дырки берутся из ДВУХ источников. Студийный шаблон бывает битый: у
+    # Bentley, BMW, Cadillac, Camaro и Silverado внутри машины сплошной чёрный
+    # (это же зафиксировано в шапке rebuild-masks.js), дырок нет вообще, и
+    # стёкла уезжают под покраску - на проверке M4 окна стали красными.
+    # Поэтому вторым источником идёт действующая маска сайта: её вырезы
+    # (стекло, колёса, фонари) проходят ту же проверку по фото, а её дефекты
+    # (белые ручки, волоски по стыкам) при этой проверке закрашиваются.
     body = body_img > 128
-    holes = sil & ~body
+    inside = float(body[sil].mean()) if sil.any() else 0.0
+    holes = np.zeros_like(sil)
+    if 0.25 < inside < 0.95:
+        holes |= sil & ~body
+    if prev_painted is not None:
+        holes |= sil & ~prev_painted
 
     ys, xs = np.where(sil)
     y0, y1, x0, x1 = ys.min(), ys.max(), xs.min(), xs.max()
@@ -142,9 +179,16 @@ def build(slug, verbose=True):
             dropped += 1
             continue  # зазор/ручка/эмблема - это кузов
 
+        cys, cxs = np.where(comp)
+        big = area > 0.02 * car_w * car_h
+        upper = (cys.mean() - y0) / max(car_h, 1) < 0.62
+
         med_lum = float(np.median(lum[comp]))
         med_sat = float(np.median(sat[comp]))
-        if med_lum >= LIGHT_LUM and med_sat <= COLOR_SAT:
+        # Проверка на яркость идёт ПОСЛЕ геометрии: светлое стекло старых фото
+        # (Civic) иначе отсеивалось здесь как «сплошь светлый хром» и красилось.
+        glassy = big and upper and prev_painted is not None
+        if not glassy and med_lum >= LIGHT_LUM and med_sat <= COLOR_SAT:
             dropped += 1
             continue  # сплошь светлый хром/панель - красим
 
@@ -153,8 +197,23 @@ def build(slug, verbose=True):
         is_light = (sat[comp] > 60).mean() > 0.03
         if is_light:
             lights |= comp
-        else:
-            cut |= comp & ((lum < lum_thr) | (sat > COLOR_SAT))
+            kept_mask |= comp
+            kept += 1
+            continue
+
+        # У старых фото стекло СВЕТЛОЕ (яркость 200+, как у honda-civic), и по
+        # одной яркости от белого кузова его не отличить - на проверке окна
+        # Civic закрасились. Различие геометрическое: стекло крупное и толстое,
+        # а хром, ручки и волоски по стыкам тонкие. Толстое ядро крупной дырки
+        # выше поясной линии режется целиком, тонкие отростки решаются по фото.
+        core = np.zeros_like(sil)
+        # Только для машин, у которых уже есть маска сайта (старые 65). У новых
+        # стекло тёмное и решается по яркости, а геометрическое правило там
+        # захватывало хром вокруг окон и делало из него белую полосу (Accord).
+        if big and upper and prev_painted is not None:
+            core = dilate(erode(comp, 5), 5) & comp
+            cut |= core
+        cut |= (comp & ~core) & ((lum < lum_thr) | (sat > COLOR_SAT))
         kept_mask |= comp
         kept += 1
 
@@ -299,6 +358,7 @@ def save_mask(paint, path):
 def main():
     suffix = "-mask6"
     preview = None
+    prev_suffix = None
     slugs = []
     rest = sys.argv[1:]
     while rest:
@@ -307,11 +367,13 @@ def main():
             suffix = rest.pop(0)
         elif a == "--preview":
             preview = rest.pop(0)
+        elif a == "--prev":
+            prev_suffix = rest.pop(0)
         else:
             slugs.append(a)
     slugs = slugs or list(TEMPLATE_PREFIX)
     for slug in slugs:
-        paint, sil, ph = build(slug)
+        paint, sil, ph = build(slug, prev_suffix=prev_suffix)
         save_mask(paint, os.path.join(CARS, f"{slug}{suffix}.webp"))
         if preview:
             film = np.array([190, 25, 110]) / 255.0
