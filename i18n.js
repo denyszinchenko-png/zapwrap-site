@@ -1,4 +1,4 @@
-/* Zap Wrap Naples — client-side i18n.
+/* Zap Wrap Naples - client-side i18n.
    English lives in the HTML (source of truth, what search engines index).
    ES / RU / UK / HE are applied on top via [data-i18n] innerHTML swaps;
    Hebrew flips the document to RTL. Choice persists in localStorage,

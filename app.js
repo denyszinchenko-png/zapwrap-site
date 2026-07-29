@@ -1,4 +1,4 @@
-/* Zap Wrap Naples — progressive enhancement only.
+/* Zap Wrap Naples - progressive enhancement only.
    Content is fully visible without JS; this layer adds the hero timeline,
    the film switcher, scroll reveals and nav state. */
 (function () {
