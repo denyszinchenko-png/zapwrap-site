@@ -152,7 +152,8 @@ function rootRelative(html) {
     .replace(/(href|src|srcset)="assets\//g, '$1="/assets/')
     .replace(/srcset="([^"]+)"/g, (m, set) => 'srcset="' + set.replace(/(^|,\s*)assets\//g, "$1/assets/") + '"')
     .replace(/href="privacy\.html/g, 'href="/privacy.html')
-    .replace(/href="terms\.html/g, 'href="/terms.html');
+    .replace(/href="terms\.html/g, 'href="/terms.html')
+    .replace(/href="refunds\.html/g, 'href="/refunds.html');
 }
 
 /* ---- FAQPage JSON-LD gets the translated questions ---- */
@@ -212,6 +213,12 @@ ${services}
   <url>
     <loc>${ORIGIN}/terms.html</loc>
     <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${ORIGIN}/refunds.html</loc>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
