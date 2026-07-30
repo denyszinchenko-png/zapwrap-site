@@ -840,37 +840,52 @@
     });
   }
 
-  /* ---- Meta Pixel: Lead when the consult form is sent, Contact when a
-     WhatsApp link or the studio number is tapped. Both are delegated on
-     document, so links added later are covered and the same block works on any
-     page that loads this file. Nothing but the event name is sent. Silent when
-     the pixel is missing or blocked. ---- */
-  var pixelSent = {};
-  var pixelTrack = function (event, key) {
-    if (typeof window.fbq !== "function") return;
-    var id = event + "|" + key;
+  /* ---- Contact tracking: Lead / Contact go to the Meta Pixel, and the same
+     intents go to GA4 as one contact_click event with a method param
+     (phone / sms / whatsapp / messenger / whatsapp_form). GA4 contact_click
+     is the key event behind the Google Ads conversion, so keep the name
+     stable. Both are delegated on document, so links added later are covered
+     and the same block works on any page that loads this file. Silent when a
+     tracker is missing or blocked. ---- */
+  var contactSent = {};
+  // One intent per link: a double tap is not two events.
+  var contactOnce = function (id) {
     var now = Date.now();
-    // One intent per link: a double tap is not two events.
-    if (now - (pixelSent[id] || 0) < 1500) return;
-    pixelSent[id] = now;
-    // fbq puts the request on the wire synchronously, before the link
-    // navigates, so the click stays untouched: no preventDefault, no delay.
-    window.fbq("track", event);
+    if (now - (contactSent[id] || 0) < 1500) return false;
+    contactSent[id] = now;
+    return true;
+  };
+  var trackContact = function (pixelEvent, method, key) {
+    if (!contactOnce(pixelEvent + "|" + key)) return;
+    // Both trackers put the hit on the wire without touching the click:
+    // no preventDefault, no delay. fbq is synchronous; gtag rides a beacon
+    // so the hit survives the navigation to wa.me / m.me.
+    if (typeof window.fbq === "function") window.fbq("track", pixelEvent);
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "contact_click", {
+        method: method, link_url: key, transport_type: "beacon"
+      });
+    }
   };
 
   document.addEventListener("submit", function (e) {
     if (!e.target || e.target.id !== "consult-form") return;
-    pixelTrack("Lead", "consult-form");
+    trackContact("Lead", "whatsapp_form", "consult-form");
   }, true);
 
   document.addEventListener("click", function (e) {
     var link = e.target && e.target.closest ? e.target.closest("a[href]") : null;
     if (!link) return;
     var href = link.getAttribute("href") || "";
-    if (!/^(tel:|sms:|https?:\/\/(wa\.me|api\.whatsapp\.com|m\.me)\/)/i.test(href)) return;
+    var method = /^tel:/i.test(href) ? "phone"
+      : /^sms:/i.test(href) ? "sms"
+      : /^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href) ? "whatsapp"
+      : /^https?:\/\/m\.me\//i.test(href) ? "messenger"
+      : null;
+    if (!method) return;
     // Sending the form already counts as a Lead - never also as a Contact.
     if (link.closest("#consult-form")) return;
-    pixelTrack("Contact", href);
+    trackContact("Contact", method, href);
   }, true);
 })();
 
