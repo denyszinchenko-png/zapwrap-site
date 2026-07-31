@@ -566,6 +566,8 @@ p { text-wrap: pretty; }
   --f-deepspace:  linear-gradient(115deg, #131c3a 8%, #3a2a6e 55%, #14343f);                            /* 3M GP278 Flip Deep Space */
   --f-aura:       linear-gradient(115deg, #b8925a 8%, #e8c878 55%, #2a2320);                            /* 3M SP264 Satin Flip Golden Aura */
   --f-sunset:     linear-gradient(115deg, #d95a2b 8%, #b83a6e 55%, #3a2a6e);                            /* Oracal 970RA-100 Gloss Sunset Shift */
+  --f-vortex:     linear-gradient(115deg, #17694a 8%, #24418f 48%, #5a2a86 88%);                        /* TeckWrap RD11-HD Rainbow Vortex */
+  --f-ghost:      linear-gradient(115deg, #cfd4de 8%, #e8e3f2 50%, #cfe0dd 88%);                        /* 3M SP280 Satin Flip Ghost Pearl */
   /* --- Iridescent --- */
   --f-austral:    linear-gradient(115deg, #1f6e7a 8%, #4a4fa8 55%, #6e3f8a);                            /* Hexis HX30IMAB Gloss Austral Sea Iridescent */
   --f-morpheus:   linear-gradient(115deg, #141018 8%, #3a2a4f 55%, #1a2a3a);                            /* KPMF K75470 Gloss Morpheus Black Starlight */
@@ -577,18 +579,25 @@ p { text-wrap: pretty; }
   --f-bluemet:    linear-gradient(115deg, #173a7a 8%, #2f5fb8 60%, #173a7a);                            /* 3M G227 Gloss Blue Metallic */
   --f-purple:     linear-gradient(115deg, #4a2472 8%, #6b3fa0 60%, #4a2472);                            /* Avery SW900-566-M Satin Purple Metallic */
   --f-charcoal:   linear-gradient(115deg, #3a3d42 8%, #5a5e66 60%, #3a3d42);                            /* 3M M211 Matte Charcoal Metallic */
+  --f-pdiamond:   linear-gradient(115deg, #5a2a8a 8%, #8a5fc8 55%, #5a2a8a);                            /* Avery SW900-587-D Gloss Purple Diamond */
   /* --- Gloss --- */
   --f-rosso:      linear-gradient(115deg, oklch(0.5 0.2 25), oklch(0.42 0.19 27) 55%, oklch(0.56 0.2 25));      /* 3M G13 Gloss Hot Rod Red */
   --f-pink:       linear-gradient(115deg, oklch(0.74 0.18 350), oklch(0.62 0.21 356) 55%, oklch(0.8 0.16 345)); /* 3M G103 Gloss Hot Pink */
   --f-envy:       linear-gradient(115deg, #3a8548 8%, #2e6e3a 55%, #245a2e);                            /* 3M G336 Gloss Green Envy */
+  --f-midnightp:  linear-gradient(115deg, #3a1f9e 8%, #4b2bc4 55%, #2c1578);                            /* TeckWrap RB20-HD Gloss Midnight Purple */
+  --f-fuchsia:    linear-gradient(115deg, #d13b8c 8%, #c4257a 55%, #a91d68);                            /* 3M G348 Gloss Fierce Fuchsia */
   /* --- Satin --- */
   --f-satin:      linear-gradient(115deg, oklch(0.30 0 0), oklch(0.16 0 0) 55%, oklch(0.34 0 0));       /* 3M S12 Satin Black */
   --f-vampire:    linear-gradient(115deg, #97202e 8%, #7a1420 55%, #5c0d17);                            /* 3M SP273 Satin Vampire Red */
   --f-velvetrose: linear-gradient(115deg, #dda3ad 8%, #c98a96 55%, #ac6f7c);                            /* 3M S23 Satin Velvet Rose */
+  --f-hotpink:    linear-gradient(115deg, #af335c 8%, #9b1343 55%, #7d0f36);                            /* TeckWrap VCH404-S Satin Hot Pink */
+  --f-berry:      linear-gradient(115deg, #6e3a5e 8%, #9a5f86 60%, #6e3a5e);                            /* 3M S238 Satin Frozen Berry Metallic */
   /* --- Matte --- */
   --f-matteblack: linear-gradient(115deg, #2b2b2e 8%, #1a1a1c 55%, #121214);                            /* 3M M12 Matte Black */
   --f-graphite:   linear-gradient(115deg, oklch(0.42 0.005 260), oklch(0.33 0.005 260) 55%, oklch(0.46 0.005 260)); /* 3M M261 Matte Dark Gray */
   --f-matred:     linear-gradient(115deg, #ac2a30 8%, #8f1f24 55%, #71171b);                            /* 3M M13 Matte Red */
+  --f-icedpink:   linear-gradient(115deg, #c88aa0 8%, #e8b8c8 60%, #c88aa0);                            /* KPMF K75504 Matte Iced Pink Titanium */
+  --f-icedtitan:  linear-gradient(115deg, #3a4250 8%, #8b95a5 60%, #3a4250);                            /* KPMF K75501 Matte Iced Silver Titanium */
   /* --- High gloss --- */
   --f-nardo:      linear-gradient(115deg, oklch(0.62 0.015 250), oklch(0.53 0.015 250) 55%, oklch(0.68 0.015 250)); /* 3M HG61 High Gloss Nardo Gray */
   --f-mantis:     linear-gradient(115deg, #a3e04f 8%, #8fd435 55%, #77b526);                            /* 3M HG36 High Gloss Mantis Green */
@@ -596,6 +605,7 @@ p { text-wrap: pretty; }
          without it, which is why the two used to look identical) --- */
   --f-pearl:      linear-gradient(115deg, #e6e3dc 8%, #fbfaf6 46%, #dfe4e6 82%);                        /* Avery SW900-109-S Gloss White Pearl */
   --f-pearlsatin: linear-gradient(115deg, #e4ddd0 8%, #f2ece0 55%, #ded7c9 92%);                        /* 3M SP10 Satin Pearl White */
+  --f-ppearl:     linear-gradient(115deg, #41208c 8%, #341375 55%, #240c55);                            /* TeckWrap GAL32-HD Gloss Purple Pearl */
   /* --- Carbon --- */
   --f-carbon:     repeating-linear-gradient(45deg, #1a1a1c 0 4px, #2a2a2e 4px 8px);                     /* 3M CFS12 Black Carbon Fiber */
   /* --- Neon (level 4, ~6 month life - flagged in the UI, never sold silently) --- */
@@ -645,6 +655,16 @@ p { text-wrap: pretty; }
 .car[data-film="twcandy"]    { --film: var(--f-twcandy); }
 .car[data-film="twcherry"]   { --film: var(--f-twcherry); }
 .car[data-film="twnova"]     { --film: var(--f-twnova); }
+.car[data-film="vortex"]     { --film: var(--f-vortex); }
+.car[data-film="ghost"]      { --film: var(--f-ghost); --shade-amt: .5; }
+.car[data-film="midnightp"]  { --film: var(--f-midnightp); }
+.car[data-film="fuchsia"]    { --film: var(--f-fuchsia); }
+.car[data-film="hotpink"]    { --film: var(--f-hotpink); }
+.car[data-film="berry"]      { --film: var(--f-berry); }
+.car[data-film="icedpink"]   { --film: var(--f-icedpink); --shade-amt: .4; }
+.car[data-film="icedtitan"]  { --film: var(--f-icedtitan); }
+.car[data-film="pdiamond"]   { --film: var(--f-pdiamond); }
+.car[data-film="ppearl"]     { --film: var(--f-ppearl); }
 .car[data-film="carbon"]     { --film: var(--f-carbon); }
 .car[data-film="neongreen"]  { --film: var(--f-neongreen); }
 .car[data-film="neonyellow"] { --film: var(--f-neonyellow); }
@@ -1023,10 +1043,30 @@ p { text-wrap: pretty; }
   .films__tab:hover { color: var(--ink); border-color: oklch(1 0 0 / 0.32); transform: translateY(-1px); }
 }
 .films__tab:active { transform: scale(0.96); }
+/* Selected tab wears its own material (owner request 2026-07-31): the chip
+   fills with the same --tf film token the dot uses, so a tap on Matte paints
+   the chip matte, Satin paints it satin, and so on. Readability strategy
+   (color-expert): a uniform 34% dark scrim over the fill guarantees white
+   label contrast on every gradient - the material still reads clearly, like
+   a hover state on a swatch. The two light fills (pearl, neon green) skip
+   the scrim and take dark ink instead: dark text on the bare material is
+   both higher contrast and truer to the film. Dot gets a white ring so it
+   stays visible against its own color. */
 .films__tab[aria-selected="true"] {
+  color: oklch(0.99 0 0);
+  background: linear-gradient(oklch(0.1 0 0 / 0.34), oklch(0.1 0 0 / 0.34)), var(--tf);
+  border-color: oklch(1 0 0 / 0.38);
+  font-weight: 700;
+  text-shadow: 0 1px 2px oklch(0 0 0 / 0.5);
+}
+.films__tab[aria-selected="true"]::before {
+  box-shadow: 0 0 0 1.5px oklch(1 0 0 / 0.7), inset 0 1px 1px oklch(1 0 0 / 0.32);
+}
+.films__tab--pearl[aria-selected="true"],
+.films__tab--neon[aria-selected="true"] {
   color: var(--yellow-ink);
-  background: var(--yellow);
-  border-color: var(--yellow);
+  background: var(--tf);
+  text-shadow: none;
 }
 
 .films__panel { display: grid; gap: 0.45rem; }
@@ -1195,6 +1235,16 @@ p { text-wrap: pretty; }
 .fsw--carbon     { --f: var(--f-carbon); }
 .fsw--neongreen  { --f: var(--f-neongreen); }
 .fsw--neonyellow { --f: var(--f-neonyellow); }
+.fsw--vortex     { --f: var(--f-vortex); }
+.fsw--ghost      { --f: var(--f-ghost); }
+.fsw--midnightp  { --f: var(--f-midnightp); }
+.fsw--fuchsia    { --f: var(--f-fuchsia); }
+.fsw--hotpink    { --f: var(--f-hotpink); }
+.fsw--berry      { --f: var(--f-berry); }
+.fsw--icedpink   { --f: var(--f-icedpink); }
+.fsw--icedtitan  { --f: var(--f-icedtitan); }
+.fsw--pdiamond   { --f: var(--f-pdiamond); }
+.fsw--ppearl     { --f: var(--f-ppearl); }
 
 /* one-shot cascade while the demo wipe plays (transform only - the border/colour
    flash the old chipwave did was a non-compositor property) */
