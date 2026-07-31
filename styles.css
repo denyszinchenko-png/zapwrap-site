@@ -149,12 +149,83 @@ body::after {
   z-index: -1;
 }
 body::before {
-  background: radial-gradient(135% 115% at 50% 32%, transparent 52%, oklch(0 0 0 / 0.42) 100%);
+  /* studio ambient, viewport-fixed so the "room light" stays consistent while
+     content scrolls through it: edge vignette (unchanged) + a soft warm dome at
+     the top + a gentle deepen toward the floor. Turns the flat canvas into a lit
+     space without lifting the near-black base. */
+  background:
+    radial-gradient(135% 115% at 50% 32%, transparent 52%, oklch(0 0 0 / 0.42) 100%),
+    radial-gradient(120% 75% at 50% -8%, oklch(0.205 0.012 100 / 0.55), transparent 62%),
+    linear-gradient(180deg, transparent 58%, oklch(0.04 0 0 / 0.55) 100%);
 }
 body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='zw-grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23zw-grain)'/%3E%3C/svg%3E");
   background-size: 140px 140px;
   opacity: 0.04;
+}
+
+/* ---------- Backdrop depth (2026-07-31): a studio, not a black void ----------
+   Two additions on top of the viewport ambient in body::before. All static CSS
+   paint: zero layout cost, zero CLS, fully reversible, and nothing here touches
+   the car transparency or the configurator masks.
+   1) Hero colour echo - a soft dual-tone bloom BEHIND the hero car that echoes
+      the colour-shift film, so the product tints its own backdrop.
+   2) Section rhythm - a faint light bloom + centred hairline at the top edge of
+      the major sections below the hero, so the page reads as lit panels stacked
+      in depth instead of one flat sheet (quiet sections between stay dark: that
+      contrast IS the rhythm). */
+
+/* 1) hero colour echo - the backdrop is the FILM ITSELF, heavily blurred. The
+   pseudo lives on .car (not .hero__car) because that is where the per-film
+   --film token is set by [data-film], so the glow re-tints automatically with
+   every film pick - including films added later - with zero per-film data.
+   Static paint: the blur rasterizes once per film change, no animation. The
+   radial mask fades the glow out at the edges so it reads as bounced studio
+   light, not a glowing rectangle. Dark films (matte black, graphite) produce
+   almost no glow - correct: black car, dark studio; the ambient dome and the
+   car floor still carry the depth. z-index 0 keeps it under .car__img (z:1)
+   and .car__film (z:2). */
+.hero__car { position: relative; isolation: isolate; }
+.hero__car .car::before {
+  content: "";
+  position: absolute;
+  inset: -16% -10% -8%;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--film, linear-gradient(115deg, var(--shift-a) 8%, var(--shift-b) 42%, var(--shift-c) 80%));
+  filter: blur(clamp(40px, 6vw, 80px)) saturate(1.35);
+  opacity: 0.2;
+  -webkit-mask-image: radial-gradient(58% 55% at 50% 52%, #000 30%, transparent 78%);
+  mask-image: radial-gradient(58% 55% at 50% 52%, #000 30%, transparent 78%);
+}
+
+/* 2) section rhythm - lit panel edges on the major content blocks. isolation:isolate
+   makes the section its own stacking context so the z-index:-1 glow/hairline paint
+   behind the section's own text but never behind the body canvas. */
+.build, .services, .finishes, .book { position: relative; isolation: isolate; }
+.build::before, .services::before, .finishes::before, .book::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1180px, 92%);
+  height: 260px;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(100% 100% at 50% 0%, oklch(0.255 0.014 100 / 0.5), transparent 70%);
+}
+.build::after, .services::after, .finishes::after, .book::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1180px, 92%);
+  height: 1px;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
 }
 
 .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
