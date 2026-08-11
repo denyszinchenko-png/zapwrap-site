@@ -328,6 +328,18 @@ p { text-wrap: pretty; }
 .nav__links a:hover { color: var(--yellow); }
 .nav__cta { padding: 0.7em 1.2em; font-size: 0.95rem; }
 
+/* Планшетная щель 721-840: бургер уже выключен, а десктопной шапке нужно
+   ~790px. На iPad 768 кнопка Book a consult вылезала на 23px за край и
+   давала горизонтальный скролл. Сжимаем разрядку и кнопку, ссылки не прячем. */
+@media (min-width: 721px) and (max-width: 840px) {
+  .nav { gap: 1rem; }
+  .nav__links { gap: 1rem; }
+  .nav__cta { padding: 0.6em 0.9em; font-size: 0.9rem; white-space: nowrap; }
+  /* Подпись NAPLES FL у логотипа вторична, а её ~70px решают, влезет ли
+     шапка на нижней границе диапазона (721px). */
+  .brand__loc { display: none; }
+}
+
 /* Кнопка звонка и бургер существуют только на узких экранах: на десктопе
    ссылки и так все на виду. */
 .nav__call { display: none; }
