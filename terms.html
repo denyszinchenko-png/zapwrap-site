@@ -20,7 +20,7 @@
   <!-- Montserrat self-hosted via styles.css: the old link here still loaded the
        retired Anton/Barlow set, so legal headings fell back to system type -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=55" />
+  <link rel="stylesheet" href="styles.css?v=58" />
   <link rel="stylesheet" href="legal.css?v=2" />
 </head>
 <body id="top">
@@ -31,13 +31,19 @@
       <span class="brand__word">Zap&nbsp;Wrap</span>
       <span class="brand__loc">Naples&nbsp;FL</span>
     </a>
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="nav__links" id="nav-links" aria-label="Primary">
       <a href="/#work">Work</a>
       <a href="/#services">Services</a>
-      <a href="/#finishes">Finishes</a>
+      <a href="/#visualizer">Visualizer</a>
       <a href="/#faq">FAQ</a>
+      <a class="nav__call" href="tel:+13527790041">Call the studio</a>
     </nav>
-    <a class="btn btn--solid nav__cta" href="/#book">Book a consult</a>
+    <a class="btn btn--solid nav__cta" href="/#consult-form"><span class="nav__cta-full">Book a consult</span><span class="nav__cta-short">Quote</span></a>
+    <button class="nav__burger" id="nav-burger" type="button" aria-controls="nav-links" aria-expanded="false" aria-label="Menu">
+      <span class="nav__burger-bar" aria-hidden="true"></span>
+      <span class="nav__burger-bar" aria-hidden="true"></span>
+      <span class="nav__burger-bar" aria-hidden="true"></span>
+    </button>
   </header>
 
   <main>
@@ -79,11 +85,10 @@
             completed wrap. It is not sold as a standalone service.
           </p>
           <p>
-            We work by appointment. For each build we book an enclosed, indoor bay
-            and confirm the address with you when the slot is set, so there is no
-            walk-in counter and no address published on this site. Where a job is
-            better suited to a partner facility, we tell you that up front,
-            including any difference in price, before you commit.
+            We work by appointment at 524-A Industrial Blvd, Naples, FL 34104.
+            There is no walk-in counter. Where a job is better suited to a partner
+            facility, we tell you that up front, including any difference in price,
+            before you commit.
           </p>
 
           <h2>3. Quotes, booking and payment</h2>
@@ -327,7 +332,7 @@
             <h2>Contact us</h2>
             <p>
               <strong>ZAP WRAP LLC</strong><br />
-              Naples, Florida, United States<br />
+              524-A Industrial Blvd, Naples, FL 34104, United States<br />
               Phone and text: <a href="tel:+13527790041">(352) 779-0041</a><br />
               WhatsApp: <a href="https://wa.me/13527790041" rel="noopener">message the studio</a><br />
               Instagram: <a href="https://www.instagram.com/zapwrapnaples" rel="noopener">@zapwrapnaples</a>
@@ -356,5 +361,6 @@
     </div>
   </footer>
 
+  <script src="/nav.js?v=1" defer></script>
 </body>
 </html>

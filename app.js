@@ -4,6 +4,64 @@
 (function () {
   "use strict";
 
+  /* ---- Consent-first analytics.
+     Google Analytics and Meta are not requested until the visitor accepts.
+     A local gtag queue is created so Consent Mode can default to denied, but
+     contact events are never queued before the external tools are loaded. ---- */
+  var CONSENT_KEY = "zw-consent";
+  var storedConsent = null;
+  try { storedConsent = window.localStorage.getItem(CONSENT_KEY); } catch (err) {}
+  window.zwConsent = storedConsent;
+  window.zwAnalyticsLoaded = false;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied"
+  });
+
+  window.zwLoadAnalytics = function () {
+    if (window.zwConsent !== "allow" || window.zwAnalyticsLoaded) return;
+    window.zwAnalyticsLoaded = true;
+
+    window.gtag("consent", "update", {
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+      analytics_storage: "granted"
+    });
+    var ga = document.createElement("script");
+    ga.async = true;
+    ga.src = "https://www.googletagmanager.com/gtag/js?id=G-RLQ14CC2C8";
+    document.head.appendChild(ga);
+    window.gtag("js", new Date());
+    window.gtag("config", "G-RLQ14CC2C8");
+
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    window.fbq("init", "1584101513429246");
+    window.fbq("consent", "grant");
+    window.fbq("track", "PageView");
+  };
+
+  if (storedConsent === "allow") window.zwLoadAnalytics();
+
   // Mark JS available so the choreography CSS can take over.
   document.documentElement.classList.add("js");
 
@@ -19,7 +77,15 @@
       var pending = heroCar.getAttribute("data-film-next");
       if ((pending || heroCar.getAttribute("data-film")) === film) return;
 
-      chips.forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+      chips.forEach(function (c) {
+        var selected = c === chip;
+        c.classList.toggle("is-active", selected);
+        c.setAttribute("aria-pressed", selected ? "true" : "false");
+      });
+      var surfacePanel = chip.closest && chip.closest(".films__panel");
+      if (surfacePanel && surfacePanel.getAttribute("data-surface")) {
+        heroCar.setAttribute("data-surface", surfacePanel.getAttribute("data-surface"));
+      }
 
       if (prefersReduced) {
         heroCar.setAttribute("data-film", film);
@@ -50,14 +116,111 @@
     });
   }
 
-  /* ---- Finish-class tabs ----
-     The wall is filed by finish class (gloss / satin / matte / metallic /
-     color shift / iridescent / super chrome / pearl / carbon / neon) and only
-     one class is on screen at a time. Enhancement only: the markup ships with
-     every panel visible under its own heading, and this is what folds them. ---- */
   var filmsWrap = document.getElementById("films");
+  var filmsMore = document.getElementById("films-more");
+
+  /* ---- Compact five-finish catalog.
+     The source markup remains a complete no-JS catalog. With JS, every verified
+     film is regrouped under the five choices a customer actually understands.
+     Material effects such as pearl, metallic, chrome and iridescent stay in the
+     film name instead of competing with surface finish at the top level. ---- */
+  if (filmsWrap) {
+    var sourceTabs = Array.prototype.slice.call(filmsWrap.querySelectorAll("[data-film-tab]"));
+    var sourcePanels = Array.prototype.slice.call(filmsWrap.querySelectorAll(".films__panel"));
+    var sourceTabList = filmsWrap.querySelector(".films__tabs");
+    var neonNote = filmsWrap.querySelector("#fp-neon .films__note");
+    var filmByKey = {};
+    Array.prototype.slice.call(filmsWrap.querySelectorAll("[data-set-film]")).forEach(function (chip) {
+      filmByKey[chip.getAttribute("data-set-film")] = chip;
+    });
+    var labelFor = function (id) {
+      var tab = filmsWrap.querySelector('[data-film-tab="' + id + '"]');
+      return tab ? tab.textContent.trim() : id;
+    };
+    var compactGroups = [
+      {
+        id: "shift", surface: "shift", label: labelFor("shift"),
+        films: ["shift", "coral", "deepspace", "aura", "twsunset", "sunset", "vortex", "ghost", "volcanic", "austral", "purpleblue", "morpheus", "boreal", "redblack", "blueblack"]
+      },
+      {
+        id: "gloss", surface: "gloss", label: labelFor("gloss"),
+        films: ["twcherry", "twnova", "chrpurple", "chrpink", "bluemet", "pdiamond", "twcandy", "pink", "rosso", "envy", "midnightp", "fuchsia", "glossblack", "glosswhite", "brightyellow", "intenseblue", "midnightblue", "brightorange", "nardo", "mantis", "pearl", "ppearl"]
+      },
+      {
+        id: "satin", surface: "satin", label: labelFor("satin"),
+        films: ["purple", "satin", "vampire", "velvetrose", "hotpink", "berry", "pearlsatin"]
+      },
+      {
+        id: "matte", surface: "matte", label: labelFor("matte"),
+        films: ["charcoal", "graphite", "matteblack", "matred", "icedpink", "icedtitan", "strawberry", "mattepurple"]
+      },
+      {
+        id: "neon", surface: "neon", label: labelFor("neon"),
+        films: ["neongreen", "neonyellow", "neonorange"]
+      }
+    ];
+    var compactTabs = document.createElement("div");
+    compactTabs.className = "films__tabs";
+    compactTabs.setAttribute("role", "tablist");
+    compactTabs.setAttribute("aria-label", "Finish");
+    var compactPanels = document.createDocumentFragment();
+    compactGroups.forEach(function (group, index) {
+      var tab = document.createElement("button");
+      tab.className = "films__tab films__tab--" + group.id;
+      tab.type = "button";
+      tab.id = "ft-" + group.id;
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", "fp-" + group.id);
+      tab.setAttribute("aria-selected", index === 0 ? "true" : "false");
+      tab.setAttribute("data-film-tab", group.id);
+      tab.setAttribute("data-i18n", "fc." + group.id);
+      tab.textContent = group.label;
+      compactTabs.appendChild(tab);
+
+      var panel = document.createElement("div");
+      panel.className = "films__panel" + (index === 0 ? " is-on" : "");
+      panel.id = "fp-" + group.id;
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", tab.id);
+      panel.setAttribute("data-surface", group.surface);
+      panel.setAttribute("data-finish-label", group.label);
+      var heading = document.createElement("span");
+      heading.className = "films__ph";
+      heading.setAttribute("data-i18n", "fc." + group.id);
+      heading.textContent = group.label;
+      panel.appendChild(heading);
+      if (group.id === "neon" && neonNote) panel.appendChild(neonNote);
+      var rail = document.createElement("div");
+      rail.className = "films__rail";
+      group.films.forEach(function (film) {
+        if (filmByKey[film]) rail.appendChild(filmByKey[film]);
+      });
+      panel.appendChild(rail);
+      compactPanels.appendChild(panel);
+    });
+    if (sourceTabList) sourceTabList.replaceWith(compactTabs);
+    sourcePanels.forEach(function (panel) { panel.remove(); });
+    filmsWrap.appendChild(compactPanels);
+    sourceTabs = null;
+  }
+
+  /* ---- Finish tabs: one category is on screen at a time. ---- */
   var filmTabs = filmsWrap ? Array.prototype.slice.call(filmsWrap.querySelectorAll("[data-film-tab]")) : [];
   var filmPanels = filmsWrap ? Array.prototype.slice.call(filmsWrap.querySelectorAll(".films__panel")) : [];
+  var syncFilmsMore = function (reset) {
+    if (!filmsWrap || !filmsMore) return;
+    if (reset) {
+      filmsWrap.classList.remove("is-expanded");
+      filmsMore.setAttribute("aria-expanded", "false");
+    }
+    var activeRail = filmsWrap.querySelector(".films__panel.is-on .films__rail");
+    var hasMore = !!(activeRail && activeRail.querySelectorAll(".fsw").length > 12);
+    filmsMore.hidden = !hasMore;
+    if (!hasMore) {
+      filmsWrap.classList.remove("is-expanded");
+      filmsMore.setAttribute("aria-expanded", "false");
+    }
+  };
   var showFilmClass = function (id, moveFocus) {
     filmTabs.forEach(function (t) {
       var on = t.getAttribute("data-film-tab") === id;
@@ -66,75 +229,37 @@
       if (on && moveFocus) t.focus();
     });
     filmPanels.forEach(function (p) { p.classList.toggle("is-on", p.id === "fp-" + id); });
+    syncFilmsMore(true);
+  };
+  var pickFirstFilmInClass = function (id) {
+    if (!filmsWrap) return;
+    var panel = filmsWrap.querySelector("#fp-" + id);
+    if (!panel || panel.querySelector(".fsw.is-active")) return;
+    var first = panel.querySelector("[data-set-film]");
+    if (first) first.click();
   };
   if (filmsWrap && filmTabs.length) {
     filmsWrap.classList.add("is-tabbed");
     filmTabs.forEach(function (tab, i) {
       tab.tabIndex = tab.getAttribute("aria-selected") === "true" ? 0 : -1;
-      tab.addEventListener("click", function () { showFilmClass(tab.getAttribute("data-film-tab")); });
+      tab.addEventListener("click", function () {
+        var id = tab.getAttribute("data-film-tab");
+        showFilmClass(id);
+        pickFirstFilmInClass(id);
+      });
       tab.addEventListener("keydown", function (e) {
         var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
         if (!step) return;
         if (document.documentElement.getAttribute("dir") === "rtl") step = -step;
         e.preventDefault();
         var next = filmTabs[(i + step + filmTabs.length) % filmTabs.length];
-        showFilmClass(next.getAttribute("data-film-tab"), true);
+        var nextId = next.getAttribute("data-film-tab");
+        showFilmClass(nextId, true);
+        pickFirstFilmInClass(nextId);
         next.scrollIntoView({ block: "nearest", inline: "nearest" });
       });
     });
-  }
-  /* ---- Swipe affordance: trailing fade rides the scroll, plus a one-shot
-     "peek nudge" the first time the picker comes into view. On a phone the film
-     classes and swatches scroll horizontally; without a cue they read as a fixed
-     short list. The nudge rocks the row a little to the right and back so the
-     hidden items flash - the same "there is more, drag it" signal Apple uses on
-     its product rows. No-op on desktop (the rows wrap, nothing overflows) and
-     skipped under reduced-motion. */
-  var isOverflowing = function (el) { return el && el.scrollWidth - el.clientWidth > 8; };
-  var markScrollEnd = function (el) {
-    if (!el) return;
-    var atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
-    el.classList.toggle("is-scroll-end", atEnd);
-  };
-  var scrollTracks = function () {
-    var tracks = [filmsWrap.querySelector(".films__tabs")];
-    var onPanel = filmsWrap.querySelector(".films__panel.is-on .films__rail");
-    if (onPanel) tracks.push(onPanel);
-    return tracks.filter(Boolean);
-  };
-  if (filmsWrap) {
-    filmsWrap.querySelectorAll(".films__tabs, .films__rail").forEach(function (el) {
-      markScrollEnd(el);
-      el.addEventListener("scroll", function () { markScrollEnd(el); }, { passive: true });
-    });
-  }
-  var nudgeTrack = function (el) {
-    if (!el || !isOverflowing(el)) return;
-    var peek = Math.min(64, el.scrollWidth - el.clientWidth);
-    try {
-      el.scrollTo({ left: peek, behavior: "smooth" });
-      setTimeout(function () { el.scrollTo({ left: 0, behavior: "smooth" }); }, 620);
-    } catch (err) {
-      el.scrollLeft = peek;
-      setTimeout(function () { el.scrollLeft = 0; }, 620);
-    }
-  };
-  if (filmsWrap && !prefersReduced && "IntersectionObserver" in window) {
-    var hinted = false;
-    var hintIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (hinted || !entry.isIntersecting) return;
-        hinted = true;
-        hintIO.disconnect();
-        /* let the hero entrance settle first, then hint the tabs, then the rail */
-        setTimeout(function () {
-          var tracks = scrollTracks();
-          nudgeTrack(tracks[0]);
-          if (tracks[1]) setTimeout(function () { nudgeTrack(tracks[1]); }, 900);
-        }, 1100);
-      });
-    }, { threshold: 0.55 });
-    hintIO.observe(filmsWrap);
+    syncFilmsMore(false);
   }
 
   /* A film picked from anywhere else - the finishes swatches, the build CTA, the
@@ -142,7 +267,9 @@
   var revealFilmChip = function (chip) {
     if (!filmsWrap || !filmsWrap.classList.contains("is-tabbed")) return;
     var panel = chip.closest && chip.closest(".films__panel");
-    if (panel && panel.id.indexOf("fp-") === 0) showFilmClass(panel.id.slice(3));
+    if (panel && panel.id.indexOf("fp-") === 0 && !panel.classList.contains("is-on")) {
+      showFilmClass(panel.id.slice(3));
+    }
   };
 
   /* ---- Car switcher: swap the template + body mask, keep the film ---- */
@@ -227,9 +354,14 @@
     "toyota-tacoma": { src: "assets/cars/toyota-tacoma.webp?v=6", mask: "assets/cars/toyota-tacoma-mask8.webp", w: 1600, h: 800, name: "Toyota Tacoma" },
     "toyota-tundra": { src: "assets/cars/toyota-tundra.webp", mask: "assets/cars/toyota-tundra-mask7.webp", w: 1600, h: 800, name: "Toyota Tundra" },
   };
+  var siteAsset = function (path) {
+    if (!path || path.charAt(0) === "/" || /^(?:https?:|data:|blob:)/i.test(path)) return path;
+    return "/" + path.replace(/^\.\//, "");
+  };
   var carImg = document.querySelector(".car__img");
   var carSelect = document.getElementById("car-select");
   var currentCar = "lamborghini-huracan";
+  var carRequest = 0;
   if (carSelect) {
     carSelect.addEventListener("change", function () {
       var key = carSelect.value;
@@ -244,31 +376,47 @@
       }
       var car = CARS[key];
       if (!heroCar || !carImg || !car || key === currentCar) return;
+      var carSrc = siteAsset(car.src);
+      var carMask = siteAsset(car.mask);
+      var requestId = ++carRequest;
       var loader = new Image();
-      loader.onload = function () {
+      var maskLoader = new Image();
+      var loadedParts = 0;
+      var commitCar = function () {
+        loadedParts++;
+        if (loadedParts < 2 || requestId !== carRequest) return;
         currentCar = key;
-        carImg.src = car.src;
+        carImg.src = carSrc;
         carImg.width = car.w;
         carImg.height = car.h;
         carImg.alt = car.name + " side profile on the studio wrap template";
-        heroCar.style.setProperty("--mask", 'url("' + car.mask + '")');
+        heroCar.style.setProperty("--mask", 'url("' + carMask + '")');
         /* the sculpt pass re-multiplies the template onto itself so light
            films read on a white body - it has to follow the template swap */
-        heroCar.style.setProperty("--shade", 'url("' + car.src + '")');
+        heroCar.style.setProperty("--shade", 'url("' + carSrc + '")');
+        updateCtaLink();
+        syncCarToQuote();
         if (!prefersReduced) {
           heroCar.classList.remove("is-revealing");
           void heroCar.offsetWidth;
           heroCar.classList.add("is-revealing");
         }
       };
-      loader.src = car.src;
+      var restoreSelection = function () {
+        if (requestId === carRequest) carSelect.value = currentCar;
+      };
+      loader.onload = commitCar;
+      maskLoader.onload = commitCar;
+      loader.onerror = restoreSelection;
+      maskLoader.onerror = restoreSelection;
+      loader.src = carSrc;
+      maskLoader.src = carMask;
     });
   }
 
-  /* ---- v45: Make -> Model split. 66 models in one native select is a long
-     wheel on a phone. The make list is built from the existing optgroups and
-     the original select keeps only the chosen make's models (plus the
-     "request my car" row), so the no-JS fallback stays the full grouped list. ---- */
+  /* ---- Make -> Model split. A single list of every supported vehicle is too
+     long on a phone. The original grouped select remains the no-JS fallback;
+     with JS, the first control chooses the make and the second shows its models. ---- */
   if (carSelect) {
     var carGroups = Array.prototype.slice.call(carSelect.querySelectorAll("optgroup"));
     var requestOpt = carSelect.querySelector('option[value="__request"]');
@@ -301,13 +449,11 @@
         if (g.querySelector('option[value="' + currentCar + '"]')) currentMake = g.label;
       });
       if (!currentMake) currentMake = Object.keys(modelsByMake)[0];
-      makeSelect.value = "";
       carSelect.parentNode.insertBefore(makeSelect, carSelect);
       makeSelect.value = currentMake;
       fillModels(currentMake, currentCar);
       makeSelect.addEventListener("change", function () {
         fillModels(makeSelect.value, null);
-        /* run the normal model-change path so the hero car actually swaps */
         carSelect.dispatchEvent(new Event("change"));
       });
     }
@@ -352,8 +498,54 @@
   };
   var filmCta = document.getElementById("film-cta");
   var filmCtaLink = document.getElementById("film-cta-link");
+  var filmSelectionPaint = document.getElementById("film-selection-paint");
+  var filmSelectionName = document.getElementById("film-selection-name");
+  var filmSelectionCode = document.getElementById("film-selection-code");
+  var filmSelectionEffect = document.getElementById("film-selection-effect");
+  var quoteCar = document.getElementById("f-car");
+  var quoteFinish = document.getElementById("f-finish");
   var currentFilmName = "";
   var currentFilmCode = "";
+  if (quoteCar) quoteCar.addEventListener("input", function () {
+    if (quoteCar.dataset.syncing !== "true") quoteCar.dataset.manual = "true";
+  });
+  if (quoteFinish) quoteFinish.addEventListener("input", function () {
+    if (quoteFinish.dataset.syncing !== "true") quoteFinish.dataset.manual = "true";
+  });
+  var syncCarToQuote = function () {
+    if (!quoteCar || quoteCar.dataset.manual === "true") return;
+    quoteCar.dataset.syncing = "true";
+    quoteCar.value = CARS[currentCar] ? CARS[currentCar].name : "";
+    quoteCar.dispatchEvent(new Event("input", { bubbles: true }));
+    delete quoteCar.dataset.syncing;
+  };
+  var syncFilmToQuote = function () {
+    if (!quoteFinish || quoteFinish.dataset.manual === "true") return;
+    quoteFinish.dataset.syncing = "true";
+    quoteFinish.value = currentFilmName + (currentFilmCode ? " (" + currentFilmCode + ")" : "");
+    quoteFinish.dispatchEvent(new Event("input", { bubbles: true }));
+    delete quoteFinish.dataset.syncing;
+  };
+  var updateFilmSelection = function (chip) {
+    if (!chip) return;
+    var film = chip.getAttribute("data-set-film") || "shift";
+    var panel = chip.closest && chip.closest(".films__panel");
+    var nameNode = chip.querySelector(".fsw__name");
+    var nameKey = nameNode && nameNode.getAttribute("data-i18n");
+    if (filmSelectionPaint) filmSelectionPaint.className = "film-selection__paint fsw--" + film;
+    if (filmSelectionName) {
+      if (nameKey) filmSelectionName.setAttribute("data-i18n", nameKey);
+      else filmSelectionName.removeAttribute("data-i18n");
+      filmSelectionName.textContent = currentFilmName;
+    }
+    if (filmSelectionCode) filmSelectionCode.textContent = currentFilmCode;
+    if (filmSelectionEffect) {
+      var finishKey = panel && panel.id.indexOf("fp-") === 0 ? "fc." + panel.id.slice(3) : "fc.shift";
+      var heading = panel && panel.querySelector(".films__ph");
+      filmSelectionEffect.setAttribute("data-i18n", finishKey);
+      filmSelectionEffect.textContent = heading ? heading.textContent.trim() : "Color shift";
+    }
+  };
   var updateCtaLink = function () {
     if (!filmCtaLink) return;
     var car = CARS[currentCar] ? CARS[currentCar].name : "";
@@ -374,8 +566,10 @@
       currentFilmCode = chip.getAttribute("data-film-code") || "";
       revealFilmChip(chip);
       showToast(currentFilmName);
+      updateFilmSelection(chip);
       updateCtaLink();
       if (demoActive) return;
+      syncFilmToQuote();
       demoTouched = true;
       userFlips++;
       if (userFlips >= 2 && filmCta && filmCta.hidden) {
@@ -387,7 +581,24 @@
       }
     }, { capture: true });
   });
-  if (carSelect) carSelect.addEventListener("change", updateCtaLink);
+  if (filmsMore && filmsWrap) {
+    filmsMore.addEventListener("click", function () {
+      var expanded = filmsMore.getAttribute("aria-expanded") !== "true";
+      filmsMore.setAttribute("aria-expanded", expanded ? "true" : "false");
+      filmsWrap.classList.toggle("is-expanded", expanded);
+    });
+  }
+  var initialFilmChip = document.querySelector(".fsw.is-active");
+  if (initialFilmChip) {
+    chips.forEach(function (chip) {
+      chip.setAttribute("aria-pressed", chip === initialFilmChip ? "true" : "false");
+    });
+    var initialName = initialFilmChip.querySelector(".fsw__name");
+    currentFilmName = (initialName ? initialName.textContent : initialFilmChip.textContent).trim();
+    currentFilmCode = initialFilmChip.getAttribute("data-film-code") || "";
+    updateFilmSelection(initialFilmChip);
+    updateCtaLink();
+  }
   var demoStore;
   try { demoStore = window.sessionStorage; } catch (err) { demoStore = null; }
   if (heroCar && !prefersReduced && (!demoStore || !demoStore.getItem("zw-demo"))) {
@@ -398,7 +609,7 @@
       chip.click();
       demoActive = false;
     };
-    setTimeout(function () {
+    var runFilmDemo = function () {
       if (demoTouched || document.hidden) return;
       if (demoStore) demoStore.setItem("zw-demo", "1");
       // Electric Coral, not the old light blue: the biggest before/after delta
@@ -407,7 +618,18 @@
       clickChip("coral");
       chipWave();
       setTimeout(function () { if (!demoTouched) clickChip("shift"); }, 3000);
-    }, 2200);
+    };
+    var visualizerSection = heroCar.closest && heroCar.closest(".visualizer");
+    if (visualizerSection && "IntersectionObserver" in window) {
+      var demoIO = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        demoIO.disconnect();
+        setTimeout(runFilmDemo, 450);
+      }, { threshold: 0.35 });
+      demoIO.observe(visualizerSection);
+    } else {
+      setTimeout(runFilmDemo, 900);
+    }
   }
 
   /* ---- Scroll reveals: hide only below-fold elements, un-hide as they arrive ---- */
@@ -452,13 +674,18 @@
       };
       var lines = [
         "Consult request from zapwrapnaples site",
-        "Name: " + v("f-name"),
-        "Phone: " + v("f-phone"),
-        v("f-email") ? "Email: " + v("f-email") : "",
         "Car: " + v("f-car"),
         "Service: " + service(),
+        v("f-finish") ? "Preferred finish: " + v("f-finish") : "",
         v("f-notes") ? "Notes: " + v("f-notes") : ""
       ].filter(Boolean);
+      var campaign = new URLSearchParams(window.location.search);
+      var source = ["utm_source", "utm_medium", "utm_campaign", "utm_content"]
+        .map(function (key) { return campaign.get(key) ? key + "=" + campaign.get(key) : ""; })
+        .filter(Boolean)
+        .join("; ");
+      lines.push("Page: " + window.location.pathname);
+      if (source) lines.push("Source: " + source);
       // Same tab, not window.open: the in-app browsers of Instagram and TikTok
       // block popups, and a blocked popup drops the lead with nothing shown to
       // the visitor, who walks away sure the request was sent.
@@ -553,9 +780,9 @@
     revIO.observe(revStars);
   }
 
-  /* ---- v28: swatches and the build button jump into the configurator ---- */
+  /* ---- The build button jumps into the visualizer. ---- */
   var applyFilm = function (film) {
-    var target = document.querySelector(".hero__car");
+    var target = document.querySelector("#visualizer .hero__car");
     if (!target) return;
     target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "center" });
     setTimeout(function () {
@@ -563,9 +790,6 @@
       if (chip) chip.click();
     }, prefersReduced ? 100 : 650);
   };
-  document.querySelectorAll("[data-apply-film]").forEach(function (btn) {
-    btn.addEventListener("click", function () { applyFilm(btn.getAttribute("data-apply-film")); });
-  });
   var tryBuild = document.getElementById("try-build-film");
   if (tryBuild) tryBuild.addEventListener("click", function () { applyFilm("graphite"); });
 
@@ -623,9 +847,11 @@
      over the submit button would only cover it). Desktop never shows it. ---- */
   var mbar = document.getElementById("mbar");
   var heroSection = document.querySelector(".hero");
+  var visualizerForBar = document.getElementById("visualizer");
   var bookSection = document.getElementById("book");
   if (mbar && heroSection && "IntersectionObserver" in window) {
     var mbarHeroGone = false;
+    var mbarVisualizerHere = false;
     var mbarBookHere = false;
     /* v45: the consent card and this bar share the bottom edge, and consent
        sits higher (z-index 120 vs 60) - the bar would light up unclickable
@@ -633,7 +859,7 @@
     var mbarConsent = document.getElementById("consent");
     var mbarSync = function () {
       var consentOpen = !!(mbarConsent && !mbarConsent.hidden);
-      mbar.classList.toggle("is-on", mbarHeroGone && !mbarBookHere && !consentOpen);
+      mbar.classList.toggle("is-on", mbarHeroGone && !mbarVisualizerHere && !mbarBookHere && !consentOpen);
     };
     document.addEventListener("zw:consent", mbarSync);
     var mbarHeroIO = new IntersectionObserver(function (entries) {
@@ -641,6 +867,13 @@
       mbarSync();
     }, { rootMargin: "80px 0px 0px" });
     mbarHeroIO.observe(heroSection);
+    if (visualizerForBar) {
+      var mbarVisualizerIO = new IntersectionObserver(function (entries) {
+        mbarVisualizerHere = entries[0].isIntersecting;
+        mbarSync();
+      }, { threshold: 0.08 });
+      mbarVisualizerIO.observe(visualizerForBar);
+    }
     if (bookSection) {
       var mbarBookIO = new IntersectionObserver(function (entries) {
         mbarBookHere = entries[0].isIntersecting;
@@ -678,8 +911,8 @@
   /* ---- v28: headline variants, preview via ?hl=b|c (EN only; A stays default
      until analytics can judge a real split) ---- */
   var HEADLINES = {
-    b: ["Stop repainting", "your car. <em>Wrap</em>", "it instead."],
-    c: ["Factory paint.", "<em>New</em> color.", "3 to 5 days."]
+    b: ["A new color.", "Without a full", "<em>repaint.</em>"],
+    c: ["Owner quoted.", "<em>Owner</em> prepped.", "Owner installed."]
   };
   var hlKey = (location.search.match(/[?&]hl=([bc])/) || [])[1];
   var langNow = null;
@@ -769,7 +1002,7 @@
       // data-full, а не currentSrc: с srcset браузер выбирает для сетки
       // уменьшенный вариант, и лайтбокс открывал бы мелкую картинку.
       var shot = shots[lbIdx];
-      lbImg.src = shot.getAttribute("data-full") || shot.currentSrc || shot.src;
+      lbImg.src = siteAsset(shot.getAttribute("data-full") || shot.currentSrc || shot.src);
       lbImg.alt = shots[lbIdx].alt || "";
       if (lbCount) lbCount.textContent = (lbIdx + 1) + " / " + shots.length;
       if (lbCap) lbCap.textContent = shots[lbIdx].alt || "";
@@ -840,9 +1073,9 @@
     });
   }
 
-  /* ---- Contact tracking: Lead / Contact go to the Meta Pixel, and the same
-     intents go to GA4 as one contact_click event with a method param
-     (phone / sms / whatsapp / messenger / whatsapp_form). GA4 contact_click
+  /* ---- Contact-intent signals go to Meta and GA4, and the same
+     intents go to GA4 as one contact_intent event with a method param
+     (phone / sms / whatsapp / messenger / whatsapp_form). GA4 contact_intent
      is the key event behind the Google Ads conversion, so keep the name
      stable. Both are delegated on document, so links added later are covered
      and the same block works on any page that loads this file. Silent when a
@@ -856,13 +1089,14 @@
     return true;
   };
   var trackContact = function (pixelEvent, method, key) {
+    if (!window.zwAnalyticsLoaded) return;
     if (!contactOnce(pixelEvent + "|" + key)) return;
     // Both trackers put the hit on the wire without touching the click:
     // no preventDefault, no delay. fbq is synchronous; gtag rides a beacon
     // so the hit survives the navigation to wa.me / m.me.
     if (typeof window.fbq === "function") window.fbq("track", pixelEvent);
     if (typeof window.gtag === "function") {
-      window.gtag("event", "contact_click", {
+      window.gtag("event", "contact_intent", {
         method: method, link_url: key, transport_type: "beacon"
       });
     }
@@ -870,7 +1104,7 @@
 
   document.addEventListener("submit", function (e) {
     if (!e.target || e.target.id !== "consult-form") return;
-    trackContact("Lead", "whatsapp_form", "consult-form");
+    trackContact("Contact", "whatsapp_form", "consult-form");
   }, true);
 
   document.addEventListener("click", function (e) {
@@ -883,15 +1117,13 @@
       : /^https?:\/\/m\.me\//i.test(href) ? "messenger"
       : null;
     if (!method) return;
-    // Sending the form already counts as a Lead - never also as a Contact.
+    // The form submit handler already records this intent, so do not duplicate it.
     if (link.closest("#consult-form")) return;
     trackContact("Contact", method, href);
   }, true);
 })();
 
-/* ---- Cookie notice. The consent bootstrap in the page head already applied
-   any stored choice before the trackers loaded; this only handles the first
-   visit, and flips consent live so a Decline takes effect without a reload. ---- */
+/* ---- Cookie notice. Analytics stays unloaded until Accept. ---- */
 (function () {
   "use strict";
   var KEY = "zw-consent";
@@ -905,14 +1137,17 @@
 
   function apply(choice) {
     try { window.localStorage.setItem(KEY, choice); } catch (e) {}
-    var v = choice === "deny" ? "denied" : "granted";
-    if (typeof window.gtag === "function") {
+    window.zwConsent = choice;
+    if (choice === "allow") {
+      if (typeof window.zwLoadAnalytics === "function") window.zwLoadAnalytics();
+    } else if (window.zwAnalyticsLoaded) {
       window.gtag("consent", "update", {
-        ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied"
       });
-    }
-    if (typeof window.fbq === "function") {
-      window.fbq("consent", choice === "deny" ? "revoke" : "grant");
+      if (typeof window.fbq === "function") window.fbq("consent", "revoke");
     }
     bar.hidden = true;
     /* v45: the quick-contact bar holds back while consent is open - tell it

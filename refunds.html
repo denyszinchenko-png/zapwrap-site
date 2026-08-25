@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=55" />
+  <link rel="stylesheet" href="styles.css?v=58" />
   <link rel="stylesheet" href="legal.css?v=2" />
   <!-- No Meta Pixel here, same as the other legal pages. -->
 </head>
@@ -30,12 +30,19 @@
       <span class="brand__word">Zap&nbsp;Wrap</span>
       <span class="brand__loc">Naples&nbsp;FL</span>
     </a>
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="nav__links" id="nav-links" aria-label="Primary">
       <a href="/#work">Work</a>
       <a href="/#services">Services</a>
-      <a href="/#finishes">Finishes</a>
+      <a href="/#visualizer">Visualizer</a>
       <a href="/#faq">FAQ</a>
+      <a class="nav__call" href="tel:+13527790041">Call the studio</a>
     </nav>
+    <a class="btn btn--solid nav__cta" href="/#consult-form"><span class="nav__cta-full">Book a consult</span><span class="nav__cta-short">Quote</span></a>
+    <button class="nav__burger" id="nav-burger" type="button" aria-controls="nav-links" aria-expanded="false" aria-label="Menu">
+      <span class="nav__burger-bar" aria-hidden="true"></span>
+      <span class="nav__burger-bar" aria-hidden="true"></span>
+      <span class="nav__burger-bar" aria-hidden="true"></span>
+    </button>
   </header>
 
   <main>
@@ -161,7 +168,7 @@
 
           <h2>12. Contact</h2>
           <p>
-            ZAP WRAP LLC, Naples, Florida. By appointment.
+            ZAP WRAP LLC, 524-A Industrial Blvd, Naples, FL 34104. By appointment.
             Reach us through the contact options on the
             <a href="/">studio page</a>. These terms sit alongside our
             <a href="/terms.html">Terms of Service</a>, which govern the work
@@ -190,5 +197,6 @@
     </div>
   </footer>
 
+  <script src="/nav.js?v=1" defer></script>
 </body>
 </html>

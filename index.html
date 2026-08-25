@@ -7,8 +7,8 @@
        Не удалять: без верифицированного домена Meta не даёт настроить приоритет
        событий, и реклама на iOS оптимизируется вслепую. -->
   <meta name="facebook-domain-verification" content="yofwl73hgmp9b9mothhmkkr08z1n2y" />
-  <title>Car Wraps Naples FL | Color Change & Chrome Delete | Zap Wrap</title>
-  <meta name="description" content="Naples FL car wrap studio: full color change wraps, chrome deletes and fleet wraps. Vinyl specialists serving Naples, Bonita Springs and Marco Island. No shortcuts." />
+  <title>Zap Wrap Naples | The Exotic-Wrap Studio of Naples</title>
+  <meta name="description" content="The exotic-wrap studio of Naples, FL. Full color changes, chrome deletes, custom graphics and fleet wraps, installed by the owner. No shortcuts." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Zap Wrap Naples" />
   <meta property="og:title" content="Zap Wrap Naples | The Exotic-Wrap Studio of Naples, FL" />
@@ -46,50 +46,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=55" />
-<!-- Consent bootstrap. Runs BEFORE the pixel and GA4 so a visitor who declined
-     on a previous visit never has data leave the browser at all: Consent Mode v2
-     defaults are set here, and app.js flips them live when the notice is used. -->
-<script>
-(function () {
-  var c = null;
-  try { c = window.localStorage.getItem('zw-consent'); } catch (e) {}
-  window.zwConsent = c;
-  var v = c === 'deny' ? 'denied' : 'granted';
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag('consent', 'default', {
-    ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
-  });
-})();
-</script>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1584101513429246');
-if (window.zwConsent === 'deny') { fbq('consent', 'revoke'); }
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) - GA4, ресурс zapwrapnaples.com, аккаунт владельца -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RLQ14CC2C8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RLQ14CC2C8');
-</script>
+  <link rel="stylesheet" href="styles.css?v=58" />
 </head>
 <body id="top">
 
@@ -107,7 +64,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     <nav class="nav__links" id="nav-links" aria-label="Primary">
       <a href="#work" data-i18n="nav.work">Work</a>
       <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="#finishes" data-i18n="nav.finishes">Finishes</a>
+      <a href="#visualizer" data-i18n="nav.finishes">Visualizer</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <!-- Виден только внутри раскрытого меню: на телефоне звонок должен быть
            доступен сверху, а не на 80% высоты страницы в секции BOOK. -->
@@ -115,7 +72,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <!-- v45: на узкой шапке селектор языка живёт внутри меню, не в баре -->
       <select id="lang-select" class="lang-select" aria-label="Language"><option value="en" selected>EN</option><option value="es">ES</option><option value="ru">RU</option><option value="uk">UK</option><option value="he">HE</option></select>
     </nav>
-    <a class="btn btn--solid nav__cta" href="#book"><span class="nav__cta-full" data-i18n="nav.cta">Book a consult</span><span class="nav__cta-short" data-i18n="nav.cta.s">Get quote</span></a>
+    <a class="btn btn--solid nav__cta" href="#consult-form"><span class="nav__cta-full" data-i18n="nav.cta">Book a consult</span><span class="nav__cta-short" data-i18n="nav.cta.s">Get quote</span></a>
     <!-- Кнопка меню живёт в разметке всегда, но показывается только на узких
          экранах: до этого ссылки там просто пропадали, и навигации не было. -->
     <button class="nav__burger" id="nav-burger" type="button"
@@ -132,15 +89,15 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <div class="hero__stage">
         <!-- proof, not a repeat of the H1's place claim: every item on this
              line already exists further down the page, nothing is invented -->
-        <p class="hero__intro" data-i18n="hero.intro">Vinyl-only wrap studio &middot; 8 years on the panels &middot; 5.0 on Google</p>
+        <p class="hero__intro" data-i18n="hero.intro">Vinyl-only wrap studio &middot; 8+ years of installation experience &middot; Naples, FL</p>
         <h1 id="hero-h" class="hero__h">
-          <span class="hero__line" data-i18n="hero.l1">The exotic-</span>
-          <span class="hero__line" data-i18n="hero.l2"><em>wrap</em> studio</span>
-          <span class="hero__line" data-i18n="hero.l3">of Naples</span>
+          <span class="hero__line" data-i18n="hero.l1">The exotic-wrap</span>
+          <span class="hero__line" data-i18n="hero.l2"><em>studio</em> of</span>
+          <span class="hero__line" data-i18n="hero.l3">Naples</span>
         </h1>
         <p class="hero__sub" data-i18n="hero.sub">Full color change, chrome delete, custom graphics. Vinyl is the whole job here, not a line on a menu. No shortcuts.</p>
         <div class="hero__actions">
-          <a class="btn btn--solid" href="#book" data-i18n="hero.book">Book a consult <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--solid" href="#visualizer" data-i18n="hero.book">Try colors on your car <span aria-hidden="true">&rarr;</span></a>
           <!-- Contact trio as icon buttons, owner-confirmed 2026-07-20: the number
                opens SMS (a message, not a call), Messenger and WhatsApp each under
                their own brand logo. Order stays: number, Messenger, WhatsApp. -->
@@ -157,15 +114,26 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           </div>
         </div>
       </div>
+    </section>
 
-      <figure class="hero__car" aria-label="Wrap preview: pick a car and switch the film to recolor it">
-        <div class="car" data-film="shift">
+    <!-- WRAP VISUALIZER -->
+    <section class="visualizer" id="visualizer" aria-labelledby="visualizer-h">
+      <span class="anchor-target" id="finishes" aria-hidden="true"></span>
+      <div class="wrap">
+        <header class="visualizer__head">
+          <p class="visualizer__kicker" data-i18n="visualizer.kicker">Make the change visible</p>
+          <h2 id="visualizer-h" class="section__h" data-i18n="visualizer.h">Wrap visualizer<span class="dot">.</span></h2>
+          <p class="section__lead" data-i18n="visualizer.lead">Pick your car, choose a finish and compare real film codes. The screen is a preview. Final color is confirmed with a physical sample.</p>
+        </header>
+
+      <figure class="hero__car visualizer__workspace" aria-label="Wrap visualizer: pick a car and switch the film to recolor it">
+        <div class="car" data-film="shift" data-surface="shift">
           <img class="car__img" src="assets/cars/lamborghini-huracan.webp" width="1600" height="800" alt="Lamborghini Huracan side profile on the studio wrap template" fetchpriority="high" />
           <div class="car__film" aria-hidden="true"></div>
           <div class="car__film car__film--next" aria-hidden="true"></div>
           <div class="car__squeegee" aria-hidden="true"></div>
           <div class="car__floor" aria-hidden="true"></div>
-          <div class="car__toast" id="car-toast" aria-live="polite"></div>
+          <div class="car__toast" id="car-toast" aria-hidden="true"></div>
         </div>
           <div class="car__picker" id="car-picker">
             <label class="car__picker-label" for="car-select" data-i18n="filmbar.car">Pick your car</label>
@@ -309,7 +277,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             </select>
           </div>
         <figcaption class="hero__filmbar">
-          <p class="filmbar__pitch" data-i18n="pitch"><strong>See your car in a new color.</strong> Pick the closest model and flip through the films. At the consult we plot your exact car against the real 3M, Avery and TeckWrap catalogs. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">Your model not here? Send it to the studio</a></p>
+          <p class="filmbar__pitch" data-i18n="pitch"><strong>See your car in a new color.</strong> Pick the closest model and explore sample finishes. At the consultation we confirm suitable, available film options with real swatches. <a href="https://wa.me/13527790041?text=Hi%21%20I%20want%20to%20see%20my%20car%20in%20a%20wrap%3A%20" rel="noopener">Your model not here? Send it to the studio</a></p>
           <span class="filmbar__row filmbar__row--head">
             <span class="filmbar__label" data-i18n="filmbar.film">Pick a film</span>
             <span class="filmbar__hint" data-i18n="filmbar.hint">Real 3M, Avery, TeckWrap, Oracal, Hexis and KPMF codes</span>
@@ -339,6 +307,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
                 <button class="fsw fsw--sunset" type="button" data-set-film="sunset" data-film-code="Oracal 970RA-100" title="Oracal 970RA-100 Gloss Sunset Shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.sunset">Gloss Sunset Shift</span><span class="fsw__code">Oracal 970RA-100</span></button>
                 <button class="fsw fsw--vortex" type="button" data-set-film="vortex" data-film-code="TeckWrap RD11-HD" title="TeckWrap RD11-HD Rainbow Vortex color shift"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.vortex">Rainbow Vortex</span><span class="fsw__code">TeckWrap RD11-HD</span></button>
                 <button class="fsw fsw--ghost" type="button" data-set-film="ghost" data-film-code="3M SP280" title="3M 2080 SP280 Satin Flip Ghost Pearl"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.ghost">Satin Flip Ghost Pearl</span><span class="fsw__code">3M SP280</span></button>
+                <button class="fsw fsw--volcanic" type="button" data-set-film="volcanic" data-film-code="3M SP236" title="3M 2080 SP236 Satin Flip Volcanic Flare"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Satin Flip Volcanic Flare</span><span class="fsw__code">3M SP236</span></button>
               </div>
             </div>
             <div class="films__panel" role="tabpanel" id="fp-irid" aria-labelledby="ft-irid">
@@ -347,6 +316,9 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
                 <button class="fsw fsw--austral" type="button" data-set-film="austral" data-film-code="Hexis HX30IMAB" title="Hexis HX30IMAB Gloss Austral Sea Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.austral">Gloss Austral Sea</span><span class="fsw__code">Hexis HX30IMAB</span></button>
                 <button class="fsw fsw--purpleblue" type="button" data-set-film="purpleblue" data-film-code="KPMF K75466" title="KPMF K75466 Gloss Purple Blue Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.purpleblue">Gloss Purple Blue</span><span class="fsw__code">KPMF K75466</span></button>
                 <button class="fsw fsw--morpheus" type="button" data-set-film="morpheus" data-film-code="KPMF K75470" title="KPMF K75470 Gloss Morpheus Black Starlight Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.morpheus">Morpheus Black Starlight</span><span class="fsw__code">KPMF K75470</span></button>
+                <button class="fsw fsw--boreal" type="button" data-set-film="boreal" data-film-code="Hexis HX30IFBB" title="Hexis HX30IFBB Gloss Boreal Forest Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Boreal Forest</span><span class="fsw__code">Hexis HX30IFBB</span></button>
+                <button class="fsw fsw--redblack" type="button" data-set-film="redblack" data-film-code="KPMF K75408" title="KPMF K75408 Gloss Red Black Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Red Black</span><span class="fsw__code">KPMF K75408</span></button>
+                <button class="fsw fsw--blueblack" type="button" data-set-film="blueblack" data-film-code="KPMF K75469" title="KPMF K75469 Gloss Blue Black Iridescent"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Blue Black</span><span class="fsw__code">KPMF K75469</span></button>
               </div>
             </div>
             <div class="films__panel" role="tabpanel" id="fp-chrome" aria-labelledby="ft-chrome">
@@ -376,6 +348,12 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
                 <button class="fsw fsw--envy" type="button" data-set-film="envy" data-film-code="3M G336" title="3M 2080 G336 Gloss Green Envy"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.envy">Gloss Green Envy</span><span class="fsw__code">3M G336</span></button>
                 <button class="fsw fsw--midnightp" type="button" data-set-film="midnightp" data-film-code="TeckWrap RB20-HD" title="TeckWrap RB20-HD Gloss Midnight Purple"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.midnightp">Gloss Midnight Purple</span><span class="fsw__code">TeckWrap RB20-HD</span></button>
                 <button class="fsw fsw--fuchsia" type="button" data-set-film="fuchsia" data-film-code="3M G348" title="3M 2080 G348 Gloss Fierce Fuchsia"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.fuchsia">Gloss Fierce Fuchsia</span><span class="fsw__code">3M G348</span></button>
+                <button class="fsw fsw--glossblack" type="button" data-set-film="glossblack" data-film-code="3M G12" title="3M 2080 G12 Gloss Black"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Black</span><span class="fsw__code">3M G12</span></button>
+                <button class="fsw fsw--glosswhite" type="button" data-set-film="glosswhite" data-film-code="3M G10" title="3M 2080 G10 Gloss White"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss White</span><span class="fsw__code">3M G10</span></button>
+                <button class="fsw fsw--brightyellow" type="button" data-set-film="brightyellow" data-film-code="3M G15" title="3M 2080 G15 Gloss Bright Yellow"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Bright Yellow</span><span class="fsw__code">3M G15</span></button>
+                <button class="fsw fsw--intenseblue" type="button" data-set-film="intenseblue" data-film-code="3M G47" title="3M 2080 G47 Gloss Intense Blue"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Intense Blue</span><span class="fsw__code">3M G47</span></button>
+                <button class="fsw fsw--midnightblue" type="button" data-set-film="midnightblue" data-film-code="3M GP272" title="3M 2080 GP272 Gloss Midnight Blue"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Midnight Blue</span><span class="fsw__code">3M GP272</span></button>
+                <button class="fsw fsw--brightorange" type="button" data-set-film="brightorange" data-film-code="3M G54" title="3M 2080 G54 Gloss Bright Orange"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Gloss Bright Orange</span><span class="fsw__code">3M G54</span></button>
               </div>
             </div>
             <div class="films__panel" role="tabpanel" id="fp-satin" aria-labelledby="ft-satin">
@@ -396,6 +374,8 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
                 <button class="fsw fsw--matred" type="button" data-set-film="matred" data-film-code="3M M13" title="3M 2080 M13 Matte Red"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.matred">Matte Red</span><span class="fsw__code">3M M13</span></button>
                 <button class="fsw fsw--icedpink" type="button" data-set-film="icedpink" data-film-code="KPMF K75504" title="KPMF K75504 Matte Iced Pink Titanium"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.icedpink">Matte Iced Pink Titanium</span><span class="fsw__code">KPMF K75504</span></button>
                 <button class="fsw fsw--icedtitan" type="button" data-set-film="icedtitan" data-film-code="KPMF K75501" title="KPMF K75501 Matte Iced Silver Titanium"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.icedtitan">Matte Iced Silver Titanium</span><span class="fsw__code">KPMF K75501</span></button>
+                <button class="fsw fsw--strawberry" type="button" data-set-film="strawberry" data-film-code="3M M33" title="3M 2080 M33 Matte Strawberry"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Matte Strawberry</span><span class="fsw__code">3M M33</span></button>
+                <button class="fsw fsw--mattepurple" type="button" data-set-film="mattepurple" data-film-code="Avery SW900-565-M" title="Avery Dennison SW900-565-M Matte Purple Metallic"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Matte Purple Metallic</span><span class="fsw__code">Avery SW900-565-M</span></button>
               </div>
             </div>
             <div class="films__panel" role="tabpanel" id="fp-hgloss" aria-labelledby="ft-hgloss">
@@ -425,14 +405,27 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
               <div class="films__rail">
                 <button class="fsw fsw--neongreen" type="button" data-set-film="neongreen" data-film-code="3M VCW17120" title="3M VCW17120 Satin Neon Green - approx. 6 month outdoor life"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.neongreen">Satin Neon Green</span><span class="fsw__code">3M VCW17120</span></button>
                 <button class="fsw fsw--neonyellow" type="button" data-set-film="neonyellow" data-film-code="3M VCW17076" title="3M VCW17076 Satin Neon Yellow - approx. 6 month outdoor life"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name" data-i18n="film.neonyellow">Satin Neon Yellow</span><span class="fsw__code">3M VCW17076</span></button>
+                <button class="fsw fsw--neonorange" type="button" data-set-film="neonorange" data-film-code="3M VCW17074" title="3M VCW17074 Satin Neon Orange - approx. 6 month outdoor life"><span class="fsw__paint" aria-hidden="true"></span><span class="fsw__name">Satin Neon Orange</span><span class="fsw__code">3M VCW17074</span></button>
               </div>
             </div></div>
-          <p class="filmbar__cta" id="film-cta" hidden>
-            <span data-i18n="cta.like">Like this color? See it on your car:</span>
-            <a id="film-cta-link" href="https://wa.me/13527790041" rel="noopener" data-i18n="cta.link">WhatsApp the studio</a>
+          <button class="films__more" id="films-more" type="button" aria-expanded="false" hidden>
+            <span class="films__more-closed" data-i18n="films.more">View all colors</span>
+            <span class="films__more-open" data-i18n="films.less">Show popular colors</span>
+          </button>
+          <div class="film-selection" aria-live="polite" aria-atomic="true">
+            <span class="film-selection__paint fsw--shift" id="film-selection-paint" aria-hidden="true"></span>
+            <span class="film-selection__copy">
+              <strong id="film-selection-name">Flip Psychedelic</strong>
+              <span id="film-selection-code">3M GP281</span>
+            </span>
+            <span class="film-selection__effect" id="film-selection-effect">Color Shift</span>
+          </div>
+          <p class="filmbar__cta is-in" id="film-cta">
+            <a class="btn btn--solid" id="film-cta-link" href="https://wa.me/13527790041" rel="noopener" data-i18n="cta.link">Get an exact quote in this color</a>
           </p>
         </figcaption>
       </figure>
+      </div>
     </section>
 
     <!-- TICKER -->
@@ -501,10 +494,8 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     <!-- REVIEWS -->
     <section class="reviews" aria-labelledby="rev-h">
       <div class="reviews__inner">
-        <p class="reviews__score" id="rev-score" aria-hidden="true">5.0</p>
-        <p class="reviews__stars" id="rev-stars" aria-hidden="true"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></p>
-        <h2 id="rev-h" class="reviews__h" data-i18n="rev.h">Rated 5.0 on Google</h2>
-        <p class="reviews__lead" data-i18n="rev.lead">Naples drivers rate the work, not the ads. Every review is public on Google: read them all before you call.</p>
+        <h2 id="rev-h" class="reviews__h" data-i18n="rev.h">Read our Google reviews</h2>
+        <p class="reviews__lead" data-i18n="rev.lead">Rated 5.0 on Google. Read the verified customer feedback on our Google Business Profile.</p>
         <!-- v46: proof row - a real Google quote + the owner at work. The quote
              is verbatim from the public review (trailing ellipsis is the
              reviewer's own); quotes stay in the original language on every
@@ -513,6 +504,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <blockquote class="reviews__quote">
             <p class="reviews__quote-stars" aria-hidden="true"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></p>
             <p class="reviews__quote-text">&ldquo;Wrapped my BMW in this killer green chrome four years ago, and it&rsquo;s still &hellip;&rdquo;</p>
+            <p class="reviews__quote-context" data-i18n="rev.context">This BMW was wrapped by Denys Zinchenko before ZAP WRAP LLC was registered.</p>
             <footer class="reviews__quote-by">
               <span>Ruslana S. &middot; BMW &middot; green chrome</span>
               <a href="https://g.page/r/CYApW4xxv-WLEBM" rel="noopener" target="_blank" data-i18n="rev.verify">Verify on Google</a>
@@ -522,7 +514,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
             <img src="assets/owner/owner-install-w480.webp" srcset="assets/owner/owner-install-w480.webp 480w, assets/owner/owner-install.webp 960w" sizes="(max-width: 720px) 44vw, 300px" width="480" height="600" alt="The owner of Zap Wrap Naples laying a vinyl panel by hand" loading="lazy" />
             <figcaption>
               <strong data-i18n="rev.owner.t">Wrapped by the owner.</strong>
-              <span data-i18n="rev.owner.d">8 years on the panels. The installer quoting your car is the installer wrapping it.</span>
+              <span data-i18n="rev.owner.d">8+ years on the panels. The installer quoting your car is the installer wrapping it.</span>
             </figcaption>
           </figure>
         </div>
@@ -534,12 +526,12 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     <section class="services" id="services" aria-labelledby="services-h">
       <div class="wrap">
         <h2 id="services-h" class="section__h" data-i18n="svc.h">Car wrap services in Naples<span class="dot">.</span></h2>
-        <p class="section__lead" data-i18n="svc.lead">One specialization: vinyl car wraps, done at exotic level. Ceramic is a seal we lay over a finished wrap, never a service on its own. If it is not vinyl, it is not on the menu.</p>
+        <p class="section__lead" data-i18n="svc.lead">One craft: vinyl wraps. Owner-led prep, installation and finish work for daily drivers, luxury cars and business fleets.</p>
 
         <ul class="svc" role="list">
           <li class="svc__row reveal">
             <h3 class="svc__name"><a href="/color-change-wrap-naples/" data-i18n="svc.full">Full color change</a></h3>
-            <p class="svc__desc" data-i18n="svc.full.d">Satin, gloss, metallic, color-shift. Sound factory paint gets sealed underneath and stays untouched. 3 to 5 days on the build.</p>
+            <p class="svc__desc" data-i18n="svc.full.d">Satin, gloss, metallic and color-shift finishes installed over inspected paint. Surface condition is reviewed before film is ordered.</p>
           </li>
           <li class="svc__row reveal">
             <h3 class="svc__name"><a href="/chrome-delete-naples/" data-i18n="svc.chrome">Chrome delete</a></h3>
@@ -551,61 +543,43 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           </li>
           <li class="svc__row reveal">
             <h3 class="svc__name" data-i18n="svc.graphics">Custom graphics &amp; lettering</h3>
-            <p class="svc__desc" data-i18n="svc.graphics.d">Stripes, liveries, decals, plotted and layered in-house.</p>
+            <p class="svc__desc" data-i18n="svc.graphics.d">Stripes, liveries and decals planned for the vehicle and installed by Zap Wrap.</p>
           </li>
           <li class="svc__row reveal">
             <h3 class="svc__name"><a href="/fleet-wraps-naples/" data-i18n="svc.fleet">Commercial &amp; fleet</a></h3>
-            <p class="svc__desc" data-i18n="svc.fleet.d">A wrapped van is a billboard your business already owns. Print, plot, install, repeat across the fleet.</p>
+            <p class="svc__desc" data-i18n="svc.fleet.d">Vehicle graphics scoped by unit and installed one at a time to keep the fleet moving.</p>
           </li>
           <li class="svc__row svc__row--addon reveal">
             <h3 class="svc__name" data-i18n="svc.ceramic">Ceramic seal <span class="svc__tag">add-on</span></h3>
             <p class="svc__desc" data-i18n="svc.ceramic.d">A ceramic coat over the fresh film: easier washes, deeper finish. Only ever on top of a wrap.</p>
           </li>
         </ul>
-        <p class="svc__quote" data-i18n="svc.quote">Every build is quoted in person: bring the car or the paint code, leave with an exact number. <a href="#book">Book a consult</a></p>
+        <p class="svc__quote" data-i18n="svc.quote">Pricing depends on the vehicle, coverage, film and surface condition. Send clear photos for an initial estimate; final written pricing follows inspection and confirmed scope. <a href="#consult-form">Send your car</a></p>
       </div>
     </section>
 
     <!-- WHY VINYL -->
     <section class="why" aria-labelledby="why-h">
       <div class="wrap">
-        <h2 id="why-h" class="section__h" data-i18n="why.h">Why film beats a respray<span class="dot">.</span></h2>
+        <h2 id="why-h" class="section__h" data-i18n="why.h">Why choose vinyl<span class="dot">.</span></h2>
         <dl class="why__list">
           <div class="why__item reveal">
-            <dt data-i18n="why.1.t">Your paint stays factory.</dt>
-            <dd data-i18n="why.1.d">On sound factory paint the film seals the OEM coat and peels clean. We inspect the paint first and tell you what we see.</dd>
+            <dt data-i18n="why.1.t">A reversible color change.</dt>
+            <dd data-i18n="why.1.d">On sound OEM paint, properly installed vinyl can usually be removed later. Repainted, repaired or failing surfaces require inspection and may behave differently.</dd>
           </div>
           <div class="why__item reveal">
-            <dt data-i18n="why.2.t">5 to 7 years of finish.</dt>
-            <dd data-i18n="why.2.d">With proper care, a professional wrap holds its color and gloss for years.</dd>
+            <dt data-i18n="why.2.t">A finish matched to real use.</dt>
+            <dd data-i18n="why.2.d">Service life varies by film, exposure, parking and care. We review the applicable manufacturer guidance before ordering.</dd>
           </div>
           <div class="why__item reveal">
-            <dt data-i18n="why.3.t">Cheaper than a quality respray.</dt>
-            <dd data-i18n="why.3.d">And unlike paint, you can change your mind in three years.</dd>
+            <dt data-i18n="why.3.t">An alternative to repainting.</dt>
+            <dd data-i18n="why.3.d">Vinyl changes the look without making the new color permanent. Actual cost depends on the car, film and scope.</dd>
           </div>
           <div class="why__item reveal">
-            <dt data-i18n="why.4.t">8 years on the panels.</dt>
+            <dt data-i18n="why.4.t">8+ years on the panels.</dt>
             <dd data-i18n="why.4.d">Owner-run studio. The person quoting your car is the person wrapping it.</dd>
           </div>
         </dl>
-      </div>
-    </section>
-
-    <!-- FINISHES -->
-    <section class="finishes" id="finishes" aria-labelledby="fin-h">
-      <div class="wrap">
-        <h2 id="fin-h" class="section__h" data-i18n="fin.h">Finishes<span class="dot">.</span></h2>
-        <p class="section__lead" data-i18n="fin.lead">We plot from the full 3M, Avery Dennison, TeckWrap, KPMF, Hexis and Oracal catalogs. If it exists on a roll, we can put it on your car.</p>
-        <!-- Color-shift leads: the radar says shift/purple/pink over-index, so
-             the class that sells the studio gets the first slot, not the last -->
-        <ul class="swatches" role="list">
-          <li class="swatch swatch--shift"><button type="button" class="swatch__btn" data-apply-film="shift" aria-label="See this finish on a car"></button><span data-i18n="fin.shift">Color-shift</span></li>
-          <li class="swatch swatch--gloss"><button type="button" class="swatch__btn" data-apply-film="rosso" aria-label="See this finish on a car"></button><span data-i18n="fin.gloss">Gloss</span></li>
-          <li class="swatch swatch--satin"><button type="button" class="swatch__btn" data-apply-film="satin" aria-label="See this finish on a car"></button><span data-i18n="fin.satin">Satin</span></li>
-          <li class="swatch swatch--matte"><button type="button" class="swatch__btn" data-apply-film="graphite" aria-label="See this finish on a car"></button><span data-i18n="fin.matte">Matte</span></li>
-          <li class="swatch swatch--metal"><button type="button" class="swatch__btn" data-apply-film="bluemet" aria-label="See this finish on a car"></button><span data-i18n="fin.metal">Metallic</span></li>
-          <li class="swatch swatch--carbon"><button type="button" class="swatch__btn" data-apply-film="carbon" aria-label="See this finish on a car"></button><span data-i18n="fin.carbon">Carbon-look</span></li>
-        </ul>
       </div>
     </section>
 
@@ -617,17 +591,17 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
           <li class="step reveal">
             <span class="step__n">1</span>
             <h3 data-i18n="proc.1.t">Consult in person</h3>
-            <p data-i18n="proc.1.d">Bring the car, or just the paint code. We look at the body, talk finishes, and quote straight.</p>
+            <p data-i18n="proc.1.d">Send the year, make, model, clear photos and the finish you want. We confirm whether an in-person inspection is needed before final pricing.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">2</span>
             <h3 data-i18n="proc.2.t">Film &amp; design</h3>
-            <p data-i18n="proc.2.d">Pick the roll from the catalogs, see the build plotted on your template before anything is cut.</p>
+            <p data-i18n="proc.2.d">Confirm the film, coverage, surface condition and any disassembly needed for your vehicle before material is ordered.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">3</span>
             <h3 data-i18n="proc.3.t">Install</h3>
-            <p data-i18n="proc.3.d">3 to 5 days on the build, in a booked indoor bay. Panels come off where the edge demands it. That is the no-shortcuts part.</p>
+            <p data-i18n="proc.3.d">Many full color changes take about 3 to 5 working days. The final schedule and any safe disassembly are confirmed after inspection.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">4</span>
@@ -644,19 +618,19 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         <h2 id="faq-h" class="section__h" data-i18n="faq.h">Car wrap questions, straight answers<span class="dot">.</span></h2>
         <details class="qa">
           <summary data-i18n="faq.1.q">Will a wrap damage my paint?</summary>
-          <p data-i18n="faq.1.a">Not on sound factory paint. Film shields the factory coat from sun, sand and stone chips, and professional removal leaves it the way we found it. Paint that is already failing, resprayed or filled is a different story: we inspect the car and tell you honestly before anything is cut.</p>
+          <p data-i18n="faq.1.a">Properly installed and removed color-change vinyl is generally safe for sound OEM paint. Repainted, repaired, chipped or failing surfaces carry added risk, so we inspect the vehicle first. Vinyl changes the finish; it is not a guarantee against chips or surface damage.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.2.q">How long does a wrap last?</summary>
-          <p data-i18n="faq.2.a">5 to 7 years with proper care in Florida sun. Garage it and hand-wash it and you will be at the top of that range.</p>
+          <p data-i18n="faq.2.a">Service life varies by film, finish, panel orientation, sun exposure, storage and care. We review the manufacturer guidance for the selected film before ordering.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.3.q">Is it really cheaper than repainting?</summary>
-          <p data-i18n="faq.3.a">A quality respray on a premium car costs more than a full wrap, takes longer, and is permanent. Film gives you the color now and the factory paint back whenever you want it.</p>
+          <p data-i18n="faq.3.a">A wrap can be a reversible alternative to repainting. Actual cost and removal results depend on the scope, film and condition of the surface underneath.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.4.q">Can I wrap a leased car?</summary>
-          <p data-i18n="faq.4.a">Usually yes: the wrap comes off clean before the car goes back, which is why it is the color change most leases can live with. Check your own agreement first, some restrict it, and confirming that is your call.</p>
+          <p data-i18n="faq.4.a">Often, but the lease agreement controls. Get written permission if required, and have the paint inspected before installation and removal.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.5.q">How do I wash a wrapped car?</summary>
@@ -664,23 +638,23 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">How much does a car wrap cost?</summary>
-          <p data-i18n="faq.6.a">Every car is different: body size and shape, the film line you pick, the condition of the paint, trim that has to come off. That is why we quote in person only: bring the car or the paint code and leave with a written number, plus Florida sales tax, that does not move later.</p>
+          <p data-i18n="faq.6.a">Send the year, make, model, requested coverage and clear photos for an initial estimate. Final written pricing follows vehicle inspection, film selection and confirmed scope. Any requested scope change is priced before work continues.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">What films do you install?</summary>
-          <p data-i18n="faq.7.a">We plot from the full 3M, Avery Dennison, TeckWrap, KPMF, Hexis and Oracal catalogs: manufacturer-backed film lines, never no-name rolls. You pick the finish against real swatches at the consult, and every build leaves with the care guide for that exact film.</p>
+          <p data-i18n="faq.7.a">We work primarily with 3M, Avery Dennison and KPMF. Other professional films may be considered for a specific finish after availability, suitability and manufacturer guidance are confirmed.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.8.q">Where does the work happen?</summary>
-          <p data-i18n="faq.8.a">Naples, Florida, by appointment: we book an indoor bay for your build and confirm the address with you when the slot is set, so there is no walk-in counter. Drivers come to us from Bonita Springs, Marco Island, Fort Myers and Cape Coral: a wrap is worth the drive when it is done right.</p>
+          <p data-i18n="faq.8.a">Work is completed at 524-A Industrial Blvd, Naples, FL 34104, by appointment. Drivers also come to us from Bonita Springs, Marco Island, Fort Myers and Cape Coral.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">Do you wrap exotics and supercars?</summary>
-          <p data-i18n="faq.9.a">Exotics are the studio's specialty: that is why Zap Wrap Naples exists. Low bumpers, carbon panels, sensors and complex aero change how a car has to be wrapped, so exotic builds get panel-off installs and film plotted to the exact body before anything is cut. Bring the car to the consult and see the plot first.</p>
+          <p data-i18n="faq.9.a">Yes, exotic and high-performance vehicles are welcome. Low clearances, sensors, carbon parts and complex trim require a vehicle-specific inspection and install plan. Disassembly and plotting depend on the exact car and confirmed scope.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">How long does a wrap take?</summary>
-          <p data-i18n="faq.10.a">A full color change takes 3 to 5 days on the build. Chrome deletes and roof or hood wraps take less. You get the exact timeline together with your quote at the consult.</p>
+          <p data-i18n="faq.10.a">A full color change typically takes 3 to 5 installation days. Vehicle condition, complexity, disassembly and film availability can affect the schedule. Your estimated timeline is included with the confirmed quote.</p>
         </details>
         <!-- Phones fold the list to the first five; this un-folds it. Desktop
              shows everything in two columns and never renders the button. -->
@@ -693,36 +667,20 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
       <div class="wrap book__grid">
         <div class="book__pitch">
           <h2 id="book-h" class="section__h" data-i18n="book.h">Bring us the car<span class="dot">.</span></h2>
-          <p class="section__lead" data-i18n="book.lead">Consults are in person and no-pressure. Come with a paint code, leave knowing exactly what your wrap will look like. Send the details and we come back within one business day.</p>
+          <p class="section__lead" data-i18n="book.lead">Tell us the car, service and finish. WhatsApp opens with the request ready, then attach clear photos before sending.</p>
           <ul class="book__contact" role="list">
             <li><span class="book__k" data-i18n="book.call">Call</span><span><a href="tel:+13527790041">(352) 779-0041</a> <span class="book__note">&middot; Naples studio line</span></span></li>
             <li><span class="book__k">Messenger</span><a href="https://m.me/ZapWrapNaples" rel="noopener" data-i18n="book.msg">Message the studio</a></li>
             <li><span class="book__k">WhatsApp</span><a href="https://wa.me/13527790041" rel="noopener" data-i18n="book.msg2">Message the studio</a></li>
-            <li><span class="book__k" data-i18n="book.studio">Where</span><span data-i18n="book.studio.v">524-A Industrial Blvd, Naples, FL 34104 &middot; indoor bay, by appointment</span></li>
+            <li><span class="book__k" data-i18n="book.studio">Where</span><span data-i18n="book.studio.v">524-A Industrial Blvd, Naples, FL 34104 &middot; by appointment</span></li>
             <li><span class="book__k" data-i18n="book.hours">Hours</span><span data-i18n="book.hours.v">Sun-Thu 8am-8pm &middot; Fri 8am-5pm &middot; Sat closed</span></li>
             <li><span class="book__k" data-i18n="book.serving">Serving</span><span>Naples &middot; Bonita Springs &middot; Marco Island &middot; Fort Myers &middot; Cape Coral</span></li>
           </ul>
         </div>
 
-        <!-- Submit is handled in app.js: it navigates to WhatsApp with the filled-in
-             details (no backend needed). The fields carry no name attribute on purpose:
-             without JS the form still lands the visitor on the studio's WhatsApp chat,
-             but no name, phone or email is ever put in a URL. app.js reads by id. -->
+        <!-- Submit is handled in app.js: it navigates to WhatsApp with the vehicle,
+             service, finish and notes prefilled. Contact details stay in WhatsApp. -->
         <form class="form" id="consult-form" action="https://wa.me/13527790041" method="get" aria-labelledby="book-h">
-          <div class="field">
-            <label for="f-name" data-i18n="f.name">Name</label>
-            <input id="f-name" type="text" autocomplete="name" required placeholder="Your name" data-i18n-ph="ph.name" />
-          </div>
-          <div class="field field--split">
-            <div>
-              <label for="f-phone" data-i18n="f.phone">Phone</label>
-              <input id="f-phone" type="tel" autocomplete="tel" required placeholder="Your number" data-i18n-ph="ph.phone" />
-            </div>
-            <div>
-              <label for="f-email">Email</label>
-              <input id="f-email" type="email" autocomplete="email" placeholder="you@email.com" />
-            </div>
-          </div>
           <div class="field">
             <label for="f-car" data-i18n="f.car">The car</label>
             <input id="f-car" type="text" required placeholder="Year, make &amp; model" data-i18n-ph="ph.car" />
@@ -736,28 +694,32 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
               <option value="partial-wrap" data-i18n="f.o3">Partial wrap / roof / hood</option>
               <option value="custom-graphics" data-i18n="f.o4">Custom graphics / lettering</option>
               <option value="fleet" data-i18n="f.o5">Commercial / fleet wrap</option>
-              <option value="ceramic-addon" data-i18n="f.o6">Ceramic coating add-on</option>
+              <option value="ceramic-addon" data-i18n="f.o6">Ceramic seal with a new wrap</option>
               <option value="advise-me" data-i18n="f.o7">Not sure yet - advise me</option>
             </select>
           </div>
           <div class="field">
-            <label for="f-notes" data-i18n="f.notes">Anything else</label>
-            <textarea id="f-notes" rows="3" placeholder="Finish ideas, timeline, paint code..." data-i18n-ph="ph.notes"></textarea>
+            <label for="f-finish" data-i18n="f.finish">Preferred finish</label>
+            <input id="f-finish" type="text" placeholder="Color, finish or film code" data-i18n-ph="ph.finish" />
           </div>
-          <button class="btn btn--solid form__submit" type="submit" data-i18n="f.submit">Send my quote request in WhatsApp <span aria-hidden="true">&rarr;</span></button>
+          <div class="field">
+            <label for="f-notes" data-i18n="f.notes">Anything else</label>
+            <textarea id="f-notes" rows="3" placeholder="Coverage, vehicle condition or anything Denys should know..." data-i18n-ph="ph.notes"></textarea>
+          </div>
+          <button class="btn btn--solid form__submit" type="submit" data-i18n="f.submit">Get my next step in WhatsApp <span aria-hidden="true">&rarr;</span></button>
           <ol class="book__next" role="list">
-            <li data-i18n="book.next.1">Your request opens in WhatsApp prefilled: check it, hit send, and it lands in the studio. We reply within one business day.</li>
-            <li data-i18n="book.next.2">A 15-minute consult: your car, real film swatches, straight talk.</li>
-            <li data-i18n="book.next.3">You leave with an exact quote and an install slot.</li>
+            <li data-i18n="book.next.1">Your request opens in WhatsApp prefilled. Attach clear vehicle photos, check the details and press Send.</li>
+            <li data-i18n="book.next.2">Denys reviews the vehicle, requested scope and film direction.</li>
+            <li data-i18n="book.next.3">If an inspection is needed, we tell you. Final scope, written quote and available dates follow confirmation.</li>
           </ol>
-          <p class="form__fine" data-i18n="f.fine">No spam. Your details go only to the studio and we use them to answer about your quote. Sending the form means you accept our <a href="/privacy.html">Privacy Policy</a>.</p>
+          <p class="form__fine" data-i18n="f.fine">Submitting opens WhatsApp with these details prefilled. WhatsApp receives the link data; Zap Wrap receives your message only after you press Send. See our <a href="/privacy.html">Privacy Policy</a>.</p>
           <p class="form__fine" data-i18n="f.alt">No WhatsApp? <a href="tel:+13527790041">Call (352) 779-0041</a> or <a href="sms:+13527790041">text the studio</a> the same details.</p>
         </form>
       </div>
       <!-- one self-contained, liftable entity statement: what AI answers to
            "best car wrap shop in Naples" get built from -->
       <div class="wrap">
-        <p class="book__entity" data-i18n="book.entity">Zap Wrap Naples is a vinyl wrap studio in Naples, Florida: the exotic-wrap studio of Naples. The studio installs full color change wraps, chrome deletes, partial wraps, custom graphics and commercial fleet wraps for drivers across Naples, Bonita Springs, Marco Island, Fort Myers and Cape Coral. It is owner-run: the installer quoting your car has 8 years of professional wrap experience and wraps it himself. Vinyl is the only trade; ceramic coating is offered only as a finishing seal over a new wrap. No shortcuts.</p>
+        <p class="book__entity" data-i18n="book.entity">Zap Wrap Naples is the exotic-wrap studio of Naples, owner-run and available by appointment. The studio installs full color changes, chrome deletes, partial wraps, custom graphics and commercial fleet wraps. Denys Zinchenko brings 8+ years of professional installation experience and installs every vehicle himself. Ceramic coating is offered only as a finishing seal over a new wrap. No shortcuts.</p>
       </div>
     </section>
   </main>
@@ -791,7 +753,7 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
   <!-- Cookie notice. Shown only until a choice is stored; Decline is real, it
        revokes Meta consent and flips Consent Mode to denied without a reload. -->
   <div class="consent" id="consent" role="region" aria-label="Cookie notice" hidden>
-    <p class="consent__text" data-i18n="cookie.text">We use cookies for Google Analytics and Meta advertising so we can see which ads actually bring cars in. Nothing you type in the form goes to them. <a href="/privacy.html">Privacy Policy</a></p>
+    <p class="consent__text" data-i18n="cookie.text">Analytics and advertising tools load only if you accept. The quote form opens WhatsApp, which handles the prefilled message under its own privacy policy. <a href="/privacy.html">Privacy Policy</a></p>
     <div class="consent__btns">
       <button type="button" class="consent__btn consent__btn--no" id="consent-no" data-i18n="cookie.no">Decline</button>
       <button type="button" class="consent__btn consent__btn--ok" id="consent-ok" data-i18n="cookie.ok">Accept</button>
@@ -822,11 +784,11 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "AutoBodyShop",
+    "@type": "LocalBusiness",
     "@id": "https://zapwrapnaples.com/#studio",
     "name": "Zap Wrap Naples",
     "legalName": "ZAP WRAP LLC",
-    "description": "Vinyl wrap studio in Naples, Florida. Full color change wraps, chrome deletes, custom graphics and commercial fleet wraps.",
+    "description": "The exotic-wrap studio of Naples, Florida. Full color change wraps, chrome deletes, custom graphics and commercial fleet wraps.",
     "url": "https://zapwrapnaples.com/",
     "hasMap": "https://g.page/r/CYApW4xxv-WLEBM",
     "knowsAbout": [
@@ -842,7 +804,6 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     "image": "https://zapwrapnaples.com/assets/og-image.jpg",
     "logo": "https://zapwrapnaples.com/favicon-192.png",
     "slogan": "No shortcuts.",
-    "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "524-A Industrial Blvd",
@@ -897,31 +858,31 @@ src="https://www.facebook.com/tr?id=1584101513429246&ev=PageView&noscript=1"
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Will a wrap damage my paint?", "acceptedAnswer": { "@type": "Answer", "text": "Not on sound factory paint. Film shields the factory coat from sun, sand and stone chips, and professional removal leaves it the way we found it. Paint that is already failing, resprayed or filled is a different story: we inspect the car and tell you honestly before anything is cut." } },
-      { "@type": "Question", "name": "How long does a wrap last?", "acceptedAnswer": { "@type": "Answer", "text": "5 to 7 years with proper care in Florida sun. Garage it and hand-wash it and you will be at the top of that range." } },
-      { "@type": "Question", "name": "Is it really cheaper than repainting?", "acceptedAnswer": { "@type": "Answer", "text": "A quality respray on a premium car costs more than a full wrap, takes longer, and is permanent. Film gives you the color now and the factory paint back whenever you want it." } },
-      { "@type": "Question", "name": "Can I wrap a leased car?", "acceptedAnswer": { "@type": "Answer", "text": "Usually yes: the wrap comes off clean before the car goes back, which is why it is the color change most leases can live with. Check your own agreement first, some restrict it, and confirming that is your call." } },
+      { "@type": "Question", "name": "Will a wrap damage my paint?", "acceptedAnswer": { "@type": "Answer", "text": "Properly installed and removed color-change vinyl is generally safe for sound OEM paint. Repainted, repaired, chipped or failing surfaces carry added risk, so we inspect the vehicle first. Vinyl changes the finish; it is not a guarantee against chips or surface damage." } },
+      { "@type": "Question", "name": "How long does a wrap last?", "acceptedAnswer": { "@type": "Answer", "text": "Service life varies by film, finish, panel orientation, sun exposure, storage and care. We review the manufacturer guidance for the selected film before ordering." } },
+      { "@type": "Question", "name": "Is it really cheaper than repainting?", "acceptedAnswer": { "@type": "Answer", "text": "A wrap can be a reversible alternative to repainting. Actual cost and removal results depend on the scope, film and condition of the surface underneath." } },
+      { "@type": "Question", "name": "Can I wrap a leased car?", "acceptedAnswer": { "@type": "Answer", "text": "Often, but the lease agreement controls. Get written permission if required, and have the paint inspected before installation and removal." } },
       { "@type": "Question", "name": "How do I wash a wrapped car?", "acceptedAnswer": { "@type": "Answer", "text": "Hand wash or touchless, no wax over matte or satin, and skip the high-pressure lance at the edges. We hand you the full care guide at pickup." } },
-      { "@type": "Question", "name": "How much does a car wrap cost?", "acceptedAnswer": { "@type": "Answer", "text": "Every car is different: body size and shape, the film line you pick, the condition of the paint, trim that has to come off. That is why we quote in person only: bring the car or the paint code and leave with a written number, plus Florida sales tax, that does not move later." } },
-      { "@type": "Question", "name": "What films do you install?", "acceptedAnswer": { "@type": "Answer", "text": "We plot from the full 3M, Avery Dennison, TeckWrap, KPMF, Hexis and Oracal catalogs: manufacturer-backed film lines, never no-name rolls. You pick the finish against real swatches at the consult, and every build leaves with the care guide for that exact film." } },
-      { "@type": "Question", "name": "Where does the work happen?", "acceptedAnswer": { "@type": "Answer", "text": "Naples, Florida, by appointment: we book an indoor bay for your build and confirm the address with you when the slot is set, so there is no walk-in counter. Drivers come to us from Bonita Springs, Marco Island, Fort Myers and Cape Coral: a wrap is worth the drive when it is done right." } },
-      { "@type": "Question", "name": "Do you wrap exotics and supercars?", "acceptedAnswer": { "@type": "Answer", "text": "Exotics are the studio's specialty: that is why Zap Wrap Naples exists. Low bumpers, carbon panels, sensors and complex aero change how a car has to be wrapped, so exotic builds get panel-off installs and film plotted to the exact body before anything is cut. Bring the car to the consult and see the plot first." } },
-      { "@type": "Question", "name": "How long does a wrap take?", "acceptedAnswer": { "@type": "Answer", "text": "A full color change takes 3 to 5 days on the build. Chrome deletes and roof or hood wraps take less. You get the exact timeline together with your quote at the consult." } }
+      { "@type": "Question", "name": "How much does a car wrap cost?", "acceptedAnswer": { "@type": "Answer", "text": "Send the year, make, model, requested coverage and clear photos for an initial estimate. Final written pricing follows vehicle inspection, film selection and confirmed scope. Any requested scope change is priced before work continues." } },
+      { "@type": "Question", "name": "What films do you install?", "acceptedAnswer": { "@type": "Answer", "text": "We work primarily with 3M, Avery Dennison and KPMF. Other professional films may be considered for a specific finish after availability, suitability and manufacturer guidance are confirmed." } },
+      { "@type": "Question", "name": "Where does the work happen?", "acceptedAnswer": { "@type": "Answer", "text": "Work is completed at 524-A Industrial Blvd, Naples, FL 34104, by appointment. Drivers also come to us from Bonita Springs, Marco Island, Fort Myers and Cape Coral." } },
+      { "@type": "Question", "name": "Do you wrap exotics and supercars?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, exotic and high-performance vehicles are welcome. Low clearances, sensors, carbon parts and complex trim require a vehicle-specific inspection and install plan. Disassembly and plotting depend on the exact car and confirmed scope." } },
+      { "@type": "Question", "name": "How long does a wrap take?", "acceptedAnswer": { "@type": "Answer", "text": "A full color change typically takes 3 to 5 installation days. Vehicle condition, complexity, disassembly and film availability can affect the schedule. Your estimated timeline is included with the confirmed quote." } }
     ]
   }
   </script>
-  <script src="i18n.js?v=14" defer></script>
+  <script src="i18n.js?v=16" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the
        cookie notice below. -->
   <div class="exitbar" id="exitbar" role="region" aria-label="Film code offer" hidden>
-    <p class="exitbar__text"><span data-i18n="exit.msg">Take your color with you: get the exact 3M and Avery codes on WhatsApp</span>
+    <p class="exitbar__text"><span data-i18n="exit.msg">Take your color with you: discuss suitable film options on WhatsApp</span>
     <a href="https://wa.me/13527790041?text=Hi%21%20Send%20me%20the%20film%20codes%20for%20my%20car%3A%20" rel="noopener" data-i18n="exit.link">Message the studio</a></p>
     <button class="exitbar__close" type="button" aria-label="Close">&#10005;</button>
   </div>
   <!-- v44: плавающий FAB-стек заменён нижним контакт-баром .mbar (тот же
        порядок каналов, но с подписями и тап-зонами на всю ширину). -->
-  <script src="app.js?v=52" defer></script>
+  <script src="app.js?v=55" defer></script>
 </body>
 </html>

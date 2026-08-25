@@ -206,7 +206,7 @@ ${urls}
 ${services}
   <url>
     <loc>${ORIGIN}/privacy.html</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
