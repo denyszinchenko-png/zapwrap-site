@@ -12,7 +12,7 @@
   var DICT = {
     /* ---------------- ESPAÑOL ---------------- */
     es: {
-      "nav.work": "Trabajos", "nav.services": "Servicios", "nav.finishes": "Visualizador", "nav.faq": "FAQ",
+      "nav.work": "Trabajos", "nav.services": "Servicios", "nav.finishes": "Visualizador", "nav.faq": "FAQ", "nav.menu": "Men&uacute;",
       "footer.privacy": "Política de Privacidad", "footer.terms": "Términos del Servicio",
       "a11y.skip": "Saltar al contenido principal",
       "footer.a11y": "Accesibilidad",
@@ -155,7 +155,7 @@
 
     /* ---------------- РУССКИЙ ---------------- */
     ru: {
-      "nav.work": "Работы", "nav.services": "Услуги", "nav.finishes": "Визуализатор", "nav.faq": "Вопросы",
+      "nav.work": "Работы", "nav.services": "Услуги", "nav.finishes": "Визуализатор", "nav.faq": "Вопросы", "nav.menu": "Меню",
       "footer.privacy": "Политика конфиденциальности", "footer.terms": "Условия использования",
       "a11y.skip": "Перейти к основному содержимому",
       "footer.a11y": "Доступность",
@@ -298,7 +298,7 @@
 
     /* ---------------- УКРАЇНСЬКА ---------------- */
     uk: {
-      "nav.work": "Роботи", "nav.services": "Послуги", "nav.finishes": "Візуалізатор", "nav.faq": "Питання",
+      "nav.work": "Роботи", "nav.services": "Послуги", "nav.finishes": "Візуалізатор", "nav.faq": "Питання", "nav.menu": "Меню",
       "footer.privacy": "Політика конфіденційності", "footer.terms": "Умови використання",
       "a11y.skip": "Перейти до основного вмісту",
       "footer.a11y": "Доступність",
@@ -441,7 +441,7 @@
 
     /* ---------------- עברית ---------------- */
     he: {
-      "nav.work": "עבודות", "nav.services": "שירותים", "nav.finishes": "מדמה עטיפה", "nav.faq": "שאלות",
+      "nav.work": "עבודות", "nav.services": "שירותים", "nav.finishes": "מדמה עטיפה", "nav.faq": "שאלות", "nav.menu": "תפריט",
       "footer.privacy": "מדיניות פרטיות", "footer.terms": "תנאי שימוש",
       "a11y.skip": "דלג לתוכן הראשי",
       "footer.a11y": "נגישות",

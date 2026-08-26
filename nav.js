@@ -26,9 +26,6 @@
     document.addEventListener("click", function (event) {
       if (!navLinks.contains(event.target) && !burger.contains(event.target)) closeMenu(false);
     });
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 720) closeMenu(false);
-    });
   }
 
   var nav = document.getElementById("nav");

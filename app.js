@@ -694,10 +694,9 @@
     });
   }
 
-  /* ---- Mobile menu. Below 720px the nav links used to be hidden with no way
-     to reach them: no menu at all on a phone, which is most of our traffic.
-     The panel is display:none when closed on purpose, so the links stay out of
-     the tab order instead of being invisible but focusable. ---- */
+  /* ---- Compact menu on every screen. The panel is display:none when closed
+     so its links stay out of the tab order instead of remaining invisibly
+     focusable. ---- */
   var burger = document.getElementById("nav-burger");
   var navLinks = document.getElementById("nav-links");
   if (burger && navLinks) {
@@ -724,11 +723,6 @@
     });
     document.addEventListener("click", function (e) {
       if (!navLinks.contains(e.target) && !burger.contains(e.target)) closeMenu(false);
-    });
-    // Rotating to landscape can cross the breakpoint: the panel would stay
-    // flagged open while the desktop layout shows the links inline.
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 720) closeMenu(false);
     });
   }
 

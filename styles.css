@@ -298,7 +298,7 @@ p { text-wrap: pretty; }
   z-index: var(--z-nav);
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.75rem;
   padding: 0.9rem var(--gutter);
   background: oklch(0.105 0 0 / 0.82);
   backdrop-filter: blur(14px);
@@ -317,105 +317,116 @@ p { text-wrap: pretty; }
 }
 .brand__loc { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
-.nav__links { display: flex; gap: 1.6rem; margin-left: auto; }
+.nav__links {
+  display: none;
+  position: absolute;
+  inset-inline-end: var(--gutter);
+  top: calc(100% + 0.5rem);
+  z-index: 1;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: min(22rem, calc(100vw - var(--gutter) - var(--gutter)));
+  max-height: calc(100vh - 6rem);
+  margin: 0;
+  padding: 0.5rem 1rem 1rem;
+  overflow-y: auto;
+  background: #0a0a0b;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  box-shadow: 0 24px 70px rgb(0 0 0 / 0.45);
+}
+.nav__links.is-open { display: flex; }
 .nav__links a {
+  display: block;
+  padding: 0.9rem 0.15rem;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   text-decoration: none;
   color: var(--ink-2);
+  border-bottom: 1px solid var(--line-soft);
   transition: color var(--dur-1) var(--ease);
 }
 .nav__links a:hover { color: var(--yellow); }
-.nav__cta { padding: 0.7em 1.2em; font-size: 0.95rem; }
-
-/* Планшетная щель 721-840: бургер уже выключен, а десктопной шапке нужно
-   ~790px. На iPad 768 кнопка Book a consult вылезала на 23px за край и
-   давала горизонтальный скролл. Сжимаем разрядку и кнопку, ссылки не прячем. */
-@media (min-width: 721px) and (max-width: 840px) {
-  .nav { gap: 1rem; }
-  .nav__links { gap: 1rem; }
-  .nav__cta { padding: 0.6em 0.9em; font-size: 0.9rem; white-space: nowrap; }
-  /* Подпись NAPLES FL у логотипа вторична, а её ~70px решают, влезет ли
-     шапка на нижней границе диапазона (721px). */
-  .brand__loc { display: none; }
+.nav__links .nav__call {
+  margin-top: 0.4rem;
+  font-weight: 700;
+  color: var(--yellow);
+  border-bottom: 0;
+}
+.nav__cta {
+  margin-inline-start: auto;
+  padding: 0.7em 1.2em;
+  font-size: 0.95rem;
 }
 
-/* Кнопка звонка и бургер существуют только на узких экранах: на десктопе
-   ссылки и так все на виду. */
-.nav__call { display: none; }
-.nav__burger { display: none; }
+.nav__burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-width: 92px;
+  min-height: 44px;
+  padding: 0 0.9rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), background-color var(--dur-1) var(--ease);
+}
+.nav__burger:hover,
+.nav__burger[aria-expanded="true"] {
+  color: var(--yellow);
+  border-color: var(--yellow);
+  background: rgb(255 224 0 / 0.05);
+}
+.nav__burger:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+.nav__burger-label {
+  font: 700 0.8rem/1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav__burger-icon {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 18px;
+}
+.nav__burger-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 220ms var(--ease), opacity 160ms var(--ease);
+}
+.nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 @media (max-width: 720px) {
-  /* gap: 2rem с десктопа даёт в сумме 435px при экране 393 - бургер уезжал
-     за правый край. На телефоне шапка тесная, разрядка должна быть меньше. */
   .nav { gap: 0.6rem; }
-  .nav__cta { margin-left: auto; }
-
-  .nav__burger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    /* 44px - минимальная зона касания. flex: 0 0 auto обязателен: шапка это
-       флекс-контейнер, и без него кнопку сжимает вдвое. */
-    flex: 0 0 auto;
-    box-sizing: border-box;
-    width: 44px;
-    height: 44px;
-    padding: 0 10px;
-    margin-inline-start: 0.4rem;
-    background: none;
-    border: 1px solid var(--line-soft);
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .nav__burger-bar {
-    display: block;
-    height: 2px;
-    background: var(--ink);
-    border-radius: 2px;
-    transition: transform 220ms var(--ease), opacity 160ms var(--ease);
-  }
-  /* Три полоски складываются в крестик, чтобы состояние читалось без текста. */
-  .nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(2) { opacity: 0; }
-  .nav__burger[aria-expanded="true"] .nav__burger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  /* Панель выпадает из-под шапки. display: none в закрытом состоянии - это
-     принципиально: иначе ссылки остаются в порядке табуляции невидимыми,
-     ровно как было до этой правки. */
   .nav__links {
-    display: none;
-    position: absolute;
     inset-inline: 0;
     top: 100%;
-    flex-direction: column;
-    gap: 0;
-    margin: 0;
+    width: auto;
     padding: 0.5rem var(--gutter) 1rem;
-    /* Непрозрачный фон, без прозрачности: крупный белый заголовок героя
-       просвечивал даже через 0.97 и читался как дефект вёрстки. */
-    background: #0a0a0b;
-    border-bottom: 1px solid var(--line-soft);
+    border-top: 1px solid var(--line-soft);
+    border-inline: 0;
+    border-radius: 0 0 12px 12px;
   }
-  .nav__links.is-open { display: flex; }
-  .nav__links a {
-    padding: 0.9rem 0;
-    font-size: 1.05rem;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .nav__links a:last-child { border-bottom: none; }
-  /* Селектор с родителем обязателен: .nav__links a специфичнее одиночного
-     класса и перекрашивал звонок обратно в серый. */
-  .nav__links .nav__call {
-    display: block;
-    margin-top: 0.4rem;
-    font-weight: 700;
-    color: var(--yellow);
-  }
+  .nav__burger { min-width: 86px; padding-inline: 0.7rem; gap: 0.5rem; }
 }
 
-@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .nav__burger-bar { transition: none; }
 }
 
@@ -2010,24 +2021,27 @@ textarea { resize: vertical; min-height: 5.5em; }
 }
 .lang-select:hover { border-color: var(--yellow); color: var(--ink); }
 .lang-select:focus-visible { border-color: var(--yellow); color: var(--ink); outline: 2px solid var(--yellow); outline-offset: 2px; }
-/* v45: the select now lives inside .nav__links (desktop: end of the link row;
-   phone: a row of the burger panel) - the row gap replaces its old margin */
-.nav__links { align-items: center; }
-.nav__links .lang-select { margin-left: 0; }
-/* v45: short CTA label for narrow headers; full label on desktop */
+/* The language control is the last full-width row of the compact menu. */
+.nav__links .lang-select {
+  align-self: stretch;
+  width: 100%;
+  min-height: 44px;
+  margin: 0.9rem 0 0.2rem;
+  text-align: center;
+}
+/* Short CTA label for narrow headers; full label on desktop. */
 .nav__cta-short { display: none; }
 @media (max-width: 720px) {
   .nav__cta-full { display: none; }
   .nav__cta-short { display: inline; }
-  .nav__links .lang-select { margin: 0.9rem 0 0.2rem; align-self: center; min-height: 44px; }
 }
 .lang-select option { background: #141416; color: var(--ink); }
 @media (max-width: 720px) {
   .lang-select { margin-left: auto; margin-right: 0.6rem; }
 }
 
-[dir="rtl"] .nav__links { margin-left: 0; margin-right: auto; }
-[dir="rtl"] .lang-select { margin-left: 0; margin-right: 1.2rem; }
+[dir="rtl"] .nav__links { margin: 0; }
+[dir="rtl"] .nav__links .lang-select { margin: 0.9rem 0 0.2rem; }
 [dir="rtl"] .car-select {
   background-position: left 1em center;
   padding: 0.55em 1em 0.55em 2.4em;
@@ -2043,13 +2057,12 @@ textarea { resize: vertical; min-height: 5.5em; }
   .nav__cta { font-size: 0.85rem; padding: 0.6em 0.9em; white-space: nowrap; }
   .lang-select { padding: 0.45em 0.7em; font-size: 0.8rem; margin-right: 0.45rem; }
 }
-/* 375px audit: brand + lang + CTA + burger cost ~415px - shave every fixed
-   cost so the burger stops hanging off the edge; never wrap the CTA */
+/* Compact the fixed header controls on narrow phones. */
 @media (max-width: 400px) {
   .nav { gap: 0.5rem; padding-inline: 0.6rem; }
   .brand__word { font-size: 1rem; }
   .nav__cta { font-size: 0.8rem; padding: 0.6em 0.7em; }
-  .nav__burger { margin-left: 0; }
+  .nav__burger { min-width: 82px; padding-inline: 0.6rem; }
 }
 /* smallest phones: the bolt alone is the brand - the word costs 100px */
 @media (max-width: 352px) {
