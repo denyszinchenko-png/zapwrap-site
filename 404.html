@@ -6,9 +6,11 @@
   <title>Page not found | Zap Wrap Naples</title>
   <meta name="robots" content="noindex" />
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="stylesheet" href="/styles.css?v=59" />
+  <link rel="stylesheet" href="/styles.css?v=60" />
   <style>
     /* 404 is a dead end by definition: one screen, no chrome, every line an exit.
        Layout is local so the page stays valid even if styles.css moves on. */
@@ -24,8 +26,7 @@
       padding: 2rem clamp(1.2rem, 5vw, 2rem);
     }
     .nf__brand { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; text-decoration: none; }
-    .nf__brand svg { width: 22px; height: 22px; fill: var(--yellow, #ffd600); }
-    .nf__brand span { font-family: var(--font-display, sans-serif); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink, #fff); }
+    .nf__brand img { display: block; width: auto; height: 3rem; }
     .nf__code { font-family: var(--font-display, sans-serif); font-size: clamp(4rem, 18vw, 7rem); font-weight: 800; line-height: 0.9; color: var(--yellow, #ffd600); }
     .nf__h { font-size: clamp(1.3rem, 4vw, 1.8rem); margin: 0; color: var(--ink, #fff); }
     .nf__p { margin: 0; max-width: 34rem; color: var(--ink-2, #cfcfcf); line-height: 1.6; }
@@ -38,8 +39,7 @@
 <body>
   <main class="nf">
     <a class="nf__brand" href="/" aria-label="Zap Wrap Naples - home">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 5 14h5l-1 8 8.5-12h-5z"/></svg>
-      <span>Zap&nbsp;Wrap <small style="font-weight:600;opacity:.65;">Naples&nbsp;FL</small></span>
+      <img src="/assets/brand/zap-wrap-naples-logo.png" alt="" width="512" height="250" />
     </a>
     <p class="nf__code" aria-hidden="true">404</p>
     <h1 class="nf__h">This page took a wrong turn.</h1>

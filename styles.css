@@ -254,7 +254,6 @@ p { text-wrap: pretty; }
 /* Montserrat carries the weight Anton used to imply: display elements that do
    not set their own font-weight get the heavy house weight here, so nothing
    renders as thin Montserrat Regular where the black display face used to be. */
-.brand__word,
 .ticker__track,
 .step__n,
 .footer__mark,
@@ -307,14 +306,8 @@ p { text-wrap: pretty; }
 }
 .nav[data-scrolled="true"] { border-color: var(--line-soft); }
 
-.brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
-.brand__bolt { width: 1.15rem; height: 1.15rem; align-self: center; fill: var(--yellow); }
-.brand__word {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
+.brand { display: flex; align-items: center; gap: 0.6rem; flex: 0 0 auto; text-decoration: none; }
+.brand__logo { display: block; width: auto; height: 3rem; flex: 0 0 auto; }
 .brand__loc { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
 .nav__links {
@@ -2060,13 +2053,13 @@ textarea { resize: vertical; min-height: 5.5em; }
 /* Compact the fixed header controls on narrow phones. */
 @media (max-width: 400px) {
   .nav { gap: 0.5rem; padding-inline: 0.6rem; }
-  .brand__word { font-size: 1rem; }
+  .brand__logo { height: 3rem; }
   .nav__cta { font-size: 0.8rem; padding: 0.6em 0.7em; }
   .nav__burger { min-width: 82px; padding-inline: 0.6rem; }
 }
-/* smallest phones: the bolt alone is the brand - the word costs 100px */
+/* Keep the complete logo visible on the narrowest supported phones. */
 @media (max-width: 352px) {
-  .brand__word, .brand__loc { display: none; }
+  .brand__logo { height: 2.15rem; }
 }
 
 /* ---------- Film-name toast on the car ---------- */
