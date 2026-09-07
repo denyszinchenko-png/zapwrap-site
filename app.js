@@ -38,6 +38,9 @@
     document.head.appendChild(ga);
     window.gtag("js", new Date());
     window.gtag("config", "G-RLQ14CC2C8");
+    // The existing Ads account uses this destination. Load it only after
+    // consent; contact conversions remain imported from GA4, not sent twice.
+    window.gtag("config", "AW-18316809427");
 
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
@@ -837,12 +840,12 @@
   }
 
   /* ---- v44: quick-contact bar - on once the hero scrolls away, off while
-     the booking section is on screen (the form is the same channels; a bar
-     over the submit button would only cover it). Desktop never shows it. ---- */
+     the booking or service contact section is on screen. Those sections have
+     the same channels; the bar would cover them. Desktop never shows it. ---- */
   var mbar = document.getElementById("mbar");
-  var heroSection = document.querySelector(".hero");
+  var heroSection = document.querySelector(".hero, .sp-hero");
   var visualizerForBar = document.getElementById("visualizer");
-  var bookSection = document.getElementById("book");
+  var bookSection = document.getElementById("book") || document.querySelector(".sp-cta");
   if (mbar && heroSection && "IntersectionObserver" in window) {
     var mbarHeroGone = false;
     var mbarVisualizerHere = false;
@@ -1069,9 +1072,11 @@
 
   /* ---- Contact-intent signals go to Meta and GA4, and the same
      intents go to GA4 as one contact_intent event with a method param
-     (phone / sms / whatsapp / messenger / whatsapp_form). GA4 contact_intent
-     is the key event behind the Google Ads conversion, so keep the name
-     stable. Both are delegated on document, so links added later are covered
+     (phone / sms / whatsapp / messenger / whatsapp_form). GA4 creates its
+     contact_click key event from contact_intent and copies the parameters.
+     Keep that mapping stable and import only one of these events into Ads.
+     These signals mean intent, not a received message or a booked job.
+     Both are delegated on document, so links added later are covered
      and the same block works on any page that loads this file. Silent when a
      tracker is missing or blocked. ---- */
   var contactSent = {};
@@ -1091,7 +1096,7 @@
     if (typeof window.fbq === "function") window.fbq("track", pixelEvent);
     if (typeof window.gtag === "function") {
       window.gtag("event", "contact_intent", {
-        method: method, link_url: key, transport_type: "beacon"
+        method: method, link_url: key, transport_type: "beacon", send_to: "G-RLQ14CC2C8"
       });
     }
   };
@@ -1111,8 +1116,8 @@
       : /^https?:\/\/m\.me\//i.test(href) ? "messenger"
       : null;
     if (!method) return;
-    // The form submit handler already records this intent, so do not duplicate it.
-    if (link.closest("#consult-form")) return;
+    // Links inside the form (such as phone and SMS alternatives) are separate
+    // intents. Its submit button is not a link and is tracked only on submit.
     trackContact("Contact", method, href);
   }, true);
 })();
