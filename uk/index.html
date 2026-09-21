@@ -124,7 +124,7 @@
           <p class="visualizer__kicker" data-i18n="visualizer.kicker">Зроби зміну видимою</p>
           <h2 id="visualizer-h" class="section__h" data-i18n="visualizer.h">Візуалізатор обклеювання<span class="dot">.</span></h2>
           <p class="section__lead" data-i18n="visualizer.lead">Обери авто й тип поверхні, потім порівняй справжні коди плівки. Екран дає попередній вигляд. Остаточний колір підтверджується фізичним зразком.</p>
-          <div class="visualizer__studio-link">
+        <div class="visualizer__studio-link">
             <a class="btn btn--solid" href="/studio/" data-i18n="visualizer.studio">Відкрити 3D-студію <span aria-hidden="true">&rarr;</span></a>
             <p data-i18n="visualizer.studioHint">Розглянь автомобіль з усіх боків і вибери покриття.</p>
           </div>
@@ -557,23 +557,7 @@
             <p class="svc__desc" data-i18n="svc.ceramic.d">Керамічний шар поверх свіжої плівки: легше мийка, глибший фініш. Тільки поверх врапу.</p>
           </li>
         </ul>
-        <!-- v61: exotic pricing published, everything else stays quoted per car
-             (owner decision 2026-09-16, reverses the 2026-07-20 "no prices ever" rule).
-             Figure is the owner-confirmed exotic floor; keep it in sync with
-             zapwrap-pricing.json and the color-change service page. -->
-        <div class="svc__pricing">
-          <div class="svc__price svc__price--lead reveal">
-            <p class="svc__price-kicker" data-i18n="svc.price.exotic.k">Зміна кольору на екзотиці та суперкарах</p>
-            <p class="svc__price-figure" data-i18n="svc.price.exotic.f">Від $7,500</p>
-            <p class="svc__price-note" data-i18n="svc.price.exotic.d">Більшість проєктів на екзотиці вкладається в $7,500-12,000. Ціну рухають автівка, фініш і те, скільки доведеться розібрати. Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, Bentley, Rolls-Royce, G-Wagon.</p>
-          </div>
-          <div class="svc__price reveal">
-            <p class="svc__price-kicker" data-i18n="svc.price.rest.k">Усе інше</p>
-            <p class="svc__price-figure svc__price-figure--quiet" data-i18n="svc.price.rest.f">Ціна за автівкою</p>
-            <p class="svc__price-note" data-i18n="svc.price.rest.d">Щоденні автівки, chrome delete, дах і капот, графіка та автопарк рахуються за фото. Ціни меню немає, бо двох автівок в однаковому стані не буває.</p>
-          </div>
-        </div>
-        <p class="svc__quote" data-i18n="svc.quote">Надішліть рік, марку, модель і чіткі фото для попередньої оцінки. Остаточна письмова ціна формується після огляду й узгодження обсягу. <a href="#consult-form">Надіслати автівку</a></p>
+        <p class="svc__quote" data-i18n="svc.quote">Ціна залежить від автівки, площі, плівки й стану поверхні. Надішліть чіткі фото для попередньої оцінки; остаточна письмова ціна формується після огляду й узгодження обсягу. <a href="#consult-form">Надіслати автівку</a></p>
       </div>
     </section>
 
@@ -657,7 +641,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">Скільки коштує обклейка?</summary>
-          <p data-i18n="faq.6.a">Зміна кольору на екзотиці та суперкарах починається від $7,500, більшість проєктів вкладається в $7,500-12,000. Будь-яка інша автівка рахується індивідуально: надішліть рік, марку, модель, потрібну площу і чіткі фото для попередньої оцінки. Остаточна письмова ціна формується після огляду, вибору плівки й узгодження обсягу.</p>
+          <p data-i18n="faq.6.a">Надішліть рік, марку, модель, потрібну площу й чіткі фото для попередньої оцінки. Остаточна письмова ціна формується після огляду, вибору плівки та узгодження обсягу. Будь-яка зміна погоджується за ціною заздалегідь.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">Які плівки ставите?</summary>
@@ -669,7 +653,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">Обклеюєте екзотики та суперкари?</summary>
-          <p data-i18n="faq.9.a">Так, екзотика та високопродуктивні автівки приймаються, повна зміна кольору на такій починається від $7,500. Низькі кліренси, датчики, карбон і складний трим потребують огляду та плану встановлення під конкретну автівку. Розбирання й плотер залежать від автівки та узгодженого обсягу.</p>
+          <p data-i18n="faq.9.a">Так, приймаємо екзотичні та спортивні автомобілі. Низький кліренс, датчики, карбон і складні деталі потребують огляду й окремого плану встановлення. Розбирання та розкрій залежать від конкретного авто й узгодженого обсягу.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">Скільки триває обклейка?</summary>
@@ -865,13 +849,6 @@
     ],
     "makesOffer": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full color change vinyl wrap" } },
-      { "@type": "Offer",
-        "name": "Exotic and supercar full color change",
-        "itemOffered": { "@type": "Service", "name": "Exotic and supercar full color change vinyl wrap" },
-        "priceCurrency": "USD",
-        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": 7500, "maxPrice": 12000 },
-        "description": "Full color change on exotic and high-performance vehicles. Starts at $7,500; most builds land between $7,500 and $12,000 depending on vehicle, finish and disassembly.",
-        "availability": "https://schema.org/InStock" },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chrome delete" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Partial wrap: roof, hood and accents" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom graphics and lettering" } },
@@ -889,10 +866,10 @@
       { "@type": "Question", "name": "Це справді дешевше за перефарбування?", "acceptedAnswer": { "@type": "Answer", "text": "Обклейка може бути зворотною альтернативою перефарбуванню. Реальна вартість і результат зняття залежать від обсягу, плівки та стану поверхні." } },
       { "@type": "Question", "name": "Чи можна обклеїти лізингову автівку?", "acceptedAnswer": { "@type": "Answer", "text": "Часто так, але вирішує договір лізингу. Отримайте письмовий дозвіл, якщо він потрібен, і перевірте ЛФП перед встановленням та зняттям." } },
       { "@type": "Question", "name": "Як мити обклеєну автівку?", "acceptedAnswer": { "@type": "Answer", "text": "Руками або безконтактно, без воску по мату й сатину, без прямого струменя високого тиску по кромках. Повний гайд із догляду видаємо при отриманні." } },
-      { "@type": "Question", "name": "Скільки коштує обклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Зміна кольору на екзотиці та суперкарах починається від $7,500, більшість проєктів вкладається в $7,500-12,000. Будь-яка інша автівка рахується індивідуально: надішліть рік, марку, модель, потрібну площу і чіткі фото для попередньої оцінки. Остаточна письмова ціна формується після огляду, вибору плівки й узгодження обсягу." } },
+      { "@type": "Question", "name": "Скільки коштує обклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Надішліть рік, марку, модель, потрібну площу й чіткі фото для попередньої оцінки. Остаточна письмова ціна формується після огляду, вибору плівки та узгодження обсягу. Будь-яка зміна погоджується за ціною заздалегідь." } },
       { "@type": "Question", "name": "Які плівки ставите?", "acceptedAnswer": { "@type": "Answer", "text": "Основні марки: 3M, Avery Dennison і KPMF. Іншу професійну плівку розглядаємо під конкретний фініш після перевірки наявності, придатності та рекомендацій виробника." } },
       { "@type": "Question", "name": "Де відбувається робота?", "acceptedAnswer": { "@type": "Answer", "text": "Робота виконується за адресою 524-A Industrial Blvd, Naples, FL 34104, лише за записом. До нас приїжджають із Bonita Springs, Marco Island, Fort Myers та Cape Coral." } },
-      { "@type": "Question", "name": "Обклеюєте екзотики та суперкари?", "acceptedAnswer": { "@type": "Answer", "text": "Так, екзотика та високопродуктивні автівки приймаються, повна зміна кольору на такій починається від $7,500. Низькі кліренси, датчики, карбон і складний трим потребують огляду та плану встановлення під конкретну автівку. Розбирання й плотер залежать від автівки та узгодженого обсягу." } },
+      { "@type": "Question", "name": "Обклеюєте екзотики та суперкари?", "acceptedAnswer": { "@type": "Answer", "text": "Так, приймаємо екзотичні та спортивні автомобілі. Низький кліренс, датчики, карбон і складні деталі потребують огляду й окремого плану встановлення. Розбирання та розкрій залежать від конкретного авто й узгодженого обсягу." } },
       { "@type": "Question", "name": "Скільки триває обклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Повна зміна кольору зазвичай займає 3-5 днів встановлення. Стан авто, складність, розбирання й наявність плівки можуть змінити строк. Оцінка строку входить у підтверджений кошторис." } }
     ]
   }
