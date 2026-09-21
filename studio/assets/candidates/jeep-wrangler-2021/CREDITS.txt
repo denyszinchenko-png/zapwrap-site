@@ -1,0 +1,8 @@
+2021 Jeep Wrangler
+Author: tonielpro520
+https://sketchfab.com/tonielpro520
+Source: https://sketchfab.com/3d-models/2021-jeep-wrangler-49a2914dff81428998a76a3043487404
+License: Creative Commons Attribution
+http://creativecommons.org/licenses/by/4.0/
+
+Zap Wrap adaptation: format conversion, material grouping, 2048px texture limit and Meshopt compression. Original triangle count retained. Paint material isolated; other material roles retained. Render parameters are artistic approximations. No manufacturer affiliation, measured finish match, opening rig or final likeness certification.

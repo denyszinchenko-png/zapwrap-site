@@ -1,0 +1,12 @@
+Toyota Supra
+Author: Jiaxing
+https://sketchfab.com/saitoyang
+Source: https://sketchfab.com/3d-models/toyota-supra-b7616ec43ecf4ffd8ed810d94f15eea6
+License: Creative Commons Attribution
+http://creativecommons.org/licenses/by/4.0/
+
+Original source: Toyota GR Supra
+https://sketchfab.com/3d-models/toyota-gr-supra-9231f2d5e71a43dd87603dc0b339d99d
+http://creativecommons.org/licenses/by/4.0/
+
+Zap Wrap adaptation: format conversion, material grouping, 2048px texture limit and Meshopt compression. Original triangle count retained. Paint material isolated; other material roles retained. Render parameters are artistic approximations. No manufacturer affiliation, measured finish match, opening rig or final likeness certification.

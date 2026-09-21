@@ -1,0 +1,12 @@
+Tesla Roadster 2020 | www.vecarz.com
+Author: vecarz
+https://sketchfab.com/heynic
+Source: https://sketchfab.com/3d-models/tesla-roadster-2020-wwwvecarzcom-fac3d813620f4c4a95da1933c2592069
+License: Creative Commons Attribution
+http://creativecommons.org/licenses/by/4.0/
+
+Original source: Tesla Roadster 2020
+https://sketchfab.com/3d-models/tesla-roadster-2020-1fbf29e297bd4a17ac39a00a378441d8
+http://creativecommons.org/licenses/by/4.0/
+
+Zap Wrap adaptation: format conversion, material grouping, 2048px texture limit and Meshopt compression. Original triangle count retained. Paint material isolated; other material roles retained. Render parameters are artistic approximations. No manufacturer affiliation, measured finish match, opening rig or final likeness certification.
