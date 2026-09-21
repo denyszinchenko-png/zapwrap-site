@@ -46,7 +46,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-cyrillic.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=60" />
+  <link rel="stylesheet" href="/styles.css?v=62" />
 </head>
 <body id="top">
 
@@ -124,6 +124,10 @@
           <p class="visualizer__kicker" data-i18n="visualizer.kicker">Сделай перемену видимой</p>
           <h2 id="visualizer-h" class="section__h" data-i18n="visualizer.h">Визуализатор оклейки<span class="dot">.</span></h2>
           <p class="section__lead" data-i18n="visualizer.lead">Выбери машину и тип поверхности, затем сравни реальные коды плёнки. Экран даёт предварительный вид. Итоговый цвет подтверждается физическим образцом.</p>
+          <div class="visualizer__studio-link">
+            <a class="btn btn--solid" href="/studio/" data-i18n="visualizer.studio">Открыть 3D-студию <span aria-hidden="true">&rarr;</span></a>
+            <p data-i18n="visualizer.studioHint">Рассмотри автомобиль со всех сторон и выбери покрытие.</p>
+          </div>
         </header>
 
       <figure class="hero__car visualizer__workspace" aria-label="Wrap visualizer: pick a car and switch the film to recolor it">
@@ -553,7 +557,23 @@
             <p class="svc__desc" data-i18n="svc.ceramic.d">Керамический слой поверх свежей плёнки: легче мойка, глубже финиш. Только поверх врапа.</p>
           </li>
         </ul>
-        <p class="svc__quote" data-i18n="svc.quote">Цена зависит от машины, площади, плёнки и состояния поверхности. Отправьте чёткие фото для предварительной оценки; итоговая письменная цена формируется после осмотра и согласования объёма. <a href="#consult-form">Отправить машину</a></p>
+        <!-- v61: exotic pricing published, everything else stays quoted per car
+             (owner decision 2026-09-16, reverses the 2026-07-20 "no prices ever" rule).
+             Figure is the owner-confirmed exotic floor; keep it in sync with
+             zapwrap-pricing.json and the color-change service page. -->
+        <div class="svc__pricing">
+          <div class="svc__price svc__price--lead reveal">
+            <p class="svc__price-kicker" data-i18n="svc.price.exotic.k">Смена цвета на экзотике и суперкарах</p>
+            <p class="svc__price-figure" data-i18n="svc.price.exotic.f">От $7,500</p>
+            <p class="svc__price-note" data-i18n="svc.price.exotic.d">Большинство проектов на экзотике укладывается в $7,500-12,000. Цену двигают машина, финиш и то, сколько придётся разобрать. Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, Bentley, Rolls-Royce, G-Wagon.</p>
+          </div>
+          <div class="svc__price reveal">
+            <p class="svc__price-kicker" data-i18n="svc.price.rest.k">Всё остальное</p>
+            <p class="svc__price-figure svc__price-figure--quiet" data-i18n="svc.price.rest.f">Цена по машине</p>
+            <p class="svc__price-note" data-i18n="svc.price.rest.d">Повседневные машины, chrome delete, крыша и капот, графика и автопарк считаются по фото. Цены меню нет, потому что двух машин в одинаковом состоянии не бывает.</p>
+          </div>
+        </div>
+        <p class="svc__quote" data-i18n="svc.quote">Пришлите год, марку, модель и чёткие фото для предварительной оценки. Итоговая письменная цена формируется после осмотра и согласования объёма. <a href="#consult-form">Отправить машину</a></p>
       </div>
     </section>
 
@@ -637,7 +657,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">Сколько стоит оклейка?</summary>
-          <p data-i18n="faq.6.a">Отправьте год, марку, модель, нужную площадь и чёткие фото для предварительной оценки. Итоговая письменная цена формируется после осмотра, выбора плёнки и согласования объёма. Любое изменение согласуется по цене заранее.</p>
+          <p data-i18n="faq.6.a">Смена цвета на экзотике и суперкарах начинается с $7,500, большинство проектов укладывается в $7,500-12,000. Любая другая машина считается индивидуально: пришлите год, марку, модель, нужную площадь и чёткие фото для предварительной оценки. Итоговая письменная цена формируется после осмотра, выбора плёнки и согласования объёма.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">Какие плёнки ставите?</summary>
@@ -649,7 +669,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">Оклеиваете экзотики и суперкары?</summary>
-          <p data-i18n="faq.9.a">Да, принимаем экзотические и спортивные автомобили. Низкий клиренс, датчики, карбон и сложные детали требуют осмотра и отдельного плана установки. Разборка и раскрой зависят от конкретной машины и согласованного объёма.</p>
+          <p data-i18n="faq.9.a">Да, экзотика и высокопроизводительные машины принимаются, полная смена цвета на такой машине начинается с $7,500. Низкие клиренсы, датчики, карбон и сложный трим требуют осмотра и плана установки под конкретную машину. Разборка и плоттер зависят от машины и согласованного объёма.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">Сколько занимает оклейка?</summary>
@@ -845,6 +865,13 @@
     ],
     "makesOffer": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full color change vinyl wrap" } },
+      { "@type": "Offer",
+        "name": "Exotic and supercar full color change",
+        "itemOffered": { "@type": "Service", "name": "Exotic and supercar full color change vinyl wrap" },
+        "priceCurrency": "USD",
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": 7500, "maxPrice": 12000 },
+        "description": "Full color change on exotic and high-performance vehicles. Starts at $7,500; most builds land between $7,500 and $12,000 depending on vehicle, finish and disassembly.",
+        "availability": "https://schema.org/InStock" },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chrome delete" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Partial wrap: roof, hood and accents" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom graphics and lettering" } },
@@ -862,15 +889,15 @@
       { "@type": "Question", "name": "Это правда дешевле перекраса?", "acceptedAnswer": { "@type": "Answer", "text": "Оклейка может быть обратимой альтернативой перекрасу. Реальная стоимость и результат снятия зависят от объёма, плёнки и состояния поверхности." } },
       { "@type": "Question", "name": "Можно оклеить лизинговую машину?", "acceptedAnswer": { "@type": "Answer", "text": "Часто да, но решает договор лизинга. Получите письменное разрешение, если оно требуется, и проверьте ЛКП перед установкой и снятием." } },
       { "@type": "Question", "name": "Как мыть оклеенную машину?", "acceptedAnswer": { "@type": "Answer", "text": "Руками или бесконтактно, без воска по мату и сатину, без прямой струи высокого давления по кромкам. Полный гайд по уходу выдаём при получении." } },
-      { "@type": "Question", "name": "Сколько стоит оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Отправьте год, марку, модель, нужную площадь и чёткие фото для предварительной оценки. Итоговая письменная цена формируется после осмотра, выбора плёнки и согласования объёма. Любое изменение согласуется по цене заранее." } },
+      { "@type": "Question", "name": "Сколько стоит оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Смена цвета на экзотике и суперкарах начинается с $7,500, большинство проектов укладывается в $7,500-12,000. Любая другая машина считается индивидуально: пришлите год, марку, модель, нужную площадь и чёткие фото для предварительной оценки. Итоговая письменная цена формируется после осмотра, выбора плёнки и согласования объёма." } },
       { "@type": "Question", "name": "Какие плёнки ставите?", "acceptedAnswer": { "@type": "Answer", "text": "Основные марки: 3M, Avery Dennison и KPMF. Другую профессиональную плёнку рассматриваем под конкретный финиш после проверки наличия, пригодности и рекомендаций производителя." } },
       { "@type": "Question", "name": "Где проходит работа?", "acceptedAnswer": { "@type": "Answer", "text": "Работа выполняется по адресу 524-A Industrial Blvd, Naples, FL 34104, только по записи. К нам приезжают из Bonita Springs, Marco Island, Fort Myers и Cape Coral." } },
-      { "@type": "Question", "name": "Оклеиваете экзотики и суперкары?", "acceptedAnswer": { "@type": "Answer", "text": "Да, принимаем экзотические и спортивные автомобили. Низкий клиренс, датчики, карбон и сложные детали требуют осмотра и отдельного плана установки. Разборка и раскрой зависят от конкретной машины и согласованного объёма." } },
+      { "@type": "Question", "name": "Оклеиваете экзотики и суперкары?", "acceptedAnswer": { "@type": "Answer", "text": "Да, экзотика и высокопроизводительные машины принимаются, полная смена цвета на такой машине начинается с $7,500. Низкие клиренсы, датчики, карбон и сложный трим требуют осмотра и плана установки под конкретную машину. Разборка и плоттер зависят от машины и согласованного объёма." } },
       { "@type": "Question", "name": "Сколько занимает оклейка?", "acceptedAnswer": { "@type": "Answer", "text": "Полная смена цвета обычно занимает 3-5 дней установки. Состояние машины, сложность, разборка и наличие плёнки могут изменить срок. Оценка срока входит в подтверждённую смету." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=17" defer></script>
+  <script src="/i18n.js?v=20" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the

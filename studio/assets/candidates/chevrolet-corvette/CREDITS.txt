@@ -1,0 +1,15 @@
+Chevrolet Corvette C8 Stingray, local adaptation hyap-v3.
+
+Source model: Chevrolet Corvette C8 Stingray by Hyap / source5525.
+Source: https://sketchfab.com/3d-models/chevrolet-corvette-c8-stingray-1f805cf2bf1544248c2cdebe16e6a913
+Declared license: Creative Commons Attribution 4.0 International.
+License: https://creativecommons.org/licenses/by/4.0/
+Original ZIP downloaded and supplied by the owner on 2026-09-12.
+
+Changes by Zap Wrap local authoring workflow: material reconstruction, smooth normals, per-door glass/mirror separation, independent door/front-hood/rear-cover pivots, inner panel returns and jambs, technical cabin and compartment geometry, tangent repair and web compression. The source exterior and supplied textures remain attributed to Hyap. Original source preserved.
+
+The source is exterior-only. Added cabin, engine and internal compartment surfaces are technical approximations, not verified OEM details. The source filename says C9; the listing and inspected body identify C8. Exact factory year/trim and 99 percent likeness are not certified. No manufacturer endorsement is implied. No Avery or game asset was used in this adaptation. No purchase or publication.
+
+Revision hyap-v2: locally refined 11 exterior panel meshes with seam boundaries held in place; embedded textures repacked losslessly as WebP with identical decoded pixels. Other source attribution and limitations remain in effect.
+
+Revision hyap-v3 (2026-09-13): local roof height fairing capped at 3 mm with fixed plan coordinates and boundaries; roof uses current geometric normals. Restored source lamp textures and emission pattern, with a red lens material on source red-light UV regions while retaining white-light regions. Render parameters remain visual approximations.

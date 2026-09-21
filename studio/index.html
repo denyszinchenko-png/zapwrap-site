@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101011">
+  <title>3D wrap studio | Zap Wrap Naples</title>
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="studio.css?v=20260913-first20">
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/build/three.module.js","three/addons/":"./assets/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <a class="skip" href="#configuration">Skip to configuration</a>
+  <header class="topbar">
+    <a class="brand" href="/#visualizer" aria-label="Back to wrap visualizer" title="Back to wrap visualizer"><img src="assets/brand/zap-wrap-naples-logo.png" alt="Zap Wrap Naples" width="158" height="42"></a>
+    <div class="topbar__title">3D wrap studio <span class="preview-tag">Preview</span></div>
+    <button class="text-button" id="save-config" type="button">Save build <span aria-hidden="true">↗</span></button>
+  </header>
+  <main class="studio">
+    <section class="viewer" aria-label="Interactive vehicle preview">
+      <div class="vehicle-heading"><p id="vehicle-meta">Vehicle collection</p><h1 id="vehicle-name">Your next color.</h1><p class="vehicle-subtitle" id="vehicle-trim">Choose a vehicle to begin.</p></div>
+      <div id="stage" tabindex="0" role="application" aria-label="3D car. Drag to rotate. Scroll or pinch to zoom. Arrow keys rotate; plus and minus zoom. Home resets the view."></div>
+      <div class="loading" id="loading" role="status"><span class="loading__ring" aria-hidden="true"></span><p id="loading-label">Preparing the studio…</p><progress id="load-progress" max="100" value="0" aria-label="Vehicle loading progress"></progress></div>
+      <div class="error" id="error" hidden><h2>The preview could not load.</h2><p id="error-message"></p><button id="retry" class="primary" type="button">Try again</button></div>
+      <div class="viewer-toolbar" aria-label="Camera views"><button data-view="hero" class="active" aria-pressed="true" type="button">3/4</button><button data-view="side" aria-pressed="false" type="button">Side</button><button data-view="front" aria-pressed="false" type="button">Front</button><button data-view="rear" aria-pressed="false" type="button">Rear</button><button id="snapshot" type="button" title="Save preview image">Save image</button></div>
+      <p class="lighting-label">Neutral studio · Digital material preview</p><p class="gesture-hint">Drag to rotate <span>·</span> Pinch to zoom</p>
+      <div class="vehicle-picker"><label for="vehicle-select">Your vehicle</label><select id="vehicle-select" aria-describedby="catalog-note"></select><p id="catalog-note"></p></div>
+    </section>
+    <aside class="configuration" id="configuration" aria-label="Wrap configuration">
+      <p id="review-notice" class="fine-print" hidden>Local asset preparation. These models are technical candidates, not finished customer assets.</p>
+      <div class="configuration__intro"><p class="eyebrow">Make it yours</p><h2>Find your finish.</h2></div>
+      <div class="tabs" role="tablist" aria-label="Configuration controls"><button id="tab-finish" role="tab" aria-selected="true" aria-controls="panel-finish" tabindex="0" type="button">Film</button><button id="tab-coverage" role="tab" aria-selected="false" aria-controls="panel-coverage" tabindex="-1" type="button">Coverage</button><button id="tab-parts" role="tab" aria-selected="false" aria-controls="panel-parts" tabindex="-1" type="button">Open car</button></div>
+      <section id="panel-finish" class="tab-panel" role="tabpanel" aria-labelledby="tab-finish">
+        <fieldset class="wrap-scope"><legend>What would you like to wrap?</legend><label class="search-label" for="wrap-target-select">Coverage area</label><select id="wrap-target-select" aria-describedby="panel-note"><option value="full">Full wrap</option></select><p id="panel-note" class="fine-print"></p></fieldset>
+        <div class="selected-color"><span id="color-orb" aria-hidden="true"></span><div><span class="field-label">Selected finish</span><h3 id="color-name">Midnight purple</h3></div></div>
+        <label class="search-label" for="film-search">Find your film</label><input id="film-search" type="search" placeholder="Search name or product code" autocomplete="off">
+        <details class="catalog-filters"><summary>Refine selection</summary><div class="filter-grid">
+        <label>Brand<select id="filter-brand"></select></label><label>Collection<select id="filter-collection"></select></label>
+        <label>Finish<select id="filter-finish"></select></label><label>Color<select id="filter-color"></select></label>
+        <label>Region<select id="filter-region"></select></label></div><label class="check-row"><input id="favorites-only" type="checkbox">Favorites only</label><button id="clear-filters" class="text-button" type="button">Clear filters</button></details>
+        <div class="film-heading"><span>Film library</span><span id="catalog-count" role="status"></span></div>
+        <div id="film-list" class="film-list" role="group" aria-label="Verified automotive films"></div><p id="catalog-empty" class="fine-print" hidden>No films match. Try another filter or search.</p><button id="more-films" class="secondary wide" type="button" hidden>Show more films</button>
+        <p id="product-detail" class="fine-print"></p><a id="product-source" class="source-link" target="_blank" rel="noopener">Manufacturer product source</a>
+        <details class="technical-colors"><summary>Technical color study</summary><p class="fine-print">Custom colors and effects below are technical presets, not named film products.</p>
+        <fieldset><legend>Choose a color</legend><div id="swatches" class="swatches"></div></fieldset>
+        <div class="custom-color"><label for="custom-color">Try your own color</label><input id="custom-color" type="color" value="#542a86"><span id="hex-value">#542A86</span></div>
+        <fieldset><legend>Surface finish</legend><div class="finish-options" id="finishes"><button type="button" data-finish="gloss" class="active" aria-pressed="true"><span class="finish-dot gloss"></span>Gloss</button><button type="button" data-finish="satin" aria-pressed="false"><span class="finish-dot satin"></span>Satin</button><button type="button" data-finish="matte" aria-pressed="false"><span class="finish-dot matte"></span>Matte</button><button type="button" data-finish="metallic" aria-pressed="false">Metallic</button><button type="button" data-finish="pearlescent" aria-pressed="false">Pearlescent</button><button type="button" data-finish="chrome" aria-pressed="false">Chrome</button><button type="button" data-finish="color-shift" aria-pressed="false">Color shift</button></div></fieldset>
+        <label class="check-row"><input id="color-shift" type="checkbox"><span>Explore a color-shift effect<small>View-dependent preview</small></span></label>
+        </details><p class="sample-note">Digital previews are approximate. Final color and finish must be confirmed using a physical sample.</p>
+      </section>
+      <section id="panel-coverage" class="tab-panel" role="tabpanel" aria-labelledby="tab-coverage" hidden>
+        <h3>Beyond the outside.</h3><p class="fine-print">Inner areas apply to Full wrap. Individual panel selections change only the mapped exterior surface.</p><p class="panel-intro">Open the car to explore the painted edges and recessed areas.</p>
+        <label class="coverage-option"><input type="radio" name="coverage" value="exterior" checked><span><strong>Exterior</strong><small>Visible outer body panels</small></span></label>
+        <label class="coverage-option"><input type="radio" name="coverage" value="extended"><span><strong>Extended color change</strong><small>Exterior plus your selected inner areas</small></span></label>
+        <fieldset id="inner-zones" disabled><legend>Inner areas</legend><div id="zone-options"></div></fieldset>
+        <button type="button" class="secondary wide" id="inspect-coverage">Open car to inspect</button>
+        <p class="fine-print">Coverage is a visual proposal. The final scope depends on access and the vehicle's condition.</p>
+      </section>
+      <section id="panel-parts" class="tab-panel" role="tabpanel" aria-labelledby="tab-parts" hidden>
+        <h3>See every opening.</h3><p class="panel-intro">Move each panel independently to inspect your selected color.</p>
+        <div class="parts-actions"><button type="button" class="secondary" id="open-all">Open all</button><button type="button" class="secondary" id="close-all">Close all</button></div>
+        <div id="part-controls" class="part-controls"></div>
+      </section>
+      <section class="comparison-panel" aria-label="Compare film options"><h3>Compare your options</h3><label class="environment-label" for="environment-select">Lighting<select id="environment-select"><option value="studio">Neutral studio</option><option value="daylight">Daylight</option><option value="evening">Warm evening</option></select></label><p id="compare-note" class="fine-print"></p><div class="compare-options">
+        <div><span id="compare-label-A">Not saved</span><button id="save-A" class="secondary" type="button">Save option A</button><button id="show-A" class="secondary" type="button" aria-pressed="false" disabled>View A</button></div>
+        <div><span id="compare-label-B">Not saved</span><button id="save-B" class="secondary" type="button">Save option B</button><button id="show-B" class="secondary" type="button" aria-pressed="false" disabled>View B</button></div></div><button id="leave-comparison" class="text-button" type="button" hidden>Exit comparison</button><button id="clear-comparison" class="text-button" type="button">Clear saved options</button></section>
+      <section class="inquiry-panel"><span class="field-label">Bring it to life</span><h3>Quote required</h3><p class="fine-print">Your exact quote depends on the vehicle, paint condition, film and final coverage. Film usage and installation pricing require a studio review.</p><button class="primary wide" type="button" data-inquiry="quote">Get an Exact Quote</button><button class="secondary wide" type="button" data-inquiry="consultation">Book a Consultation</button><button class="text-button wide" type="button" data-inquiry="configuration">Send My Configuration</button><p class="fine-print">Prepare your request, then review it in WhatsApp. No appointment is booked automatically.</p></section>
+      <p id="restore-notice" class="sample-note" role="status" hidden></p>
+      <div class="build-summary"><span class="field-label">Your preview</span><p id="summary-color">Midnight purple · Gloss</p><p id="summary-coverage">Exterior body panels</p><button class="primary wide" id="copy-link" type="button">Copy local preview link <span aria-hidden="true">↗</span></button><button class="text-button wide" id="reset-build" type="button">Reset build</button><button class="text-button wide" id="load-config" type="button">Open a saved build</button><button class="text-button wide" id="paste-build" type="button">Paste a saved build</button><input type="file" id="build-file" accept=".json,application/json" hidden></div>
+    </aside>
+  </main>
+  <footer class="studio-footer"><span>Zap Wrap Naples. No shortcuts.</span><button type="button" class="text-button" id="credits-toggle" aria-expanded="false" aria-controls="credits">Model details & credits</button><div id="credits" hidden></div></footer>
+  <dialog id="inquiry-dialog" aria-labelledby="inquiry-title"><button class="dialog-close secondary" id="close-inquiry" type="button">Close</button><h2 id="inquiry-title">Get an Exact Quote</h2><p class="fine-print">Your current vehicle and film are included. No account needed.</p>
+    <form id="inquiry-form"><label>Your name<input name="name" autocomplete="name" required maxlength="80"></label><label>Email or phone<input name="contact" autocomplete="email" required maxlength="160"></label><label>Anything we should know?<textarea name="comment" rows="3" maxlength="1500"></textarea></label><label class="check-row"><input name="remember" type="checkbox">Save this contact draft on this device</label><p class="fine-print">Contact details stay out of preview links. Save only on a device you trust.</p><button class="primary wide" type="submit">Prepare request</button><button class="text-button wide" id="forget-draft" type="button">Clear contact draft</button></form>
+    <p id="inquiry-status" role="status"></p><section id="inquiry-review" tabindex="-1" hidden><h3>Review your request</h3><pre id="inquiry-text"></pre><a class="primary wide" id="whatsapp-handoff" rel="noreferrer">Open WhatsApp to send</a><button class="secondary wide" id="copy-request-text" type="button">Copy request text</button><button class="secondary wide" id="download-request" type="button">Save private request file</button><p class="fine-print">WhatsApp opens with this text. Review and send it yourself. Add the saved PNG and build file as attachments if the preview is local.</p></section>
+  </dialog>
+  <dialog id="paste-build-dialog" aria-labelledby="paste-build-title"><button class="dialog-close secondary" id="close-paste-build" type="button">Close</button><h2 id="paste-build-title">Restore your configuration</h2><p class="fine-print">Paste the JSON from Save build. This replaces the current preview after validation. Contact request files are not build files.</p><form id="paste-build-form"><label for="paste-build-json">Build JSON</label><textarea id="paste-build-json" rows="10" maxlength="65536" required spellcheck="false"></textarea><button id="restore-pasted-build" class="primary wide" type="submit">Restore build</button></form><p id="paste-build-status" role="status"></p></dialog>
+  <dialog id="build-dialog" aria-labelledby="build-title"><button class="dialog-close secondary" id="close-build" type="button">Close</button><h2 id="build-title">Save your configuration</h2><p class="fine-print">This file contains your vehicle, film, coverage, lighting and camera. No contact details. Open it with “Open a saved build” in the studio.</p><label for="build-json">Build JSON</label><textarea id="build-json" rows="9" readonly spellcheck="false"></textarea><button class="primary wide" id="download-build" type="button">Download build file</button><button class="secondary wide" id="copy-build-json" type="button">Copy build JSON</button><p id="build-status" role="status"></p><p class="fine-print">If downloads are unavailable, copy this text and save it as a .json file. A local preview link opens only where this preview server is available.</p></dialog>
+  <dialog id="preview-dialog" aria-labelledby="preview-title"><button class="dialog-close secondary" id="close-preview" type="button">Close</button><h2 id="preview-title">Your preview image</h2><img id="preview-image" alt="Exported vehicle preview with selected film and coverage"><a class="primary wide" id="download-preview">Download PNG</a><p class="fine-print">If this browser does not download files, press and hold the image or open the studio in Safari or Chrome to save it.</p></dialog>
+  <div id="announcement" class="announcement" role="status" aria-live="polite"></div>
+  <script>
+    if(location.protocol==='file:'){
+      document.getElementById('loading').hidden=true;
+      document.getElementById('error').hidden=false;
+      document.getElementById('error-message').textContent='Start the local preview server, then open its address in your browser. Opening this HTML file directly cannot load the 3D models.';
+      const link=document.createElement('a');link.href='http://127.0.0.1:8877/studio/';link.textContent='Open local preview';link.className='primary';document.getElementById('error').append(link);document.getElementById('retry').hidden=true;
+    }
+  </script>
+  <script type="module" src="studio.js?v=20260913-first20"></script>
+</body>
+</html>

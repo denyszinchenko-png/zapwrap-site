@@ -1,0 +1,5 @@
+Reference: '14 Lamborghini Huracan lp610-4 by S.K. (Streetsraker), CC BY 4.0. https://sketchfab.com/3d-models/110a65f0051e42fc89ea37090ec52666
+
+Visual reference attribution above. New geometry: Zap Wrap local authoring pipeline. Authored continuous control surfaces, cabin, wheels and opening assemblies. No archive mesh was imported into this build. Engineering prototype; trim accuracy remains under review.
+
+Front luggage compartment visual reference: owner photographs published April 2015, https://intensive911.com/owned-cars/lamborghini-huracan/21822 . Photos are not included in the web model or used as textures. New fitted geometry remains approximate.

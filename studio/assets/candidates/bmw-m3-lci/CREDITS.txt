@@ -1,0 +1,12 @@
+Model Information:
+* title:	BMW M3 G80 2025
+* source:	https://sketchfab.com/3d-models/bmw-m3-g80-2025-bb30c32dc0624ca89bd865aed5214ca3
+* author:	Drifter Models✨ (https://sketchfab.com/Golden-Models)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "BMW M3 G80 2025" (https://sketchfab.com/3d-models/bmw-m3-g80-2025-bb30c32dc0624ca89bd865aed5214ca3) by Drifter Models✨ (https://sketchfab.com/Golden-Models) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+Modifications prepared 2026-09-06: uniform metric scaling, door component separation, four door hinges and controls, open/close animation, materials, studio setup and GLB export. Original geometry credited above. The modified asset remains subject to the source attribution requirements.

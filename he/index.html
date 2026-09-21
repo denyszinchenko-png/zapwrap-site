@@ -45,7 +45,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=60" />
+  <link rel="stylesheet" href="/styles.css?v=62" />
 </head>
 <body id="top">
 
@@ -123,6 +123,10 @@
           <p class="visualizer__kicker" data-i18n="visualizer.kicker">הפכו את השינוי למוחשי</p>
           <h2 id="visualizer-h" class="section__h" data-i18n="visualizer.h">מדמה עטיפה<span class="dot">.</span></h2>
           <p class="section__lead" data-i18n="visualizer.lead">בחרו רכב וגימור והשוו קודי ויניל אמיתיים. התצוגה היא המחשה ראשונית. את הצבע הסופי מאשרים בעזרת דוגמה פיזית.</p>
+          <div class="visualizer__studio-link">
+            <a class="btn btn--solid" href="/studio/" data-i18n="visualizer.studio">פתיחת סטודיו 3D <span aria-hidden="true">&larr;</span></a>
+            <p data-i18n="visualizer.studioHint">סובבו את הרכב ב-360° ובחרו את הגימור שלכם.</p>
+          </div>
         </header>
 
       <figure class="hero__car visualizer__workspace" aria-label="Wrap visualizer: pick a car and switch the film to recolor it">
@@ -552,7 +556,23 @@
             <p class="svc__desc" data-i18n="svc.ceramic.d">שכבה קרמית מעל הציפוי הטרי: שטיפות קלות יותר, גימור עמוק יותר. רק מעל ראפ.</p>
           </li>
         </ul>
-        <p class="svc__quote" data-i18n="svc.quote">המחיר תלוי ברכב, בכיסוי, בוויניל ובמצב המשטח. שלחו תמונות ברורות להערכה ראשונית; מחיר סופי בכתב ניתן לאחר בדיקה ואישור היקף העבודה. <a href="#consult-form">שלחו את הרכב</a></p>
+        <!-- v61: exotic pricing published, everything else stays quoted per car
+             (owner decision 2026-09-16, reverses the 2026-07-20 "no prices ever" rule).
+             Figure is the owner-confirmed exotic floor; keep it in sync with
+             zapwrap-pricing.json and the color-change service page. -->
+        <div class="svc__pricing">
+          <div class="svc__price svc__price--lead reveal">
+            <p class="svc__price-kicker" data-i18n="svc.price.exotic.k">החלפת צבע לרכבי אקזוטיקה וסופרקאר</p>
+            <p class="svc__price-figure" data-i18n="svc.price.exotic.f">החל מ-$7,500</p>
+            <p class="svc__price-note" data-i18n="svc.price.exotic.d">רוב פרויקטי האקזוטיקה נופלים בין $7,500 ל-$12,000. מה שמזיז את המחיר: הרכב, הגימור, וכמה צריך לפרק. פרארי, למבורגיני, מקלארן, פורשה, אסטון מרטין, בנטלי, רולס רויס, G-Wagon.</p>
+          </div>
+          <div class="svc__price reveal">
+            <p class="svc__price-kicker" data-i18n="svc.price.rest.k">כל השאר</p>
+            <p class="svc__price-figure svc__price-figure--quiet" data-i18n="svc.price.rest.f">תמחור לפי רכב</p>
+            <p class="svc__price-note" data-i18n="svc.price.rest.d">רכבים יומיומיים, הסרת כרום, גג ומכסה מנוע, גרפיקה וצי רכבים מתומחרים לפי תמונות. אין מחירון, כי אין שני רכבים שמגיעים באותו מצב.</p>
+          </div>
+        </div>
+        <p class="svc__quote" data-i18n="svc.quote">שלחו שנה, יצרן, דגם ותמונות ברורות להערכה ראשונית. מחיר סופי בכתב ניתן לאחר בדיקה ואישור היקף העבודה. <a href="#consult-form">שלחו את הרכב</a></p>
       </div>
     </section>
 
@@ -636,7 +656,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">כמה עולה ציפוי לרכב?</summary>
-          <p data-i18n="faq.6.a">שלחו שנה, יצרן, דגם, כיסוי מבוקש ותמונות ברורות להערכה ראשונית. המחיר הסופי בכתב נקבע לאחר בדיקת הרכב, בחירת הוויניל ואישור ההיקף. כל שינוי מתומחר לפני שממשיכים.</p>
+          <p data-i18n="faq.6.a">החלפת צבע מלאה לרכבי אקזוטיקה וסופרקאר מתחילה ב-$7,500, ורוב הפרויקטים נופלים בין $7,500 ל-$12,000. כל רכב אחר מתומחר לפי רכב: שלחו שנה, יצרן, דגם, היקף הכיסוי הרצוי ותמונות ברורות להערכה ראשונית. מחיר סופי בכתב ניתן לאחר בדיקה, בחירת ויניל ואישור היקף העבודה.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">אילו ציפויים אתם מתקינים?</summary>
@@ -648,7 +668,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">אתם עוטפים רכבי יוקרה וסופרקארים?</summary>
-          <p data-i18n="faq.9.a">כן, רכבים אקזוטיים ובעלי ביצועים גבוהים מתקבלים. מרווח נמוך, חיישנים, קרבון וחלקים מורכבים דורשים בדיקה ותוכנית התקנה ייעודית. הפירוק והתכנון תלויים ברכב ובהיקף שאושר.</p>
+          <p data-i18n="faq.9.a">כן, רכבי אקזוטיקה ורכבי ביצועים מתקבלים, והחלפת צבע מלאה על רכב כזה מתחילה ב-$7,500. מרווח נמוך, חיישנים, חלקי פחמן וטרים מורכב דורשים בדיקה ותוכנית התקנה ייעודיות. הפירוק והשרטוט תלויים ברכב המדויק ובהיקף המאושר.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">כמה זמן לוקח ראפ?</summary>
@@ -844,6 +864,13 @@
     ],
     "makesOffer": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full color change vinyl wrap" } },
+      { "@type": "Offer",
+        "name": "Exotic and supercar full color change",
+        "itemOffered": { "@type": "Service", "name": "Exotic and supercar full color change vinyl wrap" },
+        "priceCurrency": "USD",
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": 7500, "maxPrice": 12000 },
+        "description": "Full color change on exotic and high-performance vehicles. Starts at $7,500; most builds land between $7,500 and $12,000 depending on vehicle, finish and disassembly.",
+        "availability": "https://schema.org/InStock" },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chrome delete" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Partial wrap: roof, hood and accents" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom graphics and lettering" } },
@@ -861,15 +888,15 @@
       { "@type": "Question", "name": "זה באמת זול יותר מצביעה?", "acceptedAnswer": { "@type": "Answer", "text": "עטיפה יכולה להיות חלופה הפיכה לצביעה מחדש. העלות בפועל ותוצאת ההסרה תלויות בהיקף, בוויניל ובמצב המשטח." } },
       { "@type": "Question", "name": "אפשר לעטוף רכב בליסינג?", "acceptedAnswer": { "@type": "Answer", "text": "לעיתים קרובות כן, אבל חוזה הליסינג קובע. קבלו אישור בכתב אם נדרש ובדקו את הצבע לפני ההתקנה וההסרה." } },
       { "@type": "Question", "name": "איך שוטפים רכב עטוף?", "acceptedAnswer": { "@type": "Answer", "text": "ביד או ללא מגע, בלי ווקס על מט וסאטן, ובלי לחץ מים ישיר על קצוות ותפרים. מדריך טיפול מלא ניתן באיסוף." } },
-      { "@type": "Question", "name": "כמה עולה ציפוי לרכב?", "acceptedAnswer": { "@type": "Answer", "text": "שלחו שנה, יצרן, דגם, כיסוי מבוקש ותמונות ברורות להערכה ראשונית. המחיר הסופי בכתב נקבע לאחר בדיקת הרכב, בחירת הוויניל ואישור ההיקף. כל שינוי מתומחר לפני שממשיכים." } },
+      { "@type": "Question", "name": "כמה עולה ציפוי לרכב?", "acceptedAnswer": { "@type": "Answer", "text": "החלפת צבע מלאה לרכבי אקזוטיקה וסופרקאר מתחילה ב-$7,500, ורוב הפרויקטים נופלים בין $7,500 ל-$12,000. כל רכב אחר מתומחר לפי רכב: שלחו שנה, יצרן, דגם, היקף הכיסוי הרצוי ותמונות ברורות להערכה ראשונית. מחיר סופי בכתב ניתן לאחר בדיקה, בחירת ויניל ואישור היקף העבודה." } },
       { "@type": "Question", "name": "אילו ציפויים אתם מתקינים?", "acceptedAnswer": { "@type": "Answer", "text": "אנחנו עובדים בעיקר עם 3M, Avery Dennison ו-KPMF. אפשר לשקול ויניל מקצועי אחר לגימור מסוים לאחר אישור זמינות, התאמה והנחיות היצרן." } },
       { "@type": "Question", "name": "איפה מתבצעת העבודה?", "acceptedAnswer": { "@type": "Answer", "text": "העבודה מתבצעת ב-524-A Industrial Blvd, Naples, FL 34104, בתיאום מראש בלבד. מגיעים אלינו גם מ-Bonita Springs, Marco Island, Fort Myers ו-Cape Coral." } },
-      { "@type": "Question", "name": "אתם עוטפים רכבי יוקרה וסופרקארים?", "acceptedAnswer": { "@type": "Answer", "text": "כן, רכבים אקזוטיים ובעלי ביצועים גבוהים מתקבלים. מרווח נמוך, חיישנים, קרבון וחלקים מורכבים דורשים בדיקה ותוכנית התקנה ייעודית. הפירוק והתכנון תלויים ברכב ובהיקף שאושר." } },
+      { "@type": "Question", "name": "אתם עוטפים רכבי יוקרה וסופרקארים?", "acceptedAnswer": { "@type": "Answer", "text": "כן, רכבי אקזוטיקה ורכבי ביצועים מתקבלים, והחלפת צבע מלאה על רכב כזה מתחילה ב-$7,500. מרווח נמוך, חיישנים, חלקי פחמן וטרים מורכב דורשים בדיקה ותוכנית התקנה ייעודיות. הפירוק והשרטוט תלויים ברכב המדויק ובהיקף המאושר." } },
       { "@type": "Question", "name": "כמה זמן לוקח ראפ?", "acceptedAnswer": { "@type": "Answer", "text": "שינוי צבע מלא לוקח בדרך כלל 3 עד 5 ימי התקנה. מצב הרכב, המורכבות, הפירוק וזמינות הוויניל יכולים לשנות את הזמן. הערכת הזמן כלולה בהצעה המאושרת." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=17" defer></script>
+  <script src="/i18n.js?v=20" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the

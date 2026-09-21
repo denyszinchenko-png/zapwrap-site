@@ -1490,6 +1490,9 @@ p { text-wrap: pretty; }
   text-transform: uppercase;
 }
 .visualizer__head .section__lead { margin-top: 0; }
+.visualizer__studio-link { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1.5rem; padding-top: 0.5rem; }
+.visualizer__studio-link .btn { min-height: 48px; max-width: 100%; white-space: normal; }
+.visualizer__studio-link p { margin: 0; color: var(--muted); font-size: 0.875rem; }
 .visualizer__workspace {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(21rem, 0.85fr);

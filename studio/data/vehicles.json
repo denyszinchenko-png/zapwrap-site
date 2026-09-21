@@ -1,0 +1,556 @@
+{
+  "version": 1,
+  "status": "technical-integration-preview",
+  "defaultVehicle": "bmw-m3-lci",
+  "vehicles": [
+    {
+      "id": "bmw-m3-lci",
+      "make": "BMW",
+      "model": "M3 Competition",
+      "year": 2025,
+      "trim": "G80 LCI · visualization candidate",
+      "status": "interior-review",
+      "src": "assets/candidates/bmw-m3-lci/model.glb?v=7c328b188b53",
+      "credit": "assets/candidates/bmw-m3-lci/CREDITS.txt",
+      "note": "Licensed model preview. Exterior trim and rig completeness remain under review for MY2026.",
+      "provenance": "Licensed adaptation of BMW M3 G80 2025 by Drifter Models (CC BY 4.0), prepared as a G80 LCI visualization. Not factory CAD.",
+      "releaseEligible": false,
+      "bytes": 7614744,
+      "assetVersion": "7c328b188b534a664e52d191475b2a1628b9fdab7c439e3d7244b810a2dfb513",
+      "bodyStyle": "sedan",
+      "generation": "G80",
+      "yearRange": [
+        2025,
+        2025
+      ],
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "chevrolet-corvette",
+      "make": "Chevrolet",
+      "model": "Corvette Stingray",
+      "year": 2020,
+      "trim": "C8 Coupé",
+      "status": "licensed-adaptation-review",
+      "src": "assets/candidates/chevrolet-corvette/model.glb?v=4819d4f92adc",
+      "credit": "assets/candidates/chevrolet-corvette/CREDITS.txt",
+      "releaseEligible": false,
+      "bytes": 11954988,
+      "note": "Licensed C8 exterior with independent openings. Added cabin and compartments are technical approximations; trim accuracy remains under review.",
+      "provenance": "Chevrolet Corvette C8 Stingray by Hyap / source5525, CC BY 4.0. Owner-supplied FBX adapted locally: materials, hinges, inner panels and technical cabin. Not factory CAD.",
+      "assetVersion": "4819d4f92adc453ea1b8f9180cfbe413afa4521f1441152a1da28dbdb447d4ad",
+      "bodyStyle": "coupe",
+      "generation": "C8",
+      "yearRange": [
+        2020,
+        2020
+      ],
+      "assetRevision": "hyap-v3",
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "lamborghini-huracan",
+      "make": "Lamborghini",
+      "model": "Huracán",
+      "year": 2015,
+      "trim": "LP 610-4 Coupé",
+      "status": "geometry-prototype",
+      "src": "assets/candidates/lamborghini-huracan/model.glb?v=cf9a32af535b",
+      "credit": "assets/candidates/lamborghini-huracan/CREDITS.txt",
+      "releaseEligible": false,
+      "bytes": 3939168,
+      "note": "Geometry prototype. Body shape and trim details are being refined.",
+      "provenance": "Newly authored control surfaces, wheels, cabin and opening assemblies. Archive images used only as visual references. This prototype does not yet establish accurate trim-specific geometry.",
+      "assetVersion": "cf9a32af535b3fbeae05ea4ff9ddbbfa05657321c7313aee5c6b1a6296e8d93a",
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "toyota-camry",
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2020,
+      "generation": "XV70",
+      "trim": "Sedan; exact trim pending · technical candidate",
+      "status": "panel-and-material-review",
+      "releaseEligible": false,
+      "src": "assets/candidates/toyota-camry/model.glb?v=b02960468b23",
+      "credit": "assets/candidates/toyota-camry/CREDITS.txt",
+      "assetVersion": "b02960468b23c22a5edb082850021423be61fe321f72bb5cae6937dd6e9b74af",
+      "bytes": 14918876,
+      "provenance": "Licensed source adaptation. ItsDiyor (https://sketchfab.com/ItsDiyor). CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/). No new vehicle geometry claimed.",
+      "note": "Technical candidate. Individually mapped exterior panels; opening assemblies and final quality are unfinished.",
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "roof": {
+            "label": "Roof",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "roof"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "ford-f150-raptor",
+      "make": "Ford",
+      "model": "F-150 Raptor",
+      "year": 2018,
+      "generation": "Second-generation Raptor",
+      "trim": "Raptor · cab specification under review",
+      "status": "panel-and-material-review",
+      "releaseEligible": false,
+      "src": "assets/candidates/ford-f150-raptor/model.glb?v=c98c526e52e8",
+      "credit": "assets/candidates/ford-f150-raptor/CREDITS.txt",
+      "assetVersion": "c98c526e52e84c84c4f73d62e2559d0f7d9fc4c4bc32da893e0fb13827eb8967",
+      "bytes": 2990680,
+      "provenance": "Licensed source adaptation. Galaxy Car Showroom (https://sketchfab.com/adrianaflak09). CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/). No new vehicle geometry claimed.",
+      "note": "Technical candidate. Individually mapped exterior panels; opening assemblies and final quality are unfinished.",
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "roof": {
+            "label": "Roof",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "roof"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      },
+      "orientation": {
+        "yaw": 3.141592653589793
+      }
+    },
+    {
+      "id": "tesla-model-y",
+      "make": "Tesla",
+      "model": "Model Y",
+      "year": 2021,
+      "generation": "Original Model Y",
+      "trim": "SUV; exact trim pending · technical candidate",
+      "status": "panel-and-material-review",
+      "releaseEligible": false,
+      "src": "assets/candidates/tesla-model-y/model.glb?v=9e852fb493c9",
+      "credit": "assets/candidates/tesla-model-y/CREDITS.txt",
+      "assetVersion": "9e852fb493c9e7d7eeaef184cd9e3b985ddf508c7e06c4bbc3674c1d7ed7921b",
+      "bytes": 28868580,
+      "provenance": "Licensed source adaptation. tonielpro520 (https://sketchfab.com/tonielpro520). CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/). No new vehicle geometry claimed.",
+      "note": "Technical candidate. Individually mapped exterior panels; opening assemblies and final quality are unfinished.",
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "bumper_rear": {
+            "label": "Bumper Rear",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "bumper_rear"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_fr": {
+            "label": "Door Fr",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_fr"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "fender_fr": {
+            "label": "Fender Fr",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "fender_fr"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "mirror_right": {
+            "label": "Mirror Right",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "mirror_right"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_rr": {
+            "label": "Door Rr",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_rr"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "trunk": {
+            "label": "Trunk",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "trunk"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "bumper_front": {
+            "label": "Bumper Front",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "bumper_front"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_fl": {
+            "label": "Door Fl",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_fl"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "fender_fl": {
+            "label": "Fender Fl",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "fender_fl"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "mirror_left": {
+            "label": "Mirror Left",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "mirror_left"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_rl": {
+            "label": "Door Rl",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_rl"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "bmw-x6",
+      "make": "BMW",
+      "model": "X6",
+      "year": 2020,
+      "generation": "G06",
+      "trim": "Sports Activity Coupe; exact trim to verify · technical candidate",
+      "status": "panel-and-material-review",
+      "releaseEligible": false,
+      "src": "assets/candidates/bmw-x6/model.glb?v=1d83466db891",
+      "credit": "assets/candidates/bmw-x6/CREDITS.txt",
+      "assetVersion": "1d83466db891baebcab974e1b3d01f6cf526f015209bdaba5a9679edafe8b95e",
+      "bytes": 17052412,
+      "provenance": "Licensed source adaptation. ItsDiyor (https://sketchfab.com/ItsDiyor). CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/). No new vehicle geometry claimed.",
+      "note": "Technical candidate. Full-wrap material preview only; separate panels and opening assemblies are unfinished.",
+      "panelMapping": null
+    },
+    {
+      "id": "tesla-model-3",
+      "make": "Tesla",
+      "model": "Model 3",
+      "year": 2020,
+      "generation": "Original pre-refresh Model 3",
+      "trim": "Sedan; exact trim to verify · technical candidate",
+      "status": "panel-and-material-review",
+      "releaseEligible": false,
+      "src": "assets/candidates/tesla-model-3/model.glb?v=e7c3494eda93",
+      "credit": "assets/candidates/tesla-model-3/CREDITS.txt",
+      "assetVersion": "e7c3494eda93c8d20ef1f14a5fd6eb469d14584cf1e411d4cac3d42b448a31a4",
+      "bytes": 15585424,
+      "provenance": "Licensed source adaptation. ItsDiyor (https://sketchfab.com/ItsDiyor). CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/). No new vehicle geometry claimed.",
+      "note": "Technical candidate. Individually mapped exterior panels; opening assemblies and final quality are unfinished.",
+      "panelMapping": {
+        "version": 1,
+        "panels": {
+          "hood": {
+            "label": "Hood",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "hood"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "trunk": {
+            "label": "Trunk",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "trunk"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_fl": {
+            "label": "Door Fl",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_fl"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_fr": {
+            "label": "Door Fr",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_fr"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_rl": {
+            "label": "Door Rl",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_rl"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "door_rr": {
+            "label": "Door Rr",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "door_rr"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "fender_fl": {
+            "label": "Fender Fl",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "fender_fl"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "fender_fr": {
+            "label": "Fender Fr",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "fender_fr"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "bumper_front": {
+            "label": "Bumper Front",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "bumper_front"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "bumper_rear": {
+            "label": "Bumper Rear",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "bumper_rear"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "mirror_left": {
+            "label": "Mirror Left",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "mirror_left"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          },
+          "mirror_right": {
+            "label": "Mirror Right",
+            "expectedMeshes": 1,
+            "selectors": [
+              {
+                "metadata": {
+                  "studioPart": "mirror_right"
+                },
+                "material": "Wrap_exterior"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

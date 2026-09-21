@@ -1,0 +1,7 @@
+{
+  "author": "ItsDiyor (https://sketchfab.com/ItsDiyor)",
+  "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+  "source": "https://sketchfab.com/3d-models/bmw-x6-2020-68c905e5d2d14e5da8b92793a968b2c2",
+  "title": "BMW X6 2020"
+}
+Local adaptation: exterior material isolation and, when present, exact panel metadata. Source geometry retained. No complete opening rig; trim accuracy and final visual quality remain under review.

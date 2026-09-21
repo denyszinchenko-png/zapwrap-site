@@ -1,0 +1,7 @@
+{
+  "author": "tonielpro520 (https://sketchfab.com/tonielpro520)",
+  "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+  "source": "https://sketchfab.com/3d-models/2021-tesla-model-y-59e2ead369984b1a85c800ff6cf6789d",
+  "title": "2021 Tesla Model Y"
+}
+Local adaptation: exterior material isolation and, when present, exact panel metadata. Source geometry retained. No complete opening rig; trim accuracy and final visual quality remain under review.

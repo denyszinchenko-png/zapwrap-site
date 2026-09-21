@@ -45,7 +45,7 @@
        hero headline paints in the real face on first visit. -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/cars/lamborghini-huracan.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/styles.css?v=60" />
+  <link rel="stylesheet" href="/styles.css?v=62" />
 </head>
 <body id="top">
 
@@ -123,6 +123,10 @@
           <p class="visualizer__kicker" data-i18n="visualizer.kicker">Haz visible el cambio</p>
           <h2 id="visualizer-h" class="section__h" data-i18n="visualizer.h">Visualizador de wraps<span class="dot">.</span></h2>
           <p class="section__lead" data-i18n="visualizer.lead">Elige tu auto, un acabado y compara c&oacute;digos reales de vinilo. La pantalla es una vista previa. El color final se confirma con una muestra f&iacute;sica.</p>
+          <div class="visualizer__studio-link">
+            <a class="btn btn--solid" href="/studio/" data-i18n="visualizer.studio">Abrir estudio 3D <span aria-hidden="true">&rarr;</span></a>
+            <p data-i18n="visualizer.studioHint">Explora los autos en 360° y descubre tu acabado.</p>
+          </div>
         </header>
 
       <figure class="hero__car visualizer__workspace" aria-label="Wrap visualizer: pick a car and switch the film to recolor it">
@@ -552,7 +556,23 @@
             <p class="svc__desc" data-i18n="svc.ceramic.d">Una capa cer&aacute;mica sobre el vinilo reci&eacute;n instalado: lavados m&aacute;s f&aacute;ciles, acabado m&aacute;s profundo. Solo sobre un wrap.</p>
           </li>
         </ul>
-        <p class="svc__quote" data-i18n="svc.quote">El precio depende del veh&iacute;culo, la cobertura, el vinilo y la superficie. Env&iacute;a fotos claras para una estimaci&oacute;n inicial; el precio final por escrito sigue a la inspecci&oacute;n y al alcance confirmado. <a href="#consult-form">Env&iacute;a tu auto</a></p>
+        <!-- v61: exotic pricing published, everything else stays quoted per car
+             (owner decision 2026-09-16, reverses the 2026-07-20 "no prices ever" rule).
+             Figure is the owner-confirmed exotic floor; keep it in sync with
+             zapwrap-pricing.json and the color-change service page. -->
+        <div class="svc__pricing">
+          <div class="svc__price svc__price--lead reveal">
+            <p class="svc__price-kicker" data-i18n="svc.price.exotic.k">Cambio de color en ex&oacute;ticos y superdeportivos</p>
+            <p class="svc__price-figure" data-i18n="svc.price.exotic.f">Desde $7,500</p>
+            <p class="svc__price-note" data-i18n="svc.price.exotic.d">La mayor&iacute;a de los proyectos ex&oacute;ticos queda entre $7,500 y $12,000. Lo que mueve el precio: el auto, el acabado y cu&aacute;nto hay que desmontar. Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, Bentley, Rolls-Royce, G-Wagon.</p>
+          </div>
+          <div class="svc__price reveal">
+            <p class="svc__price-kicker" data-i18n="svc.price.rest.k">Todo lo dem&aacute;s</p>
+            <p class="svc__price-figure svc__price-figure--quiet" data-i18n="svc.price.rest.f">Precio por auto</p>
+            <p class="svc__price-note" data-i18n="svc.price.rest.d">Autos de uso diario, chrome delete, techo y cap&oacute;, gr&aacute;ficos y flotas se cotizan con fotos. Sin precio de men&uacute;, porque no hay dos autos que lleguen en el mismo estado.</p>
+          </div>
+        </div>
+        <p class="svc__quote" data-i18n="svc.quote">Env&iacute;a a&ntilde;o, marca, modelo y fotos claras para una estimaci&oacute;n inicial. El precio final por escrito sigue a la inspecci&oacute;n y al alcance confirmado. <a href="#consult-form">Env&iacute;a tu auto</a></p>
       </div>
     </section>
 
@@ -636,7 +656,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.6.q">&iquest;Cu&aacute;nto cuesta un wrap?</summary>
-          <p data-i18n="faq.6.a">Env&iacute;a a&ntilde;o, marca, modelo, cobertura y fotos claras para una estimaci&oacute;n inicial. El precio final por escrito sigue a la inspecci&oacute;n, selecci&oacute;n del vinilo y alcance confirmado. Cualquier cambio se cotiza antes de continuar.</p>
+          <p data-i18n="faq.6.a">El cambio de color en ex&oacute;ticos y superdeportivos empieza en $7,500, y la mayor&iacute;a queda entre $7,500 y $12,000. Cualquier otro veh&iacute;culo se cotiza por auto: env&iacute;a a&ntilde;o, marca, modelo, cobertura solicitada y fotos claras para una estimaci&oacute;n inicial. El precio final por escrito sigue a la inspecci&oacute;n, la selecci&oacute;n de vinilo y el alcance confirmado.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.7.q">&iquest;Qu&eacute; vinilos instalan?</summary>
@@ -648,7 +668,7 @@
         </details>
         <details class="qa">
           <summary data-i18n="faq.9.q">&iquest;Trabajan ex&oacute;ticos y superautos?</summary>
-          <p data-i18n="faq.9.a">S&iacute;, recibimos veh&iacute;culos ex&oacute;ticos y de alto rendimiento. Altura baja, sensores, carbono y molduras complejas requieren inspecci&oacute;n y un plan espec&iacute;fico. El desmontaje y trazado dependen del auto y del alcance confirmado.</p>
+          <p data-i18n="faq.9.a">S&iacute;, los veh&iacute;culos ex&oacute;ticos y de alto rendimiento son bienvenidos, y un cambio de color completo en uno empieza en $7,500. Alturas bajas, sensores, piezas de carbono y molduras complejas requieren inspecci&oacute;n y plan de instalaci&oacute;n espec&iacute;ficos. El desmontaje y el ploteo dependen del auto exacto y del alcance confirmado.</p>
         </details>
         <details class="qa">
           <summary data-i18n="faq.10.q">&iquest;Cu&aacute;nto tarda un wrap?</summary>
@@ -844,6 +864,13 @@
     ],
     "makesOffer": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full color change vinyl wrap" } },
+      { "@type": "Offer",
+        "name": "Exotic and supercar full color change",
+        "itemOffered": { "@type": "Service", "name": "Exotic and supercar full color change vinyl wrap" },
+        "priceCurrency": "USD",
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": 7500, "maxPrice": 12000 },
+        "description": "Full color change on exotic and high-performance vehicles. Starts at $7,500; most builds land between $7,500 and $12,000 depending on vehicle, finish and disassembly.",
+        "availability": "https://schema.org/InStock" },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chrome delete" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Partial wrap: roof, hood and accents" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom graphics and lettering" } },
@@ -861,15 +888,15 @@
       { "@type": "Question", "name": "¿Es realmente más barato que repintar?", "acceptedAnswer": { "@type": "Answer", "text": "Un wrap puede ser una alternativa reversible a repintar. El costo real y el resultado al retirarlo dependen del alcance, el vinilo y la superficie." } },
       { "@type": "Question", "name": "¿Puedo envolver un auto en leasing?", "acceptedAnswer": { "@type": "Answer", "text": "A menudo sí, pero manda el contrato de leasing. Obtén permiso por escrito si hace falta e inspecciona la pintura antes de instalar y retirar." } },
       { "@type": "Question", "name": "¿Cómo lavo un auto con wrap?", "acceptedAnswer": { "@type": "Answer", "text": "A mano o touchless, sin cera sobre mate o satinado, y evita la alta presión directa en bordes y uniones. Te entregamos la guía completa de cuidado al recoger." } },
-      { "@type": "Question", "name": "¿Cuánto cuesta un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Envía año, marca, modelo, cobertura y fotos claras para una estimación inicial. El precio final por escrito sigue a la inspección, selección del vinilo y alcance confirmado. Cualquier cambio se cotiza antes de continuar." } },
+      { "@type": "Question", "name": "¿Cuánto cuesta un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "El cambio de color en exóticos y superdeportivos empieza en $7,500, y la mayoría queda entre $7,500 y $12,000. Cualquier otro vehículo se cotiza por auto: envía año, marca, modelo, cobertura solicitada y fotos claras para una estimación inicial. El precio final por escrito sigue a la inspección, la selección de vinilo y el alcance confirmado." } },
       { "@type": "Question", "name": "¿Qué vinilos instalan?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos principalmente con 3M, Avery Dennison y KPMF. Otros vinilos profesionales pueden considerarse para un acabado específico tras confirmar disponibilidad, compatibilidad y guía del fabricante." } },
       { "@type": "Question", "name": "¿Dónde se hace el trabajo?", "acceptedAnswer": { "@type": "Answer", "text": "El trabajo se realiza en 524-A Industrial Blvd, Naples, FL 34104, con cita previa. Recibimos autos de Bonita Springs, Marco Island, Fort Myers y Cape Coral." } },
-      { "@type": "Question", "name": "¿Trabajan exóticos y superautos?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, recibimos vehículos exóticos y de alto rendimiento. Altura baja, sensores, carbono y molduras complejas requieren inspección y un plan específico. El desmontaje y trazado dependen del auto y del alcance confirmado." } },
+      { "@type": "Question", "name": "¿Trabajan exóticos y superautos?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, los vehículos exóticos y de alto rendimiento son bienvenidos, y un cambio de color completo en uno empieza en $7,500. Alturas bajas, sensores, piezas de carbono y molduras complejas requieren inspección y plan de instalación específicos. El desmontaje y el ploteo dependen del auto exacto y del alcance confirmado." } },
       { "@type": "Question", "name": "¿Cuánto tarda un wrap?", "acceptedAnswer": { "@type": "Answer", "text": "Un cambio de color completo suele tomar de 3 a 5 días de instalación. El estado, la complejidad, el desmontaje y la disponibilidad del vinilo pueden afectar el plazo. La estimación va en la cotización confirmada." } }
     ]
   }
   </script>
-  <script src="/i18n.js?v=17" defer></script>
+  <script src="/i18n.js?v=20" defer></script>
   <!-- role=region plus a name so the bar's text sits inside a landmark: it
        lives outside main/footer by design (fixed, revealed on exit intent) and
        axe flags any content that belongs to no landmark. Same pattern as the

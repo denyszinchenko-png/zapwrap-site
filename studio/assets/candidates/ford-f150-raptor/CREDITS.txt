@@ -1,0 +1,7 @@
+{
+  "author": "Galaxy Car Showroom (https://sketchfab.com/adrianaflak09)",
+  "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+  "source": "https://sketchfab.com/3d-models/2018-ford-f-150-raptor-096aa1ba46984eeeb196b75f4d213a0a",
+  "title": "2018 Ford F-150 Raptor"
+}
+Local adaptation: exterior material isolation and, when present, exact panel metadata. Source geometry retained. No complete opening rig; trim accuracy and final visual quality remain under review.
